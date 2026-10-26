@@ -1,2 +1,2 @@
-// Ranking of candidate restaurants — implemented in a later phase.
-export {};
+// Transparent ranking of candidate restaurants.
+export * from "./rank";

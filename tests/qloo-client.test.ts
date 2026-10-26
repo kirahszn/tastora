@@ -1,5 +1,11 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { buildQlooUrl, qlooGet, qlooRequest, QlooApiError } from "@/lib/qloo/client";
+import {
+  buildQlooUrl,
+  qlooGet,
+  qlooRequest,
+  QlooApiError,
+  QLOO_TIMEOUT_MS,
+} from "@/lib/qloo/client";
 
 const KEY = "test-key-SECRET-abc123";
 const BASE = "https://qloo.example.test";
@@ -90,17 +96,24 @@ describe("qlooRequest", () => {
     expect(JSON.stringify(err.body)).toContain("[REDACTED]");
   });
 
-  it("aborts after the timeout and throws a typed error", async () => {
+  it("aborts after the 15 s default timeout and throws a typed error", async () => {
     vi.useFakeTimers();
+    let aborted = false;
     const fetch = mockFetch(
       (_url, init) =>
         new Promise<Response>((_resolve, reject) => {
-          init.signal?.addEventListener("abort", () => reject(new Error("aborted")));
+          init.signal?.addEventListener("abort", () => {
+            aborted = true;
+            reject(new Error("aborted"));
+          });
         }),
     );
 
+    expect(QLOO_TIMEOUT_MS).toBe(15_000);
     const pending = caught(qlooRequest("/search", {}, { apiKey: KEY, baseUrl: BASE, fetch }));
-    await vi.advanceTimersByTimeAsync(10_000);
+    await vi.advanceTimersByTimeAsync(14_999);
+    expect(aborted).toBe(false);
+    await vi.advanceTimersByTimeAsync(1);
     const err = await pending;
 
     expect(err.status).toBeNull();

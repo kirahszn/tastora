@@ -1,2 +1,3 @@
-// Hard-constraint engine (allergens, texture, dietary rules) — implemented in a later phase.
-export {};
+// Constraint engine: allergies, dietary restrictions, texture and comfort needs.
+export * from "./evaluate";
+export { containsKeyword } from "./keywords";

@@ -8,51 +8,236 @@
   },
   "ok": true,
   "status": 200,
-  "durationMs": 319,
-  "rateLimitHeaders": {
-    "x-month-ratelimit-limit": "50000",
-    "x-month-ratelimit-remaining": "49989",
-    "x-month-ratelimit-reset": "2591977.19",
-    "x-second-ratelimit-limit": "10",
-    "x-second-ratelimit-remaining": "8",
-    "x-second-ratelimit-reset": "0.66"
-  },
   "body": {
     "results": [
       {
-        "name": "Katz's Delicatessen",
         "entity_id": "8505B59A-E2DA-4BFF-94A4-97707ECA4686",
+        "name": "Katz's Delicatessen",
         "types": [
           "urn:entity:place"
         ],
+        "disambiguation": "205 E Houston St New York, NY 10002",
+        "location": {
+          "lat": 40.722232999999996,
+          "lon": -73.98742899999999
+        },
+        "tags": [
+          {
+            "tag_id": "urn:tag:specialty_dish:place:beef_brisket",
+            "name": "Beef brisket",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:specialty_dish:place:soup",
+            "name": "Soup",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:corned_beef_sandwich",
+            "name": "Corned beef sandwich",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:specialty_dish:place:hot_pastrami",
+            "name": "Hot pastrami",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:specialty_dish:place:pastrami_sandwich_and_reuben_sandwich",
+            "name": "Pastrami sandwich and reuben sandwich",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:casual",
+            "name": "Casual",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_entrance",
+            "name": "Wheelchair accessible entrance",
+            "type": "urn:tag:accessibility:place"
+          },
+          {
+            "tag_id": "urn:tag:specialty_dish:place:fries",
+            "name": "Fries",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:classic",
+            "name": "Classic",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_seating",
+            "name": "Wheelchair accessible seating",
+            "type": "urn:tag:accessibility:place"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:reuben_sandwich",
+            "name": "Reuben sandwich",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:historic",
+            "name": "Historic",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:specialty_dish:place:pastrami_or_corned_beef_sandwich",
+            "name": "Pastrami or corned beef sandwich",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:specialty_dish:place:sandwiches_de_pastrami",
+            "name": "Sandwiches de pastrami",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:specialty_dish:place:with_pastrami",
+            "name": "With pastrami",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:beef_brisket",
+            "name": "Beef brisket",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:specialty_dish:place:pastrami_sandwich",
+            "name": "Pastrami sandwich",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:specialty_dish:place:potato",
+            "name": "Potato",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:social",
+            "name": "Social",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:lively",
+            "name": "Lively",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:matzah_ball_soup",
+            "name": "Matzah ball soup",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:cheesecake",
+            "name": "Cheesecake",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:chaotic",
+            "name": "Chaotic",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:hot_dogs",
+            "name": "Hot dogs",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:specialty_dish:place:beef_and_pastrami",
+            "name": "Beef and pastrami",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:knish",
+            "name": "Knish",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:cuisine:qloo:american",
+            "name": "American",
+            "type": "urn:tag:cuisine:qloo"
+          },
+          {
+            "tag_id": "urn:tag:offerings:place:email_contact",
+            "name": "Email contact",
+            "type": "urn:tag:offerings:place"
+          },
+          {
+            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_restroom",
+            "name": "Wheelchair accessible restroom",
+            "type": "urn:tag:accessibility:place"
+          },
+          {
+            "tag_id": "urn:tag:cuisine:qloo:jewish_deli",
+            "name": "Jewish deli",
+            "type": "urn:tag:cuisine:qloo"
+          },
+          {
+            "tag_id": "urn:tag:specialty_dish:place:rye_bread",
+            "name": "Rye bread",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:specialty_dish:place:and_pickles",
+            "name": "And pickles",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:noise_level:qloo:loud",
+            "name": "Loud",
+            "type": "urn:tag:noise_level:qloo"
+          },
+          {
+            "tag_id": "urn:tag:specialty_dish:place:roast_beef",
+            "name": "Roast beef",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:specialty_dish:place:matzah_ball",
+            "name": "Matzah ball",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:cuisine:qloo:seafood",
+            "name": "Seafood",
+            "type": "urn:tag:cuisine:qloo"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:pastrami_sandwich",
+            "name": "Pastrami sandwich",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:specialty_dish:place:ball_soup",
+            "name": "Ball soup",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:bustling",
+            "name": "Bustling",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:specialty_dish:place:steak_fries",
+            "name": "Steak fries",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:specialty_dish:place:sandwich_de_pastrami",
+            "name": "Sandwich de pastrami",
+            "type": "urn:tag:specialty_dish:place"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:nostalgic",
+            "name": "Nostalgic",
+            "type": "urn:tag:ambience:qloo"
+          }
+        ],
         "properties": {
-          "akas": [
-            {
-              "language": "",
-              "value": "Katz's Delicatessen, 205 E Houston St New York, NY 10002"
-            }
-          ],
           "address": "205 E Houston St New York, NY 10002",
-          "business_rating": 4.5,
-          "description": "Historic 1888 New York deli famous for legendary pastrami sandwiches served in a bustling, authentic Lower East Side storefront.",
-          "external": {
-            "michelin": {
-              "id": "122748"
-            },
-            "google_place": {
-              "id": "313547e757cb8cea",
-              "place_id": "ChIJCar0f49ZwokR6ozLV-dHNTE"
-            }
-          },
-          "geocode": {
-            "name": "Lower East Side",
-            "city": "New York",
-            "admin1_region": "New York",
-            "admin2_region": "New York County",
-            "country_code": "US",
-            "country": "United States",
-            "metro": "New York City"
-          },
+          "neighborhood": "Lower East Side",
+          "phone": "+12122542246",
+          "website": "https://katzsdelicatessen.com/",
           "hours": {
             "sunday": [
               {
@@ -100,1868 +285,277 @@
               }
             ]
           },
-          "image": {
-            "url": "https://images.qloo.com/i/8505B59A-E2DA-4BFF-94A4-97707ECA4686-420x-auto.jpg"
-          },
           "is_closed": false,
-          "neighborhood": "Lower East Side",
-          "phone": "+12122542246",
           "price_level": 3,
-          "price_range": {
-            "currency": "usd"
-          },
-          "website": "https://katzsdelicatessen.com/",
+          "business_rating": 4.5,
+          "description": "Historic 1888 New York deli famous for legendary pastrami sandwiches served in a bustling, authentic Lower East Side storefront.",
           "specialty_dishes": [
             {
               "id": "urn:tag:specialty_dish:place:pastrami_sandwich_reuben_sandwich",
-              "name": "Pastrami Sandwich And Reuben Sandwich",
-              "type": "urn:tag:specialty_dish:place",
-              "weight": 1
+              "name": "Pastrami Sandwich And Reuben Sandwich"
             },
             {
               "id": "urn:tag:specialty_dish:place:rye_bread",
-              "name": "Rye Bread",
-              "type": "urn:tag:specialty_dish:place",
-              "weight": 0.9523809523809523
+              "name": "Rye Bread"
             },
             {
               "id": "urn:tag:specialty_dish:place:ball_soup",
-              "name": "Ball Soup",
-              "type": "urn:tag:specialty_dish:place",
-              "weight": 0.9047619047619048
+              "name": "Ball Soup"
             }
           ],
-          "primary_genre": {
-            "id": "urn:tag:genre:place:restaurant:deli",
-            "name": "Deli",
-            "type": "urn:tag:genre:place",
-            "akas": [
-              {
-                "language": "ko",
-                "value": "\"델리\""
-              },
-              {
-                "language": "es",
-                "value": "\"Charcutería\""
-              },
-              {
-                "language": "th",
-                "value": "\"ร้านเดลี่\""
-              },
-              {
-                "language": "my",
-                "value": "\"အစားအသောက်ဆိုင်\""
-              },
-              {
-                "language": "te",
-                "value": "\"డెలి\""
-              },
-              {
-                "language": "tr",
-                "value": "\"Şarküteri\""
-              },
-              {
-                "language": "km",
-                "value": "\"ហាងលក់ម្ហូបអាហារ\""
-              },
-              {
-                "language": "ta",
-                "value": "\"உணவுக்கடை\""
-              },
-              {
-                "language": "bg",
-                "value": "\"Деликатесен магазин\""
-              },
-              {
-                "language": "lt",
-                "value": "\"Kulinarijos parduotuvė\""
-              },
-              {
-                "language": "pl",
-                "value": "\"Delikatesy\""
-              },
-              {
-                "language": "pt_pt",
-                "value": "\"Charcutaria\""
-              },
-              {
-                "language": "ms",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "af",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "az",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "sw",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "ca",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "sv",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "gl",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "eu",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "da",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "es_la",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "id",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "fi",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "tl",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "et",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "lv",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "hr",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "sq",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "bs",
-                "value": "\"Deli\""
-              },
-              {
-                "language": "fr",
-                "value": "\"Traiteur\""
-              },
-              {
-                "language": "pt",
-                "value": "\"Delicatessen\""
-              },
-              {
-                "language": "es",
-                "value": "\"Delicatessen\""
-              },
-              {
-                "language": "en_gb",
-                "value": "\"Delicatessen\""
-              },
-              {
-                "language": "zh_tw",
-                "value": "\"熟食店\""
-              },
-              {
-                "language": "zh",
-                "value": "\"熟食店\""
-              },
-              {
-                "language": "sl",
-                "value": "\"Delikatesa\""
-              },
-              {
-                "language": "it",
-                "value": "\"Gastronomia\""
-              },
-              {
-                "language": "bn",
-                "value": "\"ডেলি\""
-              },
-              {
-                "language": "ja",
-                "value": "\"デリ\""
-              },
-              {
-                "language": "sk",
-                "value": "\"Lahôdky\""
-              },
-              {
-                "language": "fr_ca",
-                "value": "\"Charcuterie\""
-              },
-              {
-                "language": "fr",
-                "value": "\"Épicerie fine\""
-              },
-              {
-                "language": "de",
-                "value": "\"Feinkostladen\""
-              },
-              {
-                "language": "lo",
-                "value": "\"ຮ້ານຂາຍອາຫານແຫ້ງ\""
-              },
-              {
-                "language": "ro",
-                "value": "\"Delicatese\""
-              },
-              {
-                "language": "es_ar",
-                "value": "\"Fiiambrería\""
-              },
-              {
-                "language": "uk",
-                "value": "\"Делікатеси\""
-              },
-              {
-                "language": "nl",
-                "value": "\"Delicatessenwinkel\""
-              },
-              {
-                "language": "kk",
-                "value": "\"Дели\""
-              },
-              {
-                "language": "ka",
-                "value": "\"დელიკატესების მაღაზია\""
-              },
-              {
-                "language": "he",
-                "value": "\"מעדנייה\""
-              },
-              {
-                "language": "hi",
-                "value": "\"डेली\""
-              },
-              {
-                "language": "vi",
-                "value": "\"Cửa hàng thực phẩm\""
-              },
-              {
-                "language": "hu",
-                "value": "\"Csemegebolt\""
-              },
-              {
-                "language": "ar",
-                "value": "\"متجر أطعمة جاهزة\""
-              },
-              {
-                "language": "sr",
-                "value": "\"Деликатесна радња\""
-              },
-              {
-                "language": "nb",
-                "value": "\"Delikatesseforretning\""
-              },
-              {
-                "language": "ru",
-                "value": "\"Гастроном\""
-              },
-              {
-                "language": "mk",
-                "value": "\"Деликатеси\""
-              },
-              {
-                "language": "cs",
-                "value": "\"Lahůdky\""
-              },
-              {
-                "language": "el",
-                "value": "\"Ντελικατέσεν\""
-              }
-            ]
-          }
-        },
-        "popularity": 0.9998924631728155,
-        "disambiguation": "205 E Houston St New York, NY 10002",
-        "location": {
-          "lat": 40.722232999999996,
-          "lon": -73.98742899999999
-        },
-        "tags": [
-          {
-            "name": "Takeout",
-            "tag_id": "urn:tag:service_type:qloo:takeout",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:takeout"
-          },
-          {
-            "name": "Authentic",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:authentic",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:authentic"
-          },
-          {
-            "name": "Street view",
-            "tag_id": "urn:tag:view:qloo:street_view",
-            "type": "urn:tag:view:qloo",
-            "value": "urn:tag:view:qloo:street_view"
-          },
-          {
-            "name": "Authentic",
-            "tag_id": "urn:tag:decor:qloo:authentic",
-            "type": "urn:tag:decor:qloo",
-            "value": "urn:tag:decor:qloo:authentic"
-          },
-          {
-            "name": "Beef brisket",
-            "tag_id": "urn:tag:specialty_dish:place:beef_brisket",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:beef_brisket"
-          },
-          {
-            "name": "Casual",
-            "tag_id": "urn:tag:culinary_style:qloo:casual",
-            "type": "urn:tag:culinary_style:qloo",
-            "value": "urn:tag:culinary_style:qloo:casual"
-          },
-          {
-            "name": "Sightseeing",
-            "tag_id": "urn:tag:activity_type:qloo:sightseeing",
-            "type": "urn:tag:activity_type:qloo",
-            "value": "urn:tag:activity_type:qloo:sightseeing"
-          },
-          {
-            "name": "Table service",
-            "tag_id": "urn:tag:amenity:qloo:table_service",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:table_service"
-          },
-          {
-            "name": "Soup",
-            "tag_id": "urn:tag:specialty_dish:place:soup",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:soup"
-          },
-          {
-            "name": "Corned beef sandwich",
-            "tag_id": "urn:tag:menu_highlight:qloo:corned_beef_sandwich",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:corned_beef_sandwich"
-          },
-          {
-            "name": "Discover",
-            "tag_id": "urn:tag:credit_card:place:discover",
-            "type": "urn:tag:credit_card:place",
-            "value": "urn:tag:credit_card:place:discover"
-          },
-          {
-            "name": "Place",
-            "tag_id": "urn:tag:genre:place",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place"
-          },
-          {
-            "name": "Jewish restaurant",
-            "tag_id": "urn:tag:category:place:jewish_restaurant",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:jewish_restaurant"
-          },
-          {
-            "name": "Historic",
-            "tag_id": "urn:tag:decor:qloo:historic",
-            "type": "urn:tag:decor:qloo",
-            "value": "urn:tag:decor:qloo:historic"
-          },
-          {
-            "name": "Takeout",
-            "tag_id": "urn:tag:service_options:place:takeout",
-            "type": "urn:tag:service_options:place",
-            "value": "urn:tag:service_options:place:takeout"
-          },
-          {
-            "name": "Paid street parking",
-            "tag_id": "urn:tag:parking:place:paid_street_parking",
-            "type": "urn:tag:parking:place",
-            "value": "urn:tag:parking:place:paid_street_parking"
-          },
-          {
-            "name": "Jewish cuisine",
-            "tag_id": "urn:tag:interests:qloo:jewish_cuisine",
-            "type": "urn:tag:interests:qloo",
-            "value": "urn:tag:interests:qloo:jewish_cuisine"
-          },
-          {
-            "name": "Traditional",
-            "tag_id": "urn:tag:culinary_style:qloo:traditional",
-            "type": "urn:tag:culinary_style:qloo",
-            "value": "urn:tag:culinary_style:qloo:traditional"
-          },
-          {
-            "name": "Debit cards",
-            "tag_id": "urn:tag:payments:place:debit_cards",
-            "type": "urn:tag:payments:place",
-            "value": "urn:tag:payments:place:debit_cards"
-          },
-          {
-            "name": "Locals",
-            "tag_id": "urn:tag:customer_identity:qloo:locals",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:locals"
-          },
-          {
-            "name": "Pickup",
-            "tag_id": "urn:tag:service_type:qloo:pickup",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:pickup"
-          },
-          {
-            "name": "Special occasion",
-            "tag_id": "urn:tag:visit_intent:qloo:special_occasion",
-            "type": "urn:tag:visit_intent:qloo",
-            "value": "urn:tag:visit_intent:qloo:special_occasion"
-          },
-          {
-            "name": "Beer",
-            "tag_id": "urn:tag:beverage_offering:qloo:beer",
-            "type": "urn:tag:beverage_offering:qloo",
-            "value": "urn:tag:beverage_offering:qloo:beer"
-          },
-          {
-            "name": "Film history",
-            "tag_id": "urn:tag:interests:qloo:film_history",
-            "type": "urn:tag:interests:qloo",
-            "value": "urn:tag:interests:qloo:film_history"
-          },
-          {
-            "name": "Dine in",
-            "tag_id": "urn:tag:service_type:qloo:dine_in",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:dine_in"
-          },
-          {
-            "name": "Historic",
-            "tag_id": "urn:tag:setting:qloo:historic",
-            "type": "urn:tag:setting:qloo",
-            "value": "urn:tag:setting:qloo:historic"
-          },
-          {
-            "name": "Late night",
-            "tag_id": "urn:tag:time_of_day_fit:qloo:late_night",
-            "type": "urn:tag:time_of_day_fit:qloo",
-            "value": "urn:tag:time_of_day_fit:qloo:late_night"
-          },
-          {
-            "name": "Urban exploration",
-            "tag_id": "urn:tag:interests:qloo:urban_exploration",
-            "type": "urn:tag:interests:qloo",
-            "value": "urn:tag:interests:qloo:urban_exploration"
-          },
-          {
-            "name": "Hot pastrami",
-            "tag_id": "urn:tag:specialty_dish:place:hot_pastrami",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:hot_pastrami"
-          },
-          {
-            "name": "Specialty non alcoholic",
-            "tag_id": "urn:tag:beverage_offering:qloo:specialty_non_alcoholic",
-            "type": "urn:tag:beverage_offering:qloo",
-            "value": "urn:tag:beverage_offering:qloo:specialty_non_alcoholic"
-          },
-          {
-            "name": "Pastrami sandwich and reuben sandwich",
-            "tag_id": "urn:tag:specialty_dish:place:pastrami_sandwich_and_reuben_sandwich",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:pastrami_sandwich_and_reuben_sandwich"
-          },
-          {
-            "name": "Nostalgic",
-            "tag_id": "urn:tag:decor:qloo:nostalgic",
-            "type": "urn:tag:decor:qloo",
-            "value": "urn:tag:decor:qloo:nostalgic"
-          },
-          {
-            "name": "Lower east side",
-            "tag_id": "urn:tag:setting:qloo:lower_east_side",
-            "type": "urn:tag:setting:qloo",
-            "value": "urn:tag:setting:qloo:lower_east_side"
-          },
-          {
-            "name": "Casual",
-            "tag_id": "urn:tag:decor:qloo:casual",
-            "type": "urn:tag:decor:qloo",
-            "value": "urn:tag:decor:qloo:casual"
-          },
-          {
-            "name": "Casual",
-            "tag_id": "urn:tag:ambience:qloo:casual",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:casual"
-          },
-          {
-            "name": "Seating",
-            "tag_id": "urn:tag:amenity:qloo:seating",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:seating"
-          },
-          {
-            "name": "Wheelchair accessible entrance",
-            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_entrance",
-            "type": "urn:tag:accessibility:place",
-            "value": "urn:tag:accessibility:place:wheelchair_accessible_entrance"
-          },
-          {
-            "name": "Jewish",
-            "tag_id": "urn:tag:genre:place:restaurant:jewish",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:restaurant:jewish"
-          },
-          {
-            "name": "Morning",
-            "tag_id": "urn:tag:time_of_day_fit:qloo:morning",
-            "type": "urn:tag:time_of_day_fit:qloo",
-            "value": "urn:tag:time_of_day_fit:qloo:morning"
-          },
-          {
-            "name": "American",
-            "tag_id": "urn:tag:genre:place:restaurant:american",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:restaurant:american"
-          },
-          {
-            "name": "Fries",
-            "tag_id": "urn:tag:specialty_dish:place:fries",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:fries"
-          },
-          {
-            "name": "Classic",
-            "tag_id": "urn:tag:ambience:qloo:classic",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:classic"
-          },
-          {
-            "name": "Dine in",
-            "tag_id": "urn:tag:service_options:place:dine_in",
-            "type": "urn:tag:service_options:place",
-            "value": "urn:tag:service_options:place:dine_in"
-          },
-          {
-            "name": "Wheelchair accessible seating",
-            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_seating",
-            "type": "urn:tag:accessibility:place",
-            "value": "urn:tag:accessibility:place:wheelchair_accessible_seating"
-          },
-          {
-            "name": "Destination",
-            "tag_id": "urn:tag:visit_intent:qloo:destination",
-            "type": "urn:tag:visit_intent:qloo",
-            "value": "urn:tag:visit_intent:qloo:destination"
-          },
-          {
-            "name": "Reuben sandwich",
-            "tag_id": "urn:tag:menu_highlight:qloo:reuben_sandwich",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:reuben_sandwich"
-          },
-          {
-            "name": "Touristic",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:touristic",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:touristic"
-          },
-          {
-            "name": "Traditional",
-            "tag_id": "urn:tag:decor:qloo:traditional",
-            "type": "urn:tag:decor:qloo",
-            "value": "urn:tag:decor:qloo:traditional"
-          },
-          {
-            "name": "Counter service",
-            "tag_id": "urn:tag:amenity:qloo:counter_service",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:counter_service"
-          },
-          {
-            "name": "Celebratory diners",
-            "tag_id": "urn:tag:customer_identity:qloo:celebratory_diners",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:celebratory_diners"
-          },
-          {
-            "name": "Historic",
-            "tag_id": "urn:tag:ambience:qloo:historic",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:historic"
-          },
-          {
-            "name": "Pastrami or corned beef sandwich",
-            "tag_id": "urn:tag:specialty_dish:place:pastrami_or_corned_beef_sandwich",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:pastrami_or_corned_beef_sandwich"
-          },
-          {
-            "name": "Price level",
-            "tag_id": "urn:tag:payments:place:price_level",
-            "type": "urn:tag:payments:place",
-            "value": "urn:tag:payments:place:price_level"
-          },
-          {
-            "name": "Historic",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:historic",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:historic"
-          },
-          {
-            "name": "Tenement museum",
-            "tag_id": "urn:tag:nearby_attraction:qloo:tenement_museum",
-            "type": "urn:tag:nearby_attraction:qloo",
-            "value": "urn:tag:nearby_attraction:qloo:tenement_museum"
-          },
-          {
-            "name": "30 34",
-            "tag_id": "urn:tag:age_range:qloo:30_34",
-            "type": "urn:tag:age_range:qloo",
-            "value": "urn:tag:age_range:qloo:30_34"
-          },
-          {
-            "name": "American express",
-            "tag_id": "urn:tag:credit_card:place:american_express",
-            "type": "urn:tag:credit_card:place",
-            "value": "urn:tag:credit_card:place:american_express"
-          },
-          {
-            "name": "Iconic institution",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:iconic_institution",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:iconic_institution"
-          },
-          {
-            "name": "Restroom",
-            "tag_id": "urn:tag:amenities:place:restroom",
-            "type": "urn:tag:amenities:place",
-            "value": "urn:tag:amenities:place:restroom"
-          },
-          {
-            "name": "Sandwiches de pastrami",
-            "tag_id": "urn:tag:specialty_dish:place:sandwiches_de_pastrami",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:sandwiches_de_pastrami"
-          },
-          {
-            "name": "Mastercard",
-            "tag_id": "urn:tag:credit_card:place:mastercard",
-            "type": "urn:tag:credit_card:place",
-            "value": "urn:tag:credit_card:place:mastercard"
-          },
-          {
-            "name": "Deli",
-            "tag_id": "urn:tag:genre:place:restaurant:deli",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:restaurant:deli"
-          },
-          {
-            "name": "Meat craftsmanship",
-            "tag_id": "urn:tag:interests:qloo:meat_craftsmanship",
-            "type": "urn:tag:interests:qloo",
-            "value": "urn:tag:interests:qloo:meat_craftsmanship"
-          },
-          {
-            "name": "With pastrami",
-            "tag_id": "urn:tag:specialty_dish:place:with_pastrami",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:with_pastrami"
-          },
-          {
-            "name": "Beef brisket",
-            "tag_id": "urn:tag:menu_highlight:qloo:beef_brisket",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:beef_brisket"
-          },
-          {
-            "name": "Bustling",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:bustling",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:bustling"
-          },
-          {
-            "name": "Pastrami sandwich",
-            "tag_id": "urn:tag:specialty_dish:place:pastrami_sandwich",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:pastrami_sandwich"
-          },
-          {
-            "name": "Evening",
-            "tag_id": "urn:tag:time_of_day_fit:qloo:evening",
-            "type": "urn:tag:time_of_day_fit:qloo",
-            "value": "urn:tag:time_of_day_fit:qloo:evening"
-          },
-          {
-            "name": "Dining drinking",
-            "tag_id": "urn:tag:activity_type:qloo:dining_drinking",
-            "type": "urn:tag:activity_type:qloo",
-            "value": "urn:tag:activity_type:qloo:dining_drinking"
-          },
-          {
-            "name": "Potato",
-            "tag_id": "urn:tag:specialty_dish:place:potato",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:potato"
-          },
-          {
-            "name": "Social",
-            "tag_id": "urn:tag:ambience:qloo:social",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:social"
-          },
-          {
-            "name": "Takeout",
-            "tag_id": "urn:tag:amenity:qloo:takeout",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:takeout"
-          },
-          {
-            "name": "Lively",
-            "tag_id": "urn:tag:ambience:qloo:lively",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:lively"
-          },
-          {
-            "name": "Old school deli",
-            "tag_id": "urn:tag:decor:qloo:old_school_deli",
-            "type": "urn:tag:decor:qloo",
-            "value": "urn:tag:decor:qloo:old_school_deli"
-          },
-          {
-            "name": "Groups of friends",
-            "tag_id": "urn:tag:customer_identity:qloo:groups_of_friends",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:groups_of_friends"
-          },
-          {
-            "name": "Matzah ball soup",
-            "tag_id": "urn:tag:menu_highlight:qloo:matzah_ball_soup",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:matzah_ball_soup"
-          },
-          {
-            "name": "Credit cards",
-            "tag_id": "urn:tag:payments:place:credit_cards",
-            "type": "urn:tag:payments:place",
-            "value": "urn:tag:payments:place:credit_cards"
-          },
-          {
-            "name": "Cheesecake",
-            "tag_id": "urn:tag:menu_highlight:qloo:cheesecake",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:cheesecake"
-          },
-          {
-            "name": "Little italy",
-            "tag_id": "urn:tag:nearby_attraction:qloo:little_italy",
-            "type": "urn:tag:nearby_attraction:qloo",
-            "value": "urn:tag:nearby_attraction:qloo:little_italy"
-          },
-          {
-            "name": "Restaurant",
-            "tag_id": "urn:tag:category:place:restaurant",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:restaurant"
-          },
-          {
-            "name": "Soft drinks",
-            "tag_id": "urn:tag:beverage_offering:qloo:soft_drinks",
-            "type": "urn:tag:beverage_offering:qloo",
-            "value": "urn:tag:beverage_offering:qloo:soft_drinks"
-          },
-          {
-            "name": "Restaurant",
-            "tag_id": "urn:tag:genre:place:restaurant",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:restaurant"
-          },
-          {
-            "name": "Artisanal",
-            "tag_id": "urn:tag:culinary_style:qloo:artisanal",
-            "type": "urn:tag:culinary_style:qloo",
-            "value": "urn:tag:culinary_style:qloo:artisanal"
-          },
-          {
-            "name": "Deli",
-            "tag_id": "urn:tag:category:place:deli",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:deli"
-          },
-          {
-            "name": "25 29",
-            "tag_id": "urn:tag:age_range:qloo:25_29",
-            "type": "urn:tag:age_range:qloo",
-            "value": "urn:tag:age_range:qloo:25_29"
-          },
-          {
-            "name": "Private events",
-            "tag_id": "urn:tag:service_type:qloo:private_events",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:private_events"
-          },
-          {
-            "name": "Chaotic",
-            "tag_id": "urn:tag:ambience:qloo:chaotic",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:chaotic"
-          },
-          {
-            "name": "Central",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:central",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:central"
-          },
-          {
-            "name": "Hot dogs",
-            "tag_id": "urn:tag:menu_highlight:qloo:hot_dogs",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:hot_dogs"
-          },
-          {
-            "name": "Nfc mobile payments",
-            "tag_id": "urn:tag:payments:place:nfc_mobile_payments",
-            "type": "urn:tag:payments:place",
-            "value": "urn:tag:payments:place:nfc_mobile_payments"
-          },
-          {
-            "name": "Tourists",
-            "tag_id": "urn:tag:customer_identity:qloo:tourists",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:tourists"
-          },
-          {
-            "name": "Beef and pastrami",
-            "tag_id": "urn:tag:specialty_dish:place:beef_and_pastrami",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:beef_and_pastrami"
-          },
-          {
-            "name": "Knish",
-            "tag_id": "urn:tag:menu_highlight:qloo:knish",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:knish"
-          },
-          {
-            "name": "Culinary landmarks",
-            "tag_id": "urn:tag:interests:qloo:culinary_landmarks",
-            "type": "urn:tag:interests:qloo",
-            "value": "urn:tag:interests:qloo:culinary_landmarks"
-          },
-          {
-            "name": "Solo diners",
-            "tag_id": "urn:tag:customer_identity:qloo:solo_diners",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:solo_diners"
-          },
-          {
-            "name": "Staff required to disinfect surfaces between visits",
-            "tag_id": "urn:tag:not_for_display:place:staff_required_to_disinfect_surfaces_between_visits",
-            "type": "urn:tag:not_for_display:place",
-            "value": "urn:tag:not_for_display:place:staff_required_to_disinfect_surfaces_between_visits"
-          },
-          {
-            "name": "All day",
-            "tag_id": "urn:tag:time_of_day_fit:qloo:all_day",
-            "type": "urn:tag:time_of_day_fit:qloo",
-            "value": "urn:tag:time_of_day_fit:qloo:all_day"
-          },
-          {
-            "name": "American",
-            "tag_id": "urn:tag:cuisine:qloo:american",
-            "type": "urn:tag:cuisine:qloo",
-            "value": "urn:tag:cuisine:qloo:american"
-          },
-          {
-            "name": "Midday",
-            "tag_id": "urn:tag:time_of_day_fit:qloo:midday",
-            "type": "urn:tag:time_of_day_fit:qloo",
-            "value": "urn:tag:time_of_day_fit:qloo:midday"
-          },
-          {
-            "name": "Sandwich shop",
-            "tag_id": "urn:tag:category:place:sandwich_shop",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:sandwich_shop"
-          },
-          {
-            "name": "Sandwich shop",
-            "tag_id": "urn:tag:genre:place:restaurant:sandwich_shop",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:restaurant:sandwich_shop"
-          },
-          {
-            "name": "18 24",
-            "tag_id": "urn:tag:age_range:qloo:18_24",
-            "type": "urn:tag:age_range:qloo",
-            "value": "urn:tag:age_range:qloo:18_24"
-          },
-          {
-            "name": "American restaurant",
-            "tag_id": "urn:tag:category:place:american_restaurant",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:american_restaurant"
-          },
-          {
-            "name": "Email contact",
-            "tag_id": "urn:tag:offerings:place:email_contact",
-            "type": "urn:tag:offerings:place",
-            "value": "urn:tag:offerings:place:email_contact"
-          },
-          {
-            "name": "Wheelchair accessible restroom",
-            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_restroom",
-            "type": "urn:tag:accessibility:place",
-            "value": "urn:tag:accessibility:place:wheelchair_accessible_restroom"
-          },
-          {
-            "name": "Delivery",
-            "tag_id": "urn:tag:service_type:qloo:delivery",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:delivery"
-          },
-          {
-            "name": "Authentic",
-            "tag_id": "urn:tag:culinary_style:qloo:authentic",
-            "type": "urn:tag:culinary_style:qloo",
-            "value": "urn:tag:culinary_style:qloo:authentic"
-          },
-          {
-            "name": "Jewish deli",
-            "tag_id": "urn:tag:cuisine:qloo:jewish_deli",
-            "type": "urn:tag:cuisine:qloo",
-            "value": "urn:tag:cuisine:qloo:jewish_deli"
-          },
-          {
-            "name": "Counter service",
-            "tag_id": "urn:tag:service_type:qloo:counter_service",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:counter_service"
-          },
-          {
-            "name": "Rye bread",
-            "tag_id": "urn:tag:specialty_dish:place:rye_bread",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:rye_bread"
-          },
-          {
-            "name": "And pickles",
-            "tag_id": "urn:tag:specialty_dish:place:and_pickles",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:and_pickles"
-          },
-          {
-            "name": "Culinary experience",
-            "tag_id": "urn:tag:activity_type:qloo:culinary_experience",
-            "type": "urn:tag:activity_type:qloo",
-            "value": "urn:tag:activity_type:qloo:culinary_experience"
-          },
-          {
-            "name": "Temperature check required",
-            "tag_id": "urn:tag:not_for_display:place:temperature_check_required",
-            "type": "urn:tag:not_for_display:place",
-            "value": "urn:tag:not_for_display:place:temperature_check_required"
-          },
-          {
-            "name": "Foodies",
-            "tag_id": "urn:tag:customer_identity:qloo:foodies",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:foodies"
-          },
-          {
-            "name": "$30 to $40",
-            "tag_id": "urn:tag:cost_description:place:30_to_40",
-            "type": "urn:tag:cost_description:place",
-            "value": "urn:tag:cost_description:place:30_to_40"
-          },
-          {
-            "name": "Delivery",
-            "tag_id": "urn:tag:service_options:place:delivery",
-            "type": "urn:tag:service_options:place",
-            "value": "urn:tag:service_options:place:delivery"
-          },
-          {
-            "name": "Loud",
-            "tag_id": "urn:tag:noise_level:qloo:loud",
-            "type": "urn:tag:noise_level:qloo",
-            "value": "urn:tag:noise_level:qloo:loud"
-          },
-          {
-            "name": "Roast beef",
-            "tag_id": "urn:tag:specialty_dish:place:roast_beef",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:roast_beef"
-          },
-          {
-            "name": "Matzah ball",
-            "tag_id": "urn:tag:specialty_dish:place:matzah_ball",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:matzah_ball"
-          },
-          {
-            "name": "Urban",
-            "tag_id": "urn:tag:setting:qloo:urban",
-            "type": "urn:tag:setting:qloo",
-            "value": "urn:tag:setting:qloo:urban"
-          },
-          {
-            "name": "Seafood",
-            "tag_id": "urn:tag:cuisine:qloo:seafood",
-            "type": "urn:tag:cuisine:qloo",
-            "value": "urn:tag:cuisine:qloo:seafood"
-          },
-          {
-            "name": "Paid parking lot",
-            "tag_id": "urn:tag:parking:place:paid_parking_lot",
-            "type": "urn:tag:parking:place",
-            "value": "urn:tag:parking:place:paid_parking_lot"
-          },
-          {
-            "name": "Afternoon",
-            "tag_id": "urn:tag:time_of_day_fit:qloo:afternoon",
-            "type": "urn:tag:time_of_day_fit:qloo",
-            "value": "urn:tag:time_of_day_fit:qloo:afternoon"
-          },
-          {
-            "name": "City center",
-            "tag_id": "urn:tag:setting:qloo:city_center",
-            "type": "urn:tag:setting:qloo",
-            "value": "urn:tag:setting:qloo:city_center"
-          },
-          {
-            "name": "Bottled water",
-            "tag_id": "urn:tag:beverage_offering:qloo:bottled_water",
-            "type": "urn:tag:beverage_offering:qloo",
-            "value": "urn:tag:beverage_offering:qloo:bottled_water"
-          },
-          {
-            "name": "Delivery",
-            "tag_id": "urn:tag:amenity:qloo:delivery",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:delivery"
-          },
-          {
-            "name": "Visa",
-            "tag_id": "urn:tag:credit_card:place:visa",
-            "type": "urn:tag:credit_card:place",
-            "value": "urn:tag:credit_card:place:visa"
-          },
-          {
-            "name": "Onsite services",
-            "tag_id": "urn:tag:service_options:place:onsite_services",
-            "type": "urn:tag:service_options:place",
-            "value": "urn:tag:service_options:place:onsite_services"
-          },
-          {
-            "name": "Pastrami sandwich",
-            "tag_id": "urn:tag:menu_highlight:qloo:pastrami_sandwich",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:pastrami_sandwich"
-          },
-          {
-            "name": "Ball soup",
-            "tag_id": "urn:tag:specialty_dish:place:ball_soup",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:ball_soup"
-          },
-          {
-            "name": "Bustling",
-            "tag_id": "urn:tag:ambience:qloo:bustling",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:bustling"
-          },
-          {
-            "name": "Steak fries",
-            "tag_id": "urn:tag:specialty_dish:place:steak_fries",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:steak_fries"
-          },
-          {
-            "name": "Sandwich de pastrami",
-            "tag_id": "urn:tag:specialty_dish:place:sandwich_de_pastrami",
-            "type": "urn:tag:specialty_dish:place",
-            "value": "urn:tag:specialty_dish:place:sandwich_de_pastrami"
-          },
-          {
-            "name": "Walkable",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:walkable",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:walkable"
-          },
-          {
-            "name": "Chinatown",
-            "tag_id": "urn:tag:nearby_attraction:qloo:chinatown",
-            "type": "urn:tag:nearby_attraction:qloo",
-            "value": "urn:tag:nearby_attraction:qloo:chinatown"
-          },
-          {
-            "name": "Nostalgic",
-            "tag_id": "urn:tag:ambience:qloo:nostalgic",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:nostalgic"
-          }
-        ]
-      },
-      {
-        "name": "Katz's Delicatessen",
-        "entity_id": "616CF808-D7F5-454E-B83A-A6371D2C30DC",
-        "types": [
-          "urn:entity:brand"
-        ],
-        "properties": {
-          "akas": [
-            {
-              "language": "zh",
-              "value": "卡茨熟食店"
-            },
-            {
-              "language": "he",
-              "value": "כץ דלי"
-            },
-            {
-              "language": "de",
-              "value": "Katz’s Delicatessen"
-            },
-            {
-              "language": "ja",
-              "value": "カッツ・デリ"
-            },
-            {
-              "language": "ar",
-              "value": "كاتس ديلكاتسن"
-            },
-            {
-              "language": "en_au",
-              "value": "Katz's Deli"
-            },
-            {
-              "language": "ru",
-              "value": "Деликатесы Каца"
-            }
-          ],
-          "description": "Established in 1888, this landmark delicatessen has become a defining institution for traditional, hand-carved meats and Jewish-style comfort food in New York City. The brand is globally recognized for its signature pastrami and corned beef, served in an authentic, high-energy environment that has remained largely unchanged for generations. In addition to its bustling brick-and-mortar location on the Lower East Side, it maintains a significant national presence through a specialized shipping program that delivers its classic products to customers across the country. It occupies a unique space in the food market, sitting at the intersection of historical landmark and high-demand consumer destination.",
           "external": {
-            "instagram": {
-              "id": "katzsdeli"
-            },
-            "twitter": {
-              "id": "katzsdeli"
-            },
-            "wikidata": {
-              "id": "Q2611788"
+            "google_place": {
+              "place_id": "ChIJCar0f49ZwokR6ozLV-dHNTE"
             }
-          },
-          "founded_year": "1888",
-          "image": {
-            "url": "https://images.qloo.com/i/616CF808-D7F5-454E-B83A-A6371D2C30DC-420x-auto.jpg"
-          },
-          "short_description": "Katz's Delicatessen is New York City's oldest deli, famous for its pastrami and corned beef sandwiches, offering dine-in, catering, and delivery services.",
-          "short_descriptions": [
-            {
-              "language": "fr",
-              "value": "Une institution légendaire célèbre pour ses sandwichs de charcuterie emblématiques coupés à la main, servis dans un cadre historique et authentique."
-            },
-            {
-              "language": "es",
-              "value": "Una institución legendaria famosa por sus icónicos sándwiches de delicatessen cortados a mano, servidos en un entorno histórico y auténtico."
-            },
-            {
-              "language": "de",
-              "value": "Eine legendäre Institution, bekannt für ikonische, handgeschnittene Deli-Sandwiches in einer historischen und authentischen Atmosphäre."
-            },
-            {
-              "language": "en",
-              "value": "A legendary institution renowned for serving quintessential, hand-carved deli sandwiches in an atmospheric, historic setting."
-            }
-          ]
-        },
-        "popularity": 0.8429082402400366,
-        "disambiguation": "",
-        "tags": [
-          {
-            "name": "Dining",
-            "tag_id": "urn:tag:genre:brand:dining",
-            "type": "urn:tag:genre:brand"
-          },
-          {
-            "name": "Vintage",
-            "tag_id": "urn:tag:aesthetic_property:qloo:vintage",
-            "type": "urn:tag:aesthetic_property:qloo"
-          },
-          {
-            "name": "Unpretentious",
-            "tag_id": "urn:tag:aesthetic_property:qloo:unpretentious",
-            "type": "urn:tag:aesthetic_property:qloo"
-          },
-          {
-            "name": "Rustic",
-            "tag_id": "urn:tag:aesthetic_property:qloo:rustic",
-            "type": "urn:tag:aesthetic_property:qloo"
-          },
-          {
-            "name": "Classic Deli Interior",
-            "tag_id": "urn:tag:aesthetic_property:qloo:classic_deli_interior",
-            "type": "urn:tag:aesthetic_property:qloo"
-          },
-          {
-            "name": "Experiencing Authentic City Culture",
-            "tag_id": "urn:tag:lifestyle:qloo:experiencing_authentic_city_culture",
-            "type": "urn:tag:lifestyle:qloo"
-          },
-          {
-            "name": "Preserving Culinary Traditions",
-            "tag_id": "urn:tag:lifestyle:qloo:preserving_culinary_traditions",
-            "type": "urn:tag:lifestyle:qloo"
-          },
-          {
-            "name": "Other",
-            "tag_id": "urn:tag:brand_subtype:qloo:other",
-            "type": "urn:tag:brand_subtype:qloo"
-          },
-          {
-            "name": "Retail Brand",
-            "tag_id": "urn:tag:brand_type:qloo:retail_brand",
-            "type": "urn:tag:brand_type:qloo"
-          },
-          {
-            "name": "B2C",
-            "tag_id": "urn:tag:business_model:qloo:b2c",
-            "type": "urn:tag:business_model:qloo"
-          },
-          {
-            "name": "2nd Avenue Deli",
-            "tag_id": "urn:tag:competitor_brand:qloo:2nd_avenue_deli",
-            "type": "urn:tag:competitor_brand:qloo"
-          },
-          {
-            "name": "Junior's Restaurant",
-            "tag_id": "urn:tag:competitor_brand:qloo:junior_s_restaurant",
-            "type": "urn:tag:competitor_brand:qloo"
-          },
-          {
-            "name": "Tradition",
-            "tag_id": "urn:tag:core_value:qloo:tradition",
-            "type": "urn:tag:core_value:qloo"
-          },
-          {
-            "name": "Craftsmanship",
-            "tag_id": "urn:tag:core_value:qloo:craftsmanship",
-            "type": "urn:tag:core_value:qloo"
-          },
-          {
-            "name": "Authenticity",
-            "tag_id": "urn:tag:core_value:qloo:authenticity",
-            "type": "urn:tag:core_value:qloo"
-          },
-          {
-            "name": "New York Culture",
-            "tag_id": "urn:tag:cultural_relevance:qloo:new_york_culture",
-            "type": "urn:tag:cultural_relevance:qloo"
-          },
-          {
-            "name": "Jewish-American Culinary History",
-            "tag_id": "urn:tag:cultural_relevance:qloo:jewish_american_culinary_history",
-            "type": "urn:tag:cultural_relevance:qloo"
-          },
-          {
-            "name": "Food Tourists",
-            "tag_id": "urn:tag:customer_segment:qloo:food_tourists",
-            "type": "urn:tag:customer_segment:qloo"
-          },
-          {
-            "name": "New York City Residents",
-            "tag_id": "urn:tag:customer_segment:qloo:new_york_city_residents",
-            "type": "urn:tag:customer_segment:qloo"
-          },
-          {
-            "name": "Gift Shoppers",
-            "tag_id": "urn:tag:customer_segment:qloo:gift_shoppers",
-            "type": "urn:tag:customer_segment:qloo"
-          },
-          {
-            "name": "History Enthusiasts",
-            "tag_id": "urn:tag:customer_segment:qloo:history_enthusiasts",
-            "type": "urn:tag:customer_segment:qloo"
-          },
-          {
-            "name": "Nostalgic",
-            "tag_id": "urn:tag:emotional_tone:qloo:nostalgic",
-            "type": "urn:tag:emotional_tone:qloo"
-          },
-          {
-            "name": "Authentic",
-            "tag_id": "urn:tag:emotional_tone:qloo:authentic",
-            "type": "urn:tag:emotional_tone:qloo"
-          },
-          {
-            "name": "Classic",
-            "tag_id": "urn:tag:emotional_tone:qloo:classic",
-            "type": "urn:tag:emotional_tone:qloo"
-          },
-          {
-            "name": "Welcoming",
-            "tag_id": "urn:tag:emotional_tone:qloo:welcoming",
-            "type": "urn:tag:emotional_tone:qloo"
-          },
-          {
-            "name": "Food & Beverage",
-            "tag_id": "urn:tag:industry:qloo:food_beverage",
-            "type": "urn:tag:industry:qloo"
-          },
-          {
-            "name": "Retail",
-            "tag_id": "urn:tag:industry:qloo:retail",
-            "type": "urn:tag:industry:qloo"
-          },
-          {
-            "name": "Hospitality",
-            "tag_id": "urn:tag:industry:qloo:hospitality",
-            "type": "urn:tag:industry:qloo"
-          },
-          {
-            "name": "Food Critics",
-            "tag_id": "urn:tag:influencer_appeal:qloo:food_critics",
-            "type": "urn:tag:influencer_appeal:qloo"
-          },
-          {
-            "name": "Travel Bloggers",
-            "tag_id": "urn:tag:influencer_appeal:qloo:travel_bloggers",
-            "type": "urn:tag:influencer_appeal:qloo"
-          },
-          {
-            "name": "Culinary Historians",
-            "tag_id": "urn:tag:influencer_appeal:qloo:culinary_historians",
-            "type": "urn:tag:influencer_appeal:qloo"
-          },
-          {
-            "name": "Local Personalities",
-            "tag_id": "urn:tag:influencer_appeal:qloo:local_personalities",
-            "type": "urn:tag:influencer_appeal:qloo"
-          },
-          {
-            "name": "Food History",
-            "tag_id": "urn:tag:interest_adjacency:qloo:food_history",
-            "type": "urn:tag:interest_adjacency:qloo"
-          },
-          {
-            "name": "Culinary Tourism",
-            "tag_id": "urn:tag:interest_adjacency:qloo:culinary_tourism",
-            "type": "urn:tag:interest_adjacency:qloo"
-          },
-          {
-            "name": "Traditional Cuisine",
-            "tag_id": "urn:tag:interest_adjacency:qloo:traditional_cuisine",
-            "type": "urn:tag:interest_adjacency:qloo"
-          },
-          {
-            "name": "Gastronomy",
-            "tag_id": "urn:tag:interest_adjacency:qloo:gastronomy",
-            "type": "urn:tag:interest_adjacency:qloo"
-          },
-          {
-            "name": "Local Landmarks",
-            "tag_id": "urn:tag:interest_adjacency:qloo:local_landmarks",
-            "type": "urn:tag:interest_adjacency:qloo"
-          },
-          {
-            "name": "United States",
-            "tag_id": "urn:tag:key_market:qloo:united_states",
-            "type": "urn:tag:key_market:qloo"
-          },
-          {
-            "name": "Pastrami",
-            "tag_id": "urn:tag:keyword:qloo:pastrami",
-            "type": "urn:tag:keyword:qloo"
-          },
-          {
-            "name": "Delicatessen",
-            "tag_id": "urn:tag:keyword:qloo:delicatessen",
-            "type": "urn:tag:keyword:qloo"
-          },
-          {
-            "name": "New York City",
-            "tag_id": "urn:tag:keyword:qloo:new_york_city",
-            "type": "urn:tag:keyword:qloo"
-          },
-          {
-            "name": "Historic",
-            "tag_id": "urn:tag:keyword:qloo:historic",
-            "type": "urn:tag:keyword:qloo"
-          },
-          {
-            "name": "Comfort Food",
-            "tag_id": "urn:tag:keyword:qloo:comfort_food",
-            "type": "urn:tag:keyword:qloo"
-          },
-          {
-            "name": "Urban Living",
-            "tag_id": "urn:tag:lifestyle:qloo:urban_living",
-            "type": "urn:tag:lifestyle:qloo"
-          },
-          {
-            "name": "Casual Dining",
-            "tag_id": "urn:tag:lifestyle:qloo:casual_dining",
-            "type": "urn:tag:lifestyle:qloo"
-          },
-          {
-            "name": "Socializing",
-            "tag_id": "urn:tag:lifestyle:qloo:socializing",
-            "type": "urn:tag:lifestyle:qloo"
-          },
-          {
-            "name": "City Exploration",
-            "tag_id": "urn:tag:lifestyle:qloo:city_exploration",
-            "type": "urn:tag:lifestyle:qloo"
-          },
-          {
-            "name": "Heritage",
-            "tag_id": "urn:tag:market_archetype:qloo:heritage",
-            "type": "urn:tag:market_archetype:qloo"
-          },
-          {
-            "name": "Mainstream",
-            "tag_id": "urn:tag:market_archetype:qloo:mainstream",
-            "type": "urn:tag:market_archetype:qloo"
-          },
-          {
-            "name": "$$$",
-            "tag_id": "urn:tag:price_level:qloo:_",
-            "type": "urn:tag:price_level:qloo"
-          },
-          {
-            "name": "Pastrami Sandwiches",
-            "tag_id": "urn:tag:product_service:qloo:pastrami_sandwiches",
-            "type": "urn:tag:product_service:qloo"
-          },
-          {
-            "name": "Corned Beef Sandwiches",
-            "tag_id": "urn:tag:product_service:qloo:corned_beef_sandwiches",
-            "type": "urn:tag:product_service:qloo"
-          },
-          {
-            "name": "Matzoh Ball Soup",
-            "tag_id": "urn:tag:product_service:qloo:matzoh_ball_soup",
-            "type": "urn:tag:product_service:qloo"
-          },
-          {
-            "name": "Knishes",
-            "tag_id": "urn:tag:product_service:qloo:knishes",
-            "type": "urn:tag:product_service:qloo"
-          },
-          {
-            "name": "Pickles",
-            "tag_id": "urn:tag:product_service:qloo:pickles",
-            "type": "urn:tag:product_service:qloo"
-          },
-          {
-            "name": "Deli Meats",
-            "tag_id": "urn:tag:product_service:qloo:deli_meats",
-            "type": "urn:tag:product_service:qloo"
-          },
-          {
-            "name": "Rye Bread",
-            "tag_id": "urn:tag:product_service:qloo:rye_bread",
-            "type": "urn:tag:product_service:qloo"
-          },
-          {
-            "name": "Catering Services",
-            "tag_id": "urn:tag:product_service:qloo:catering_services",
-            "type": "urn:tag:product_service:qloo"
-          },
-          {
-            "name": "Nationwide Shipping",
-            "tag_id": "urn:tag:product_service:qloo:nationwide_shipping",
-            "type": "urn:tag:product_service:qloo"
-          },
-          {
-            "name": "Russ & Daughters",
-            "tag_id": "urn:tag:similar_brand:qloo:russ_daughters",
-            "type": "urn:tag:similar_brand:qloo"
-          },
-          {
-            "name": "Canter's Deli",
-            "tag_id": "urn:tag:similar_brand:qloo:canter_s_deli",
-            "type": "urn:tag:similar_brand:qloo"
-          },
-          {
-            "name": "Young Adults",
-            "tag_id": "urn:tag:target_age_group:qloo:young_adults",
-            "type": "urn:tag:target_age_group:qloo"
-          },
-          {
-            "name": "Adults",
-            "tag_id": "urn:tag:target_age_group:qloo:adults",
-            "type": "urn:tag:target_age_group:qloo"
-          },
-          {
-            "name": "Middle-Aged",
-            "tag_id": "urn:tag:target_age_group:qloo:middle_aged",
-            "type": "urn:tag:target_age_group:qloo"
-          },
-          {
-            "name": "Seniors",
-            "tag_id": "urn:tag:target_age_group:qloo:seniors",
-            "type": "urn:tag:target_age_group:qloo"
-          },
-          {
-            "name": "Gender-Neutral",
-            "tag_id": "urn:tag:target_gender:qloo:gender_neutral",
-            "type": "urn:tag:target_gender:qloo"
-          },
-          {
-            "name": "Medium",
-            "tag_id": "urn:tag:target_income_level:qloo:medium",
-            "type": "urn:tag:target_income_level:qloo"
-          },
-          {
-            "name": "Medium to High",
-            "tag_id": "urn:tag:target_income_level:qloo:medium_to_high",
-            "type": "urn:tag:target_income_level:qloo"
           }
-        ]
+        }
       },
       {
-        "name": "Katz’s Delicatessen Plant",
         "entity_id": "8108863A-BB5A-4CF7-9F58-8A821E1C7279",
+        "name": "Katz’s Delicatessen Plant",
         "types": [
           "urn:entity:place"
         ],
-        "properties": {
-          "akas": [
-            {
-              "language": "",
-              "value": "Katz’s Delicatessen Plant, 100 Industrial Rd Carlstadt, NJ 07072"
-            }
-          ],
-          "address": "100 Industrial Rd Carlstadt, NJ 07072",
-          "business_rating": 2.9,
-          "external": {
-            "google_place": {
-              "id": "f485be3f8a2f24f1",
-              "place_id": "ChIJQa8-cp_5wokR8SQvij--hfQ"
-            }
-          },
-          "geocode": {
-            "city": "Carlstadt",
-            "admin1_region": "New Jersey",
-            "admin2_region": "Bergen County",
-            "country_code": "US",
-            "country": "United States"
-          },
-          "image": {
-            "url": "https://images.qloo.com/i/8108863A-BB5A-4CF7-9F58-8A821E1C7279-420x-auto.jpg"
-          },
-          "is_closed": false,
-          "price_range": {
-            "currency": "usd"
-          },
-          "primary_genre": {
-            "id": "urn:tag:genre:place:food_producer",
-            "name": "Food producer",
-            "type": "urn:tag:genre:place",
-            "akas": [
-              {
-                "language": "lt",
-                "value": "\"Maisto gamintojas\""
-              },
-              {
-                "language": "ja",
-                "value": "\"食品メーカー\""
-              },
-              {
-                "language": "km",
-                "value": "\"អ្នកផលិតអាហារ\""
-              },
-              {
-                "language": "az",
-                "value": "\"Qida istehsalçısı\""
-              },
-              {
-                "language": "zh_tw",
-                "value": "\"食品製造商\""
-              },
-              {
-                "language": "hr",
-                "value": "\"Proizvođač hrane\""
-              },
-              {
-                "language": "bs",
-                "value": "\"Proizvođač hrane\""
-              },
-              {
-                "language": "fi",
-                "value": "\"Elintarviketuottaja\""
-              },
-              {
-                "language": "el",
-                "value": "\"Παραγωγός τροφίμων\""
-              },
-              {
-                "language": "th",
-                "value": "\"ผู้ผลิตอาหาร\""
-              },
-              {
-                "language": "da",
-                "value": "\"Fødevareproducent\""
-              },
-              {
-                "language": "ar",
-                "value": "\"منتج أغذية\""
-              },
-              {
-                "language": "ms",
-                "value": "\"Pengeluar makanan\""
-              },
-              {
-                "language": "uk",
-                "value": "\"Виробник харчових продуктів\""
-              },
-              {
-                "language": "sr",
-                "value": "\"Произвођач хране\""
-              },
-              {
-                "language": "et",
-                "value": "\"Toiduainetootja\""
-              },
-              {
-                "language": "sk",
-                "value": "\"Výrobca potravín\""
-              },
-              {
-                "language": "te",
-                "value": "\"ఆహార ఉత్పత్తిదారు\""
-              },
-              {
-                "language": "nl",
-                "value": "\"Voedselproducent\""
-              },
-              {
-                "language": "ro",
-                "value": "\"Producător de alimente\""
-              },
-              {
-                "language": "nb",
-                "value": "\"Matprodusent\""
-              },
-              {
-                "language": "zh",
-                "value": "\"食品生产商\""
-              },
-              {
-                "language": "tl",
-                "value": "\"Tagagawa ng pagkain\""
-              },
-              {
-                "language": "lo",
-                "value": "\"ຜູ້ຜະລິດອາຫານ\""
-              },
-              {
-                "language": "sl",
-                "value": "\"Proizvajalec hrane\""
-              },
-              {
-                "language": "bn",
-                "value": "\"খাদ্য উৎপাদনকারী\""
-              },
-              {
-                "language": "vi",
-                "value": "\"Nhà sản xuất thực phẩm\""
-              },
-              {
-                "language": "kk",
-                "value": "\"Азық-түлік өндірушісі\""
-              },
-              {
-                "language": "af",
-                "value": "\"Voedselvervaardiger\""
-              },
-              {
-                "language": "bg",
-                "value": "\"Производител на храни\""
-              },
-              {
-                "language": "de",
-                "value": "\"Lebensmittelhersteller\""
-              },
-              {
-                "language": "hu",
-                "value": "\"Élelmiszergyártó\""
-              },
-              {
-                "language": "mk",
-                "value": "\"Производител на храна\""
-              },
-              {
-                "language": "ko",
-                "value": "\"식품 제조업체\""
-              },
-              {
-                "language": "tr",
-                "value": "\"Gıda üreticisi\""
-              },
-              {
-                "language": "en_gb",
-                "value": "\"Food producer\""
-              },
-              {
-                "language": "sv",
-                "value": "\"Livsmedelsproducent\""
-              },
-              {
-                "language": "ka",
-                "value": "\"სურსათის მწარმოებელი\""
-              },
-              {
-                "language": "cs",
-                "value": "\"Výrobce potravin\""
-              },
-              {
-                "language": "sw",
-                "value": "\"Mtayarishaji wa chakula\""
-              },
-              {
-                "language": "gl",
-                "value": "\"Produtor de alimentos\""
-              },
-              {
-                "language": "pt",
-                "value": "\"Produtor de alimentos\""
-              },
-              {
-                "language": "fr",
-                "value": "\"Producteur alimentaire\""
-              },
-              {
-                "language": "fr_ca",
-                "value": "\"Producteur alimentaire\""
-              },
-              {
-                "language": "ru",
-                "value": "\"Производитель продуктов питания\""
-              },
-              {
-                "language": "pl",
-                "value": "\"Producent żywności\""
-              },
-              {
-                "language": "it",
-                "value": "\"Produttore alimentare\""
-              },
-              {
-                "language": "ca",
-                "value": "\"Productor d'aliments\""
-              },
-              {
-                "language": "pt_pt",
-                "value": "\"Produtor alimentar\""
-              },
-              {
-                "language": "id",
-                "value": "\"Produsen makanan\""
-              },
-              {
-                "language": "ta",
-                "value": "\"உணவு உற்பத்தியாளர்\""
-              },
-              {
-                "language": "my",
-                "value": "\"အစားအသောက်ထုတ်လုပ်သူ\""
-              },
-              {
-                "language": "sq",
-                "value": "\"Prodhues ushqimor\""
-              },
-              {
-                "language": "lv",
-                "value": "\"Pārtikas ražotājs\""
-              },
-              {
-                "language": "es_ar",
-                "value": "\"Productor de alimentos\""
-              },
-              {
-                "language": "es_la",
-                "value": "\"Productor de alimentos\""
-              },
-              {
-                "language": "es",
-                "value": "\"Productor de alimentos\""
-              },
-              {
-                "language": "he",
-                "value": "\"יצרן מזון\""
-              },
-              {
-                "language": "eu",
-                "value": "\"Elikagai-ekoizlea\""
-              },
-              {
-                "language": "hi",
-                "value": "\"खाद्य उत्पादक\""
-              }
-            ]
-          }
-        },
         "disambiguation": "100 Industrial Rd Carlstadt, NJ 07072",
         "location": {
           "lat": 40.8488999,
           "lon": -74.0987528
         },
-        "tags": [
-          {
-            "name": "Food producer",
-            "tag_id": "urn:tag:category:place:food_producer",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:food_producer"
+        "tags": [],
+        "properties": {
+          "address": "100 Industrial Rd Carlstadt, NJ 07072",
+          "is_closed": false,
+          "business_rating": 2.9,
+          "external": {
+            "google_place": {
+              "place_id": "ChIJQa8-cp_5wokR8SQvij--hfQ"
+            }
           }
-        ]
+        }
       },
       {
-        "name": "Delicatessen Aker Brygge",
         "entity_id": "17473237-59C0-4D5C-B395-DF5B87EE1B76",
+        "name": "Delicatessen Aker Brygge",
         "types": [
           "urn:entity:place"
         ],
+        "disambiguation": "Holmens gate 2 0250 Oslo Norway",
+        "location": {
+          "lat": 59.91059,
+          "lon": 10.727077999999999
+        },
+        "tags": [
+          {
+            "tag_id": "urn:tag:cuisine:qloo:mediterranean",
+            "name": "Mediterranean",
+            "type": "urn:tag:cuisine:qloo"
+          },
+          {
+            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_seating",
+            "name": "Wheelchair accessible seating",
+            "type": "urn:tag:accessibility:place"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:roasted_root_vegetables",
+            "name": "Roasted root vegetables",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:social",
+            "name": "Social",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:dietary_option:qloo:vegan",
+            "name": "Vegan",
+            "type": "urn:tag:dietary_option:qloo"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:industrial_chic",
+            "name": "Industrial chic",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:dietary_option:qloo:vegetarian",
+            "name": "Vegetarian",
+            "type": "urn:tag:dietary_option:qloo"
+          },
+          {
+            "tag_id": "urn:tag:offerings:place:ok_to_order_just_drinks",
+            "name": "Ok to order just drinks",
+            "type": "urn:tag:offerings:place"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:modern",
+            "name": "Modern",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:dietary_option:qloo:dairy_free",
+            "name": "Dairy free",
+            "type": "urn:tag:dietary_option:qloo"
+          },
+          {
+            "tag_id": "urn:tag:cuisine:qloo:spanish",
+            "name": "Spanish",
+            "type": "urn:tag:cuisine:qloo"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:bright",
+            "name": "Bright",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:casual",
+            "name": "Casual",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:albondigas",
+            "name": "Albondigas",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:offerings:place:vegetarian_options",
+            "name": "Vegetarian meals",
+            "type": "urn:tag:offerings:place"
+          },
+          {
+            "tag_id": "urn:tag:offerings:place:wine",
+            "name": "Wine",
+            "type": "urn:tag:offerings:place"
+          },
+          {
+            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_entrance",
+            "name": "Wheelchair accessible entrance",
+            "type": "urn:tag:accessibility:place"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:empanadas",
+            "name": "Empanadas",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:noise_level:qloo:loud",
+            "name": "Loud",
+            "type": "urn:tag:noise_level:qloo"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:aioli",
+            "name": "Aioli",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:lively",
+            "name": "Lively",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:dietary_option:qloo:gluten_free",
+            "name": "Gluten free",
+            "type": "urn:tag:dietary_option:qloo"
+          },
+          {
+            "tag_id": "urn:tag:offerings:place:alcohol",
+            "name": "Alcohol",
+            "type": "urn:tag:offerings:place"
+          },
+          {
+            "tag_id": "urn:tag:cuisine:qloo:tapas",
+            "name": "Tapas",
+            "type": "urn:tag:cuisine:qloo"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:high_energy",
+            "name": "High energy",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:chorizo",
+            "name": "Chorizo",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:cod",
+            "name": "Cod",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:king_prawns",
+            "name": "King prawns",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:offerings:place:late_night_food",
+            "name": "Late night food",
+            "type": "urn:tag:offerings:place"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:fried_goat_cheese_and_beetroot_salad",
+            "name": "Fried goat cheese and beetroot salad",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:patatas_bravas",
+            "name": "Patatas bravas",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:bikini_toast",
+            "name": "Bikini toast",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:offerings:place:small_plates",
+            "name": "Small plates",
+            "type": "urn:tag:offerings:place"
+          },
+          {
+            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_restroom",
+            "name": "Wheelchair accessible restroom",
+            "type": "urn:tag:accessibility:place"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:stylish",
+            "name": "Stylish",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:offerings:place:vegan_options",
+            "name": "Vegan meals",
+            "type": "urn:tag:offerings:place"
+          },
+          {
+            "tag_id": "urn:tag:offerings:place:hard_liquor",
+            "name": "Hard liquor",
+            "type": "urn:tag:offerings:place"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:catalan_cheesecake",
+            "name": "Catalan cheesecake",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:offerings:place:beer",
+            "name": "Beer",
+            "type": "urn:tag:offerings:place"
+          },
+          {
+            "tag_id": "urn:tag:offerings:place:coffee",
+            "name": "Coffee",
+            "type": "urn:tag:offerings:place"
+          },
+          {
+            "tag_id": "urn:tag:offerings:place:cocktails",
+            "name": "Cocktails",
+            "type": "urn:tag:offerings:place"
+          }
+        ],
         "properties": {
-          "akas": [
-            {
-              "language": "",
-              "value": "Delicatessen Aker Brygge, Holmens gate 2 0250 Oslo Norway"
-            }
-          ],
           "address": "Holmens gate 2 0250 Oslo Norway",
-          "business_rating": 4.2,
-          "description": "Trendy waterfront tapas restaurant on Aker Brygge serving classic and modern Spanish small plates with high ceilings, mezzanine seating, outdoor terrace, and takeaway.",
-          "external": {
-            "tripadvisor": {
-              "id": "d6734204",
-              "rating": 4,
-              "rating_count": 561
-            },
-            "google_place": {
-              "id": "e42e1267f5fbda20",
-              "place_id": "ChIJy_zNAIFuQUYRINr79WcSLuQ"
-            }
-          },
-          "geocode": {
-            "name": "Frogner",
-            "city": "Oslo",
-            "admin1_region": "Oslo",
-            "admin2_region": "Oslo",
-            "country_code": "NO",
-            "country": "Norway"
-          },
+          "neighborhood": "Frogner",
+          "phone": "+4722467200",
+          "website": "https://delicatessen.no/aker-brygge/",
           "hours": {
             "sunday": [
               {
@@ -2013,1283 +607,176 @@
               }
             ]
           },
-          "image": {
-            "url": "https://images.qloo.com/i/17473237-59C0-4D5C-B395-DF5B87EE1B76-420x-auto.jpg"
-          },
           "is_closed": false,
-          "neighborhood": "Frogner",
-          "phone": "+4722467200",
           "price_level": 3,
-          "price_range": {
-            "currency": "usd"
-          },
-          "website": "https://delicatessen.no/aker-brygge/",
+          "business_rating": 4.2,
+          "description": "Trendy waterfront tapas restaurant on Aker Brygge serving classic and modern Spanish small plates with high ceilings, mezzanine seating, outdoor terrace, and takeaway.",
           "specialty_dishes": [
             {
               "id": "urn:tag:specialty_dish:place:tapas",
-              "name": "Las Tapas",
-              "type": "urn:tag:specialty_dish:place",
-              "weight": 1
+              "name": "Las Tapas"
             }
           ],
-          "good_for": [
-            {
-              "id": "urn:tag:ambience:place:large_group",
-              "name": "Large Group",
-              "type": "urn:tag:ambience:place",
-              "weight": 1
-            },
-            {
-              "id": "urn:tag:event:place:anniversary",
-              "name": "Anniversary",
-              "type": "urn:tag:event:place",
-              "weight": 0.5
+          "external": {
+            "google_place": {
+              "place_id": "ChIJy_zNAIFuQUYRINr79WcSLuQ"
             }
-          ],
-          "primary_genre": {
-            "id": "urn:tag:genre:place:restaurant:tapas",
-            "name": "Tapas restaurant",
-            "type": "urn:tag:genre:place",
-            "akas": [
-              {
-                "language": "vi",
-                "value": "\"Quán tapas\""
-              },
-              {
-                "language": "lt",
-                "value": "\"Tapas baras\""
-              },
-              {
-                "language": "sw",
-                "value": "\"Ba ya tapas\""
-              },
-              {
-                "language": "he",
-                "value": "\"בר טאפאס\""
-              },
-              {
-                "language": "ar",
-                "value": "\"مطعم تاباس\""
-              },
-              {
-                "language": "ja",
-                "value": "\"タパスバー\""
-              },
-              {
-                "language": "ko",
-                "value": "\"타파스 바\""
-              },
-              {
-                "language": "hu",
-                "value": "\"Tapasbár\""
-              },
-              {
-                "language": "th",
-                "value": "\"ทาปาสบาร์\""
-              },
-              {
-                "language": "fr_ca",
-                "value": "\"Bar à tapas\""
-              },
-              {
-                "language": "fr",
-                "value": "\"Bar à tapas\""
-              },
-              {
-                "language": "lo",
-                "value": "\"ທາປັສບາ\""
-              },
-              {
-                "language": "nb",
-                "value": "\"Tapasbar\""
-              },
-              {
-                "language": "nl",
-                "value": "\"Tapasbar\""
-              },
-              {
-                "language": "da",
-                "value": "\"Tapasbar\""
-              },
-              {
-                "language": "sv",
-                "value": "\"Tapasbar\""
-              },
-              {
-                "language": "bs",
-                "value": "\"Tapas bar\""
-              },
-              {
-                "language": "it",
-                "value": "\"Tapas bar\""
-              },
-              {
-                "language": "en_gb",
-                "value": "\"Tapas bar\""
-              },
-              {
-                "language": "tl",
-                "value": "\"Tapas bar\""
-              },
-              {
-                "language": "cs",
-                "value": "\"Tapas bar\""
-              },
-              {
-                "language": "hr",
-                "value": "\"Tapas bar\""
-              },
-              {
-                "language": "sk",
-                "value": "\"Tapas bar\""
-              },
-              {
-                "language": "sl",
-                "value": "\"Tapas bar\""
-              },
-              {
-                "language": "et",
-                "value": "\"Tapas-baar\""
-              },
-              {
-                "language": "es",
-                "value": "\"Bar de tapas\""
-              },
-              {
-                "language": "pt_pt",
-                "value": "\"Bar de tapas\""
-              },
-              {
-                "language": "es_la",
-                "value": "\"Bar de tapas\""
-              },
-              {
-                "language": "pt",
-                "value": "\"Bar de tapas\""
-              },
-              {
-                "language": "ro",
-                "value": "\"Bar de tapas\""
-              },
-              {
-                "language": "es_ar",
-                "value": "\"Bar de tapas\""
-              },
-              {
-                "language": "gl",
-                "value": "\"Bar de tapas\""
-              },
-              {
-                "language": "eu",
-                "value": "\"Tapas-taberna\""
-              },
-              {
-                "language": "ta",
-                "value": "\"தபாஸ் பார்\""
-              },
-              {
-                "language": "hi",
-                "value": "\"तपास बार\""
-              },
-              {
-                "language": "ru",
-                "value": "\"Тапас-бар\""
-              },
-              {
-                "language": "uk",
-                "value": "\"Тапас-бар\""
-              },
-              {
-                "language": "kk",
-                "value": "\"Тапас-бар\""
-              },
-              {
-                "language": "my",
-                "value": "\"တပါးစ်ဘား\""
-              },
-              {
-                "language": "lv",
-                "value": "\"Tapas bārs\""
-              },
-              {
-                "language": "de",
-                "value": "\"Tapas-Bar\""
-              },
-              {
-                "language": "zh_tw",
-                "value": "\"塔帕斯酒吧\""
-              },
-              {
-                "language": "zh",
-                "value": "\"塔帕斯酒吧\""
-              },
-              {
-                "language": "fi",
-                "value": "\"Tapasbaari\""
-              },
-              {
-                "language": "ms",
-                "value": "\"Bar tapas\""
-              },
-              {
-                "language": "sq",
-                "value": "\"Bar tapas\""
-              },
-              {
-                "language": "id",
-                "value": "\"Bar tapas\""
-              },
-              {
-                "language": "pl",
-                "value": "\"Bar tapas\""
-              },
-              {
-                "language": "bn",
-                "value": "\"তাপাস বার\""
-              },
-              {
-                "language": "sr",
-                "value": "\"Тапас бар\""
-              },
-              {
-                "language": "bg",
-                "value": "\"Тапас бар\""
-              },
-              {
-                "language": "mk",
-                "value": "\"Тапас бар\""
-              },
-              {
-                "language": "ka",
-                "value": "\"ტაპას-ბარი\""
-              },
-              {
-                "language": "te",
-                "value": "\"టపాస్ బార్\""
-              },
-              {
-                "language": "af",
-                "value": "\"Tapas-kroeg\""
-              },
-              {
-                "language": "el",
-                "value": "\"Μπαρ τάπας\""
-              },
-              {
-                "language": "ca",
-                "value": "\"Bar de tapes\""
-              },
-              {
-                "language": "az",
-                "value": "\"Tapas barı\""
-              },
-              {
-                "language": "tr",
-                "value": "\"Tapas barı\""
-              },
-              {
-                "language": "km",
-                "value": "\"បារតាប៉ាស\""
-              },
-              {
-                "language": "es",
-                "value": "\"Tapas\""
-              }
-            ]
           }
-        },
-        "popularity": 0.9997592958065095,
-        "disambiguation": "Holmens gate 2 0250 Oslo Norway",
-        "location": {
-          "lat": 59.91059,
-          "lon": 10.727077999999999
-        },
-        "tags": [
-          {
-            "name": "Nfc mobile payments",
-            "tag_id": "urn:tag:payments:place:nfc_mobile_payments",
-            "type": "urn:tag:payments:place",
-            "value": "urn:tag:payments:place:nfc_mobile_payments"
-          },
-          {
-            "name": "25 29",
-            "tag_id": "urn:tag:age_range:qloo:25_29",
-            "type": "urn:tag:age_range:qloo",
-            "value": "urn:tag:age_range:qloo:25_29"
-          },
-          {
-            "name": "Mediterranean",
-            "tag_id": "urn:tag:cuisine:qloo:mediterranean",
-            "type": "urn:tag:cuisine:qloo",
-            "value": "urn:tag:cuisine:qloo:mediterranean"
-          },
-          {
-            "name": "Oslo fjord",
-            "tag_id": "urn:tag:nearby_attraction:qloo:oslo_fjord",
-            "type": "urn:tag:nearby_attraction:qloo",
-            "value": "urn:tag:nearby_attraction:qloo:oslo_fjord"
-          },
-          {
-            "name": "Bustling",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:bustling",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:bustling"
-          },
-          {
-            "name": "Dining drinking",
-            "tag_id": "urn:tag:activity_type:qloo:dining_drinking",
-            "type": "urn:tag:activity_type:qloo",
-            "value": "urn:tag:activity_type:qloo:dining_drinking"
-          },
-          {
-            "name": "Maritime",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:maritime",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:maritime"
-          },
-          {
-            "name": "Debit cards",
-            "tag_id": "urn:tag:payments:place:debit_cards",
-            "type": "urn:tag:payments:place",
-            "value": "urn:tag:payments:place:debit_cards"
-          },
-          {
-            "name": "Industrial",
-            "tag_id": "urn:tag:decor:qloo:industrial",
-            "type": "urn:tag:decor:qloo",
-            "value": "urn:tag:decor:qloo:industrial"
-          },
-          {
-            "name": "Afternoon",
-            "tag_id": "urn:tag:time_of_day_fit:qloo:afternoon",
-            "type": "urn:tag:time_of_day_fit:qloo",
-            "value": "urn:tag:time_of_day_fit:qloo:afternoon"
-          },
-          {
-            "name": "Birthday",
-            "tag_id": "urn:tag:event:place:birthday",
-            "type": "urn:tag:event:place",
-            "value": "urn:tag:event:place:birthday"
-          },
-          {
-            "name": "Delivery",
-            "tag_id": "urn:tag:service_type:qloo:delivery",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:delivery"
-          },
-          {
-            "name": "Wine",
-            "tag_id": "urn:tag:beverage_offering:qloo:wine",
-            "type": "urn:tag:beverage_offering:qloo",
-            "value": "urn:tag:beverage_offering:qloo:wine"
-          },
-          {
-            "name": "Wheelchair accessible seating",
-            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_seating",
-            "type": "urn:tag:accessibility:place",
-            "value": "urn:tag:accessibility:place:wheelchair_accessible_seating"
-          },
-          {
-            "name": "Roasted root vegetables",
-            "tag_id": "urn:tag:menu_highlight:qloo:roasted_root_vegetables",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:roasted_root_vegetables"
-          },
-          {
-            "name": "Spanish restaurant",
-            "tag_id": "urn:tag:category:place:spanish_restaurant",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:spanish_restaurant"
-          },
-          {
-            "name": "Restroom",
-            "tag_id": "urn:tag:amenities:place:restroom",
-            "type": "urn:tag:amenities:place",
-            "value": "urn:tag:amenities:place:restroom"
-          },
-          {
-            "name": "Work dinner",
-            "tag_id": "urn:tag:event:place:work_dinner",
-            "type": "urn:tag:event:place",
-            "value": "urn:tag:event:place:work_dinner"
-          },
-          {
-            "name": "Social",
-            "tag_id": "urn:tag:ambience:qloo:social",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:social"
-          },
-          {
-            "name": "Special occasion",
-            "tag_id": "urn:tag:visit_intent:qloo:special_occasion",
-            "type": "urn:tag:visit_intent:qloo",
-            "value": "urn:tag:visit_intent:qloo:special_occasion"
-          },
-          {
-            "name": "Stylish",
-            "tag_id": "urn:tag:decor:qloo:stylish",
-            "type": "urn:tag:decor:qloo",
-            "value": "urn:tag:decor:qloo:stylish"
-          },
-          {
-            "name": "Vegan",
-            "tag_id": "urn:tag:dietary_option:qloo:vegan",
-            "type": "urn:tag:dietary_option:qloo",
-            "value": "urn:tag:dietary_option:qloo:vegan"
-          },
-          {
-            "name": "Dine in",
-            "tag_id": "urn:tag:service_options:place:dine_in",
-            "type": "urn:tag:service_options:place",
-            "value": "urn:tag:service_options:place:dine_in"
-          },
-          {
-            "name": "Large group",
-            "tag_id": "urn:tag:ambience:place:large_group",
-            "type": "urn:tag:ambience:place",
-            "value": "urn:tag:ambience:place:large_group"
-          },
-          {
-            "name": "Midday",
-            "tag_id": "urn:tag:time_of_day_fit:qloo:midday",
-            "type": "urn:tag:time_of_day_fit:qloo",
-            "value": "urn:tag:time_of_day_fit:qloo:midday"
-          },
-          {
-            "name": "Outdoor seating",
-            "tag_id": "urn:tag:service_options:place:outdoor_seating",
-            "type": "urn:tag:service_options:place",
-            "value": "urn:tag:service_options:place:outdoor_seating"
-          },
-          {
-            "name": "30 34",
-            "tag_id": "urn:tag:age_range:qloo:30_34",
-            "type": "urn:tag:age_range:qloo",
-            "value": "urn:tag:age_range:qloo:30_34"
-          },
-          {
-            "name": "Wine appreciation",
-            "tag_id": "urn:tag:interests:qloo:wine_appreciation",
-            "type": "urn:tag:interests:qloo",
-            "value": "urn:tag:interests:qloo:wine_appreciation"
-          },
-          {
-            "name": "Dessert",
-            "tag_id": "urn:tag:dining_options:place:dessert",
-            "type": "urn:tag:dining_options:place",
-            "value": "urn:tag:dining_options:place:dessert"
-          },
-          {
-            "name": "Mastercard",
-            "tag_id": "urn:tag:credit_card:place:mastercard",
-            "type": "urn:tag:credit_card:place",
-            "value": "urn:tag:credit_card:place:mastercard"
-          },
-          {
-            "name": "Harbor view",
-            "tag_id": "urn:tag:view:qloo:harbor_view",
-            "type": "urn:tag:view:qloo",
-            "value": "urn:tag:view:qloo:harbor_view"
-          },
-          {
-            "name": "Coffee and tea",
-            "tag_id": "urn:tag:beverage_offering:qloo:coffee_and_tea",
-            "type": "urn:tag:beverage_offering:qloo",
-            "value": "urn:tag:beverage_offering:qloo:coffee_and_tea"
-          },
-          {
-            "name": "Industrial chic",
-            "tag_id": "urn:tag:ambience:qloo:industrial_chic",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:industrial_chic"
-          },
-          {
-            "name": "High traffic",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:high_traffic",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:high_traffic"
-          },
-          {
-            "name": "Mezzanine seating",
-            "tag_id": "urn:tag:amenity:qloo:mezzanine_seating",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:mezzanine_seating"
-          },
-          {
-            "name": "Vegetarian",
-            "tag_id": "urn:tag:dietary_option:qloo:vegetarian",
-            "type": "urn:tag:dietary_option:qloo",
-            "value": "urn:tag:dietary_option:qloo:vegetarian"
-          },
-          {
-            "name": "Casual socializing",
-            "tag_id": "urn:tag:interests:qloo:casual_socializing",
-            "type": "urn:tag:interests:qloo",
-            "value": "urn:tag:interests:qloo:casual_socializing"
-          },
-          {
-            "name": "Casual",
-            "tag_id": "urn:tag:culinary_style:qloo:casual",
-            "type": "urn:tag:culinary_style:qloo",
-            "value": "urn:tag:culinary_style:qloo:casual"
-          },
-          {
-            "name": "Spirits",
-            "tag_id": "urn:tag:beverage_offering:qloo:spirits",
-            "type": "urn:tag:beverage_offering:qloo",
-            "value": "urn:tag:beverage_offering:qloo:spirits"
-          },
-          {
-            "name": "Brunch",
-            "tag_id": "urn:tag:dining_options:place:brunch",
-            "type": "urn:tag:dining_options:place",
-            "value": "urn:tag:dining_options:place:brunch"
-          },
-          {
-            "name": "Ok to order just drinks",
-            "tag_id": "urn:tag:offerings:place:ok_to_order_just_drinks",
-            "type": "urn:tag:offerings:place",
-            "value": "urn:tag:offerings:place:ok_to_order_just_drinks"
-          },
-          {
-            "name": "Lunch",
-            "tag_id": "urn:tag:dining_options:place:lunch",
-            "type": "urn:tag:dining_options:place",
-            "value": "urn:tag:dining_options:place:lunch"
-          },
-          {
-            "name": "Commercial",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:commercial",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:commercial"
-          },
-          {
-            "name": "Private events",
-            "tag_id": "urn:tag:service_type:qloo:private_events",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:private_events"
-          },
-          {
-            "name": "High chairs",
-            "tag_id": "urn:tag:amenity:qloo:high_chairs",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:high_chairs"
-          },
-          {
-            "name": "Young professionals",
-            "tag_id": "urn:tag:customer_identity:qloo:young_professionals",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:young_professionals"
-          },
-          {
-            "name": "Modern",
-            "tag_id": "urn:tag:ambience:qloo:modern",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:modern"
-          },
-          {
-            "name": "Digital ordering",
-            "tag_id": "urn:tag:amenity:qloo:digital_ordering",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:digital_ordering"
-          },
-          {
-            "name": "Reservations",
-            "tag_id": "urn:tag:service_type:qloo:reservations",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:reservations"
-          },
-          {
-            "name": "City center",
-            "tag_id": "urn:tag:setting:qloo:city_center",
-            "type": "urn:tag:setting:qloo",
-            "value": "urn:tag:setting:qloo:city_center"
-          },
-          {
-            "name": "Dairy free",
-            "tag_id": "urn:tag:dietary_option:qloo:dairy_free",
-            "type": "urn:tag:dietary_option:qloo",
-            "value": "urn:tag:dietary_option:qloo:dairy_free"
-          },
-          {
-            "name": "Foodies",
-            "tag_id": "urn:tag:customer_identity:qloo:foodies",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:foodies"
-          },
-          {
-            "name": "Kr 300 to kr 900",
-            "tag_id": "urn:tag:cost_description:place:kr 300_to_kr 900",
-            "type": "urn:tag:cost_description:place",
-            "value": "urn:tag:cost_description:place:kr 300_to_kr 900"
-          },
-          {
-            "name": "Onsite services",
-            "tag_id": "urn:tag:service_options:place:onsite_services",
-            "type": "urn:tag:service_options:place",
-            "value": "urn:tag:service_options:place:onsite_services"
-          },
-          {
-            "name": "Counter service",
-            "tag_id": "urn:tag:service_type:qloo:counter_service",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:counter_service"
-          },
-          {
-            "name": "Tapas",
-            "tag_id": "urn:tag:genre:place:restaurant:tapas",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:restaurant:tapas"
-          },
-          {
-            "name": "Cocktails",
-            "tag_id": "urn:tag:beverage_offering:qloo:cocktails",
-            "type": "urn:tag:beverage_offering:qloo",
-            "value": "urn:tag:beverage_offering:qloo:cocktails"
-          },
-          {
-            "name": "Tapas bar",
-            "tag_id": "urn:tag:genre:place:restaurant:tapas_bar",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:restaurant:tapas_bar"
-          },
-          {
-            "name": "Urban",
-            "tag_id": "urn:tag:setting:qloo:urban",
-            "type": "urn:tag:setting:qloo",
-            "value": "urn:tag:setting:qloo:urban"
-          },
-          {
-            "name": "Social community",
-            "tag_id": "urn:tag:activity_type:qloo:social_community",
-            "type": "urn:tag:activity_type:qloo",
-            "value": "urn:tag:activity_type:qloo:social_community"
-          },
-          {
-            "name": "Anniversary",
-            "tag_id": "urn:tag:event:place:anniversary",
-            "type": "urn:tag:event:place",
-            "value": "urn:tag:event:place:anniversary"
-          },
-          {
-            "name": "Spanish",
-            "tag_id": "urn:tag:cuisine:qloo:spanish",
-            "type": "urn:tag:cuisine:qloo",
-            "value": "urn:tag:cuisine:qloo:spanish"
-          },
-          {
-            "name": "Bright",
-            "tag_id": "urn:tag:ambience:qloo:bright",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:bright"
-          },
-          {
-            "name": "Trendy",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:trendy",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:trendy"
-          },
-          {
-            "name": "Restaurant",
-            "tag_id": "urn:tag:category:place:restaurant",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:restaurant"
-          },
-          {
-            "name": "Waterfront view",
-            "tag_id": "urn:tag:view:qloo:waterfront_view",
-            "type": "urn:tag:view:qloo",
-            "value": "urn:tag:view:qloo:waterfront_view"
-          },
-          {
-            "name": "Event catering",
-            "tag_id": "urn:tag:service_type:qloo:event_catering",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:event_catering"
-          },
-          {
-            "name": "Families",
-            "tag_id": "urn:tag:customer_identity:qloo:families",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:families"
-          },
-          {
-            "name": "Spanish cuisine",
-            "tag_id": "urn:tag:interests:qloo:spanish_cuisine",
-            "type": "urn:tag:interests:qloo",
-            "value": "urn:tag:interests:qloo:spanish_cuisine"
-          },
-          {
-            "name": "Casual",
-            "tag_id": "urn:tag:ambience:qloo:casual",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:casual"
-          },
-          {
-            "name": "Outdoor seating",
-            "tag_id": "urn:tag:service_type:qloo:outdoor_seating",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:outdoor_seating"
-          },
-          {
-            "name": "Albondigas",
-            "tag_id": "urn:tag:menu_highlight:qloo:albondigas",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:albondigas"
-          },
-          {
-            "name": "Beer",
-            "tag_id": "urn:tag:beverage_offering:qloo:beer",
-            "type": "urn:tag:beverage_offering:qloo",
-            "value": "urn:tag:beverage_offering:qloo:beer"
-          },
-          {
-            "name": "Date night",
-            "tag_id": "urn:tag:event:place:date_night",
-            "type": "urn:tag:event:place",
-            "value": "urn:tag:event:place:date_night"
-          },
-          {
-            "name": "Tourists",
-            "tag_id": "urn:tag:customer_identity:qloo:tourists",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:tourists"
-          },
-          {
-            "name": "Waterfront",
-            "tag_id": "urn:tag:setting:qloo:waterfront",
-            "type": "urn:tag:setting:qloo",
-            "value": "urn:tag:setting:qloo:waterfront"
-          },
-          {
-            "name": "Commercial",
-            "tag_id": "urn:tag:setting:qloo:commercial",
-            "type": "urn:tag:setting:qloo",
-            "value": "urn:tag:setting:qloo:commercial"
-          },
-          {
-            "name": "Vegetarian meals",
-            "tag_id": "urn:tag:offerings:place:vegetarian_options",
-            "type": "urn:tag:offerings:place",
-            "value": "urn:tag:offerings:place:vegetarian_options"
-          },
-          {
-            "name": "Locals",
-            "tag_id": "urn:tag:customer_identity:qloo:locals",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:locals"
-          },
-          {
-            "name": "Takeaway service",
-            "tag_id": "urn:tag:amenity:qloo:takeaway_service",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:takeaway_service"
-          },
-          {
-            "name": "Wine",
-            "tag_id": "urn:tag:offerings:place:wine",
-            "type": "urn:tag:offerings:place",
-            "value": "urn:tag:offerings:place:wine"
-          },
-          {
-            "name": "Wheelchair accessible entrance",
-            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_entrance",
-            "type": "urn:tag:accessibility:place",
-            "value": "urn:tag:accessibility:place:wheelchair_accessible_entrance"
-          },
-          {
-            "name": "Sightseeing",
-            "tag_id": "urn:tag:activity_type:qloo:sightseeing",
-            "type": "urn:tag:activity_type:qloo",
-            "value": "urn:tag:activity_type:qloo:sightseeing"
-          },
-          {
-            "name": "Empanadas",
-            "tag_id": "urn:tag:menu_highlight:qloo:empanadas",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:empanadas"
-          },
-          {
-            "name": "Dine in",
-            "tag_id": "urn:tag:service_type:qloo:dine_in",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:dine_in"
-          },
-          {
-            "name": "Modern",
-            "tag_id": "urn:tag:decor:qloo:modern",
-            "type": "urn:tag:decor:qloo",
-            "value": "urn:tag:decor:qloo:modern"
-          },
-          {
-            "name": "Walkable",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:walkable",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:walkable"
-          },
-          {
-            "name": "Price level",
-            "tag_id": "urn:tag:payments:place:price_level",
-            "type": "urn:tag:payments:place",
-            "value": "urn:tag:payments:place:price_level"
-          },
-          {
-            "name": "Credit cards",
-            "tag_id": "urn:tag:payments:place:credit_cards",
-            "type": "urn:tag:payments:place",
-            "value": "urn:tag:payments:place:credit_cards"
-          },
-          {
-            "name": "Harbor area",
-            "tag_id": "urn:tag:setting:qloo:harbor_area",
-            "type": "urn:tag:setting:qloo",
-            "value": "urn:tag:setting:qloo:harbor_area"
-          },
-          {
-            "name": "Loud",
-            "tag_id": "urn:tag:noise_level:qloo:loud",
-            "type": "urn:tag:noise_level:qloo",
-            "value": "urn:tag:noise_level:qloo:loud"
-          },
-          {
-            "name": "Aioli",
-            "tag_id": "urn:tag:menu_highlight:qloo:aioli",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:aioli"
-          },
-          {
-            "name": "Tapas restaurant",
-            "tag_id": "urn:tag:category:place:tapas_restaurant",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:tapas_restaurant"
-          },
-          {
-            "name": "Brunch reservations recommended",
-            "tag_id": "urn:tag:planning:place:brunch_reservations_recommended",
-            "type": "urn:tag:planning:place",
-            "value": "urn:tag:planning:place:brunch_reservations_recommended"
-          },
-          {
-            "name": "Lively",
-            "tag_id": "urn:tag:ambience:qloo:lively",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:lively"
-          },
-          {
-            "name": "Destination",
-            "tag_id": "urn:tag:visit_intent:qloo:destination",
-            "type": "urn:tag:visit_intent:qloo",
-            "value": "urn:tag:visit_intent:qloo:destination"
-          },
-          {
-            "name": "Private dining area",
-            "tag_id": "urn:tag:amenity:qloo:private_dining_area",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:private_dining_area"
-          },
-          {
-            "name": "Wi fi",
-            "tag_id": "urn:tag:amenities:place:wi_fi",
-            "type": "urn:tag:amenities:place",
-            "value": "urn:tag:amenities:place:wi_fi"
-          },
-          {
-            "name": "Contemporary industrial",
-            "tag_id": "urn:tag:decor:qloo:contemporary_industrial",
-            "type": "urn:tag:decor:qloo",
-            "value": "urn:tag:decor:qloo:contemporary_industrial"
-          },
-          {
-            "name": "Couples",
-            "tag_id": "urn:tag:customer_identity:qloo:couples",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:couples"
-          },
-          {
-            "name": "Gluten free",
-            "tag_id": "urn:tag:dietary_option:qloo:gluten_free",
-            "type": "urn:tag:dietary_option:qloo",
-            "value": "urn:tag:dietary_option:qloo:gluten_free"
-          },
-          {
-            "name": "National museum",
-            "tag_id": "urn:tag:nearby_attraction:qloo:national_museum",
-            "type": "urn:tag:nearby_attraction:qloo",
-            "value": "urn:tag:nearby_attraction:qloo:national_museum"
-          },
-          {
-            "name": "Mobile ordering",
-            "tag_id": "urn:tag:service_type:qloo:mobile_ordering",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:mobile_ordering"
-          },
-          {
-            "name": "Alcohol",
-            "tag_id": "urn:tag:offerings:place:alcohol",
-            "type": "urn:tag:offerings:place",
-            "value": "urn:tag:offerings:place:alcohol"
-          },
-          {
-            "name": "Tapas",
-            "tag_id": "urn:tag:cuisine:qloo:tapas",
-            "type": "urn:tag:cuisine:qloo",
-            "value": "urn:tag:cuisine:qloo:tapas"
-          },
-          {
-            "name": "Bar onsite",
-            "tag_id": "urn:tag:amenities:place:bar_onsite",
-            "type": "urn:tag:amenities:place",
-            "value": "urn:tag:amenities:place:bar_onsite"
-          },
-          {
-            "name": "Spanish",
-            "tag_id": "urn:tag:genre:place:restaurant:spanish",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:restaurant:spanish"
-          },
-          {
-            "name": "High energy",
-            "tag_id": "urn:tag:ambience:qloo:high_energy",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:high_energy"
-          },
-          {
-            "name": "Chorizo",
-            "tag_id": "urn:tag:menu_highlight:qloo:chorizo",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:chorizo"
-          },
-          {
-            "name": "Cod",
-            "tag_id": "urn:tag:menu_highlight:qloo:cod",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:cod"
-          },
-          {
-            "name": "Takeout",
-            "tag_id": "urn:tag:service_type:qloo:takeout",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:takeout"
-          },
-          {
-            "name": "King prawns",
-            "tag_id": "urn:tag:menu_highlight:qloo:king_prawns",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:king_prawns"
-          },
-          {
-            "name": "Private dining",
-            "tag_id": "urn:tag:service_type:qloo:private_dining",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:private_dining"
-          },
-          {
-            "name": "Evening",
-            "tag_id": "urn:tag:time_of_day_fit:qloo:evening",
-            "type": "urn:tag:time_of_day_fit:qloo",
-            "value": "urn:tag:time_of_day_fit:qloo:evening"
-          },
-          {
-            "name": "Late night food",
-            "tag_id": "urn:tag:offerings:place:late_night_food",
-            "type": "urn:tag:offerings:place",
-            "value": "urn:tag:offerings:place:late_night_food"
-          },
-          {
-            "name": "Fried goat cheese and beetroot salad",
-            "tag_id": "urn:tag:menu_highlight:qloo:fried_goat_cheese_and_beetroot_salad",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:fried_goat_cheese_and_beetroot_salad"
-          },
-          {
-            "name": "35 44",
-            "tag_id": "urn:tag:age_range:qloo:35_44",
-            "type": "urn:tag:age_range:qloo",
-            "value": "urn:tag:age_range:qloo:35_44"
-          },
-          {
-            "name": "Table service",
-            "tag_id": "urn:tag:dining_options:place:table_service",
-            "type": "urn:tag:dining_options:place",
-            "value": "urn:tag:dining_options:place:table_service"
-          },
-          {
-            "name": "Casual",
-            "tag_id": "urn:tag:decor:qloo:casual",
-            "type": "urn:tag:decor:qloo",
-            "value": "urn:tag:decor:qloo:casual"
-          },
-          {
-            "name": "Tapas bar",
-            "tag_id": "urn:tag:category:place:tapas_bar",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:tapas_bar"
-          },
-          {
-            "name": "Scenic",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:scenic",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:scenic"
-          },
-          {
-            "name": "Small plates dining",
-            "tag_id": "urn:tag:interests:qloo:small_plates_dining",
-            "type": "urn:tag:interests:qloo",
-            "value": "urn:tag:interests:qloo:small_plates_dining"
-          },
-          {
-            "name": "City view",
-            "tag_id": "urn:tag:view:qloo:city_view",
-            "type": "urn:tag:view:qloo",
-            "value": "urn:tag:view:qloo:city_view"
-          },
-          {
-            "name": "Seating",
-            "tag_id": "urn:tag:dining_options:place:seating",
-            "type": "urn:tag:dining_options:place",
-            "value": "urn:tag:dining_options:place:seating"
-          },
-          {
-            "name": "High chairs",
-            "tag_id": "urn:tag:children:place:high_chairs",
-            "type": "urn:tag:children:place",
-            "value": "urn:tag:children:place:high_chairs"
-          },
-          {
-            "name": "Patatas bravas",
-            "tag_id": "urn:tag:menu_highlight:qloo:patatas_bravas",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:patatas_bravas"
-          },
-          {
-            "name": "Groups of friends",
-            "tag_id": "urn:tag:customer_identity:qloo:groups_of_friends",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:groups_of_friends"
-          },
-          {
-            "name": "Bikini toast",
-            "tag_id": "urn:tag:menu_highlight:qloo:bikini_toast",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:bikini_toast"
-          },
-          {
-            "name": "Small plates",
-            "tag_id": "urn:tag:offerings:place:small_plates",
-            "type": "urn:tag:offerings:place",
-            "value": "urn:tag:offerings:place:small_plates"
-          },
-          {
-            "name": "Dinner",
-            "tag_id": "urn:tag:dining_options:place:dinner",
-            "type": "urn:tag:dining_options:place",
-            "value": "urn:tag:dining_options:place:dinner"
-          },
-          {
-            "name": "Private events",
-            "tag_id": "urn:tag:activity_type:qloo:private_events",
-            "type": "urn:tag:activity_type:qloo",
-            "value": "urn:tag:activity_type:qloo:private_events"
-          },
-          {
-            "name": "Nobel peace center",
-            "tag_id": "urn:tag:nearby_attraction:qloo:nobel_peace_center",
-            "type": "urn:tag:nearby_attraction:qloo",
-            "value": "urn:tag:nearby_attraction:qloo:nobel_peace_center"
-          },
-          {
-            "name": "Wheelchair accessible restroom",
-            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_restroom",
-            "type": "urn:tag:accessibility:place",
-            "value": "urn:tag:accessibility:place:wheelchair_accessible_restroom"
-          },
-          {
-            "name": "Morning",
-            "tag_id": "urn:tag:time_of_day_fit:qloo:morning",
-            "type": "urn:tag:time_of_day_fit:qloo",
-            "value": "urn:tag:time_of_day_fit:qloo:morning"
-          },
-          {
-            "name": "Stylish",
-            "tag_id": "urn:tag:ambience:qloo:stylish",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:stylish"
-          },
-          {
-            "name": "Dinner reservations recommended",
-            "tag_id": "urn:tag:planning:place:dinner_reservations_recommended",
-            "type": "urn:tag:planning:place",
-            "value": "urn:tag:planning:place:dinner_reservations_recommended"
-          },
-          {
-            "name": "Waterfront leisure",
-            "tag_id": "urn:tag:interests:qloo:waterfront_leisure",
-            "type": "urn:tag:interests:qloo",
-            "value": "urn:tag:interests:qloo:waterfront_leisure"
-          },
-          {
-            "name": "Restaurant",
-            "tag_id": "urn:tag:genre:place:restaurant",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:restaurant"
-          },
-          {
-            "name": "Vegan meals",
-            "tag_id": "urn:tag:offerings:place:vegan_options",
-            "type": "urn:tag:offerings:place",
-            "value": "urn:tag:offerings:place:vegan_options"
-          },
-          {
-            "name": "Wheelchair access",
-            "tag_id": "urn:tag:amenity:qloo:wheelchair_access",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:wheelchair_access"
-          },
-          {
-            "name": "Place",
-            "tag_id": "urn:tag:genre:place",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place"
-          },
-          {
-            "name": "Hard liquor",
-            "tag_id": "urn:tag:offerings:place:hard_liquor",
-            "type": "urn:tag:offerings:place",
-            "value": "urn:tag:offerings:place:hard_liquor"
-          },
-          {
-            "name": "Soft drinks",
-            "tag_id": "urn:tag:beverage_offering:qloo:soft_drinks",
-            "type": "urn:tag:beverage_offering:qloo",
-            "value": "urn:tag:beverage_offering:qloo:soft_drinks"
-          },
-          {
-            "name": "Central",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:central",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:central"
-          },
-          {
-            "name": "Lunch meetings",
-            "tag_id": "urn:tag:activity_type:qloo:lunch_meetings",
-            "type": "urn:tag:activity_type:qloo",
-            "value": "urn:tag:activity_type:qloo:lunch_meetings"
-          },
-          {
-            "name": "Tjuvholmen",
-            "tag_id": "urn:tag:nearby_attraction:qloo:tjuvholmen",
-            "type": "urn:tag:nearby_attraction:qloo",
-            "value": "urn:tag:nearby_attraction:qloo:tjuvholmen"
-          },
-          {
-            "name": "Heaters",
-            "tag_id": "urn:tag:amenity:qloo:heaters",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:heaters"
-          },
-          {
-            "name": "Order ahead",
-            "tag_id": "urn:tag:dining_options:place:order_ahead",
-            "type": "urn:tag:dining_options:place",
-            "value": "urn:tag:dining_options:place:order_ahead"
-          },
-          {
-            "name": "Catalan cheesecake",
-            "tag_id": "urn:tag:menu_highlight:qloo:catalan_cheesecake",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:catalan_cheesecake"
-          },
-          {
-            "name": "Outdoor seating",
-            "tag_id": "urn:tag:amenity:qloo:outdoor_seating",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:outdoor_seating"
-          },
-          {
-            "name": "Beer",
-            "tag_id": "urn:tag:offerings:place:beer",
-            "type": "urn:tag:offerings:place",
-            "value": "urn:tag:offerings:place:beer"
-          },
-          {
-            "name": "Lunch reservations recommended",
-            "tag_id": "urn:tag:planning:place:lunch_reservations_recommended",
-            "type": "urn:tag:planning:place",
-            "value": "urn:tag:planning:place:lunch_reservations_recommended"
-          },
-          {
-            "name": "Business professionals",
-            "tag_id": "urn:tag:customer_identity:qloo:business_professionals",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:business_professionals"
-          },
-          {
-            "name": "Contemporary",
-            "tag_id": "urn:tag:culinary_style:qloo:contemporary",
-            "type": "urn:tag:culinary_style:qloo",
-            "value": "urn:tag:culinary_style:qloo:contemporary"
-          },
-          {
-            "name": "Coffee",
-            "tag_id": "urn:tag:offerings:place:coffee",
-            "type": "urn:tag:offerings:place",
-            "value": "urn:tag:offerings:place:coffee"
-          },
-          {
-            "name": "Historic",
-            "tag_id": "urn:tag:setting:qloo:historic",
-            "type": "urn:tag:setting:qloo",
-            "value": "urn:tag:setting:qloo:historic"
-          },
-          {
-            "name": "Accepts reservations",
-            "tag_id": "urn:tag:planning:place:accepts_reservations",
-            "type": "urn:tag:planning:place",
-            "value": "urn:tag:planning:place:accepts_reservations"
-          },
-          {
-            "name": "Cocktails",
-            "tag_id": "urn:tag:offerings:place:cocktails",
-            "type": "urn:tag:offerings:place",
-            "value": "urn:tag:offerings:place:cocktails"
-          }
-        ]
+        }
       },
       {
-        "name": "Empório de Fátima Delicatessen",
         "entity_id": "97F368E1-02BA-4C5F-8D6C-4A1CA90BD4F1",
+        "name": "Empório de Fátima Delicatessen",
         "types": [
           "urn:entity:place"
         ],
+        "disambiguation": "Av. Deputado Oswaldo Studart, 250 - Fátima Fortaleza - CE 60415-040 Brazil",
+        "location": {
+          "lat": -3.7535399999999997,
+          "lon": -38.5282792
+        },
+        "tags": [
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:bolos_confeitados",
+            "name": "Bolos confeitados",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:cuisine:qloo:bakery",
+            "name": "Bakery",
+            "type": "urn:tag:cuisine:qloo"
+          },
+          {
+            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_seating",
+            "name": "Wheelchair accessible seating",
+            "type": "urn:tag:accessibility:place"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:pizzas",
+            "name": "Pizzas",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:noise_level:qloo:moderate",
+            "name": "Moderate",
+            "type": "urn:tag:noise_level:qloo"
+          },
+          {
+            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_restroom",
+            "name": "Wheelchair accessible restroom",
+            "type": "urn:tag:accessibility:place"
+          },
+          {
+            "tag_id": "urn:tag:cuisine:qloo:pizza",
+            "name": "Pizza",
+            "type": "urn:tag:cuisine:qloo"
+          },
+          {
+            "tag_id": "urn:tag:cuisine:qloo:gourmet_grocery",
+            "name": "Gourmet grocery",
+            "type": "urn:tag:cuisine:qloo"
+          },
+          {
+            "tag_id": "urn:tag:cuisine:qloo:italian",
+            "name": "Italian",
+            "type": "urn:tag:cuisine:qloo"
+          },
+          {
+            "tag_id": "urn:tag:cuisine:qloo:japanese",
+            "name": "Japanese",
+            "type": "urn:tag:cuisine:qloo"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:comfortable",
+            "name": "Comfortable",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:tortinhas_doces",
+            "name": "Tortinhas doces",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:social",
+            "name": "Social",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:lively",
+            "name": "Lively",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:rodizio_de_massas",
+            "name": "Rodizio de massas",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:asorted_fruits_jelly",
+            "name": "Asorted fruits jelly",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:cuisine:qloo:continental",
+            "name": "Continental",
+            "type": "urn:tag:cuisine:qloo"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:macarons",
+            "name": "Macarons",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_parking_lot",
+            "name": "Wheelchair accessible parking lot",
+            "type": "urn:tag:accessibility:place"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:welcoming",
+            "name": "Welcoming",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:casual",
+            "name": "Casual",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_entrance",
+            "name": "Wheelchair accessible entrance",
+            "type": "urn:tag:accessibility:place"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:sushis",
+            "name": "Sushis",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:ambience:qloo:aconchegante",
+            "name": "Aconchegante",
+            "type": "urn:tag:ambience:qloo"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:strawberry_jelly",
+            "name": "Strawberry jelly",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:menu_highlight:qloo:croissants",
+            "name": "Croissants",
+            "type": "urn:tag:menu_highlight:qloo"
+          },
+          {
+            "tag_id": "urn:tag:offerings:place:coffee",
+            "name": "Coffee",
+            "type": "urn:tag:offerings:place"
+          }
+        ],
         "properties": {
-          "akas": [
-            {
-              "language": "",
-              "value": "Empório de Fátima Delicatessen, Av. Deputado Oswaldo Studart, 250 - Fátima Fortaleza - CE 60415-040 Brazil"
-            }
-          ],
           "address": "Av. Deputado Oswaldo Studart, 250 - Fátima Fortaleza - CE 60415-040 Brazil",
-          "business_rating": 4.5,
-          "description": "Combined bakery, restaurant and upscale grocery offering eclectic buffet dishes, elegant cakes, pastries, pizzas, sushi and delivery.",
-          "external": {
-            "tripadvisor": {
-              "id": "d5651434",
-              "rating": 3.5,
-              "rating_count": 91
-            },
-            "google_place": {
-              "id": "ad5fd7e5a7914913",
-              "place_id": "ChIJCSUpkSBJxwcRE0mRp-XXX60"
-            }
-          },
-          "geocode": {
-            "name": "Fátima",
-            "city": "Fortaleza",
-            "admin1_region": "Ceará",
-            "admin2_region": "Região Geográfica Intermediária de Fortaleza",
-            "country_code": "BR",
-            "country": "Brazil"
-          },
+          "neighborhood": "Fátima",
+          "phone": "+558534444000",
+          "website": "http://pedir.to/emporiofatimadelicat",
           "hours": {
             "sunday": [
               {
@@ -3341,1061 +828,30 @@
               }
             ]
           },
-          "image": {
-            "url": "https://images.qloo.com/i/97F368E1-02BA-4C5F-8D6C-4A1CA90BD4F1-420x-auto.jpg"
-          },
           "is_closed": false,
-          "neighborhood": "Fátima",
-          "phone": "+558534444000",
           "price_level": 2,
-          "price_range": {
-            "currency": "usd"
-          },
-          "website": "http://pedir.to/emporiofatimadelicat",
+          "business_rating": 4.5,
+          "description": "Combined bakery, restaurant and upscale grocery offering eclectic buffet dishes, elegant cakes, pastries, pizzas, sushi and delivery.",
           "specialty_dishes": [
             {
               "id": "urn:tag:specialty_dish:place:asorted_fruits_jelly",
-              "name": "Asorted Fruits Jelly",
-              "type": "urn:tag:specialty_dish:place",
-              "weight": 1
+              "name": "Asorted Fruits Jelly"
             },
             {
               "id": "urn:tag:specialty_dish:place:bolos_confeitados",
-              "name": "Bolos Confeitados",
-              "type": "urn:tag:specialty_dish:place",
-              "weight": 0.8571428571428571
+              "name": "Bolos Confeitados"
             },
             {
               "id": "urn:tag:specialty_dish:place:croissants",
-              "name": "Croissants",
-              "type": "urn:tag:specialty_dish:place",
-              "weight": 0.7142857142857143
+              "name": "Croissants"
             }
           ],
-          "primary_genre": {
-            "id": "urn:tag:genre:place:restaurant:bakery",
-            "name": "Bakery",
-            "type": "urn:tag:genre:place",
-            "akas": [
-              {
-                "language": "en_gb",
-                "value": "\"Bakery\""
-              },
-              {
-                "language": "ar",
-                "value": "\"مخبز\""
-              },
-              {
-                "language": "nb",
-                "value": "\"Bakeri\""
-              },
-              {
-                "language": "zh_tw",
-                "value": "\"烘焙坊\""
-              },
-              {
-                "language": "de",
-                "value": "\"Bäckerei\""
-              },
-              {
-                "language": "fi",
-                "value": "\"Leipomo\""
-              },
-              {
-                "language": "th",
-                "value": "\"ร้านเบเกอรี่\""
-              },
-              {
-                "language": "tr",
-                "value": "\"Fırın\""
-              },
-              {
-                "language": "sv",
-                "value": "\"Bageri\""
-              },
-              {
-                "language": "da",
-                "value": "\"Bageri\""
-              },
-              {
-                "language": "sk",
-                "value": "\"Pekáreň\""
-              },
-              {
-                "language": "ru",
-                "value": "\"Пекарня\""
-              },
-              {
-                "language": "uk",
-                "value": "\"Пекарня\""
-              },
-              {
-                "language": "sw",
-                "value": "\"Beki\""
-              },
-              {
-                "language": "es_ar",
-                "value": "\"Panadería\""
-              },
-              {
-                "language": "es_la",
-                "value": "\"Panadería\""
-              },
-              {
-                "language": "es",
-                "value": "\"Panadería\""
-              },
-              {
-                "language": "gl",
-                "value": "\"Panadería\""
-              },
-              {
-                "language": "it",
-                "value": "\"Panificio\""
-              },
-              {
-                "language": "km",
-                "value": "\"ហាងនំប៉័ង\""
-              },
-              {
-                "language": "fr",
-                "value": "\"Boulangerie\""
-              },
-              {
-                "language": "fr_ca",
-                "value": "\"Boulangerie\""
-              },
-              {
-                "language": "lv",
-                "value": "\"Maiznīca\""
-              },
-              {
-                "language": "sl",
-                "value": "\"Pekarna\""
-              },
-              {
-                "language": "bg",
-                "value": "\"Пекарна\""
-              },
-              {
-                "language": "hu",
-                "value": "\"Pékség\""
-              },
-              {
-                "language": "cs",
-                "value": "\"Pekařství\""
-              },
-              {
-                "language": "pl",
-                "value": "\"Piekarnia\""
-              },
-              {
-                "language": "az",
-                "value": "\"Çörəkxana\""
-              },
-              {
-                "language": "ms",
-                "value": "\"Kedai roti\""
-              },
-              {
-                "language": "my",
-                "value": "\"မုန့်တိုက်\""
-              },
-              {
-                "language": "hr",
-                "value": "\"Pekara\""
-              },
-              {
-                "language": "bs",
-                "value": "\"Pekara\""
-              },
-              {
-                "language": "id",
-                "value": "\"Toko roti\""
-              },
-              {
-                "language": "sq",
-                "value": "\"Furë buke\""
-              },
-              {
-                "language": "pt",
-                "value": "\"Padaria\""
-              },
-              {
-                "language": "pt_pt",
-                "value": "\"Padaria\""
-              },
-              {
-                "language": "ka",
-                "value": "\"საცხობი\""
-              },
-              {
-                "language": "et",
-                "value": "\"Pagariäri\""
-              },
-              {
-                "language": "af",
-                "value": "\"Bakkery\""
-              },
-              {
-                "language": "te",
-                "value": "\"బేకరీ\""
-              },
-              {
-                "language": "bn",
-                "value": "\"বেকারি\""
-              },
-              {
-                "language": "hi",
-                "value": "\"बेकरी\""
-              },
-              {
-                "language": "vi",
-                "value": "\"Tiệm bánh\""
-              },
-              {
-                "language": "kk",
-                "value": "\"Наубайхана\""
-              },
-              {
-                "language": "zh",
-                "value": "\"面包店\""
-              },
-              {
-                "language": "nl",
-                "value": "\"Bakkerij\""
-              },
-              {
-                "language": "lt",
-                "value": "\"Kepykla\""
-              },
-              {
-                "language": "ca",
-                "value": "\"Forn de pa\""
-              },
-              {
-                "language": "he",
-                "value": "\"מאפייה\""
-              },
-              {
-                "language": "ro",
-                "value": "\"Brutărie\""
-              },
-              {
-                "language": "ta",
-                "value": "\"பேக்கரி\""
-              },
-              {
-                "language": "lo",
-                "value": "\"ຮ້ານຂາຍເຂົ້າຈີ່\""
-              },
-              {
-                "language": "tl",
-                "value": "\"Panaderya\""
-              },
-              {
-                "language": "el",
-                "value": "\"Αρτοποιείο\""
-              },
-              {
-                "language": "eu",
-                "value": "\"Okindegia\""
-              },
-              {
-                "language": "ja",
-                "value": "\"ベーカリー\""
-              },
-              {
-                "language": "sr",
-                "value": "\"Пекара\""
-              },
-              {
-                "language": "mk",
-                "value": "\"Пекара\""
-              },
-              {
-                "language": "ko",
-                "value": "\"베이커리\""
-              }
-            ]
+          "external": {
+            "google_place": {
+              "place_id": "ChIJCSUpkSBJxwcRE0mRp-XXX60"
+            }
           }
-        },
-        "popularity": 0.9967467788169909,
-        "disambiguation": "Av. Deputado Oswaldo Studart, 250 - Fátima Fortaleza - CE 60415-040 Brazil",
-        "location": {
-          "lat": -3.7535399999999997,
-          "lon": -38.5282792
-        },
-        "tags": [
-          {
-            "name": "Bolos confeitados",
-            "tag_id": "urn:tag:menu_highlight:qloo:bolos_confeitados",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:bolos_confeitados"
-          },
-          {
-            "name": "Bakery",
-            "tag_id": "urn:tag:cuisine:qloo:bakery",
-            "type": "urn:tag:cuisine:qloo",
-            "value": "urn:tag:cuisine:qloo:bakery"
-          },
-          {
-            "name": "Wheelchair accessible seating",
-            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_seating",
-            "type": "urn:tag:accessibility:place",
-            "value": "urn:tag:accessibility:place:wheelchair_accessible_seating"
-          },
-          {
-            "name": "Mastercard",
-            "tag_id": "urn:tag:credit_card:place:mastercard",
-            "type": "urn:tag:credit_card:place",
-            "value": "urn:tag:credit_card:place:mastercard"
-          },
-          {
-            "name": "Place",
-            "tag_id": "urn:tag:genre:place",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place"
-          },
-          {
-            "name": "Shopping",
-            "tag_id": "urn:tag:genre:place:shopping",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:shopping"
-          },
-          {
-            "name": "Pasta shop",
-            "tag_id": "urn:tag:category:place:pasta_shop",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:pasta_shop"
-          },
-          {
-            "name": "Coffee bar",
-            "tag_id": "urn:tag:amenity:qloo:coffee_bar",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:coffee_bar"
-          },
-          {
-            "name": "Bakery",
-            "tag_id": "urn:tag:genre:place:restaurant:bakery",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:restaurant:bakery"
-          },
-          {
-            "name": "Bakery selection",
-            "tag_id": "urn:tag:activity_type:qloo:bakery_selection",
-            "type": "urn:tag:activity_type:qloo",
-            "value": "urn:tag:activity_type:qloo:bakery_selection"
-          },
-          {
-            "name": "Casual",
-            "tag_id": "urn:tag:culinary_style:qloo:casual",
-            "type": "urn:tag:culinary_style:qloo",
-            "value": "urn:tag:culinary_style:qloo:casual"
-          },
-          {
-            "name": "Pizzas",
-            "tag_id": "urn:tag:menu_highlight:qloo:pizzas",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:pizzas"
-          },
-          {
-            "name": "Street view",
-            "tag_id": "urn:tag:view:qloo:street_view",
-            "type": "urn:tag:view:qloo",
-            "value": "urn:tag:view:qloo:street_view"
-          },
-          {
-            "name": "R$20 to r$60",
-            "tag_id": "urn:tag:cost_description:place:r20_to_r60",
-            "type": "urn:tag:cost_description:place",
-            "value": "urn:tag:cost_description:place:r20_to_r60"
-          },
-          {
-            "name": "Gourmet grocery store",
-            "tag_id": "urn:tag:genre:place:gourmet_grocery_store",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:gourmet_grocery_store"
-          },
-          {
-            "name": "Moderate",
-            "tag_id": "urn:tag:noise_level:qloo:moderate",
-            "type": "urn:tag:noise_level:qloo",
-            "value": "urn:tag:noise_level:qloo:moderate"
-          },
-          {
-            "name": "Wheelchair accessible restroom",
-            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_restroom",
-            "type": "urn:tag:accessibility:place",
-            "value": "urn:tag:accessibility:place:wheelchair_accessible_restroom"
-          },
-          {
-            "name": "Pizza",
-            "tag_id": "urn:tag:cuisine:qloo:pizza",
-            "type": "urn:tag:cuisine:qloo",
-            "value": "urn:tag:cuisine:qloo:pizza"
-          },
-          {
-            "name": "Moderately expensive",
-            "tag_id": "urn:tag:cost_description:place:moderately_expensive",
-            "type": "urn:tag:cost_description:place",
-            "value": "urn:tag:cost_description:place:moderately_expensive"
-          },
-          {
-            "name": "Pizza restaurant",
-            "tag_id": "urn:tag:category:place:pizza_restaurant",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:pizza_restaurant"
-          },
-          {
-            "name": "International cuisine",
-            "tag_id": "urn:tag:interests:qloo:international_cuisine",
-            "type": "urn:tag:interests:qloo",
-            "value": "urn:tag:interests:qloo:international_cuisine"
-          },
-          {
-            "name": "Gourmet grocery",
-            "tag_id": "urn:tag:cuisine:qloo:gourmet_grocery",
-            "type": "urn:tag:cuisine:qloo",
-            "value": "urn:tag:cuisine:qloo:gourmet_grocery"
-          },
-          {
-            "name": "Delivery",
-            "tag_id": "urn:tag:service_type:qloo:delivery",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:delivery"
-          },
-          {
-            "name": "Debit cards",
-            "tag_id": "urn:tag:payments:place:debit_cards",
-            "type": "urn:tag:payments:place",
-            "value": "urn:tag:payments:place:debit_cards"
-          },
-          {
-            "name": "Parking lot",
-            "tag_id": "urn:tag:amenity:qloo:parking_lot",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:parking_lot"
-          },
-          {
-            "name": "Sushi",
-            "tag_id": "urn:tag:genre:place:restaurant:sushi",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:restaurant:sushi"
-          },
-          {
-            "name": "Italian",
-            "tag_id": "urn:tag:cuisine:qloo:italian",
-            "type": "urn:tag:cuisine:qloo",
-            "value": "urn:tag:cuisine:qloo:italian"
-          },
-          {
-            "name": "Bakery",
-            "tag_id": "urn:tag:category:place:bakery",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:bakery"
-          },
-          {
-            "name": "Commercial",
-            "tag_id": "urn:tag:setting:qloo:commercial",
-            "type": "urn:tag:setting:qloo",
-            "value": "urn:tag:setting:qloo:commercial"
-          },
-          {
-            "name": "Buffet",
-            "tag_id": "urn:tag:culinary_style:qloo:buffet",
-            "type": "urn:tag:culinary_style:qloo",
-            "value": "urn:tag:culinary_style:qloo:buffet"
-          },
-          {
-            "name": "Wi fi",
-            "tag_id": "urn:tag:amenities:place:wi_fi",
-            "type": "urn:tag:amenities:place",
-            "value": "urn:tag:amenities:place:wi_fi"
-          },
-          {
-            "name": "Central",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:central",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:central"
-          },
-          {
-            "name": "Restroom",
-            "tag_id": "urn:tag:amenities:place:restroom",
-            "type": "urn:tag:amenities:place",
-            "value": "urn:tag:amenities:place:restroom"
-          },
-          {
-            "name": "Sushi restaurant",
-            "tag_id": "urn:tag:category:place:sushi_restaurant",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:sushi_restaurant"
-          },
-          {
-            "name": "Food shopping",
-            "tag_id": "urn:tag:interests:qloo:food_shopping",
-            "type": "urn:tag:interests:qloo",
-            "value": "urn:tag:interests:qloo:food_shopping"
-          },
-          {
-            "name": "35 44",
-            "tag_id": "urn:tag:age_range:qloo:35_44",
-            "type": "urn:tag:age_range:qloo",
-            "value": "urn:tag:age_range:qloo:35_44"
-          },
-          {
-            "name": "Japanese",
-            "tag_id": "urn:tag:cuisine:qloo:japanese",
-            "type": "urn:tag:cuisine:qloo",
-            "value": "urn:tag:cuisine:qloo:japanese"
-          },
-          {
-            "name": "Casual",
-            "tag_id": "urn:tag:decor:qloo:casual",
-            "type": "urn:tag:decor:qloo",
-            "value": "urn:tag:decor:qloo:casual"
-          },
-          {
-            "name": "Breakfast",
-            "tag_id": "urn:tag:dining_options:place:breakfast",
-            "type": "urn:tag:dining_options:place",
-            "value": "urn:tag:dining_options:place:breakfast"
-          },
-          {
-            "name": "Bakery",
-            "tag_id": "urn:tag:setting:qloo:bakery",
-            "type": "urn:tag:setting:qloo",
-            "value": "urn:tag:setting:qloo:bakery"
-          },
-          {
-            "name": "Dining drinking",
-            "tag_id": "urn:tag:activity_type:qloo:dining_drinking",
-            "type": "urn:tag:activity_type:qloo",
-            "value": "urn:tag:activity_type:qloo:dining_drinking"
-          },
-          {
-            "name": "Ifood",
-            "tag_id": "urn:tag:payments:place:ifood",
-            "type": "urn:tag:payments:place",
-            "value": "urn:tag:payments:place:ifood"
-          },
-          {
-            "name": "Free parking lot",
-            "tag_id": "urn:tag:parking:place:free_parking_lot",
-            "type": "urn:tag:parking:place",
-            "value": "urn:tag:parking:place:free_parking_lot"
-          },
-          {
-            "name": "Price level",
-            "tag_id": "urn:tag:payments:place:price_level",
-            "type": "urn:tag:payments:place",
-            "value": "urn:tag:payments:place:price_level"
-          },
-          {
-            "name": "Buffet",
-            "tag_id": "urn:tag:service_type:qloo:buffet",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:buffet"
-          },
-          {
-            "name": "25 29",
-            "tag_id": "urn:tag:age_range:qloo:25_29",
-            "type": "urn:tag:age_range:qloo",
-            "value": "urn:tag:age_range:qloo:25_29"
-          },
-          {
-            "name": "Deli",
-            "tag_id": "urn:tag:category:place:deli",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:deli"
-          },
-          {
-            "name": "Foodies",
-            "tag_id": "urn:tag:customer_identity:qloo:foodies",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:foodies"
-          },
-          {
-            "name": "Shopping",
-            "tag_id": "urn:tag:activity_type:qloo:shopping",
-            "type": "urn:tag:activity_type:qloo",
-            "value": "urn:tag:activity_type:qloo:shopping"
-          },
-          {
-            "name": "Pasta shop",
-            "tag_id": "urn:tag:genre:place:restaurant:pasta_shop",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:restaurant:pasta_shop"
-          },
-          {
-            "name": "Commercial",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:commercial",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:commercial"
-          },
-          {
-            "name": "Comfortable",
-            "tag_id": "urn:tag:ambience:qloo:comfortable",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:comfortable"
-          },
-          {
-            "name": "Free street parking",
-            "tag_id": "urn:tag:parking:place:free_street_parking",
-            "type": "urn:tag:parking:place",
-            "value": "urn:tag:parking:place:free_street_parking"
-          },
-          {
-            "name": "Visa",
-            "tag_id": "urn:tag:credit_card:place:visa",
-            "type": "urn:tag:credit_card:place",
-            "value": "urn:tag:credit_card:place:visa"
-          },
-          {
-            "name": "Tortinhas doces",
-            "tag_id": "urn:tag:menu_highlight:qloo:tortinhas_doces",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:tortinhas_doces"
-          },
-          {
-            "name": "Breakfast",
-            "tag_id": "urn:tag:genre:place:restaurant:breakfast",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:restaurant:breakfast"
-          },
-          {
-            "name": "Afternoon",
-            "tag_id": "urn:tag:time_of_day_fit:qloo:afternoon",
-            "type": "urn:tag:time_of_day_fit:qloo",
-            "value": "urn:tag:time_of_day_fit:qloo:afternoon"
-          },
-          {
-            "name": "Urban",
-            "tag_id": "urn:tag:setting:qloo:urban",
-            "type": "urn:tag:setting:qloo",
-            "value": "urn:tag:setting:qloo:urban"
-          },
-          {
-            "name": "Bakery",
-            "tag_id": "urn:tag:culinary_style:qloo:bakery",
-            "type": "urn:tag:culinary_style:qloo",
-            "value": "urn:tag:culinary_style:qloo:bakery"
-          },
-          {
-            "name": "Gourmet grocery store",
-            "tag_id": "urn:tag:category:place:gourmet_grocery_store",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:gourmet_grocery_store"
-          },
-          {
-            "name": "Social",
-            "tag_id": "urn:tag:ambience:qloo:social",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:social"
-          },
-          {
-            "name": "Restaurant",
-            "tag_id": "urn:tag:category:place:restaurant",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:restaurant"
-          },
-          {
-            "name": "Special occasion",
-            "tag_id": "urn:tag:visit_intent:qloo:special_occasion",
-            "type": "urn:tag:visit_intent:qloo",
-            "value": "urn:tag:visit_intent:qloo:special_occasion"
-          },
-          {
-            "name": "Pastry arts",
-            "tag_id": "urn:tag:interests:qloo:pastry_arts",
-            "type": "urn:tag:interests:qloo",
-            "value": "urn:tag:interests:qloo:pastry_arts"
-          },
-          {
-            "name": "Lively",
-            "tag_id": "urn:tag:ambience:qloo:lively",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:lively"
-          },
-          {
-            "name": "Rodizio de massas",
-            "tag_id": "urn:tag:menu_highlight:qloo:rodizio_de_massas",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:rodizio_de_massas"
-          },
-          {
-            "name": "Staff get temperature checks",
-            "tag_id": "urn:tag:not_for_display:place:staff_get_temperature_checks",
-            "type": "urn:tag:not_for_display:place",
-            "value": "urn:tag:not_for_display:place:staff_get_temperature_checks"
-          },
-          {
-            "name": "Groups of friends",
-            "tag_id": "urn:tag:customer_identity:qloo:groups_of_friends",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:groups_of_friends"
-          },
-          {
-            "name": "Asorted fruits jelly",
-            "tag_id": "urn:tag:menu_highlight:qloo:asorted_fruits_jelly",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:asorted_fruits_jelly"
-          },
-          {
-            "name": "Traditional shop",
-            "tag_id": "urn:tag:decor:qloo:traditional_shop",
-            "type": "urn:tag:decor:qloo",
-            "value": "urn:tag:decor:qloo:traditional_shop"
-          },
-          {
-            "name": "Families",
-            "tag_id": "urn:tag:customer_identity:qloo:families",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:families"
-          },
-          {
-            "name": "45 54",
-            "tag_id": "urn:tag:age_range:qloo:45_54",
-            "type": "urn:tag:age_range:qloo",
-            "value": "urn:tag:age_range:qloo:45_54"
-          },
-          {
-            "name": "Continental",
-            "tag_id": "urn:tag:cuisine:qloo:continental",
-            "type": "urn:tag:cuisine:qloo",
-            "value": "urn:tag:cuisine:qloo:continental"
-          },
-          {
-            "name": "Busy",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:busy",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:busy"
-          },
-          {
-            "name": "Macarons",
-            "tag_id": "urn:tag:menu_highlight:qloo:macarons",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:macarons"
-          },
-          {
-            "name": "Breakfast restaurant",
-            "tag_id": "urn:tag:category:place:breakfast_restaurant",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:breakfast_restaurant"
-          },
-          {
-            "name": "Casual dining",
-            "tag_id": "urn:tag:interests:qloo:casual_dining",
-            "type": "urn:tag:interests:qloo",
-            "value": "urn:tag:interests:qloo:casual_dining"
-          },
-          {
-            "name": "Identifies as women owned",
-            "tag_id": "urn:tag:inclusivity:place:identifies_as_women_owned",
-            "type": "urn:tag:inclusivity:place",
-            "value": "urn:tag:inclusivity:place:identifies_as_women_owned"
-          },
-          {
-            "name": "Bustling",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:bustling",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:bustling"
-          },
-          {
-            "name": "Staff required to disinfect surfaces between visits",
-            "tag_id": "urn:tag:not_for_display:place:staff_required_to_disinfect_surfaces_between_visits",
-            "type": "urn:tag:not_for_display:place",
-            "value": "urn:tag:not_for_display:place:staff_required_to_disinfect_surfaces_between_visits"
-          },
-          {
-            "name": "Wheelchair accessible parking lot",
-            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_parking_lot",
-            "type": "urn:tag:accessibility:place",
-            "value": "urn:tag:accessibility:place:wheelchair_accessible_parking_lot"
-          },
-          {
-            "name": "Supermarket",
-            "tag_id": "urn:tag:category:place:supermarket",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:supermarket"
-          },
-          {
-            "name": "Deli",
-            "tag_id": "urn:tag:genre:place:restaurant:deli",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:restaurant:deli"
-          },
-          {
-            "name": "Midday",
-            "tag_id": "urn:tag:time_of_day_fit:qloo:midday",
-            "type": "urn:tag:time_of_day_fit:qloo",
-            "value": "urn:tag:time_of_day_fit:qloo:midday"
-          },
-          {
-            "name": "Buffet dining",
-            "tag_id": "urn:tag:activity_type:qloo:buffet_dining",
-            "type": "urn:tag:activity_type:qloo",
-            "value": "urn:tag:activity_type:qloo:buffet_dining"
-          },
-          {
-            "name": "In store shopping",
-            "tag_id": "urn:tag:service_options:place:in_store_shopping",
-            "type": "urn:tag:service_options:place",
-            "value": "urn:tag:service_options:place:in_store_shopping"
-          },
-          {
-            "name": "Welcoming",
-            "tag_id": "urn:tag:ambience:qloo:welcoming",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:welcoming"
-          },
-          {
-            "name": "Casual",
-            "tag_id": "urn:tag:ambience:qloo:casual",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:casual"
-          },
-          {
-            "name": "Wheelchair accessible entrance",
-            "tag_id": "urn:tag:accessibility:place:wheelchair_accessible_entrance",
-            "type": "urn:tag:accessibility:place",
-            "value": "urn:tag:accessibility:place:wheelchair_accessible_entrance"
-          },
-          {
-            "name": "Grocery section",
-            "tag_id": "urn:tag:amenity:qloo:grocery_section",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:grocery_section"
-          },
-          {
-            "name": "Walkable",
-            "tag_id": "urn:tag:neighborhood_characteristic:qloo:walkable",
-            "type": "urn:tag:neighborhood_characteristic:qloo",
-            "value": "urn:tag:neighborhood_characteristic:qloo:walkable"
-          },
-          {
-            "name": "Paid parking lot",
-            "tag_id": "urn:tag:parking:place:paid_parking_lot",
-            "type": "urn:tag:parking:place",
-            "value": "urn:tag:parking:place:paid_parking_lot"
-          },
-          {
-            "name": "Drive thru",
-            "tag_id": "urn:tag:service_type:qloo:drive_thru",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:drive_thru"
-          },
-          {
-            "name": "In store pickup",
-            "tag_id": "urn:tag:service_options:place:in_store_pickup",
-            "type": "urn:tag:service_options:place",
-            "value": "urn:tag:service_options:place:in_store_pickup"
-          },
-          {
-            "name": "Sushis",
-            "tag_id": "urn:tag:menu_highlight:qloo:sushis",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:sushis"
-          },
-          {
-            "name": "Aconchegante",
-            "tag_id": "urn:tag:ambience:qloo:aconchegante",
-            "type": "urn:tag:ambience:qloo",
-            "value": "urn:tag:ambience:qloo:aconchegante"
-          },
-          {
-            "name": "Pickup",
-            "tag_id": "urn:tag:service_type:qloo:pickup",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:pickup"
-          },
-          {
-            "name": "Strawberry jelly",
-            "tag_id": "urn:tag:menu_highlight:qloo:strawberry_jelly",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:strawberry_jelly"
-          },
-          {
-            "name": "Croissants",
-            "tag_id": "urn:tag:menu_highlight:qloo:croissants",
-            "type": "urn:tag:menu_highlight:qloo",
-            "value": "urn:tag:menu_highlight:qloo:croissants"
-          },
-          {
-            "name": "Quick visit",
-            "tag_id": "urn:tag:planning:place:quick_visit",
-            "type": "urn:tag:planning:place",
-            "value": "urn:tag:planning:place:quick_visit"
-          },
-          {
-            "name": "Pizza",
-            "tag_id": "urn:tag:genre:place:restaurant:pizza",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:restaurant:pizza"
-          },
-          {
-            "name": "Nfc mobile payments",
-            "tag_id": "urn:tag:payments:place:nfc_mobile_payments",
-            "type": "urn:tag:payments:place",
-            "value": "urn:tag:payments:place:nfc_mobile_payments"
-          },
-          {
-            "name": "Takeout",
-            "tag_id": "urn:tag:service_options:place:takeout",
-            "type": "urn:tag:service_options:place",
-            "value": "urn:tag:service_options:place:takeout"
-          },
-          {
-            "name": "Pluxee",
-            "tag_id": "urn:tag:payments:place:pluxee",
-            "type": "urn:tag:payments:place",
-            "value": "urn:tag:payments:place:pluxee"
-          },
-          {
-            "name": "Dine in",
-            "tag_id": "urn:tag:service_options:place:dine_in",
-            "type": "urn:tag:service_options:place",
-            "value": "urn:tag:service_options:place:dine_in"
-          },
-          {
-            "name": "Delivery service",
-            "tag_id": "urn:tag:category:place:delivery_service",
-            "type": "urn:tag:category:place",
-            "value": "urn:tag:category:place:delivery_service"
-          },
-          {
-            "name": "Traditional",
-            "tag_id": "urn:tag:culinary_style:qloo:traditional",
-            "type": "urn:tag:culinary_style:qloo",
-            "value": "urn:tag:culinary_style:qloo:traditional"
-          },
-          {
-            "name": "Locals",
-            "tag_id": "urn:tag:customer_identity:qloo:locals",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:locals"
-          },
-          {
-            "name": "Business professionals",
-            "tag_id": "urn:tag:customer_identity:qloo:business_professionals",
-            "type": "urn:tag:customer_identity:qloo",
-            "value": "urn:tag:customer_identity:qloo:business_professionals"
-          },
-          {
-            "name": "Safety dividers at checkout",
-            "tag_id": "urn:tag:not_for_display:place:safety_dividers_at_checkout",
-            "type": "urn:tag:not_for_display:place",
-            "value": "urn:tag:not_for_display:place:safety_dividers_at_checkout"
-          },
-          {
-            "name": "Credit cards",
-            "tag_id": "urn:tag:payments:place:credit_cards",
-            "type": "urn:tag:payments:place",
-            "value": "urn:tag:payments:place:credit_cards"
-          },
-          {
-            "name": "Takeout",
-            "tag_id": "urn:tag:service_type:qloo:takeout",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:takeout"
-          },
-          {
-            "name": "Bakery counter",
-            "tag_id": "urn:tag:amenity:qloo:bakery_counter",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:bakery_counter"
-          },
-          {
-            "name": "Functional",
-            "tag_id": "urn:tag:decor:qloo:functional",
-            "type": "urn:tag:decor:qloo",
-            "value": "urn:tag:decor:qloo:functional"
-          },
-          {
-            "name": "Coffee and tea",
-            "tag_id": "urn:tag:beverage_offering:qloo:coffee_and_tea",
-            "type": "urn:tag:beverage_offering:qloo",
-            "value": "urn:tag:beverage_offering:qloo:coffee_and_tea"
-          },
-          {
-            "name": "Staff wear masks",
-            "tag_id": "urn:tag:not_for_display:place:staff_wear_masks",
-            "type": "urn:tag:not_for_display:place",
-            "value": "urn:tag:not_for_display:place:staff_wear_masks"
-          },
-          {
-            "name": "Delivery",
-            "tag_id": "urn:tag:service_options:place:delivery",
-            "type": "urn:tag:service_options:place",
-            "value": "urn:tag:service_options:place:delivery"
-          },
-          {
-            "name": "Evening",
-            "tag_id": "urn:tag:time_of_day_fit:qloo:evening",
-            "type": "urn:tag:time_of_day_fit:qloo",
-            "value": "urn:tag:time_of_day_fit:qloo:evening"
-          },
-          {
-            "name": "Restaurant",
-            "tag_id": "urn:tag:genre:place:restaurant",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:restaurant"
-          },
-          {
-            "name": "Gourmet cooking",
-            "tag_id": "urn:tag:interests:qloo:gourmet_cooking",
-            "type": "urn:tag:interests:qloo",
-            "value": "urn:tag:interests:qloo:gourmet_cooking"
-          },
-          {
-            "name": "Routine visit",
-            "tag_id": "urn:tag:visit_intent:qloo:routine_visit",
-            "type": "urn:tag:visit_intent:qloo",
-            "value": "urn:tag:visit_intent:qloo:routine_visit"
-          },
-          {
-            "name": "Delicatessen",
-            "tag_id": "urn:tag:setting:qloo:delicatessen",
-            "type": "urn:tag:setting:qloo",
-            "value": "urn:tag:setting:qloo:delicatessen"
-          },
-          {
-            "name": "Coffee",
-            "tag_id": "urn:tag:offerings:place:coffee",
-            "type": "urn:tag:offerings:place",
-            "value": "urn:tag:offerings:place:coffee"
-          },
-          {
-            "name": "Buffet",
-            "tag_id": "urn:tag:amenity:qloo:buffet",
-            "type": "urn:tag:amenity:qloo",
-            "value": "urn:tag:amenity:qloo:buffet"
-          },
-          {
-            "name": "Morning",
-            "tag_id": "urn:tag:time_of_day_fit:qloo:morning",
-            "type": "urn:tag:time_of_day_fit:qloo",
-            "value": "urn:tag:time_of_day_fit:qloo:morning"
-          },
-          {
-            "name": "Temperature check required",
-            "tag_id": "urn:tag:not_for_display:place:temperature_check_required",
-            "type": "urn:tag:not_for_display:place",
-            "value": "urn:tag:not_for_display:place:temperature_check_required"
-          },
-          {
-            "name": "Supermarket",
-            "tag_id": "urn:tag:genre:place:supermarket",
-            "type": "urn:tag:genre:place",
-            "value": "urn:tag:genre:place:supermarket"
-          },
-          {
-            "name": "Dine in",
-            "tag_id": "urn:tag:service_type:qloo:dine_in",
-            "type": "urn:tag:service_type:qloo",
-            "value": "urn:tag:service_type:qloo:dine_in"
-          }
-        ]
+        }
       }
     ]
   }

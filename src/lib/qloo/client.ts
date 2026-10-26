@@ -3,7 +3,8 @@
 import "server-only";
 import { getQlooEnv } from "@/lib/env";
 
-export const QLOO_TIMEOUT_MS = 10_000;
+// signal.interests.tags queries took up to 7.7 s in Phase 1; 15 s leaves headroom.
+export const QLOO_TIMEOUT_MS = 15_000;
 
 type ParamValue = string | number | boolean | readonly (string | number)[] | undefined;
 export type QlooParams = Record<string, ParamValue>;

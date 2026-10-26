@@ -2,7 +2,8 @@
 
 Notes from testing the Qloo API against real NYC data (Phase 1 spike, 2026-10-26).
 Evidence: `npm run qloo:probe` → full responses in `fixtures/qloo/raw/` (local only, gitignored),
-trimmed samples (≤5 entities, same structure) in `fixtures/qloo/samples/`. 34 live calls in total.
+trimmed samples (≤5 entities) in `fixtures/qloo/samples/` (slimmed to 4 files and the used fields in
+Phase 2; see `fixtures/qloo/README.md`). 34 live calls in total.
 
 **Docs status.** Read from docs.qloo.com: API onboarding, parameter overview, parameter reference,
 entity-type parameter guide, Insights deep dive, `GET /search`, `GET /entities`, `GET /v2/tags`.
@@ -162,7 +163,7 @@ these personalized orderings.
 - So there are two error shapes (`errors[]` vs `error{}`), and both differ from the documented
   `{code, reason, message}`. The client treats bodies as `unknown`.
 - No rate-limit or 5xx hits in 34 calls. `signal.interests.tags` queries are slow (4.5–7.7 s), which
-  leaves little headroom under the 10 s client timeout.
+  leaves little headroom under the 10 s client timeout (raised to 15 s in Phase 2).
 
 ## CONFIRMED / NOT AVAILABLE / UNCLEAR
 

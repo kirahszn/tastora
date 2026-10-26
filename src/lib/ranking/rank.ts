@@ -1,0 +1,186 @@
+// Pure, explainable ranking. Every score is a sum of integer components (see SCORE_WEIGHTS and
+// docs/data-model.md); the breakdown always adds up to the total.
+import { evaluateCandidate, type CandidateEvaluation } from "@/lib/constraints/evaluate";
+import { containsKeyword } from "@/lib/constraints/keywords";
+import type { Candidate } from "@/lib/domain/place";
+import type { SeniorProfile } from "@/lib/domain/profile";
+
+export const SCORE_WEIGHTS = {
+  /** Qloo taste signal: rank 1 gets the full amount, scaling down linearly to the last rank. */
+  tasteMax: 50,
+  /** Per favourite dish found among the dishes to ask about. */
+  favouriteDish: 8,
+  favouriteDishMax: 16,
+  /** Per comfort need (only those the caregiver set). */
+  comfortMatched: 5,
+  comfortConflict: -5,
+  /** Information completeness: one each for website, phone, hours, any dishes. */
+  completenessWebsite: 3,
+  completenessPhone: 3,
+  completenessHours: 2,
+  completenessDishes: 2,
+  /** Per dish removed because it mentions a dislike. */
+  dislikedDish: -3,
+  dislikedDishMax: -9,
+  /** Caregiver feedback on earlier results. */
+  feedbackDisliked: -20,
+  feedbackTried: -3,
+  feedbackLikedCuisine: 4,
+} as const;
+
+export const DEFAULT_RESULT_LIMIT = 8;
+
+/** Candidate ids from caregiver feedback on earlier results. */
+export interface RankingFeedback {
+  liked?: readonly string[];
+  disliked?: readonly string[];
+  /** Removed entirely. */
+  notSuitable?: readonly string[];
+  tried?: readonly string[];
+}
+
+export interface ScoreBreakdown {
+  taste: number;
+  favouriteDishes: number;
+  comfort: number;
+  completeness: number;
+  dislikePenalty: number;
+  feedback: number;
+}
+
+export interface RankedCandidate {
+  rank: number;
+  candidate: Candidate;
+  evaluation: CandidateEvaluation;
+  score: { total: number; breakdown: ScoreBreakdown };
+  /** Profile favourite dishes found among the dishes to ask about. */
+  matchedFavouriteDishes: string[];
+  /** Cuisines shared with a candidate the caregiver liked. */
+  likedCuisines: string[];
+}
+
+export interface ExcludedCandidate {
+  candidate: Candidate;
+  reasons: string[];
+}
+
+export interface RankingResult {
+  ranked: RankedCandidate[];
+  /** Hard-excluded or marked not suitable; never ranked, listed so nothing is hidden silently. */
+  excluded: ExcludedCandidate[];
+}
+
+const sum = (b: ScoreBreakdown) => Object.values(b).reduce((a, n) => a + n, 0);
+
+function tasteScore(qlooRank: number, maxRank: number): number {
+  return Math.round((SCORE_WEIGHTS.tasteMax * (maxRank - qlooRank + 1)) / maxRank);
+}
+
+function matchFavouriteDishes(profile: SeniorProfile, evaluation: CandidateEvaluation): string[] {
+  return profile.favouriteDishes.filter((fav) =>
+    evaluation.allowedDishes.some((d) => containsKeyword(d.name, fav)),
+  );
+}
+
+function comfortScore(evaluation: CandidateEvaluation): number {
+  return evaluation.requirements
+    .filter((r) => r.kind === "comfort")
+    .reduce(
+      (n, r) =>
+        n +
+        (r.status === "matched"
+          ? SCORE_WEIGHTS.comfortMatched
+          : r.status === "conflict"
+            ? SCORE_WEIGHTS.comfortConflict
+            : 0),
+      0,
+    );
+}
+
+function completenessScore(c: Candidate): number {
+  const w = SCORE_WEIGHTS;
+  return (
+    (c.website ? w.completenessWebsite : 0) +
+    (c.phone ? w.completenessPhone : 0) +
+    (c.hours ? w.completenessHours : 0) +
+    (c.dishHighlights.length || c.specialtyDishes.length ? w.completenessDishes : 0)
+  );
+}
+
+function dislikePenalty(evaluation: CandidateEvaluation): number {
+  const dishes = new Set(
+    evaluation.excludedDishes.filter((d) => d.reason === "dislike").map((d) => d.name.toLowerCase()),
+  );
+  // Guard keeps 0 rather than -0 (0 × -3) when nothing is disliked.
+  return dishes.size ? Math.max(SCORE_WEIGHTS.dislikedDishMax, dishes.size * SCORE_WEIGHTS.dislikedDish) : 0;
+}
+
+/**
+ * Rank candidates for a profile. Hard-excluded and "not suitable" candidates never appear in
+ * `ranked`. Order: total score desc, then qlooRank asc, then id asc (deterministic).
+ */
+export function rankCandidates(
+  profile: SeniorProfile,
+  candidates: readonly Candidate[],
+  feedback: RankingFeedback = {},
+  options: { limit?: number } = {},
+): RankingResult {
+  const limit = options.limit ?? DEFAULT_RESULT_LIMIT;
+  const maxRank = Math.max(1, ...candidates.map((c) => c.qlooRank));
+  const notSuitable = new Set(feedback.notSuitable ?? []);
+  const disliked = new Set(feedback.disliked ?? []);
+  const tried = new Set(feedback.tried ?? []);
+  const likedIds = new Set(feedback.liked ?? []);
+  const likedCuisineSet = new Set(
+    candidates.filter((c) => likedIds.has(c.id)).flatMap((c) => c.cuisines.map((x) => x.toLowerCase())),
+  );
+
+  const excluded: ExcludedCandidate[] = [];
+  const scored: Omit<RankedCandidate, "rank">[] = [];
+
+  for (const candidate of candidates) {
+    const evaluation = evaluateCandidate(profile, candidate);
+    const reasons = [...evaluation.exclusionReasons];
+    if (notSuitable.has(candidate.id)) reasons.push("feedback.notSuitable: caregiver marked it not suitable");
+    if (reasons.length) {
+      excluded.push({ candidate, reasons });
+      continue;
+    }
+
+    const matchedFavouriteDishes = matchFavouriteDishes(profile, evaluation);
+    const likedCuisines = candidate.cuisines.filter((c) => likedCuisineSet.has(c.toLowerCase()));
+    const breakdown: ScoreBreakdown = {
+      taste: tasteScore(candidate.qlooRank, maxRank),
+      favouriteDishes: Math.min(
+        SCORE_WEIGHTS.favouriteDishMax,
+        matchedFavouriteDishes.length * SCORE_WEIGHTS.favouriteDish,
+      ),
+      comfort: comfortScore(evaluation),
+      completeness: completenessScore(candidate),
+      dislikePenalty: dislikePenalty(evaluation),
+      feedback:
+        (disliked.has(candidate.id) ? SCORE_WEIGHTS.feedbackDisliked : 0) +
+        (tried.has(candidate.id) ? SCORE_WEIGHTS.feedbackTried : 0) +
+        (likedCuisines.length ? SCORE_WEIGHTS.feedbackLikedCuisine : 0),
+    };
+    scored.push({
+      candidate,
+      evaluation,
+      score: { total: sum(breakdown), breakdown },
+      matchedFavouriteDishes,
+      likedCuisines,
+    });
+  }
+
+  scored.sort(
+    (a, b) =>
+      b.score.total - a.score.total ||
+      a.candidate.qlooRank - b.candidate.qlooRank ||
+      (a.candidate.id < b.candidate.id ? -1 : a.candidate.id > b.candidate.id ? 1 : 0),
+  );
+
+  return {
+    ranked: scored.slice(0, limit).map((s, i) => ({ ...s, rank: i + 1 })),
+    excluded,
+  };
+}
