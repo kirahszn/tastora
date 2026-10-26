@@ -1,0 +1,43 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+}
+
+.title {
+  font-size: 3rem;
+  line-height: 1.1;
+}
+
+.tagline {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.description {
+  font-size: 1.125rem;
+  color: var(--muted);
+}
+
+.button {
+  margin-top: 1rem;
+  padding: 0.875rem 1.5rem;
+  font: inherit;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--button-fg);
+  background: var(--button-bg);
+  border: 2px dashed var(--button-border);
+  border-radius: 0.5rem;
+  cursor: not-allowed;
+}
+
+.note {
+  font-size: 1rem;
+  color: var(--muted);
+}
