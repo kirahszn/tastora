@@ -1,0 +1,20 @@
+{
+  "request": {
+    "path": "/search",
+    "params": {
+      "query": "pizza",
+      "take": 1
+    }
+  },
+  "ok": false,
+  "status": 401,
+  "durationMs": null,
+  "rateLimitHeaders": {},
+  "body": {
+    "error": {
+      "reason": "API keys mismatch",
+      "message": "Unauthorized",
+      "code": 401
+    }
+  }
+}

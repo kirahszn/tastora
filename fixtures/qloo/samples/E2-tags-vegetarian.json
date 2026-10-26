@@ -1,0 +1,108 @@
+{
+  "request": {
+    "path": "/v2/tags",
+    "params": {
+      "filter.query": "vegetarian",
+      "take": 15
+    }
+  },
+  "ok": true,
+  "status": 200,
+  "durationMs": 362,
+  "rateLimitHeaders": {
+    "x-month-ratelimit-limit": "50000",
+    "x-month-ratelimit-remaining": "49990",
+    "x-month-ratelimit-reset": "2591977.53",
+    "x-second-ratelimit-limit": "10",
+    "x-second-ratelimit-remaining": "9",
+    "x-second-ratelimit-reset": "1"
+  },
+  "body": {
+    "duration": 97,
+    "success": true,
+    "results": {
+      "tags": [
+        {
+          "parents": [
+            {
+              "type": "urn:entity:place"
+            }
+          ],
+          "type": "urn:tag:genre:place",
+          "id": "urn:tag:genre:place:restaurant:vegetarian",
+          "name": "Vegetarian",
+          "popularity": 0.9996973,
+          "properties": {
+            "description": "Vegetarian cuisine refers to food that meets vegetarian standards by not including meat and animal tissue products. It often includes fruits, vegetables, grains, nuts, seeds and sometimes dairy and eggs.",
+            "history": "The term 'vegetarian' was first coined in the 19th century in the UK, though the concept as a lifestyle dates back to ancient India and Greece. It's a dietary philosophy often associated with ethics, health and religion.",
+            "origin": "Ancient India and Greece",
+            "presentation_style": "Varies, often colorful and visually diverse due to variety of plant-based ingredients"
+          },
+          "tags": [
+            {
+              "name": "Canonical",
+              "tag_id": "urn:tag:collection:canonical",
+              "type": "urn:tag:collection",
+              "value": "urn:tag:collection:canonical"
+            }
+          ]
+        },
+        {
+          "parents": [
+            {
+              "type": "urn:entity:place"
+            }
+          ],
+          "type": "urn:tag:dietary_option:qloo",
+          "id": "urn:tag:dietary_option:qloo:vegetarian",
+          "name": "Vegetarian",
+          "popularity": 0.9991509,
+          "properties": {},
+          "tags": []
+        },
+        {
+          "parents": [
+            {
+              "type": "urn:entity:book"
+            },
+            {
+              "type": "urn:entity:author"
+            }
+          ],
+          "type": "urn:tag:genre:media",
+          "id": "urn:tag:genre:media:vegetarian",
+          "name": "Vegetarian",
+          "popularity": 0.99719554,
+          "properties": {},
+          "tags": []
+        },
+        {
+          "parents": [
+            {
+              "type": "urn:entity:place"
+            }
+          ],
+          "type": "urn:tag:genre:place",
+          "id": "urn:tag:genre:place:hotel:vegetarian",
+          "name": "Vegetarian",
+          "popularity": 0.9965548,
+          "properties": {},
+          "tags": []
+        },
+        {
+          "parents": [
+            {
+              "type": "urn:entity:place"
+            }
+          ],
+          "type": "urn:tag:cuisine:qloo",
+          "id": "urn:tag:cuisine:qloo:vegetarian",
+          "name": "Vegetarian",
+          "popularity": 0.9952028,
+          "properties": {},
+          "tags": []
+        }
+      ]
+    }
+  }
+}

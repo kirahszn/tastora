@@ -40,3 +40,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# full raw Qloo responses stay local (Phase 1)
+/fixtures/qloo/raw/

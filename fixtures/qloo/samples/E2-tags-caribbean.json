@@ -1,0 +1,122 @@
+{
+  "request": {
+    "path": "/v2/tags",
+    "params": {
+      "filter.query": "caribbean",
+      "take": 15
+    }
+  },
+  "ok": true,
+  "status": 200,
+  "durationMs": 302,
+  "rateLimitHeaders": {
+    "x-month-ratelimit-limit": "50000",
+    "x-month-ratelimit-remaining": "49996",
+    "x-month-ratelimit-reset": "2591979.39",
+    "x-second-ratelimit-limit": "10",
+    "x-second-ratelimit-remaining": "7",
+    "x-second-ratelimit-reset": "0.35"
+  },
+  "body": {
+    "duration": 33,
+    "success": true,
+    "results": {
+      "tags": [
+        {
+          "parents": [
+            {
+              "type": "urn:entity:place"
+            }
+          ],
+          "type": "urn:tag:genre:place",
+          "id": "urn:tag:genre:place:restaurant:caribbean",
+          "name": "Caribbean",
+          "popularity": 0.99832284,
+          "properties": {
+            "description": "Caribbean cuisine is a diverse and flavorful blend of cooking traditions and ingredients from various countries round the Caribbean Sea. Known for dishes like jerk chicken and rum cake, the cuisine makes extensive use of tropical fruits, fish, and a variety of spices.",
+            "history": "Originated from the blending of several cultures and culinary styles in the Caribbean region including African, Amerindian, French, East Indian, Dutch, Spanish and Chinese",
+            "origin": "Caribbean",
+            "presentation_style": "Rustic, family style"
+          },
+          "tags": [
+            {
+              "name": "Canonical",
+              "tag_id": "urn:tag:collection:canonical",
+              "type": "urn:tag:collection",
+              "value": "urn:tag:collection:canonical"
+            }
+          ]
+        },
+        {
+          "parents": [
+            {
+              "type": "urn:entity:artist"
+            },
+            {
+              "type": "urn:entity:album"
+            }
+          ],
+          "type": "urn:tag:genre:music",
+          "id": "urn:tag:genre:music:caribbean",
+          "name": "Caribbean",
+          "popularity": 0.9943104,
+          "properties": {
+            "description": "Caribbean music is characterized by its rich cultural diversity, with influences from African rhythms, European harmonies, and indigenous storytelling. The genre has spawned many popular subgenres such as reggae and calypso, and is known for its strong rhythmic component and use of percussive instruments.",
+            "history": "Caribbean music is a broad category of music that originated in the Caribbean region, which includes islands and the coastal areas of Central and South America. Historically, this music genre has its roots in the traditional music forms of the indigenous people of the Caribbean, African slaves brought to the region, and the influence of colonizers from Europe, particularly the Spanish, French, and British.",
+            "melody": "Harmonic and Melodic",
+            "performance": "Both solo and group performances",
+            "rhythm": "Often syncopated",
+            "tempo": "Varied",
+            "vocals": "Both instrumental and vocal"
+          },
+          "tags": []
+        },
+        {
+          "parents": [
+            {
+              "type": "urn:entity:place"
+            },
+            {
+              "type": "urn:entity:book"
+            },
+            {
+              "type": "urn:entity:author"
+            }
+          ],
+          "type": "urn:tag:setting:qloo",
+          "id": "urn:tag:setting:qloo:caribbean",
+          "name": "Caribbean",
+          "popularity": 0.99427634,
+          "properties": {},
+          "tags": []
+        },
+        {
+          "parents": [
+            {
+              "type": "urn:entity:place"
+            }
+          ],
+          "type": "urn:tag:cuisine:qloo",
+          "id": "urn:tag:cuisine:qloo:caribbean",
+          "name": "Caribbean",
+          "popularity": 0.99204147,
+          "properties": {},
+          "tags": []
+        },
+        {
+          "parents": [
+            {
+              "type": "urn:entity:place"
+            }
+          ],
+          "type": "urn:tag:decor:qloo",
+          "id": "urn:tag:decor:qloo:caribbean",
+          "name": "Caribbean",
+          "popularity": 0.9810493,
+          "properties": {},
+          "tags": []
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "request": {
+    "path": "/v2/insights",
+    "params": {
+      "filter.type": "urn:entity:not_a_type",
+      "take": 5
+    }
+  },
+  "ok": false,
+  "status": 400,
+  "durationMs": null,
+  "rateLimitHeaders": {},
+  "body": {
+    "errors": [
+      {
+        "message": "at least one valid signal or filter is required for entity insights"
+      }
+    ]
+  }
+}

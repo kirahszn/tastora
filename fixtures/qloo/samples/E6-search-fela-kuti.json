@@ -1,0 +1,1622 @@
+{
+  "request": {
+    "path": "/search",
+    "params": {
+      "query": "Fela Kuti",
+      "take": 5
+    }
+  },
+  "ok": true,
+  "status": 200,
+  "durationMs": 304,
+  "rateLimitHeaders": {
+    "x-month-ratelimit-limit": "50000",
+    "x-month-ratelimit-remaining": "49988",
+    "x-month-ratelimit-reset": "2591976.86",
+    "x-second-ratelimit-limit": "10",
+    "x-second-ratelimit-remaining": "7",
+    "x-second-ratelimit-reset": "0.32"
+  },
+  "body": {
+    "results": [
+      {
+        "name": "Fela Kuti",
+        "entity_id": "679CEADA-31C3-4A06-99D0-D7384D6693BF",
+        "types": [
+          "urn:entity:artist"
+        ],
+        "properties": {
+          "akas": [],
+          "duration": {},
+          "external": {
+            "facebook": {
+              "id": "felakuti"
+            },
+            "instagram": {
+              "id": "felakutiofficial"
+            },
+            "lastfm": {
+              "id": "fela%20kuti",
+              "listeners": 440753,
+              "scrobbles": 6536919
+            },
+            "musicbrainz": {
+              "id": "6514cffa-fbe0-4965-ad88-e998ead8a82a"
+            },
+            "spotify": {
+              "id": "5CG9X521RDFWCuAhlo6QoR"
+            },
+            "twitter": {
+              "id": "felakuti"
+            },
+            "wikidata": {
+              "id": "q313868"
+            }
+          },
+          "image": {
+            "url": "https://images.qloo.com/i/679CEADA-31C3-4A06-99D0-D7384D6693BF-420x-auto.jpg"
+          },
+          "short_description": "Nigerian multi-instrumentalist, bandleader, composer, and political activist known as the pioneer of Afrobeat music."
+        },
+        "popularity": 0.9893931061937647,
+        "disambiguation": "Fela Kuti",
+        "tags": [
+          {
+            "name": "Funk",
+            "tag_id": "urn:tag:genre:funk",
+            "type": "urn:tag:genre",
+            "value": "urn:tag:genre:funk"
+          },
+          {
+            "name": "African",
+            "tag_id": "urn:tag:genre:african",
+            "type": "urn:tag:genre",
+            "value": "urn:tag:genre:african"
+          },
+          {
+            "name": "Afrobeat",
+            "tag_id": "urn:tag:genre:afrobeat",
+            "type": "urn:tag:genre",
+            "value": "urn:tag:genre:afrobeat"
+          },
+          {
+            "name": "World",
+            "tag_id": "urn:tag:genre:world",
+            "type": "urn:tag:genre",
+            "value": "urn:tag:genre:world"
+          },
+          {
+            "name": "Jazz",
+            "tag_id": "urn:tag:genre:jazz",
+            "type": "urn:tag:genre",
+            "value": "urn:tag:genre:jazz"
+          },
+          {
+            "name": "Passionate",
+            "tag_id": "urn:tag:audience:qloo:passionate",
+            "type": "urn:tag:audience:qloo",
+            "value": "urn:tag:audience:qloo:passionate"
+          },
+          {
+            "name": "Politically Conscious",
+            "tag_id": "urn:tag:audience:qloo:politically_conscious",
+            "type": "urn:tag:audience:qloo",
+            "value": "urn:tag:audience:qloo:politically_conscious"
+          },
+          {
+            "name": "Devoted",
+            "tag_id": "urn:tag:audience:qloo:devoted",
+            "type": "urn:tag:audience:qloo",
+            "value": "urn:tag:audience:qloo:devoted"
+          },
+          {
+            "name": "Energetic",
+            "tag_id": "urn:tag:audience:qloo:energetic",
+            "type": "urn:tag:audience:qloo",
+            "value": "urn:tag:audience:qloo:energetic"
+          },
+          {
+            "name": "Rhythmic",
+            "tag_id": "urn:tag:music:qloo:rhythmic",
+            "type": "urn:tag:music:qloo",
+            "value": "urn:tag:music:qloo:rhythmic"
+          },
+          {
+            "name": "Funky",
+            "tag_id": "urn:tag:music:qloo:funky",
+            "type": "urn:tag:music:qloo",
+            "value": "urn:tag:music:qloo:funky"
+          },
+          {
+            "name": "Energetic",
+            "tag_id": "urn:tag:music:qloo:energetic",
+            "type": "urn:tag:music:qloo",
+            "value": "urn:tag:music:qloo:energetic"
+          },
+          {
+            "name": "Complex",
+            "tag_id": "urn:tag:music:qloo:complex",
+            "type": "urn:tag:music:qloo",
+            "value": "urn:tag:music:qloo:complex"
+          },
+          {
+            "name": "Soulful",
+            "tag_id": "urn:tag:music:qloo:soulful",
+            "type": "urn:tag:music:qloo",
+            "value": "urn:tag:music:qloo:soulful"
+          },
+          {
+            "name": "Energetic",
+            "tag_id": "urn:tag:style:qloo:energetic",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:energetic"
+          },
+          {
+            "name": "Charismatic",
+            "tag_id": "urn:tag:style:qloo:charismatic",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:charismatic"
+          },
+          {
+            "name": "Provocative",
+            "tag_id": "urn:tag:style:qloo:provocative",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:provocative"
+          },
+          {
+            "name": "Engaging",
+            "tag_id": "urn:tag:style:qloo:engaging",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:engaging"
+          },
+          {
+            "name": "Innovative",
+            "tag_id": "urn:tag:characteristic:qloo:innovative",
+            "type": "urn:tag:characteristic:qloo",
+            "value": "urn:tag:characteristic:qloo:innovative"
+          },
+          {
+            "name": "Revolutionary",
+            "tag_id": "urn:tag:characteristic:qloo:revolutionary",
+            "type": "urn:tag:characteristic:qloo",
+            "value": "urn:tag:characteristic:qloo:revolutionary"
+          },
+          {
+            "name": "Charismatic",
+            "tag_id": "urn:tag:characteristic:qloo:charismatic",
+            "type": "urn:tag:characteristic:qloo",
+            "value": "urn:tag:characteristic:qloo:charismatic"
+          },
+          {
+            "name": "Outspoken",
+            "tag_id": "urn:tag:characteristic:qloo:outspoken",
+            "type": "urn:tag:characteristic:qloo",
+            "value": "urn:tag:characteristic:qloo:outspoken"
+          },
+          {
+            "name": "Political",
+            "tag_id": "urn:tag:characteristic:qloo:political",
+            "type": "urn:tag:characteristic:qloo",
+            "value": "urn:tag:characteristic:qloo:political"
+          },
+          {
+            "name": "Afrobeat",
+            "tag_id": "urn:tag:style:qloo:afrobeat",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:afrobeat"
+          },
+          {
+            "name": "Jazz-Funk",
+            "tag_id": "urn:tag:style:qloo:jazz_funk",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:jazz_funk"
+          },
+          {
+            "name": "Highlife-Infused",
+            "tag_id": "urn:tag:style:qloo:highlife_infused",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:highlife_infused"
+          },
+          {
+            "name": "Politically-Charged",
+            "tag_id": "urn:tag:style:qloo:politically_charged",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:politically_charged"
+          },
+          {
+            "name": "Rhythmic-Complex",
+            "tag_id": "urn:tag:style:qloo:rhythmic_complex",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:rhythmic_complex"
+          },
+          {
+            "name": "Afrobeat",
+            "tag_id": "urn:tag:influence:qloo:afrobeat",
+            "type": "urn:tag:influence:qloo",
+            "value": "urn:tag:influence:qloo:afrobeat"
+          },
+          {
+            "name": "Hip Hop",
+            "tag_id": "urn:tag:influence:qloo:hip_hop",
+            "type": "urn:tag:influence:qloo",
+            "value": "urn:tag:influence:qloo:hip_hop"
+          },
+          {
+            "name": "Funk",
+            "tag_id": "urn:tag:influence:qloo:funk",
+            "type": "urn:tag:influence:qloo",
+            "value": "urn:tag:influence:qloo:funk"
+          },
+          {
+            "name": "World Music",
+            "tag_id": "urn:tag:influence:qloo:world_music",
+            "type": "urn:tag:influence:qloo",
+            "value": "urn:tag:influence:qloo:world_music"
+          },
+          {
+            "name": "James Brown",
+            "tag_id": "urn:tag:influenced_by:qloo:james_brown",
+            "type": "urn:tag:influenced_by:qloo",
+            "value": "urn:tag:influenced_by:qloo:james_brown"
+          },
+          {
+            "name": "Fela Sowande",
+            "tag_id": "urn:tag:influenced_by:qloo:fela_sowande",
+            "type": "urn:tag:influenced_by:qloo",
+            "value": "urn:tag:influenced_by:qloo:fela_sowande"
+          },
+          {
+            "name": "Highlife Musicians",
+            "tag_id": "urn:tag:influenced_by:qloo:highlife_musicians",
+            "type": "urn:tag:influenced_by:qloo",
+            "value": "urn:tag:influenced_by:qloo:highlife_musicians"
+          },
+          {
+            "name": "Saxophone",
+            "tag_id": "urn:tag:instrument:qloo:saxophone",
+            "type": "urn:tag:instrument:qloo",
+            "value": "urn:tag:instrument:qloo:saxophone"
+          },
+          {
+            "name": "Trumpet",
+            "tag_id": "urn:tag:instrument:qloo:trumpet",
+            "type": "urn:tag:instrument:qloo",
+            "value": "urn:tag:instrument:qloo:trumpet"
+          },
+          {
+            "name": "Piano",
+            "tag_id": "urn:tag:instrument:qloo:piano",
+            "type": "urn:tag:instrument:qloo",
+            "value": "urn:tag:instrument:qloo:piano"
+          },
+          {
+            "name": "Electric Keyboard",
+            "tag_id": "urn:tag:instrument:qloo:electric_keyboard",
+            "type": "urn:tag:instrument:qloo",
+            "value": "urn:tag:instrument:qloo:electric_keyboard"
+          },
+          {
+            "name": "Vocals",
+            "tag_id": "urn:tag:instrument:qloo:vocals",
+            "type": "urn:tag:instrument:qloo",
+            "value": "urn:tag:instrument:qloo:vocals"
+          },
+          {
+            "name": "Political Activism",
+            "tag_id": "urn:tag:theme:qloo:political_activism",
+            "type": "urn:tag:theme:qloo",
+            "value": "urn:tag:theme:qloo:political_activism"
+          },
+          {
+            "name": "Social Justice",
+            "tag_id": "urn:tag:theme:qloo:social_justice",
+            "type": "urn:tag:theme:qloo",
+            "value": "urn:tag:theme:qloo:social_justice"
+          },
+          {
+            "name": "Anti-Corruption",
+            "tag_id": "urn:tag:theme:qloo:anti_corruption",
+            "type": "urn:tag:theme:qloo",
+            "value": "urn:tag:theme:qloo:anti_corruption"
+          },
+          {
+            "name": "Pan-Africanism",
+            "tag_id": "urn:tag:theme:qloo:pan_africanism",
+            "type": "urn:tag:theme:qloo",
+            "value": "urn:tag:theme:qloo:pan_africanism"
+          },
+          {
+            "name": "Colonialism",
+            "tag_id": "urn:tag:theme:qloo:colonialism",
+            "type": "urn:tag:theme:qloo",
+            "value": "urn:tag:theme:qloo:colonialism"
+          },
+          {
+            "name": "Afrobeat",
+            "tag_id": "urn:tag:genre:qloo:afrobeat",
+            "type": "urn:tag:genre:qloo",
+            "value": "urn:tag:genre:qloo:afrobeat"
+          },
+          {
+            "name": "Funk",
+            "tag_id": "urn:tag:genre:qloo:funk",
+            "type": "urn:tag:genre:qloo",
+            "value": "urn:tag:genre:qloo:funk"
+          },
+          {
+            "name": "Jazz",
+            "tag_id": "urn:tag:genre:qloo:jazz",
+            "type": "urn:tag:genre:qloo",
+            "value": "urn:tag:genre:qloo:jazz"
+          },
+          {
+            "name": "Highlife",
+            "tag_id": "urn:tag:genre:qloo:highlife",
+            "type": "urn:tag:genre:qloo",
+            "value": "urn:tag:genre:qloo:highlife"
+          },
+          {
+            "name": "World Music",
+            "tag_id": "urn:tag:subgenre:qloo:world_music",
+            "type": "urn:tag:subgenre:qloo",
+            "value": "urn:tag:subgenre:qloo:world_music"
+          },
+          {
+            "name": "Soul",
+            "tag_id": "urn:tag:subgenre:qloo:soul",
+            "type": "urn:tag:subgenre:qloo",
+            "value": "urn:tag:subgenre:qloo:soul"
+          },
+          {
+            "name": "Reggae",
+            "tag_id": "urn:tag:subgenre:qloo:reggae",
+            "type": "urn:tag:subgenre:qloo",
+            "value": "urn:tag:subgenre:qloo:reggae"
+          }
+        ]
+      },
+      {
+        "name": "Fela Kuti",
+        "entity_id": "F173D293-803E-4D6C-9BEF-874CA9932331",
+        "types": [
+          "urn:entity:person"
+        ],
+        "properties": {
+          "akas": [
+            {
+              "language": "e",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "u",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "e",
+              "value": "Fela Kuti & Afrika 70"
+            },
+            {
+              "language": "n",
+              "value": "Fela Kuti & Afrika 70"
+            },
+            {
+              "language": "r",
+              "value": "Фела Кути"
+            },
+            {
+              "language": "u",
+              "value": "Фела Кути"
+            },
+            {
+              "language": "p",
+              "value": "Olufela Olusegun Oludotun Ransome-Kuti"
+            },
+            {
+              "language": "l",
+              "value": "Olufela Olusegun Oludotun Ransome-Kuti"
+            },
+            {
+              "language": "e",
+              "value": "Olufela Olusegun Oludotun Ransome-Kuti"
+            },
+            {
+              "language": "t",
+              "value": "Olufela Olusegun Oludotun Ransome-Kuti"
+            },
+            {
+              "language": "l",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "n",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "i",
+              "value": "Fela Anikulapo-Kuti"
+            },
+            {
+              "language": "g",
+              "value": "Fela Anikulapo-Kuti"
+            },
+            {
+              "language": "s",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "v",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "s",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "l",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "f",
+              "value": "فلا کوتی"
+            },
+            {
+              "language": "a",
+              "value": "فلا کوتی"
+            },
+            {
+              "language": "n",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "l",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "i",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "t",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "c",
+              "value": "Fela Ransome-Kuti"
+            },
+            {
+              "language": "s",
+              "value": "Fela Ransome-Kuti"
+            },
+            {
+              "language": "e",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "o",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "s",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "q",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "j",
+              "value": "エジプト80"
+            },
+            {
+              "language": "a",
+              "value": "エジプト80"
+            },
+            {
+              "language": "h",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "u",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "f",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "r",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "e",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "t",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "z",
+              "value": "費拉·庫提"
+            },
+            {
+              "language": "h",
+              "value": "費拉·庫提"
+            },
+            {
+              "language": "j",
+              "value": "フェラ・アニクラポ・クティ"
+            },
+            {
+              "language": "a",
+              "value": "フェラ・アニクラポ・クティ"
+            },
+            {
+              "language": "t",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "r",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "c",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "s",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "f",
+              "value": "Fela"
+            },
+            {
+              "language": "r",
+              "value": "Fela"
+            },
+            {
+              "language": "p",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "l",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "b",
+              "value": "ফেলা কুতি"
+            },
+            {
+              "language": "n",
+              "value": "ফেলা কুতি"
+            },
+            {
+              "language": "i",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "d",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "e",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "s",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "g",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "a",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "d",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "e",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "d",
+              "value": "Fela Ransome-Kuti"
+            },
+            {
+              "language": "e",
+              "value": "Fela Ransome-Kuti"
+            },
+            {
+              "language": "i",
+              "value": "Abami Eda"
+            },
+            {
+              "language": "g",
+              "value": "Abami Eda"
+            },
+            {
+              "language": "d",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "a",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "p",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "l",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "a",
+              "value": "فيلا كوتي"
+            },
+            {
+              "language": "r",
+              "value": "فيلا كوتي"
+            },
+            {
+              "language": "e",
+              "value": "Abami Eda"
+            },
+            {
+              "language": "n",
+              "value": "Abami Eda"
+            },
+            {
+              "language": "e",
+              "value": "Fela"
+            },
+            {
+              "language": "n",
+              "value": "Fela"
+            },
+            {
+              "language": "e",
+              "value": "Fela Ransome-Kuti"
+            },
+            {
+              "language": "u",
+              "value": "Fela Ransome-Kuti"
+            },
+            {
+              "language": "e",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "t",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "f",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "i",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "j",
+              "value": "フェラ・クティ"
+            },
+            {
+              "language": "a",
+              "value": "フェラ・クティ"
+            },
+            {
+              "language": "d",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "e",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "t",
+              "value": "เฟล่า คูติ"
+            },
+            {
+              "language": "h",
+              "value": "เฟล่า คูติ"
+            },
+            {
+              "language": "c",
+              "value": "Fela"
+            },
+            {
+              "language": "s",
+              "value": "Fela"
+            },
+            {
+              "language": "e",
+              "value": "Φέλα Κούτι"
+            },
+            {
+              "language": "l",
+              "value": "Φέλα Κούτι"
+            },
+            {
+              "language": "n",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "b",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "f",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "r",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "s",
+              "value": "Fẹla Anikulapo Kuti"
+            },
+            {
+              "language": "v",
+              "value": "Fẹla Anikulapo Kuti"
+            },
+            {
+              "language": "e",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "s",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "d",
+              "value": "Fela Cuti"
+            },
+            {
+              "language": "e",
+              "value": "Fela Cuti"
+            },
+            {
+              "language": "n",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "n",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "s",
+              "value": "Kuti"
+            },
+            {
+              "language": "v",
+              "value": "Kuti"
+            },
+            {
+              "language": "f",
+              "value": "Fela Ransome Kuti"
+            },
+            {
+              "language": "r",
+              "value": "Fela Ransome Kuti"
+            },
+            {
+              "language": "g",
+              "value": "Fela Anikulapo-Kuti"
+            },
+            {
+              "language": "l",
+              "value": "Fela Anikulapo-Kuti"
+            },
+            {
+              "language": "y",
+              "value": "F̣ẹlá Aníkúlápò-Kútì"
+            },
+            {
+              "language": "o",
+              "value": "F̣ẹlá Aníkúlápò-Kútì"
+            },
+            {
+              "language": "t",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "w",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "i",
+              "value": "Olufela Olusegun Oludotun Ransome-Kuti"
+            },
+            {
+              "language": "g",
+              "value": "Olufela Olusegun Oludotun Ransome-Kuti"
+            },
+            {
+              "language": "c",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "s",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "e",
+              "value": "Fela Anikulapo-Kuti"
+            },
+            {
+              "language": "u",
+              "value": "Fela Anikulapo-Kuti"
+            },
+            {
+              "language": "i",
+              "value": "Fela"
+            },
+            {
+              "language": "g",
+              "value": "Fela"
+            },
+            {
+              "language": "p",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "t",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "c",
+              "value": "Fela-Kuti"
+            },
+            {
+              "language": "a",
+              "value": "Fela-Kuti"
+            },
+            {
+              "language": "y",
+              "value": "Bàbá 70"
+            },
+            {
+              "language": "o",
+              "value": "Bàbá 70"
+            },
+            {
+              "language": "e",
+              "value": "Fela Anikalupo-Kuti"
+            },
+            {
+              "language": "t",
+              "value": "Fela Anikalupo-Kuti"
+            },
+            {
+              "language": "e",
+              "value": "Fela Aníkúlápó Kuti"
+            },
+            {
+              "language": "n",
+              "value": "Fela Aníkúlápó Kuti"
+            },
+            {
+              "language": "c",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "y",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "e",
+              "value": "Fela"
+            },
+            {
+              "language": "u",
+              "value": "Fela"
+            },
+            {
+              "language": "h",
+              "value": "फ़ेला कुटी"
+            },
+            {
+              "language": "i",
+              "value": "फ़ेला कुटी"
+            },
+            {
+              "language": "g",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "l",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "m",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "s",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "c",
+              "value": "Fela Anikulapo-Kuti"
+            },
+            {
+              "language": "s",
+              "value": "Fela Anikulapo-Kuti"
+            },
+            {
+              "language": "s",
+              "value": "Фела Кути"
+            },
+            {
+              "language": "r",
+              "value": "Фела Кути"
+            },
+            {
+              "language": "e",
+              "value": "Fela"
+            },
+            {
+              "language": "t",
+              "value": "Fela"
+            },
+            {
+              "language": "e",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "n",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "g",
+              "value": "Olufela Olusegun Oludotun Ransome-Kuti"
+            },
+            {
+              "language": "l",
+              "value": "Olufela Olusegun Oludotun Ransome-Kuti"
+            },
+            {
+              "language": "g",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "l",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "e",
+              "value": "Olufela Olusegun Oludotun Ransome-Kuti"
+            },
+            {
+              "language": "n",
+              "value": "Olufela Olusegun Oludotun Ransome-Kuti"
+            },
+            {
+              "language": "e",
+              "value": "Fela Anikulapo-Kuti"
+            },
+            {
+              "language": "n",
+              "value": "Fela Anikulapo-Kuti"
+            },
+            {
+              "language": "t",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "r",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "h",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "a",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "i",
+              "value": "Fela Aníkúlápó Kuti"
+            },
+            {
+              "language": "g",
+              "value": "Fela Aníkúlápó Kuti"
+            },
+            {
+              "language": "y",
+              "value": "F̣ẹlá Aníkúlápò Kútì"
+            },
+            {
+              "language": "o",
+              "value": "F̣ẹlá Aníkúlápò Kútì"
+            },
+            {
+              "language": "i",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "g",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "h",
+              "value": "פלה קוטי"
+            },
+            {
+              "language": "e",
+              "value": "פלה קוטי"
+            },
+            {
+              "language": "p",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "t",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "s",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "w",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "e",
+              "value": "Fela Ransome Kuti"
+            },
+            {
+              "language": "t",
+              "value": "Fela Ransome Kuti"
+            },
+            {
+              "language": "s",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "v",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "p",
+              "value": "Olufela Olusegun Oludotun Ransome-Kuti"
+            },
+            {
+              "language": "t",
+              "value": "Olufela Olusegun Oludotun Ransome-Kuti"
+            },
+            {
+              "language": "i",
+              "value": "Fela Kuti & Afrika 70"
+            },
+            {
+              "language": "g",
+              "value": "Fela Kuti & Afrika 70"
+            },
+            {
+              "language": "f",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "i",
+              "value": "Fela Anikulapo Kuti"
+            },
+            {
+              "language": "k",
+              "value": "펠라 쿠티"
+            },
+            {
+              "language": "o",
+              "value": "펠라 쿠티"
+            },
+            {
+              "language": "a",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "f",
+              "value": "Fela Kuti"
+            },
+            {
+              "language": "m",
+              "value": "Фела Кути"
+            },
+            {
+              "language": "k",
+              "value": "Фела Кути"
+            },
+            {
+              "language": "y",
+              "value": "F̣ẹlá Kútì"
+            },
+            {
+              "language": "o",
+              "value": "F̣ẹlá Kútì"
+            },
+            {
+              "language": "z",
+              "value": "费拉·库蒂"
+            },
+            {
+              "language": "h",
+              "value": "费拉·库蒂"
+            },
+            {
+              "language": "u",
+              "value": "Фела Куті"
+            },
+            {
+              "language": "k",
+              "value": "Фела Куті"
+            }
+          ],
+          "external": {
+            "lastfm": {
+              "id": "Fela+Kuti"
+            },
+            "instagram": {
+              "id": "felakutiofficial"
+            },
+            "twitter": {
+              "id": "felakuti"
+            },
+            "spotify": {
+              "id": "5CG9X521RDFWCuAhlo6QoR"
+            },
+            "imdb": {
+              "id": "nm1324034"
+            },
+            "library_of_congress": {
+              "id": "n83065529"
+            },
+            "musicbrainz": {
+              "id": "6514cffa-fbe0-4965-ad88-e998ead8a82a"
+            }
+          },
+          "child": [
+            "Seun Kuti",
+            "Femi Kuti"
+          ],
+          "citizenship": [
+            "Nigeria"
+          ],
+          "date_of_birth": "1938-10-15",
+          "date_of_death": "1997-08-02",
+          "image": {
+            "url": "https://images.qloo.com/i/F173D293-803E-4D6C-9BEF-874CA9932331-420x-auto.jpg"
+          },
+          "gender": [
+            "male"
+          ],
+          "influenced_by": [
+            "Orlando Julius"
+          ],
+          "instrument": [
+            "keyboard instrument",
+            "guitar",
+            "electric guitar",
+            "drum kit",
+            "trumpet",
+            "saxophone",
+            "voice"
+          ],
+          "spouse": [
+            "Remilekun Kuti"
+          ],
+          "work_period_start": "1958-01-01",
+          "short_description": "Nigerian musician and activist (1938–1997)"
+        },
+        "popularity": 0.7726269555669105,
+        "disambiguation": "1938-10-15",
+        "tags": [
+          {
+            "name": "Counterculture Of The 1990s",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:counterculture_1990s",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:counterculture_1990s"
+          },
+          {
+            "name": "Conductor",
+            "tag_id": "urn:tag:occupation:person:conductor",
+            "type": "urn:tag:occupation:person",
+            "value": "urn:tag:occupation:person:conductor"
+          },
+          {
+            "name": "Hiv/aids Denialists",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:hiv_aids_denialists",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:hiv_aids_denialists"
+          },
+          {
+            "name": "20th-century Saxophonists",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:20th_century_saxophonists",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:20th_century_saxophonists"
+          },
+          {
+            "name": "Activist",
+            "tag_id": "urn:tag:genre:person:activist",
+            "type": "urn:tag:genre:person",
+            "value": "urn:tag:genre:person:activist"
+          },
+          {
+            "name": "Nigerian Songwriters",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:nigerian_songwriters",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:nigerian_songwriters"
+          },
+          {
+            "name": "Capitol Records Artists",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:capitol_records_artists",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:capitol_records_artists"
+          },
+          {
+            "name": "World Music Musicians",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:world_music_musicians",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:world_music_musicians"
+          },
+          {
+            "name": "Highlife Musicians",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:highlife_musicians",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:highlife_musicians"
+          },
+          {
+            "name": "Mercury Records Artists",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:mercury_records_artists",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:mercury_records_artists"
+          },
+          {
+            "name": "20th-century Multi-instrumentalists",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:20th_century_multi_instrumentalists",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:20th_century_multi_instrumentalists"
+          },
+          {
+            "name": "Knitting Factory Records Artists",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:knitting_factory_records_artists",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:knitting_factory_records_artists"
+          },
+          {
+            "name": "Culture Of The African Diaspora",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:culture_african_diaspora",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:culture_african_diaspora"
+          },
+          {
+            "name": "Nigerian Male Musicians",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:nigerian_male_musicians",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:nigerian_male_musicians"
+          },
+          {
+            "name": "Musician",
+            "tag_id": "urn:tag:genre:person:musician",
+            "type": "urn:tag:genre:person",
+            "value": "urn:tag:genre:person:musician"
+          },
+          {
+            "name": "Yoruba Activists",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:yoruba_activists",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:yoruba_activists"
+          },
+          {
+            "name": "Koola Lobitos Members",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:koola_lobitos_members",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:koola_lobitos_members"
+          },
+          {
+            "name": "Yoruba Musicians",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:yoruba_musicians",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:yoruba_musicians"
+          },
+          {
+            "name": "Counterculture Of The 1970s",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:counterculture_1970s",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:counterculture_1970s"
+          },
+          {
+            "name": "Nigerian Critics Of Christianity",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:nigerian_critics_christianity",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:nigerian_critics_christianity"
+          },
+          {
+            "name": "Emi Records Artists",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:emi_records_artists",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:emi_records_artists"
+          },
+          {
+            "name": "Activist",
+            "tag_id": "urn:tag:occupation:person:activist",
+            "type": "urn:tag:occupation:person",
+            "value": "urn:tag:occupation:person:activist"
+          },
+          {
+            "name": "Fela Kuti",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:fela_kuti",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:fela_kuti"
+          },
+          {
+            "name": "Counterculture Of The 1980s",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:counterculture_1980s",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:counterculture_1980s"
+          },
+          {
+            "name": "Nigerian Pan-africanists",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:nigerian_pan_africanists",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:nigerian_pan_africanists"
+          },
+          {
+            "name": "People Educated At Abeokuta Grammar School",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:people_educated_at_abeokuta_grammar_school",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:people_educated_at_abeokuta_grammar_school"
+          },
+          {
+            "name": "Person",
+            "tag_id": "urn:tag:category:wikidata:person",
+            "type": "urn:tag:category:wikidata",
+            "value": "urn:tag:category:wikidata:person"
+          },
+          {
+            "name": "Alumni Of Trinity College Of Music",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:alumni_trinity_college_music",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:alumni_trinity_college_music"
+          },
+          {
+            "name": "Mca Records Artists",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:mca_records_artists",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:mca_records_artists"
+          },
+          {
+            "name": "Political Music Artists",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:political_music_artists",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:political_music_artists"
+          },
+          {
+            "name": "Ransome-kuti Family",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:ransome_kuti_family",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:ransome_kuti_family"
+          },
+          {
+            "name": "Nigerian Saxophonists",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:nigerian_saxophonists",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:nigerian_saxophonists"
+          },
+          {
+            "name": "Aids-related Deaths In Nigeria",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:aids_related_deaths_in_nigeria",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:aids_related_deaths_in_nigeria"
+          },
+          {
+            "name": "Nigerian Composers",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:nigerian_composers",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:nigerian_composers"
+          },
+          {
+            "name": "Musicians From Abeokuta",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:musicians_from_abeokuta",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:musicians_from_abeokuta"
+          },
+          {
+            "name": "Amnesty International Prisoners Of Conscience Held By Nigeria",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:amnesty_international_prisoners_conscience_held_nigeria",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:amnesty_international_prisoners_conscience_held_nigeria"
+          },
+          {
+            "name": "Bandleader",
+            "tag_id": "urn:tag:occupation:person:bandleader",
+            "type": "urn:tag:occupation:person",
+            "value": "urn:tag:occupation:person:bandleader"
+          },
+          {
+            "name": "Yoruba-language Singers",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:yoruba_language_singers",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:yoruba_language_singers"
+          },
+          {
+            "name": "Composer",
+            "tag_id": "urn:tag:occupation:person:composer",
+            "type": "urn:tag:occupation:person",
+            "value": "urn:tag:occupation:person:composer"
+          },
+          {
+            "name": "Nigerian Prisoners And Detainees",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:nigerian_prisoners_detainees",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:nigerian_prisoners_detainees"
+          },
+          {
+            "name": "English-language Singers From Nigeria",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:english_language_singers_from_nigeria",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:english_language_singers_from_nigeria"
+          },
+          {
+            "name": "Singer-songwriter",
+            "tag_id": "urn:tag:occupation:person:singer_songwriter",
+            "type": "urn:tag:occupation:person",
+            "value": "urn:tag:occupation:person:singer_songwriter"
+          },
+          {
+            "name": "Critics Of Islam",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:critics_islam",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:critics_islam"
+          },
+          {
+            "name": "Saxophonist",
+            "tag_id": "urn:tag:occupation:person:saxophonist",
+            "type": "urn:tag:occupation:person",
+            "value": "urn:tag:occupation:person:saxophonist"
+          },
+          {
+            "name": "20th-century Nigerian Male Singers",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:20th_century_nigerian_male_singers",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:20th_century_nigerian_male_singers"
+          },
+          {
+            "name": "Singer",
+            "tag_id": "urn:tag:occupation:person:singer",
+            "type": "urn:tag:occupation:person",
+            "value": "urn:tag:occupation:person:singer"
+          },
+          {
+            "name": "Nigerian Bandleaders",
+            "tag_id": "urn:tag:wikipedia_category:wikidata:nigerian_bandleaders",
+            "type": "urn:tag:wikipedia_category:wikidata",
+            "value": "urn:tag:wikipedia_category:wikidata:nigerian_bandleaders"
+          }
+        ]
+      },
+      {
+        "name": "Fela Kuti - Father of Afrobeat",
+        "entity_id": "0509351D-3188-4C42-BED4-48F15E1F37C4",
+        "types": [
+          "urn:entity:tv_show"
+        ],
+        "properties": {
+          "akas": [],
+          "external": {
+            "imdb": {
+              "id": "tt13489830",
+              "user_rating": 7.1,
+              "user_rating_count": 34
+            },
+            "rottentomatoes": {
+              "critic_rating": "100.0",
+              "critic_rating_count": "20",
+              "id": "fela_kuti_father_of_afrobeat",
+              "user_rating_count": "0"
+            }
+          },
+          "filming_location": "",
+          "image": {
+            "url": "https://images.qloo.com/i/0509351D-3188-4C42-BED4-48F15E1F37C4-420x-auto.jpg"
+          },
+          "is_special": false,
+          "release_country": "United Kingdom",
+          "release_date": "2020-11-21",
+          "release_year": 2020,
+          "short_descriptions": [],
+          "website": "https://mubi.com/films/324179"
+        },
+        "disambiguation": "2020",
+        "tags": [
+          {
+            "name": "Documentary",
+            "tag_id": "urn:tag:genre:media:documentary",
+            "type": "urn:tag:genre:media"
+          },
+          {
+            "name": "Music",
+            "tag_id": "urn:tag:genre:media:music",
+            "type": "urn:tag:genre:media"
+          },
+          {
+            "name": "Tv special",
+            "tag_id": "urn:tag:keyword:media:tv_special",
+            "type": "urn:tag:keyword:media"
+          }
+        ]
+      },
+      {
+        "name": "The Best Best of Fela Kuti",
+        "entity_id": "C5316A1B-2947-4A00-BE5E-8ED81FEC0BC8",
+        "types": [
+          "urn:entity:album"
+        ],
+        "properties": {
+          "duration": {
+            "album": 9335
+          },
+          "external": {
+            "spotify": {}
+          },
+          "image": {
+            "url": "https://images.qloo.com/i/C5316A1B-2947-4A00-BE5E-8ED81FEC0BC8-420x-auto.jpg"
+          },
+          "release_date": "2000-02-01",
+          "track_count": 13
+        },
+        "popularity": 0.8627329707876694,
+        "disambiguation": "The Best Best of Fela Kuti",
+        "tags": [
+          {
+            "name": "classic rock",
+            "tag_id": "EC380DDA-B77F-4F06-B0FE-A94CF945B515",
+            "type": "urn:tag:genre",
+            "value": "urn:tag:genre:classic_rock"
+          },
+          {
+            "name": "jazz",
+            "tag_id": "7A675F3D-1529-4D9E-84E4-D57949DB23AC",
+            "type": "urn:tag:genre",
+            "value": "urn:tag:genre:jazz"
+          },
+          {
+            "name": "rock",
+            "tag_id": "50777493-99FF-4B80-921B-A62C62D713DF",
+            "type": "urn:tag:genre",
+            "value": "urn:tag:genre:rock"
+          }
+        ]
+      },
+      {
+        "name": "The Best Of Fela Kuti [Disc 1]",
+        "entity_id": "C0734A8E-D3F1-4E2C-BED3-6CF152221C76",
+        "types": [
+          "urn:entity:album"
+        ],
+        "properties": {
+          "duration": {
+            "album": 0
+          },
+          "external": {
+            "spotify": {}
+          },
+          "image": {
+            "url": "https://images.qloo.com/i/C0734A8E-D3F1-4E2C-BED3-6CF152221C76-420x-auto.jpg"
+          },
+          "track_count": 0
+        },
+        "popularity": 0.49472272296432623,
+        "disambiguation": "The Best Of Fela Kuti [Disc 1]"
+      }
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "request": {
+    "path": "/v2/tags",
+    "params": {
+      "filter.query": "soul food",
+      "take": 15
+    }
+  },
+  "ok": true,
+  "status": 200,
+  "durationMs": 299,
+  "rateLimitHeaders": {
+    "x-month-ratelimit-limit": "50000",
+    "x-month-ratelimit-remaining": "49995",
+    "x-month-ratelimit-reset": "2591979.08",
+    "x-second-ratelimit-limit": "10",
+    "x-second-ratelimit-remaining": "6",
+    "x-second-ratelimit-reset": "0.04"
+  },
+  "body": {
+    "duration": 27,
+    "success": true,
+    "results": {
+      "tags": [
+        {
+          "parents": [
+            {
+              "type": "urn:entity:place"
+            }
+          ],
+          "type": "urn:tag:genre:place",
+          "id": "urn:tag:genre:place:restaurant:soul_food",
+          "name": "Soul Food",
+          "popularity": 0.998019,
+          "properties": {
+            "description": "Soul food is a type of cuisine that originated among African-Americans in the Southern United States. The cuisine is commonly associated with African-American culture and has a rich history and notable cultural impacts. It includes a variety of dishes and preparation methods, including but not limited to fried chicken, collard greens, black-eyed pease, cornbread, and hushpuppies.",
+            "history": "Soul food originates from the Southern US and is deeply rooted in African-American history. It developed during American slavery period, as slaves made meals using leftover food by the owners.",
+            "origin": "United States",
+            "presentation_style": "Homestyle"
+          },
+          "tags": [
+            {
+              "name": "Canonical",
+              "tag_id": "urn:tag:collection:canonical",
+              "type": "urn:tag:collection",
+              "value": "urn:tag:collection:canonical"
+            }
+          ]
+        },
+        {
+          "parents": [
+            {
+              "type": "urn:entity:place"
+            }
+          ],
+          "type": "urn:tag:cuisine:qloo",
+          "id": "urn:tag:cuisine:qloo:soul_food",
+          "name": "Soul Food",
+          "popularity": 0.99193895,
+          "properties": {},
+          "tags": []
+        },
+        {
+          "parents": [
+            {
+              "type": "urn:entity:place"
+            }
+          ],
+          "type": "urn:tag:genre:place",
+          "id": "urn:tag:genre:place:hotel:soul_food",
+          "name": "Soul Food",
+          "popularity": 0.63242924,
+          "properties": {},
+          "tags": []
+        },
+        {
+          "parents": [
+            {
+              "type": "urn:entity:place"
+            }
+          ],
+          "type": "urn:tag:category:place",
+          "id": "urn:tag:category:place:soul_food_restaurant",
+          "name": "Soul food restaurant",
+          "popularity": 0.99801826,
+          "properties": {},
+          "tags": []
+        },
+        {
+          "parents": [
+            {
+              "type": "urn:entity:artist"
+            },
+            {
+              "type": "urn:entity:album"
+            }
+          ],
+          "type": "urn:tag:genre:music",
+          "id": "urn:tag:genre:music:soulfood",
+          "name": "Soulfood",
+          "popularity": 0.83632,
+          "properties": {},
+          "tags": []
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1972 @@
+{
+  "request": {
+    "path": "/search",
+    "params": {
+      "query": "Frank Sinatra",
+      "take": 5
+    }
+  },
+  "ok": true,
+  "status": 200,
+  "durationMs": 327,
+  "rateLimitHeaders": {
+    "x-month-ratelimit-limit": "50000",
+    "x-month-ratelimit-remaining": "49981",
+    "x-month-ratelimit-reset": "2591920.35",
+    "x-second-ratelimit-limit": "10",
+    "x-second-ratelimit-remaining": "7",
+    "x-second-ratelimit-reset": "0.16"
+  },
+  "body": {
+    "results": [
+      {
+        "name": "Frank Sinatra",
+        "entity_id": "FC0F8D26-BA80-4D83-8BBF-FC011DC8D241",
+        "types": [
+          "urn:entity:artist"
+        ],
+        "properties": {
+          "akas": [],
+          "duration": {},
+          "external": {
+            "facebook": {
+              "id": "sinatra"
+            },
+            "instagram": {
+              "id": "sinatra"
+            },
+            "lastfm": {
+              "id": "frank%20sinatra",
+              "listeners": 4193485,
+              "scrobbles": 138116607
+            },
+            "musicbrainz": {
+              "id": "197450cd-0124-4164-b723-3c22dd16494d"
+            },
+            "spotify": {
+              "id": "1Mxqyy3pSjf8kZZL4QVxS0"
+            },
+            "twitter": {
+              "id": "franksinatra"
+            },
+            "wikidata": {
+              "id": "q40912"
+            }
+          },
+          "image": {
+            "url": "https://images.qloo.com/i/FC0F8D26-BA80-4D83-8BBF-FC011DC8D241-420x-auto.jpg"
+          },
+          "short_description": "Iconic American singer and actor known for his smooth voice and timeless classics."
+        },
+        "popularity": 0.9995715408672418,
+        "disambiguation": "Frank Sinatra",
+        "tags": [
+          {
+            "name": "Jazz",
+            "tag_id": "urn:tag:genre:jazz",
+            "type": "urn:tag:genre",
+            "value": "urn:tag:genre:jazz"
+          },
+          {
+            "name": "Oldies",
+            "tag_id": "urn:tag:genre:oldies",
+            "type": "urn:tag:genre",
+            "value": "urn:tag:genre:oldies"
+          },
+          {
+            "name": "Vocal Jazz",
+            "tag_id": "urn:tag:genre:vocal_jazz",
+            "type": "urn:tag:genre",
+            "value": "urn:tag:genre:vocal_jazz"
+          },
+          {
+            "name": "Swing",
+            "tag_id": "urn:tag:genre:swing",
+            "type": "urn:tag:genre",
+            "value": "urn:tag:genre:swing"
+          },
+          {
+            "name": "Easy Listening",
+            "tag_id": "urn:tag:genre:easy_listening",
+            "type": "urn:tag:genre",
+            "value": "urn:tag:genre:easy_listening"
+          },
+          {
+            "name": "Loyal",
+            "tag_id": "urn:tag:audience:qloo:loyal",
+            "type": "urn:tag:audience:qloo",
+            "value": "urn:tag:audience:qloo:loyal"
+          },
+          {
+            "name": "Passionate",
+            "tag_id": "urn:tag:audience:qloo:passionate",
+            "type": "urn:tag:audience:qloo",
+            "value": "urn:tag:audience:qloo:passionate"
+          },
+          {
+            "name": "Devoted",
+            "tag_id": "urn:tag:audience:qloo:devoted",
+            "type": "urn:tag:audience:qloo",
+            "value": "urn:tag:audience:qloo:devoted"
+          },
+          {
+            "name": "Nostalgic",
+            "tag_id": "urn:tag:audience:qloo:nostalgic",
+            "type": "urn:tag:audience:qloo",
+            "value": "urn:tag:audience:qloo:nostalgic"
+          },
+          {
+            "name": "Smooth",
+            "tag_id": "urn:tag:music:qloo:smooth",
+            "type": "urn:tag:music:qloo",
+            "value": "urn:tag:music:qloo:smooth"
+          },
+          {
+            "name": "Emotive",
+            "tag_id": "urn:tag:music:qloo:emotive",
+            "type": "urn:tag:music:qloo",
+            "value": "urn:tag:music:qloo:emotive"
+          },
+          {
+            "name": "Classic",
+            "tag_id": "urn:tag:music:qloo:classic",
+            "type": "urn:tag:music:qloo",
+            "value": "urn:tag:music:qloo:classic"
+          },
+          {
+            "name": "Sophisticated",
+            "tag_id": "urn:tag:music:qloo:sophisticated",
+            "type": "urn:tag:music:qloo",
+            "value": "urn:tag:music:qloo:sophisticated"
+          },
+          {
+            "name": "Timeless",
+            "tag_id": "urn:tag:music:qloo:timeless",
+            "type": "urn:tag:music:qloo",
+            "value": "urn:tag:music:qloo:timeless"
+          },
+          {
+            "name": "Charismatic",
+            "tag_id": "urn:tag:style:qloo:charismatic",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:charismatic"
+          },
+          {
+            "name": "Engaging",
+            "tag_id": "urn:tag:style:qloo:engaging",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:engaging"
+          },
+          {
+            "name": "Polished",
+            "tag_id": "urn:tag:style:qloo:polished",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:polished"
+          },
+          {
+            "name": "Expressive",
+            "tag_id": "urn:tag:style:qloo:expressive",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:expressive"
+          },
+          {
+            "name": "Smooth",
+            "tag_id": "urn:tag:characteristic:qloo:smooth",
+            "type": "urn:tag:characteristic:qloo",
+            "value": "urn:tag:characteristic:qloo:smooth"
+          },
+          {
+            "name": "Emotive",
+            "tag_id": "urn:tag:characteristic:qloo:emotive",
+            "type": "urn:tag:characteristic:qloo",
+            "value": "urn:tag:characteristic:qloo:emotive"
+          },
+          {
+            "name": "Charismatic",
+            "tag_id": "urn:tag:characteristic:qloo:charismatic",
+            "type": "urn:tag:characteristic:qloo",
+            "value": "urn:tag:characteristic:qloo:charismatic"
+          },
+          {
+            "name": "Timeless",
+            "tag_id": "urn:tag:characteristic:qloo:timeless",
+            "type": "urn:tag:characteristic:qloo",
+            "value": "urn:tag:characteristic:qloo:timeless"
+          },
+          {
+            "name": "Versatile",
+            "tag_id": "urn:tag:characteristic:qloo:versatile",
+            "type": "urn:tag:characteristic:qloo",
+            "value": "urn:tag:characteristic:qloo:versatile"
+          },
+          {
+            "name": "Crooner",
+            "tag_id": "urn:tag:style:qloo:crooner",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:crooner"
+          },
+          {
+            "name": "Swing-Influenced",
+            "tag_id": "urn:tag:style:qloo:swing_influenced",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:swing_influenced"
+          },
+          {
+            "name": "Big Band",
+            "tag_id": "urn:tag:style:qloo:big_band",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:big_band"
+          },
+          {
+            "name": "Traditional Pop",
+            "tag_id": "urn:tag:style:qloo:traditional_pop",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:traditional_pop"
+          },
+          {
+            "name": "Vocal Jazz",
+            "tag_id": "urn:tag:style:qloo:vocal_jazz",
+            "type": "urn:tag:style:qloo",
+            "value": "urn:tag:style:qloo:vocal_jazz"
+          },
+          {
+            "name": "Traditional Pop",
+            "tag_id": "urn:tag:influence:qloo:traditional_pop",
+            "type": "urn:tag:influence:qloo",
+            "value": "urn:tag:influence:qloo:traditional_pop"
+          },
+          {
+            "name": "Vocal Jazz",
+            "tag_id": "urn:tag:influence:qloo:vocal_jazz",
+            "type": "urn:tag:influence:qloo",
+            "value": "urn:tag:influence:qloo:vocal_jazz"
+          },
+          {
+            "name": "Easy Listening",
+            "tag_id": "urn:tag:influence:qloo:easy_listening",
+            "type": "urn:tag:influence:qloo",
+            "value": "urn:tag:influence:qloo:easy_listening"
+          },
+          {
+            "name": "Crooner",
+            "tag_id": "urn:tag:influence:qloo:crooner",
+            "type": "urn:tag:influence:qloo",
+            "value": "urn:tag:influence:qloo:crooner"
+          },
+          {
+            "name": "Bing Crosby",
+            "tag_id": "urn:tag:influenced_by:qloo:bing_crosby",
+            "type": "urn:tag:influenced_by:qloo",
+            "value": "urn:tag:influenced_by:qloo:bing_crosby"
+          },
+          {
+            "name": "Bing Crosby",
+            "tag_id": "urn:tag:influenced_by:qloo:bing_crosby",
+            "type": "urn:tag:influenced_by:qloo",
+            "value": "urn:tag:influenced_by:qloo:bing_crosby"
+          },
+          {
+            "name": "Bing Crosby",
+            "tag_id": "urn:tag:influenced_by:qloo:bing_crosby",
+            "type": "urn:tag:influenced_by:qloo",
+            "value": "urn:tag:influenced_by:qloo:bing_crosby"
+          },
+          {
+            "name": "Vocals",
+            "tag_id": "urn:tag:instrument:qloo:vocals",
+            "type": "urn:tag:instrument:qloo",
+            "value": "urn:tag:instrument:qloo:vocals"
+          },
+          {
+            "name": "Love",
+            "tag_id": "urn:tag:theme:qloo:love",
+            "type": "urn:tag:theme:qloo",
+            "value": "urn:tag:theme:qloo:love"
+          },
+          {
+            "name": "Heartbreak",
+            "tag_id": "urn:tag:theme:qloo:heartbreak",
+            "type": "urn:tag:theme:qloo",
+            "value": "urn:tag:theme:qloo:heartbreak"
+          },
+          {
+            "name": "Hope",
+            "tag_id": "urn:tag:theme:qloo:hope",
+            "type": "urn:tag:theme:qloo",
+            "value": "urn:tag:theme:qloo:hope"
+          },
+          {
+            "name": "Nostalgia",
+            "tag_id": "urn:tag:theme:qloo:nostalgia",
+            "type": "urn:tag:theme:qloo",
+            "value": "urn:tag:theme:qloo:nostalgia"
+          },
+          {
+            "name": "Life",
+            "tag_id": "urn:tag:theme:qloo:life",
+            "type": "urn:tag:theme:qloo",
+            "value": "urn:tag:theme:qloo:life"
+          },
+          {
+            "name": "Traditional Pop",
+            "tag_id": "urn:tag:genre:qloo:traditional_pop",
+            "type": "urn:tag:genre:qloo",
+            "value": "urn:tag:genre:qloo:traditional_pop"
+          },
+          {
+            "name": "Vocal Jazz",
+            "tag_id": "urn:tag:genre:qloo:vocal_jazz",
+            "type": "urn:tag:genre:qloo",
+            "value": "urn:tag:genre:qloo:vocal_jazz"
+          },
+          {
+            "name": "Swing",
+            "tag_id": "urn:tag:genre:qloo:swing",
+            "type": "urn:tag:genre:qloo",
+            "value": "urn:tag:genre:qloo:swing"
+          },
+          {
+            "name": "Big Band",
+            "tag_id": "urn:tag:subgenre:qloo:big_band",
+            "type": "urn:tag:subgenre:qloo",
+            "value": "urn:tag:subgenre:qloo:big_band"
+          },
+          {
+            "name": "Easy Listening",
+            "tag_id": "urn:tag:subgenre:qloo:easy_listening",
+            "type": "urn:tag:subgenre:qloo",
+            "value": "urn:tag:subgenre:qloo:easy_listening"
+          },
+          {
+            "name": "Crooner",
+            "tag_id": "urn:tag:subgenre:qloo:crooner",
+            "type": "urn:tag:subgenre:qloo",
+            "value": "urn:tag:subgenre:qloo:crooner"
+          },
+          {
+            "name": "Baritone",
+            "tag_id": "urn:tag:artist:qloo:baritone",
+            "type": "urn:tag:artist:qloo",
+            "value": "urn:tag:artist:qloo:baritone"
+          }
+        ]
+      },
+      {
+        "name": "Frank Sinatra",
+        "entity_id": "5F849C70-116D-4471-B0D4-B99D8FF44E99",
+        "types": [
+          "urn:entity:album"
+        ],
+        "properties": {
+          "duration": {
+            "album": 0
+          },
+          "external": {
+            "spotify": {}
+          },
+          "image": {
+            "url": "https://images.qloo.com/i/5F849C70-116D-4471-B0D4-B99D8FF44E99-420x-auto.jpg"
+          },
+          "release_date": "2013-01-05",
+          "track_count": 34
+        },
+        "popularity": 0.9776388270818092,
+        "disambiguation": "Frank Sinatra"
+      },
+      {
+        "name": "Frank Sinatra",
+        "entity_id": "D404A6AC-5A74-4C74-AB20-7896826D6092",
+        "types": [
+          "urn:entity:person"
+        ],
+        "properties": {
+          "akas": [
+            {
+              "language": "a",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "y",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "e",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "o",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "f",
+              "value": "فرانک سیناترا"
+            },
+            {
+              "language": "a",
+              "value": "فرانک سیناترا"
+            },
+            {
+              "language": "g",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "l",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "e",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "o",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "f",
+              "value": "Sinatra"
+            },
+            {
+              "language": "i",
+              "value": "Sinatra"
+            },
+            {
+              "language": "m",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "s",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "r",
+              "value": "Синатра, Фрэнк"
+            },
+            {
+              "language": "u",
+              "value": "Синатра, Фрэнк"
+            },
+            {
+              "language": "b",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "r",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "a",
+              "value": "فرانك سيناتر"
+            },
+            {
+              "language": "r",
+              "value": "فرانك سيناتر"
+            },
+            {
+              "language": "d",
+              "value": "Frankie Blue Eyes"
+            },
+            {
+              "language": "e",
+              "value": "Frankie Blue Eyes"
+            },
+            {
+              "language": "e",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "s",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "h",
+              "value": "Ֆրենկ Սինատրա"
+            },
+            {
+              "language": "y",
+              "value": "Ֆրենկ Սինատրա"
+            },
+            {
+              "language": "e",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "u",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "z",
+              "value": "法蘭·仙納杜拉"
+            },
+            {
+              "language": "h",
+              "value": "法蘭·仙納杜拉"
+            },
+            {
+              "language": "b",
+              "value": "ফ্রাঙ্ক সিনাত্রা"
+            },
+            {
+              "language": "n",
+              "value": "ফ্রাঙ্ক সিনাত্রা"
+            },
+            {
+              "language": "y",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "o",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "k",
+              "value": "Фрэнсис Альберт Синатра"
+            },
+            {
+              "language": "k",
+              "value": "Фрэнсис Альберт Синатра"
+            },
+            {
+              "language": "f",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "r",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "k",
+              "value": "프란시스 시나트라"
+            },
+            {
+              "language": "o",
+              "value": "프란시스 시나트라"
+            },
+            {
+              "language": "l",
+              "value": "Sinatra"
+            },
+            {
+              "language": "a",
+              "value": "Sinatra"
+            },
+            {
+              "language": "u",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "z",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "a",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "f",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "z",
+              "value": "法兰克·辛纳屈"
+            },
+            {
+              "language": "h",
+              "value": "法兰克·辛纳屈"
+            },
+            {
+              "language": "e",
+              "value": "Francis Albert \"Frank\" Sinatra"
+            },
+            {
+              "language": "n",
+              "value": "Francis Albert \"Frank\" Sinatra"
+            },
+            {
+              "language": "r",
+              "value": "Синатра, Фрэнсис Альберт"
+            },
+            {
+              "language": "u",
+              "value": "Синатра, Фрэнсис Альберт"
+            },
+            {
+              "language": "r",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "o",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "k",
+              "value": "ಫ್ರಾಂಕ್ ಸಿನಾಟ್ರಾ"
+            },
+            {
+              "language": "n",
+              "value": "ಫ್ರಾಂಕ್ ಸಿನಾಟ್ರಾ"
+            },
+            {
+              "language": "r",
+              "value": "Фрэнк Синатра"
+            },
+            {
+              "language": "u",
+              "value": "Фрэнк Синатра"
+            },
+            {
+              "language": "t",
+              "value": "แฟรงก์ ซินาตรา"
+            },
+            {
+              "language": "h",
+              "value": "แฟรงก์ ซินาตรา"
+            },
+            {
+              "language": "n",
+              "value": "Francis A. Sinatra"
+            },
+            {
+              "language": "l",
+              "value": "Francis A. Sinatra"
+            },
+            {
+              "language": "j",
+              "value": "フランク・シナトラ"
+            },
+            {
+              "language": "a",
+              "value": "フランク・シナトラ"
+            },
+            {
+              "language": "l",
+              "value": "Frenkas Sinatra"
+            },
+            {
+              "language": "t",
+              "value": "Frenkas Sinatra"
+            },
+            {
+              "language": "l",
+              "value": "Franciscus Albertus Sinatra"
+            },
+            {
+              "language": "a",
+              "value": "Franciscus Albertus Sinatra"
+            },
+            {
+              "language": "d",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "e",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "i",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "a",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "a",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "n",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "g",
+              "value": "ફ્રેન્ક સિનાત્રા"
+            },
+            {
+              "language": "u",
+              "value": "ફ્રેન્ક સિનાત્રા"
+            },
+            {
+              "language": "e",
+              "value": "Francis A. Sinatra"
+            },
+            {
+              "language": "o",
+              "value": "Francis A. Sinatra"
+            },
+            {
+              "language": "p",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "l",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "e",
+              "value": "Φρανκ Σινάτρα"
+            },
+            {
+              "language": "l",
+              "value": "Φρανκ Σινάτρα"
+            },
+            {
+              "language": "i",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "t",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "l",
+              "value": "Frenks Sinatra"
+            },
+            {
+              "language": "v",
+              "value": "Frenks Sinatra"
+            },
+            {
+              "language": "e",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "s",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "c",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "s",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "r",
+              "value": "Синатра Френк"
+            },
+            {
+              "language": "u",
+              "value": "Синатра Френк"
+            },
+            {
+              "language": "t",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "l",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "k",
+              "value": "프랭크 시나트라"
+            },
+            {
+              "language": "o",
+              "value": "프랭크 시나트라"
+            },
+            {
+              "language": "i",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "d",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "e",
+              "value": "Francis Albert \"Frank\" Sinatra"
+            },
+            {
+              "language": "o",
+              "value": "Francis Albert \"Frank\" Sinatra"
+            },
+            {
+              "language": "k",
+              "value": "Фрэнк Синатра"
+            },
+            {
+              "language": "k",
+              "value": "Фрэнк Синатра"
+            },
+            {
+              "language": "s",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "r",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "h",
+              "value": "फ्रांसिस अल्बर्ट सिनात्रा"
+            },
+            {
+              "language": "i",
+              "value": "फ्रांसिस अल्बर्ट सिनात्रा"
+            },
+            {
+              "language": "l",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "v",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "k",
+              "value": "프랑크 시내트라"
+            },
+            {
+              "language": "o",
+              "value": "프랑크 시내트라"
+            },
+            {
+              "language": "l",
+              "value": "Franciscus Sinatra"
+            },
+            {
+              "language": "a",
+              "value": "Franciscus Sinatra"
+            },
+            {
+              "language": "e",
+              "value": "Francis Sinatra"
+            },
+            {
+              "language": "o",
+              "value": "Francis Sinatra"
+            },
+            {
+              "language": "j",
+              "value": "フランシス・アルバート・シナトラ"
+            },
+            {
+              "language": "a",
+              "value": "フランシス・アルバート・シナトラ"
+            },
+            {
+              "language": "z",
+              "value": "仙納杜拉"
+            },
+            {
+              "language": "h",
+              "value": "仙納杜拉"
+            },
+            {
+              "language": "f",
+              "value": "Franck Sinatra"
+            },
+            {
+              "language": "r",
+              "value": "Franck Sinatra"
+            },
+            {
+              "language": "h",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "a",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "d",
+              "value": "Francis Sinatra"
+            },
+            {
+              "language": "e",
+              "value": "Francis Sinatra"
+            },
+            {
+              "language": "c",
+              "value": "Фрэнк Синатра"
+            },
+            {
+              "language": "v",
+              "value": "Фрэнк Синатра"
+            },
+            {
+              "language": "h",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "r",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "s",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "v",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "e",
+              "value": "Francis A. Sinatra"
+            },
+            {
+              "language": "n",
+              "value": "Francis A. Sinatra"
+            },
+            {
+              "language": "y",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "o",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "e",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "t",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "u",
+              "value": "Френк Сінатра"
+            },
+            {
+              "language": "k",
+              "value": "Френк Сінатра"
+            },
+            {
+              "language": "k",
+              "value": "ಫ್ರಾಂಕ್ ಸಿನೆಟ್ರಾ"
+            },
+            {
+              "language": "n",
+              "value": "ಫ್ರಾಂಕ್ ಸಿನೆಟ್ರಾ"
+            },
+            {
+              "language": "r",
+              "value": "Френк Синатра"
+            },
+            {
+              "language": "u",
+              "value": "Френк Синатра"
+            },
+            {
+              "language": "p",
+              "value": "ਫਰੈਂਕ ਸਿਨਾਟਰਾ"
+            },
+            {
+              "language": "a",
+              "value": "ਫਰੈਂਕ ਸਿਨਾਟਰਾ"
+            },
+            {
+              "language": "t",
+              "value": "பிராங்க் சினாட்ரா"
+            },
+            {
+              "language": "a",
+              "value": "பிராங்க் சினாட்ரா"
+            },
+            {
+              "language": "d",
+              "value": "The Voice"
+            },
+            {
+              "language": "e",
+              "value": "The Voice"
+            },
+            {
+              "language": "g",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "d",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "z",
+              "value": "法蘭克·辛納屈"
+            },
+            {
+              "language": "h",
+              "value": "法蘭克·辛納屈"
+            },
+            {
+              "language": "t",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "r",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "a",
+              "value": "Frenk Sinatra"
+            },
+            {
+              "language": "z",
+              "value": "Frenk Sinatra"
+            },
+            {
+              "language": "i",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "o",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "s",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "e",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "e",
+              "value": "Ol' Blue Eyes"
+            },
+            {
+              "language": "n",
+              "value": "Ol' Blue Eyes"
+            },
+            {
+              "language": "z",
+              "value": "辛纳屈"
+            },
+            {
+              "language": "h",
+              "value": "辛纳屈"
+            },
+            {
+              "language": "k",
+              "value": "프랑크 시나트라"
+            },
+            {
+              "language": "o",
+              "value": "프랑크 시나트라"
+            },
+            {
+              "language": "f",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "y",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "l",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "b",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "i",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "s",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "e",
+              "value": "Francis Sinatra"
+            },
+            {
+              "language": "n",
+              "value": "Francis Sinatra"
+            },
+            {
+              "language": "c",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "y",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "t",
+              "value": "แฟร้งค์ ซินาทร้า"
+            },
+            {
+              "language": "h",
+              "value": "แฟร้งค์ ซินาทร้า"
+            },
+            {
+              "language": "e",
+              "value": "Francis A. Sinatra"
+            },
+            {
+              "language": "s",
+              "value": "Francis A. Sinatra"
+            },
+            {
+              "language": "f",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "i",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "l",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "i",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "n",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "n",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "h",
+              "value": "फ्रैंक सिनाट्रा"
+            },
+            {
+              "language": "i",
+              "value": "फ्रैंक सिनाट्रा"
+            },
+            {
+              "language": "z",
+              "value": "辛納屈"
+            },
+            {
+              "language": "h",
+              "value": "辛納屈"
+            },
+            {
+              "language": "s",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "l",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "q",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "u",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "c",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "a",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "r",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "o",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "b",
+              "value": "Фрэнк Сінатра"
+            },
+            {
+              "language": "e",
+              "value": "Фрэнк Сінатра"
+            },
+            {
+              "language": "j",
+              "value": "シナトラ"
+            },
+            {
+              "language": "a",
+              "value": "シナトラ"
+            },
+            {
+              "language": "u",
+              "value": "Сінатра Френк"
+            },
+            {
+              "language": "k",
+              "value": "Сінатра Френк"
+            },
+            {
+              "language": "s",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "k",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "t",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "h",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "z",
+              "value": "瘦皮猴"
+            },
+            {
+              "language": "h",
+              "value": "瘦皮猴"
+            },
+            {
+              "language": "e",
+              "value": "Ol' Blue Eyes"
+            },
+            {
+              "language": "o",
+              "value": "Ol' Blue Eyes"
+            },
+            {
+              "language": "e",
+              "value": "La Voz"
+            },
+            {
+              "language": "s",
+              "value": "La Voz"
+            },
+            {
+              "language": "c",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "s",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "b",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "r",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "v",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "o",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "e",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "n",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "o",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "c",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "b",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "s",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "t",
+              "value": "แฟรงก์ ซินาทรา"
+            },
+            {
+              "language": "h",
+              "value": "แฟรงก์ ซินาทรา"
+            },
+            {
+              "language": "m",
+              "value": "Френк Синатра"
+            },
+            {
+              "language": "k",
+              "value": "Френк Синатра"
+            },
+            {
+              "language": "r",
+              "value": "Синатра, Френк"
+            },
+            {
+              "language": "u",
+              "value": "Синатра, Френк"
+            },
+            {
+              "language": "g",
+              "value": "ફ્રાન્સિસ આલ્બર્ટ સિનાત્રા"
+            },
+            {
+              "language": "u",
+              "value": "ફ્રાન્સિસ આલ્બર્ટ સિનાત્રા"
+            },
+            {
+              "language": "b",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "s",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "k",
+              "value": "სინატრა"
+            },
+            {
+              "language": "a",
+              "value": "სინატრა"
+            },
+            {
+              "language": "b",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "i",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "p",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "l",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "h",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "u",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "d",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "e",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "s",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "q",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "r",
+              "value": "Фрэнсис Альберт Синатра"
+            },
+            {
+              "language": "u",
+              "value": "Фрэнсис Альберт Синатра"
+            },
+            {
+              "language": "b",
+              "value": "Франк Синатра"
+            },
+            {
+              "language": "g",
+              "value": "Франк Синатра"
+            },
+            {
+              "language": "m",
+              "value": "ഫ്രാങ്ക് സിനാട്ര"
+            },
+            {
+              "language": "l",
+              "value": "ഫ്രാങ്ക് സിനാട്ര"
+            },
+            {
+              "language": "r",
+              "value": "Синатра Фрэнк"
+            },
+            {
+              "language": "u",
+              "value": "Синатра Фрэнк"
+            },
+            {
+              "language": "r",
+              "value": "Фрэнсис Синатра"
+            },
+            {
+              "language": "u",
+              "value": "Фрэнсис Синатра"
+            },
+            {
+              "language": "k",
+              "value": "ფრენკ სინატრა"
+            },
+            {
+              "language": "a",
+              "value": "ფრენკ სინატრა"
+            },
+            {
+              "language": "p",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "t",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "s",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "k",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "z",
+              "value": "法兰克·西纳特拉"
+            },
+            {
+              "language": "h",
+              "value": "法兰克·西纳特拉"
+            },
+            {
+              "language": "e",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "t",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "l",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "t",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "i",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "t",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "t",
+              "value": "แฟรงค์ ซินาตรา"
+            },
+            {
+              "language": "h",
+              "value": "แฟรงค์ ซินาตรา"
+            },
+            {
+              "language": "e",
+              "value": "Sinatra"
+            },
+            {
+              "language": "o",
+              "value": "Sinatra"
+            },
+            {
+              "language": "n",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "b",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "k",
+              "value": "프랭크 시내트라"
+            },
+            {
+              "language": "o",
+              "value": "프랭크 시내트라"
+            },
+            {
+              "language": "f",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "y",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "h",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "r",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "k",
+              "value": "프란시스 앨버트 시나트라"
+            },
+            {
+              "language": "o",
+              "value": "프란시스 앨버트 시나트라"
+            },
+            {
+              "language": "n",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "l",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "a",
+              "value": "ফ্ৰেংক ছিনাট্ৰা"
+            },
+            {
+              "language": "s",
+              "value": "ফ্ৰেংক ছিনাট্ৰা"
+            },
+            {
+              "language": "e",
+              "value": "Frankie Blue Eyes"
+            },
+            {
+              "language": "o",
+              "value": "Frankie Blue Eyes"
+            },
+            {
+              "language": "s",
+              "value": "Френк Синатра"
+            },
+            {
+              "language": "r",
+              "value": "Френк Синатра"
+            },
+            {
+              "language": "n",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "n",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "a",
+              "value": "فرانك سيناترا"
+            },
+            {
+              "language": "r",
+              "value": "فرانك سيناترا"
+            },
+            {
+              "language": "n",
+              "value": "00028814966 IPI"
+            },
+            {
+              "language": "b",
+              "value": "00028814966 IPI"
+            },
+            {
+              "language": "f",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "r",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "u",
+              "value": "Ol' Blue Eyes"
+            },
+            {
+              "language": "k",
+              "value": "Ol' Blue Eyes"
+            },
+            {
+              "language": "r",
+              "value": "Синатра Ф."
+            },
+            {
+              "language": "u",
+              "value": "Синатра Ф."
+            },
+            {
+              "language": "r",
+              "value": "Синатра, Фрэнсис"
+            },
+            {
+              "language": "u",
+              "value": "Синатра, Фрэнсис"
+            },
+            {
+              "language": "z",
+              "value": "弗兰克·辛纳屈"
+            },
+            {
+              "language": "h",
+              "value": "弗兰克·辛纳屈"
+            },
+            {
+              "language": "m",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "g",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "t",
+              "value": "แฟรงค์ ซินาทรา"
+            },
+            {
+              "language": "h",
+              "value": "แฟรงค์ ซินาทรา"
+            },
+            {
+              "language": "v",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "i",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "f",
+              "value": "فرانسیس آلبرت سیناترا"
+            },
+            {
+              "language": "a",
+              "value": "فرانسیس آلبرت سیناترا"
+            },
+            {
+              "language": "i",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "d",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "h",
+              "value": "Francis Albert \"Frank\" Sinatra"
+            },
+            {
+              "language": "u",
+              "value": "Francis Albert \"Frank\" Sinatra"
+            },
+            {
+              "language": "v",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "i",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "h",
+              "value": "פרנק סינטרה"
+            },
+            {
+              "language": "e",
+              "value": "פרנק סינטרה"
+            },
+            {
+              "language": "r",
+              "value": "Синатра Фрэнсис Альберт"
+            },
+            {
+              "language": "u",
+              "value": "Синатра Фрэнсис Альберт"
+            },
+            {
+              "language": "s",
+              "value": "Sinatra"
+            },
+            {
+              "language": "v",
+              "value": "Sinatra"
+            },
+            {
+              "language": "t",
+              "value": "แฟรงค์ สินาตรา"
+            },
+            {
+              "language": "h",
+              "value": "แฟรงค์ สินาตรา"
+            },
+            {
+              "language": "s",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "u",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "h",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "u",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "g",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "a",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "p",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "t",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "m",
+              "value": "Фрэнк Синатра"
+            },
+            {
+              "language": "n",
+              "value": "Фрэнк Синатра"
+            },
+            {
+              "language": "g",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "l",
+              "value": "Francis Albert Sinatra"
+            },
+            {
+              "language": "j",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "a",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "n",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "l",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "d",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "a",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "t",
+              "value": "แฟรงค์ ซินาตร้า"
+            },
+            {
+              "language": "h",
+              "value": "แฟรงค์ ซินาตร้า"
+            },
+            {
+              "language": "n",
+              "value": "Frank Sinatra"
+            },
+            {
+              "language": "b",
+              "value": "Frank Sinatra"
+            }
+          ],
+          "external": {
+            "lastfm": {
+              "id": "Frank+Sinatra"
+            },
+            "twitter": {
+              "id": "franksinatra"
+            },
+            "spotify": {
+              "id": "1Mxqyy3pSjf8kZZL4QVxS0"
+            },
+            "imdb": {
+              "id": "nm0000069"
+            },
+            "library_of_congress": {
+              "id": "n50026395"
+            },
+            "musicbrainz": {
+              "id": "197450cd-0124-4164-b723-3c22dd16494d"
+            }
+          },
+          "child": [
+            "Nancy Sinatra",
+            "Frank Sinatra Jr.",
+            "Tina Sinatra"
+          ],
+          "citizenship": [
+            "United States of America"
+          ],
+          "date_of_birth": "1915-12-12",
+          "date_of_death": "1998-05-14",
+          "image": {
+            "url": "https://images.qloo.com/i/D404A6AC-5A74-4C74-AB20-7896826D6092-420x-auto.jpg"
+          },
+          "gender": [
+            "male"
+          ],
+          "influenced_by": [
+            "Bing Crosby",
+            "Billie Holiday"
+          ],
+          "instrument": [
+            "triangle",
+            "friction drum",
+            "ukulele",
+            "castanets",
+            "voice"
+          ],
+          "spouse": [
+            "Barbara Sinatra",
+            "Ava Gardner",
+            "Nancy Barbato",
+            "Mia Farrow"
+          ],
+          "work_period_start": "1935-01-01",
+          "short_description": "American singer and actor (1915–1998)"
+        },
+        "popularity": 0.918504908622433,
+        "disambiguation": "1915-12-12",
+        "tags": [
+          {
+            "name": "Recording Artist",
+            "tag_id": "urn:tag:occupation:person:recording_artist",
+            "type": "urn:tag:occupation:person",
+            "value": "urn:tag:occupation:person:recording_artist"
+          },
+          {
+            "name": "Television Actor",
+            "tag_id": "urn:tag:occupation:person:television_actor",
+            "type": "urn:tag:occupation:person",
+            "value": "urn:tag:occupation:person:television_actor"
+          },
+          {
+            "name": "Film Actor",
+            "tag_id": "urn:tag:occupation:person:film_actor",
+            "type": "urn:tag:occupation:person",
+            "value": "urn:tag:occupation:person:film_actor"
+          },
+          {
+            "name": "Jazz Musician",
+            "tag_id": "urn:tag:occupation:person:jazz_musician",
+            "type": "urn:tag:occupation:person",
+            "value": "urn:tag:occupation:person:jazz_musician"
+          },
+          {
+            "name": "Actor",
+            "tag_id": "urn:tag:occupation:person:actor",
+            "type": "urn:tag:occupation:person",
+            "value": "urn:tag:occupation:person:actor"
+          },
+          {
+            "name": "Musician",
+            "tag_id": "urn:tag:genre:person:musician",
+            "type": "urn:tag:genre:person",
+            "value": "urn:tag:genre:person:musician"
+          },
+          {
+            "name": "Singer",
+            "tag_id": "urn:tag:occupation:person:singer",
+            "type": "urn:tag:occupation:person",
+            "value": "urn:tag:occupation:person:singer"
+          },
+          {
+            "name": "Person",
+            "tag_id": "urn:tag:category:wikidata:person",
+            "type": "urn:tag:category:wikidata",
+            "value": "urn:tag:category:wikidata:person"
+          },
+          {
+            "name": "Voice Actor",
+            "tag_id": "urn:tag:occupation:person:voice_actor",
+            "type": "urn:tag:occupation:person",
+            "value": "urn:tag:occupation:person:voice_actor"
+          },
+          {
+            "name": "Film Director",
+            "tag_id": "urn:tag:occupation:person:film_director",
+            "type": "urn:tag:occupation:person",
+            "value": "urn:tag:occupation:person:film_director"
+          },
+          {
+            "name": "Film Producer",
+            "tag_id": "urn:tag:occupation:person:film_producer",
+            "type": "urn:tag:occupation:person",
+            "value": "urn:tag:occupation:person:film_producer"
+          }
+        ]
+      },
+      {
+        "name": "Frank Sinatra:My Way",
+        "entity_id": "0192D99F-02A5-4E11-B888-4AFAEC731AF2",
+        "types": [
+          "urn:entity:album"
+        ],
+        "properties": {
+          "duration": {
+            "album": 0
+          },
+          "external": {
+            "spotify": {}
+          },
+          "image": {
+            "url": "https://images.qloo.com/i/0192D99F-02A5-4E11-B888-4AFAEC731AF2-420x-auto.jpg"
+          },
+          "track_count": 0
+        },
+        "popularity": 0.9445056229776514,
+        "disambiguation": "Frank Sinatra:My Way"
+      },
+      {
+        "name": "Frank Sinatra's Greatest Hits",
+        "entity_id": "ABAB9562-E6F6-45BF-8783-432492DCCF4E",
+        "types": [
+          "urn:entity:album"
+        ],
+        "properties": {
+          "duration": {
+            "album": 2020
+          },
+          "external": {
+            "spotify": {}
+          },
+          "image": {
+            "url": "https://images.qloo.com/i/ABAB9562-E6F6-45BF-8783-432492DCCF4E-420x-auto.jpg"
+          },
+          "track_count": 12
+        },
+        "popularity": 0.907867643176624,
+        "disambiguation": "Frank Sinatra's Greatest Hits"
+      }
+    ]
+  }
+}
