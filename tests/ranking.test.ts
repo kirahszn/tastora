@@ -156,6 +156,50 @@ describe("rankCandidates", () => {
     expect(reverse).toEqual(forward);
   });
 
+  describe("allergen-heavy venues", () => {
+    const peanut = makeProfile({ allergies: ["peanut"] });
+    const penaltyFor = (dishHighlights: string[]) =>
+      rankCandidates(peanut, [makeCandidate({ dishHighlights })]).ranked[0].score.breakdown.allergenPenalty;
+
+    it("no penalty below half", () => {
+      expect(penaltyFor(["Suya", "Jollof rice", "Fufu"])).toBe(0);
+    });
+
+    it("penalises at 50% and more at 100%", () => {
+      expect(penaltyFor(["Suya", "Jollof rice"])).toBe(SCORE_WEIGHTS.allergenHeavy);
+      expect(penaltyFor(["Suya", "Peanut soup", "Rice"])).toBe(SCORE_WEIGHTS.allergenHeavy);
+      expect(penaltyFor(["Suya", "Peanut soup"])).toBe(SCORE_WEIGHTS.allergenAllDishes);
+      expect(SCORE_WEIGHTS.allergenAllDishes).toBeLessThan(SCORE_WEIGHTS.allergenHeavy);
+    });
+
+    it("ignores a venue listing a single dish", () => {
+      expect(penaltyFor(["Suya"])).toBe(0);
+    });
+
+    it("applies once per venue even with two heavy allergens", () => {
+      const profile = makeProfile({ allergies: ["peanut", "shellfish"] });
+      const c = makeCandidate({ dishHighlights: ["Shrimp suya", "Peanut shrimp"] });
+      expect(rankCandidates(profile, [c]).ranked[0].score.breakdown.allergenPenalty).toBe(
+        SCORE_WEIGHTS.allergenAllDishes,
+      );
+    });
+  });
+
+  it("taste score decays gently over a 20-result list", () => {
+    const many = Array.from({ length: 20 }, (_, i) =>
+      makeCandidate({ id: `c${String(i + 1).padStart(2, "0")}`, qlooRank: i + 1 }),
+    );
+    const taste = rankCandidates(makeProfile(), many, {}, { limit: 20 }).ranked.map((r) => r.score.breakdown.taste);
+    expect(taste[0]).toBe(50);
+    expect(taste[9]).toBe(28); // rank 10 keeps more than half the maximum
+    expect(taste[19]).toBeGreaterThan(0); // even the last result is not zeroed
+    for (let i = 1; i < 20; i++) {
+      const step = taste[i - 1] - taste[i];
+      expect(step).toBeGreaterThanOrEqual(2);
+      expect(step).toBeLessThanOrEqual(3); // no cliff between neighbours
+    }
+  });
+
   it("is deterministic", () => {
     const profile = makeProfile({ favouriteDishes: ["suya"], dislikes: ["okra"] });
     expect(rankCandidates(profile, westAfrican())).toEqual(rankCandidates(profile, westAfrican()));

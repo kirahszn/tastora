@@ -195,6 +195,17 @@ lookup (not exercised).
 | Accessibility / noise (older diners) | `accessibility` 138/152, `noise_level` 137/152 | Bonus. Qloo is strong here |
 | Taste fit | Affinity under signals | Qloo's core value |
 
+## Phase 3 live notes
+
+- `filter.location.query` with a borough ("Brooklyn", "Queens") resolves to that locality (echoed
+  in `query.localities.filter[0].disambiguation`, e.g. "Queens, Queens County, New York, New York,
+  United States"). It biases results by proximity but doesn't restrict them: in an Italian-American +
+  Queens call, 11 of 20 places were in Queens County, the rest in Manhattan, Brooklyn and Nassau
+  (Nassau was a mall, which the venue filter drops).
+- Tags exist for `urn:tag:cuisine:qloo:italian_american` (plus "Italian-American Fusion",
+  "American Italian", …). 19 NYC places came back with the Sinatra signal.
+- The non-restaurant filter rule is documented in `docs/agent.md`.
+
 ## Decisions
 
 **Recommendation (not integrated):** Qloo **can be the primary restaurant source for NYC**. It covers

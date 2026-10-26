@@ -22,7 +22,8 @@ Ground rules:
 | `conflict` | An explicit Qloo tag contradicts it. |
 
 Every evidence and warning string starts with its source: `profile.<field>` or `qloo.<field>`.
-`evidence[0]` always echoes the profile entry.
+`evidence[0]` always echoes the profile entry. More generally, every fact Tastora shows names its
+source, which is the profile, caregiver feedback (`feedback.<field>`) or Qloo data.
 
 ## Rules
 
@@ -89,7 +90,18 @@ total is their sum.
 | Comfort (only if set) | +5 per `matched`, −5 per `conflict` |
 | Completeness | website +3, phone +3, hours +2, any dishes +2 (max 10) |
 | Dislike penalty | −3 per removed disliked dish, max −9 |
+| Allergen-heavy penalty | −8 when ≥ 50% of the venue's listed dishes were set aside for one allergen; −15 when all of them were. Once per venue (worst allergen); only for venues listing ≥ 2 dishes |
 | Feedback | disliked −20; tried −3; shares a cuisine with a liked candidate +4 |
+
+- **Allergen-heavy penalty (Phase 3).** A venue whose menu is mostly an allergen (Brooklyn Suya:
+  every dish is suya, commonly made with peanut) is a poor suggestion even though nothing excludes
+  it. −8 is about one favourite dish's worth; −15 is 30% of the taste maximum, enough to drop a
+  mid-list venue several places without hiding it. "Listed dishes" are the de-duplicated
+  highlights + specialty dishes. The facts add a warning: "Many listed dishes here commonly contain
+  <allergen>" (source: the profile allergy and the dish count).
+- **Taste decay (verified Phase 3).** Over a 20-result list the linear formula gives rank 1 = 50,
+  rank 10 = 28, rank 20 = 3, with steps of 2–3 points between neighbours (no cliff). Kept as is;
+  locked by a test.
 
 - The taste signal uses Qloo's rank rather than raw affinity. Affinities cluster (0.80–0.85 in a
   cuisine-filtered list), search results have none, and Qloo already sorts by it.
@@ -102,9 +114,10 @@ total is their sum.
 
 | Field | Content |
 |---|---|
-| `reasons[] {text, source}` | Source names the profile field and the Qloo tag or signal, e.g. `profile.favouriteCuisines: Nigerian ↔ Qloo tag urn:tag:cuisine:qloo:nigerian` |
+| `reasons[] {text, source, strength?}` | Source names the profile field and the Qloo tag or signal, e.g. `profile.favouriteCuisines: Nigerian ↔ Qloo tag urn:tag:cuisine:qloo:nigerian`. `strength: "related"` marks a weaker, related-cuisine reason |
 | `dishesToAskAbout[] {name, source, note?}` | After allergy/diet/dislike removals; favourites first; `note: "possibly soft — confirm"` |
 | `removedDishes[] {name, source, reason, requirement, why}` | What was removed, and why |
+| `warnings[] {text, source}` | Venue-level cautions, e.g. the allergen-heavy warning above |
 | `constraintStatuses` | The `evaluateCandidate` results |
 | `needsConfirmation[]` | Plain questions for the caregiver to ask the restaurant |
 | `links` | `website` / `phone` / `mapsUrl`, only when present |
@@ -113,19 +126,30 @@ total is their sum.
 `tasteSignals` defaults to all profile taste memories; the search layer should pass the signals it
 actually sent.
 
+**Related cuisines** (`src/lib/domain/cuisines.ts`). When a venue lacks the favourite cuisine's
+tag but carries a related one, a lower-weight reason follows the direct cuisine reasons:
+"West African — related to Nigerian" (`strength: "related"`). It never filters or scores. The map
+lists only obvious country → regional-family links, and members are not related to each other:
+
+| Family | Members |
+|---|---|
+| West African | Nigerian, Ghanaian, Senegalese |
+| Caribbean | Jamaican, Trinidadian, Haitian |
+| Italian | Italian-American |
+
 ## Worked example
 
 Profile: Nigerian food, favourite dish jollof rice, peanut allergy, soft texture, music Fela Kuti,
 Brooklyn. Candidates: recorded sample `E5h-west-african-signal-fela.json` (West African filter + Fela
 Kuti signal, 5 places). Nothing is excluded. Locked in `tests/explanation-facts.test.ts`.
 
-| # | Venue | Taste | Fav. dish | Comfort | Complete | Dislike | Feedback | **Total** |
-|---|---|---|---|---|---|---|---|---|
-| 1 | Buka | 50 | 8 | 0 | 10 | 0 | 0 | **68** |
-| 2 | Joloff | 40 | 0 | 0 | 10 | 0 | 0 | **50** |
-| 3 | Accra Express Restaurant | 30 | 8 | 0 | 10 | 0 | 0 | **48** |
-| 4 | Cafe Rue Dix | 20 | 0 | 0 | 10 | 0 | 0 | 30 |
-| 5 | Brooklyn Suya | 10 | 0 | 0 | 10 | 0 | 0 | 20 |
+| # | Venue | Taste | Fav. dish | Comfort | Complete | Dislike | Allergen | Feedback | **Total** |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Buka | 50 | 8 | 0 | 10 | 0 | 0 | 0 | **68** |
+| 2 | Joloff | 40 | 0 | 0 | 10 | 0 | 0 | 0 | **50** |
+| 3 | Accra Express Restaurant | 30 | 8 | 0 | 10 | 0 | 0 | 0 | **48** |
+| 4 | Cafe Rue Dix | 20 | 0 | 0 | 10 | 0 | 0 | 0 | 30 |
+| 5 | Brooklyn Suya | 10 | 0 | 0 | 10 | 0 | −15 | 0 | 5 |
 
 **Constraint statuses.** All five venues have the same two: `allergy: peanut` → `needs_confirmation`
 and `texture: soft food` → `needs_confirmation`.
@@ -141,7 +165,8 @@ and `texture: soft food` → `needs_confirmation`.
 
 **Joloff**
 - Reasons: Qloo taste rank #2 with signals: Fela Kuti (affinity 0.83). Its cuisine tags are West
-  African and Senegalese, not Nigerian, so there is no cuisine reason.
+  African and Senegalese, not Nigerian, so there is no direct cuisine reason; it gets the related
+  reason "West African — related to Nigerian" (Phase 3).
 - Dishes to ask about: Tiebou jeun.
 - Removed: none.
 
@@ -154,7 +179,8 @@ and `texture: soft food` → `needs_confirmation`.
 **Further down the list**
 - Cafe Rue Dix (#4) loses Mafe (commonly made with peanut).
 - Brooklyn Suya (#5) loses every dish: 7 suya dishes, plus "Peanut aeoli" by keyword. Its facts say
-  "Every dish Qloo lists was set aside; ask what they can serve that fits".
+  "Every dish Qloo lists was set aside; ask what they can serve that fits", it takes the −15
+  allergen-heavy penalty and carries the warning "Many listed dishes here commonly contain peanut".
 
 **Needs confirmation (all five):**
 - "Ask whether dishes can be made without peanut (Qloo has no allergen data)"

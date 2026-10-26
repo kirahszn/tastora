@@ -64,6 +64,11 @@ malformed tag is dropped. Only `entity_id` and `name` are required.
 Other tag types read by the constraint engine: `urn:tag:dietary_option:qloo`, `urn:tag:offerings:place`,
 `urn:tag:ambience:qloo`.
 
+## RankingFeedback (`src/lib/ranking/feedback.ts`)
+
+`{ liked?, disliked?, notSuitable?, tried? }`: candidate ids, each ≤ 100 chars, ≤ 50 per list
+(Phase 3, validated by `/api/recommend`).
+
 ## Constraints, ranking and explanation facts
 
 Rules, statuses, weights, exclusions, the allergen dish-name list and a worked example are in

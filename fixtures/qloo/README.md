@@ -10,5 +10,9 @@ Recorded real Qloo API responses from `npm run qloo:probe` (Phase 1). Never stor
   - `E5k-restaurant-signal-dish-soup.json`: soup dishes (texture hints)
   - `E6-search-katzs.json`: `/search` shape (`tag_id`, object `google_place`), garbled specialty dishes
 
-Each file has the shape `{ request: { path, params }, ok, status, body }`.
+- `venue-filter.json` (Phase 3): 55 slimmed places (45 non-restaurant or drink-first, 10 ordinary) with only
+  `primary_genre` and `category:place` tags, for the non-restaurant filter tests. Built from `raw/` by
+  `scripts/extract-venue-filter-samples.ts`; shape `{ note, places[] }`.
+
+The other files have the shape `{ request: { path, params }, ok, status, body }`.
 Re-running `npm run qloo:probe` rewrites samples at full size; run the slim script afterwards.

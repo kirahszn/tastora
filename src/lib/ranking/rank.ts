@@ -22,6 +22,15 @@ export const SCORE_WEIGHTS = {
   /** Per dish removed because it mentions a dislike. */
   dislikedDish: -3,
   dislikedDishMax: -9,
+  /**
+   * Allergen-heavy venue: at least half of its listed dishes were set aside for one allergen.
+   * Applied once per venue (the worst allergen), and only when it lists at least
+   * `allergenHeavyMinDishes` dishes, so one removed dish out of one doesn't count.
+   */
+  allergenHeavy: -8,
+  allergenAllDishes: -15,
+  allergenHeavyRatio: 0.5,
+  allergenHeavyMinDishes: 2,
   /** Caregiver feedback on earlier results. */
   feedbackDisliked: -20,
   feedbackTried: -3,
@@ -45,7 +54,16 @@ export interface ScoreBreakdown {
   comfort: number;
   completeness: number;
   dislikePenalty: number;
+  allergenPenalty: number;
   feedback: number;
+}
+
+/** An allergen for which at least half of a venue's listed dishes were set aside. */
+export interface AllergenHeavy {
+  /** The profile entry, e.g. "peanut". */
+  allergen: string;
+  removed: number;
+  total: number;
 }
 
 export interface RankedCandidate {
@@ -115,6 +133,29 @@ function dislikePenalty(evaluation: CandidateEvaluation): number {
   return dishes.size ? Math.max(SCORE_WEIGHTS.dislikedDishMax, dishes.size * SCORE_WEIGHTS.dislikedDish) : 0;
 }
 
+/** Allergens that removed at least half of the venue's listed dishes, worst first. */
+export function allergenHeavyAllergens(evaluation: CandidateEvaluation): AllergenHeavy[] {
+  const key = (name: string) => name.toLowerCase();
+  const total = new Set([...evaluation.allowedDishes, ...evaluation.excludedDishes].map((d) => key(d.name))).size;
+  if (total < SCORE_WEIGHTS.allergenHeavyMinDishes) return [];
+  const removedBy = new Map<string, Set<string>>();
+  for (const d of evaluation.excludedDishes) {
+    if (d.reason !== "allergy") continue;
+    const set = removedBy.get(d.requirement) ?? new Set<string>();
+    set.add(key(d.name));
+    removedBy.set(d.requirement, set);
+  }
+  return [...removedBy]
+    .map(([allergen, dishes]) => ({ allergen, removed: dishes.size, total }))
+    .filter((a) => a.removed / a.total >= SCORE_WEIGHTS.allergenHeavyRatio)
+    .sort((a, b) => b.removed - a.removed);
+}
+
+function allergenPenalty(heavy: AllergenHeavy[]): number {
+  if (!heavy.length) return 0;
+  return heavy[0].removed === heavy[0].total ? SCORE_WEIGHTS.allergenAllDishes : SCORE_WEIGHTS.allergenHeavy;
+}
+
 /**
  * Rank candidates for a profile. Hard-excluded and "not suitable" candidates never appear in
  * `ranked`. Order: total score desc, then qlooRank asc, then id asc (deterministic).
@@ -158,6 +199,7 @@ export function rankCandidates(
       comfort: comfortScore(evaluation),
       completeness: completenessScore(candidate),
       dislikePenalty: dislikePenalty(evaluation),
+      allergenPenalty: allergenPenalty(allergenHeavyAllergens(evaluation)),
       feedback:
         (disliked.has(candidate.id) ? SCORE_WEIGHTS.feedbackDisliked : 0) +
         (tried.has(candidate.id) ? SCORE_WEIGHTS.feedbackTried : 0) +

@@ -1,12 +1,13 @@
 // Structured facts about each ranked candidate. No prose generation and no LLM: a later phase
-// turns these into wording. Everything here is derived from the profile, caregiver feedback or the
-// Qloo data; absent Qloo fields are omitted, never filled in. Dishes are "to ask about", never a
-// confirmed menu, and nothing here says or implies that food can be ordered.
+// turns these into wording. Every fact's source is the profile, caregiver feedback or Qloo data;
+// absent Qloo fields are omitted, never filled in. Dishes are "to ask about", never a confirmed
+// menu, and nothing here says or implies that food can be ordered.
 import type { ExcludedDish, RequirementResult } from "@/lib/constraints/evaluate";
 import { containsKeyword } from "@/lib/constraints/keywords";
+import { relatedCuisineMatch } from "@/lib/domain/cuisines";
 import { TAG_TYPES, type Candidate, type Tag } from "@/lib/domain/place";
 import type { SeniorProfile } from "@/lib/domain/profile";
-import type { RankedCandidate, ScoreBreakdown } from "@/lib/ranking/rank";
+import { allergenHeavyAllergens, type RankedCandidate, type ScoreBreakdown } from "@/lib/ranking/rank";
 
 export const POSSIBLY_SOFT_NOTE = "possibly soft — confirm";
 
@@ -14,6 +15,13 @@ export interface Reason {
   /** Short factual statement, e.g. "Serves Nigerian food". */
   text: string;
   /** Profile field and the Qloo field/signal it was matched against. */
+  source: string;
+  /** "related": a weaker match, e.g. a related cuisine rather than the favourite itself. */
+  strength?: "related";
+}
+
+export interface FactWarning {
+  text: string;
   source: string;
 }
 
@@ -39,6 +47,8 @@ export interface ExplanationFacts {
   reasons: Reason[];
   dishesToAskAbout: DishToAskAbout[];
   removedDishes: RemovedDish[];
+  /** Venue-level cautions, e.g. most listed dishes commonly contain an allergen. */
+  warnings: FactWarning[];
   constraintStatuses: RequirementResult[];
   /** Plain list of things the caregiver should ask the restaurant. */
   needsConfirmation: string[];
@@ -87,16 +97,29 @@ function buildReasons(profile: SeniorProfile, item: RankedCandidate, ctx: Explan
   const reasons = [tasteReason(profile, candidate, ctx)];
 
   const cuisineTags = candidate.tags.filter((t) => t.type === TAG_TYPES.cuisine);
+  const related: Reason[] = [];
   for (const cuisine of profile.favouriteCuisines) {
     const tag =
       cuisineTags.find((t) => t.name.toLowerCase() === cuisine.toLowerCase()) ??
       cuisineTags.find((t) => containsKeyword(t.name, cuisine));
-    if (!tag) continue;
+    if (!tag) {
+      const relatedTag = cuisineTags.find((t) => relatedCuisineMatch(t.name, cuisine));
+      if (relatedTag) {
+        related.push({
+          text: `${relatedCuisineMatch(relatedTag.name, cuisine)} — related to ${cuisine}`,
+          source: `profile.favouriteCuisines: ${cuisine} ↔ Qloo tag ${relatedTag.id} (related cuisine)`,
+          strength: "related",
+        });
+      }
+      continue;
+    }
     reasons.push({
       text: `Serves ${tag.name} food`,
       source: `profile.favouriteCuisines: ${cuisine} ↔ Qloo tag ${tag.id}`,
     });
   }
+  // Related-cuisine reasons are weaker, so they follow the direct cuisine matches.
+  reasons.push(...related);
 
   for (const fav of item.matchedFavouriteDishes) {
     const dish = evaluation.allowedDishes.find((d) => containsKeyword(d.name, fav));
@@ -154,6 +177,13 @@ function buildRemovedDishes(item: RankedCandidate): RemovedDish[] {
   }));
 }
 
+function buildWarnings(item: RankedCandidate): FactWarning[] {
+  return allergenHeavyAllergens(item.evaluation).map((a) => ({
+    text: `Many listed dishes here commonly contain ${a.allergen}`,
+    source: `profile.allergies: "${a.allergen}" ↔ qloo.dishes: ${a.removed} of ${a.total} listed dishes set aside`,
+  }));
+}
+
 function confirmationQuestion(r: RequirementResult): string | null {
   const value = r.requirement.slice(r.requirement.indexOf(":") + 2);
   switch (r.kind) {
@@ -207,6 +237,7 @@ export function buildExplanationFacts(
     reasons: buildReasons(profile, item, ctx),
     dishesToAskAbout: buildDishes(item),
     removedDishes: buildRemovedDishes(item),
+    warnings: buildWarnings(item),
     constraintStatuses: item.evaluation.requirements,
     needsConfirmation: buildNeedsConfirmation(item),
     links: buildLinks(item.candidate),

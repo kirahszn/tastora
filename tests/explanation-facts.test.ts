@@ -32,12 +32,36 @@ const factsFor = (name: string) => workedFacts().find((f) => f.name === name)!;
 
 describe("worked example (West African + Fela Kuti sample)", () => {
   it("ranks Buka, Joloff, Accra Express with these breakdowns", () => {
-    const top3 = workedFacts().slice(0, 3);
-    expect(top3.map((f) => [f.name, f.scoreBreakdown])).toEqual([
-      ["Buka", { taste: 50, favouriteDishes: 8, comfort: 0, completeness: 10, dislikePenalty: 0, feedback: 0, total: 68 }],
-      ["Joloff", { taste: 40, favouriteDishes: 0, comfort: 0, completeness: 10, dislikePenalty: 0, feedback: 0, total: 50 }],
-      ["Accra Express Restaurant", { taste: 30, favouriteDishes: 8, comfort: 0, completeness: 10, dislikePenalty: 0, feedback: 0, total: 48 }],
+    const zero = { comfort: 0, completeness: 10, dislikePenalty: 0, feedback: 0 };
+    expect(workedFacts().map((f) => [f.name, f.scoreBreakdown])).toEqual([
+      ["Buka", { ...zero, taste: 50, favouriteDishes: 8, allergenPenalty: 0, total: 68 }],
+      ["Joloff", { ...zero, taste: 40, favouriteDishes: 0, allergenPenalty: 0, total: 50 }],
+      ["Accra Express Restaurant", { ...zero, taste: 30, favouriteDishes: 8, allergenPenalty: 0, total: 48 }],
+      ["Cafe Rue Dix", { ...zero, taste: 20, favouriteDishes: 0, allergenPenalty: 0, total: 30 }],
+      // Every listed dish was set aside for peanut: the largest allergen penalty.
+      ["Brooklyn Suya", { ...zero, taste: 10, favouriteDishes: 0, allergenPenalty: -15, total: 5 }],
     ]);
+  });
+
+  it("warns when most listed dishes commonly contain the allergen", () => {
+    const suya = factsFor("Brooklyn Suya");
+    expect(suya.warnings).toHaveLength(1);
+    expect(suya.warnings[0].text).toBe("Many listed dishes here commonly contain peanut");
+    expect(suya.warnings[0].source).toMatch(/^profile\.allergies: "peanut" ↔ qloo\.dishes: (\d+) of \1 listed/);
+    expect(factsFor("Buka").warnings).toEqual([]);
+  });
+
+  it("gives Joloff a lower-weight related-cuisine reason (West African ↔ Nigerian)", () => {
+    const related = factsFor("Joloff").reasons.filter((r) => r.strength === "related");
+    expect(related).toEqual([
+      {
+        text: "West African — related to Nigerian",
+        source: "profile.favouriteCuisines: Nigerian ↔ Qloo tag urn:tag:cuisine:qloo:west_african (related cuisine)",
+        strength: "related",
+      },
+    ]);
+    // Buka carries the Nigerian tag itself, so no related reason.
+    expect(factsFor("Buka").reasons.some((r) => r.strength === "related")).toBe(false);
   });
 
   it("explains Buka with sourced reasons", () => {

@@ -36,3 +36,19 @@ export function getServerEnv(): ServerEnv {
 export function getQlooEnv(): QlooEnv {
   return parseEnv(qlooEnvSchema);
 }
+
+/** Sonnet-class for reliable tool use; see docs/agent.md for the choice. */
+export const DEFAULT_ANTHROPIC_MODEL = "claude-sonnet-5-5";
+
+export interface AnthropicEnv {
+  /** Null when unset: the recommender then uses its deterministic fallback planner. */
+  apiKey: string | null;
+  model: string;
+}
+
+export function getAnthropicEnv(): AnthropicEnv {
+  return {
+    apiKey: process.env.ANTHROPIC_API_KEY?.trim() || null,
+    model: process.env.ANTHROPIC_MODEL?.trim() || DEFAULT_ANTHROPIC_MODEL,
+  };
+}

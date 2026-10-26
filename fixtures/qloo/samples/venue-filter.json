@@ -1,0 +1,2145 @@
+{
+  "note": "Slim places for the venue filter; see scripts/extract-venue-filter-samples.ts",
+  "places": [
+    {
+      "entity_id": "B6FBB87B-B098-4CEC-BD3A-D404EFDF978A",
+      "name": "Santiago’s Garden",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:beer_garden",
+          "name": "Beer garden"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:beer_garden",
+          "name": "Beer garden",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E3-nyc-caribbean.json"
+    },
+    {
+      "entity_id": "3AB0AB9B-2B50-4E92-8AEA-A5C782E72603",
+      "name": "Pietro Nolita",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:cocktail_bar",
+          "name": "Cocktail bar"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:italian_restaurant",
+          "name": "Italian restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:cocktail_bar",
+          "name": "Cocktail bar",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E3-nyc-italian.json"
+    },
+    {
+      "entity_id": "D90DED06-466E-43CB-A083-327D55C94635",
+      "name": "The Bowery Hotel",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:hotel",
+          "name": "Hotel"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:italian_restaurant",
+          "name": "Italian restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:hotel",
+          "name": "Hotel",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:lounge_bar",
+          "name": "Lounge bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:indoor_lodging",
+          "name": "Indoor lodging",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:wedding_venue",
+          "name": "Wedding venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:event_venue",
+          "name": "Event venue",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E3-nyc-italian.json"
+    },
+    {
+      "entity_id": "A670E99B-7138-4926-8FA1-095E90A1CCA0",
+      "name": "Eataly",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:gourmet_grocery_store",
+          "name": "Gourmet grocery store"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:cafe",
+          "name": "Cafe",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:pizza_restaurant",
+          "name": "Pizza restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:italian_grocery_store",
+          "name": "Italian grocery store",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:grocery_store",
+          "name": "Grocery store",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:event_venue",
+          "name": "Event venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:cooking_class",
+          "name": "Cooking class",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:gourmet_grocery_store",
+          "name": "Gourmet grocery store",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:pasta_shop",
+          "name": "Pasta shop",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:catering_food_and_drink_supplier",
+          "name": "Catering food and drink supplier",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:italian_restaurant",
+          "name": "Italian restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E3-nyc-italian.json"
+    },
+    {
+      "entity_id": "32C6DC4E-E797-46E3-887A-56913770905E",
+      "name": "Bronx Little Italy",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:tourist_attraction",
+          "name": "Tourist attraction"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:bakery",
+          "name": "Bakery",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:butcher_shop",
+          "name": "Butcher shop",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:italian_restaurant",
+          "name": "Italian restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:pasta_shop",
+          "name": "Pasta shop",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:tourist_attraction",
+          "name": "Tourist attraction",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:pastry_shop",
+          "name": "Pastry shop",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E3-nyc-italian.json"
+    },
+    {
+      "entity_id": "E53A37BA-3ABD-40CE-8FCC-254F11D7265C",
+      "name": "Queens Center",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:shopping_mall",
+          "name": "Shopping mall"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:shopping_mall",
+          "name": "Shopping mall",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:clothing_store",
+          "name": "Clothing store",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5a-baseline.json"
+    },
+    {
+      "entity_id": "CF8503DF-2014-42D7-9437-0082A70CC58E",
+      "name": "Baby's All Right",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:live_music_venue",
+          "name": "Live music venue"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:live_music_venue",
+          "name": "Live music venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:brunch_restaurant",
+          "name": "Brunch restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5a-baseline.json"
+    },
+    {
+      "entity_id": "ECB43FCB-D534-4F4A-A6C8-2AF4C5780B58",
+      "name": "Wythe Hotel",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:hotel",
+          "name": "Hotel"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:cocktail_bar",
+          "name": "Cocktail bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:event_venue",
+          "name": "Event venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:french_restaurant",
+          "name": "French restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:hotel",
+          "name": "Hotel",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:wedding_venue",
+          "name": "Wedding venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5a-baseline.json"
+    },
+    {
+      "entity_id": "0E453B41-5D83-4446-863F-2531264D53D3",
+      "name": "Westfield World Trade Center",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:shopping_mall",
+          "name": "Shopping mall"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:department_store",
+          "name": "Department store",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:clothing_store",
+          "name": "Clothing store",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:shoe_store",
+          "name": "Shoe store",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:gift_shop",
+          "name": "Gift shop",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:fashion_accessories_store",
+          "name": "Fashion accessories store",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:shopping_mall",
+          "name": "Shopping mall",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:womens_clothing_store",
+          "name": "Womens clothing store",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:mens_clothing_store",
+          "name": "Mens clothing store",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5a-baseline.json"
+    },
+    {
+      "entity_id": "7A88CE2D-2047-444F-B452-49DC4AE1F3DB",
+      "name": "ROW NYC",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:hotel",
+          "name": "Hotel"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:hotel",
+          "name": "Hotel",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:lounge_bar",
+          "name": "Lounge bar",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5a-baseline.json"
+    },
+    {
+      "entity_id": "DAE90036-FA0D-4755-B142-307CDC0B2911",
+      "name": "Jacob's Pickles",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:southern_restaurant_(us)",
+          "name": "Southern restaurant (US)"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:breakfast_restaurant",
+          "name": "Breakfast restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:southern_restaurant_us",
+          "name": "Southern restaurant us",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:sandwich_shop",
+          "name": "Sandwich shop",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:american_restaurant",
+          "name": "American restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:brunch_restaurant",
+          "name": "Brunch restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5a-baseline.json"
+    },
+    {
+      "entity_id": "8697989F-0CEC-41B5-8C9B-CE33C326C4EB",
+      "name": "Green Acres",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:shopping_mall",
+          "name": "Shopping mall"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:shopping_mall",
+          "name": "Shopping mall",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:clothing_store",
+          "name": "Clothing store",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5a-baseline.json"
+    },
+    {
+      "entity_id": "C8C544CB-3BE4-49EE-9CEB-3373D9BEA06E",
+      "name": "Pianos",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:lounge_bar",
+          "name": "Lounge bar"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:night_club",
+          "name": "Night club",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:live_music_venue",
+          "name": "Live music venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:lounge_bar",
+          "name": "Lounge bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:event_venue",
+          "name": "Event venue",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5a-baseline.json"
+    },
+    {
+      "entity_id": "075CC67E-5DDC-416F-B845-4B2DEE4121A9",
+      "name": "Shrine",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:live_music_venue",
+          "name": "Live music venue"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:band",
+          "name": "Band",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:live_music_venue",
+          "name": "Live music venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:tourist_attraction",
+          "name": "Tourist attraction",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:event_venue",
+          "name": "Event venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5b-signal-tags.json"
+    },
+    {
+      "entity_id": "89F67C70-7ED1-4700-BACE-94B0FDC789A8",
+      "name": "Barawine",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:wine_bar",
+          "name": "Wine bar"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:american_restaurant",
+          "name": "American restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:wine_bar",
+          "name": "Wine bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:new_american_restaurant",
+          "name": "New american restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5b-signal-tags.json"
+    },
+    {
+      "entity_id": "901100DB-336E-4008-8825-8BDF8EAF66EC",
+      "name": "The Iridium",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:live_music_venue",
+          "name": "Live music venue"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:live_music_venue",
+          "name": "Live music venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:blues_club",
+          "name": "Blues club",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:jazz_club",
+          "name": "Jazz club",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:rock_music_club",
+          "name": "Rock music club",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5c-signal-entity-fela-kuti.json"
+    },
+    {
+      "entity_id": "E95C069F-BA3E-4A70-82A3-04D4E50004A0",
+      "name": "Little Italy",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:market",
+          "name": "Market"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:market",
+          "name": "Market",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:tourist_attraction",
+          "name": "Tourist attraction",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5c-signal-entity-fela-kuti.json"
+    },
+    {
+      "entity_id": "62A730F6-EA0B-4414-82E1-86482EDB6D27",
+      "name": "Sleepwalk",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:cocktail_bar",
+          "name": "Cocktail bar"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:cocktail_bar",
+          "name": "Cocktail bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:event_venue",
+          "name": "Event venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:lounge_bar",
+          "name": "Lounge bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:live_music_venue",
+          "name": "Live music venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5c-signal-entity-fela-kuti.json"
+    },
+    {
+      "entity_id": "1C088A46-076B-435F-A892-84256AEB1AFA",
+      "name": "Sony Hall",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:live_music_venue",
+          "name": "Live music venue"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:live_music_venue",
+          "name": "Live music venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:event_venue",
+          "name": "Event venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5c-signal-entity-fela-kuti.json"
+    },
+    {
+      "entity_id": "61CA3F82-91E0-4497-84E8-DFCA1EBB72B3",
+      "name": "The Cutting Room",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:live_music_venue",
+          "name": "Live music venue"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:dinner_theater",
+          "name": "Dinner theater",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:cabaret_club",
+          "name": "Cabaret club",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:wedding_venue",
+          "name": "Wedding venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:event_venue",
+          "name": "Event venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:live_music_venue",
+          "name": "Live music venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:comedy_club",
+          "name": "Comedy club",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:rock_music_club",
+          "name": "Rock music club",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5c-signal-entity-fela-kuti.json"
+    },
+    {
+      "entity_id": "950076CD-44A1-439A-893E-658470B9CCCA",
+      "name": "Starr Bar",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:bar",
+          "name": "Bar"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:cocktail_bar",
+          "name": "Cocktail bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:event_venue",
+          "name": "Event venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:dance_hall",
+          "name": "Dance hall",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5c-signal-entity-fela-kuti.json"
+    },
+    {
+      "entity_id": "90B45F80-1D95-49E0-B9B4-D57822E6253D",
+      "name": "Public Records",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:arts_organization",
+          "name": "Arts organization"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:cafe",
+          "name": "Cafe",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:night_club",
+          "name": "Night club",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:cocktail_bar",
+          "name": "Cocktail bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:lounge",
+          "name": "Lounge",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:arts_organization",
+          "name": "Arts organization",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5c-signal-entity-fela-kuti.json"
+    },
+    {
+      "entity_id": "06CFDE2E-E4D1-4F87-8DA0-91EECFE7FB46",
+      "name": "ALPHAVILLE",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:bar",
+          "name": "Bar"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5c-signal-entity-fela-kuti.json"
+    },
+    {
+      "entity_id": "A8C5B566-EEBE-47FA-A30B-2732D3729384",
+      "name": "Smoke Jazz & Supper Club",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:jazz_club",
+          "name": "Jazz club"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:jazz_club",
+          "name": "Jazz club",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5c-signal-entity-fela-kuti.json"
+    },
+    {
+      "entity_id": "FA5B5B49-4D7A-4CBA-A5D9-AAF3DAF7198C",
+      "name": "Union Hall",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:bar",
+          "name": "Bar"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:comedy_club",
+          "name": "Comedy club",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:dance_club",
+          "name": "Dance club",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:karaoke",
+          "name": "Karaoke",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bocce_ball_court",
+          "name": "Bocce ball court",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:event_venue",
+          "name": "Event venue",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5c-signal-entity-fela-kuti.json"
+    },
+    {
+      "entity_id": "3D19F1B4-D6B5-4C65-A07B-6845937432EF",
+      "name": "Birdland Jazz Club",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:jazz_club",
+          "name": "Jazz club"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:cocktail_bar",
+          "name": "Cocktail bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:club",
+          "name": "Club",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:live_music_bar",
+          "name": "Live music bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:jazz_club",
+          "name": "Jazz club",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:live_music_venue",
+          "name": "Live music venue",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5c-signal-entity-fela-kuti.json"
+    },
+    {
+      "entity_id": "45A12F0E-765A-4F09-9664-6CFB8CE0280C",
+      "name": "West Bar and Lounge",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:bar_&_grill",
+          "name": "Bar & grill"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar_grill",
+          "name": "Bar grill",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:lounge",
+          "name": "Lounge",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5d-signal-entity-bob-marley.json"
+    },
+    {
+      "entity_id": "E2FF41E5-7AAA-4715-8A7E-A58B74BF090E",
+      "name": "Jouvay Night Club",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:night_club",
+          "name": "Night club"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:night_club",
+          "name": "Night club",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:lounge_bar",
+          "name": "Lounge bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5d-signal-entity-bob-marley.json"
+    },
+    {
+      "entity_id": "052F97B5-A2BF-49C6-8781-FF7CA9D38326",
+      "name": "UnderGround Lounge",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:bar",
+          "name": "Bar"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:fusion_restaurant",
+          "name": "Fusion restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:cocktail_bar",
+          "name": "Cocktail bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:girl_bar",
+          "name": "Girl bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:lounge",
+          "name": "Lounge",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:caribbean_restaurant",
+          "name": "Caribbean restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:night_club",
+          "name": "Night club",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:hookah_bar",
+          "name": "Hookah bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bistro",
+          "name": "Bistro",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5d-signal-entity-bob-marley.json"
+    },
+    {
+      "entity_id": "88F82545-B435-4105-B9AB-BA0BE0733200",
+      "name": "Plenty's",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:bar_&_grill",
+          "name": "Bar & grill"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:hookah_bar",
+          "name": "Hookah bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar_grill",
+          "name": "Bar grill",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:lounge_bar",
+          "name": "Lounge bar",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5d-signal-entity-bob-marley.json"
+    },
+    {
+      "entity_id": "9497FEC2-21CF-43F4-816B-89E5EDB48087",
+      "name": "Harlem Hookah",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:hookah_bar",
+          "name": "Hookah bar"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:lounge",
+          "name": "Lounge",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:hookah_bar",
+          "name": "Hookah bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5d-signal-entity-bob-marley.json"
+    },
+    {
+      "entity_id": "472F3702-0049-490F-A992-9322AF53E6A3",
+      "name": "Social Drink & Food",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:bar",
+          "name": "Bar"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:wedding_venue",
+          "name": "Wedding venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:lounge",
+          "name": "Lounge",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:event_venue",
+          "name": "Event venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:cocktail_bar",
+          "name": "Cocktail bar",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5e-signal-entity-nollywood.json"
+    },
+    {
+      "entity_id": "74E65002-0481-4337-986C-83AD848D311E",
+      "name": "Battery Gardens",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:beer_garden",
+          "name": "Beer garden"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:beer_garden",
+          "name": "Beer garden",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:american_restaurant",
+          "name": "American restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:continental_restaurant",
+          "name": "Continental restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:event_venue",
+          "name": "Event venue",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5e-signal-entity-nollywood.json"
+    },
+    {
+      "entity_id": "FCA4ECDB-1A9F-4D30-A1BE-B327492C8CE3",
+      "name": "Hotel Indigo Williamsburg - Brooklyn by IHG",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:hotel",
+          "name": "Hotel"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:wedding_venue",
+          "name": "Wedding venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:fitness_center",
+          "name": "Fitness center",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:business_center",
+          "name": "Business center",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:hotel",
+          "name": "Hotel",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5e-signal-entity-nollywood.json"
+    },
+    {
+      "entity_id": "1F00B48A-7EEE-4035-A363-5A13289F2C54",
+      "name": "TWA Hotel",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:hotel",
+          "name": "Hotel"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:function_room_facility",
+          "name": "Function room facility",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:hotel",
+          "name": "Hotel",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:historical_landmark",
+          "name": "Historical landmark",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:indoor_lodging",
+          "name": "Indoor lodging",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:lodging",
+          "name": "Lodging",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5e-signal-entity-nollywood.json"
+    },
+    {
+      "entity_id": "454A4557-20AD-44E5-8B21-A9C58E64976E",
+      "name": "The Rutherford",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:bar",
+          "name": "Bar"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:pub",
+          "name": "Pub",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar_grill",
+          "name": "Bar grill",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:sports_bar",
+          "name": "Sports bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5e-signal-entity-nollywood.json"
+    },
+    {
+      "entity_id": "8A122116-A435-40AA-B187-5247B8F483B3",
+      "name": "VALERIE",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:cocktail_bar",
+          "name": "Cocktail bar"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:brunch_restaurant",
+          "name": "Brunch restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:new_american_restaurant",
+          "name": "New american restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:cocktail_bar",
+          "name": "Cocktail bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:lunch_restaurant",
+          "name": "Lunch restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:live_music_bar",
+          "name": "Live music bar",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5e-signal-entity-nollywood.json"
+    },
+    {
+      "entity_id": "A45B183C-8212-4C01-8FB3-E3ECD51541F3",
+      "name": "City Island Yacht Club",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:yacht_club",
+          "name": "Yacht club"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:summer_camp_organizer",
+          "name": "Summer camp organizer",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:yacht_club",
+          "name": "Yacht club",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:event_venue",
+          "name": "Event venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:sailing_school",
+          "name": "Sailing school",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:sailing_club",
+          "name": "Sailing club",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:catering_food_and_drink_supplier",
+          "name": "Catering food and drink supplier",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5e-signal-entity-nollywood.json"
+    },
+    {
+      "entity_id": "0B82F2F3-061A-4AD1-8D31-BAE7B07DCC72",
+      "name": "Hotel Indigo Lower East Side New York by IHG",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:hotel",
+          "name": "Hotel"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:wedding_venue",
+          "name": "Wedding venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:business_center",
+          "name": "Business center",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:conference_center",
+          "name": "Conference center",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:hotel",
+          "name": "Hotel",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:fitness_center",
+          "name": "Fitness center",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5e-signal-entity-nollywood.json"
+    },
+    {
+      "entity_id": "9F26D2D5-4D2A-4647-A4E6-C0D08C05DAE9",
+      "name": "Koneko",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:cat_cafe",
+          "name": "Cat cafe"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:pet_adoption_service",
+          "name": "Pet adoption service",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:cat_cafe",
+          "name": "Cat cafe",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5e-signal-entity-nollywood.json"
+    },
+    {
+      "entity_id": "D3B4031F-D982-4933-88CA-BF521F8BFE0E",
+      "name": "Bar Centrale",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:bar",
+          "name": "Bar"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5f-signal-entity-frank-sinatra.json"
+    },
+    {
+      "entity_id": "49849637-7557-4B2F-BD69-5A87EA005DC9",
+      "name": "Blue Haven East",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:bar",
+          "name": "Bar"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar_grill",
+          "name": "Bar grill",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:brunch_restaurant",
+          "name": "Brunch restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:sports_bar",
+          "name": "Sports bar",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5f-signal-entity-frank-sinatra.json"
+    },
+    {
+      "entity_id": "4579473D-1C96-4842-B6A5-E6FCC64C7887",
+      "name": "Vivid Cabaret",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:adult_entertainment_club",
+          "name": "Adult entertainment club"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:adult_entertainment_club",
+          "name": "Adult entertainment club",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:night_club",
+          "name": "Night club",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5f-signal-entity-frank-sinatra.json"
+    },
+    {
+      "entity_id": "F201B2BC-A2CF-4BDA-BBC8-7AF21659E139",
+      "name": "Groove",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:live_music_bar",
+          "name": "Live music bar"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:italian_restaurant",
+          "name": "Italian restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:live_music_venue",
+          "name": "Live music venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:live_music_bar",
+          "name": "Live music bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:pizza_restaurant",
+          "name": "Pizza restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5j-italian-signal-fela.json"
+    },
+    {
+      "entity_id": "3D860F27-CE3A-4A36-977F-5808BB2AC35C",
+      "name": "The Frederick Hotel",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:hotel",
+          "name": "Hotel"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:hotel",
+          "name": "Hotel",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:italian_restaurant",
+          "name": "Italian restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E5j-italian-signal-fela.json"
+    },
+    {
+      "entity_id": "BDF46276-8593-4326-BEB4-B6C9506B6845",
+      "name": "Angel of Harlem",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:new_american",
+          "name": "New American restaurant"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:caribbean_restaurant",
+          "name": "Caribbean restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:new_american_restaurant",
+          "name": "New american restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E3-nyc-caribbean.json"
+    },
+    {
+      "entity_id": "6CABDA0D-DFD1-4FD0-BA80-F37E409D50C2",
+      "name": "Chocolat Restaurant & Bar",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:soul_food",
+          "name": "Soul food restaurant"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:southern_restaurant_us",
+          "name": "Southern restaurant us",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:soul_food_restaurant",
+          "name": "Soul food restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:brunch_restaurant",
+          "name": "Brunch restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:new_american_restaurant",
+          "name": "New american restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:caribbean_restaurant",
+          "name": "Caribbean restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:cocktail_bar",
+          "name": "Cocktail bar",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E3-nyc-caribbean.json"
+    },
+    {
+      "entity_id": "AFF83905-82AD-4B99-91E2-DD44C067BF1F",
+      "name": "The Door",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:jamaican",
+          "name": "Jamaican restaurant"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:jamaican_restaurant",
+          "name": "Jamaican restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:caribbean_restaurant",
+          "name": "Caribbean restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E3-nyc-caribbean.json"
+    },
+    {
+      "entity_id": "407659F9-9B52-4C75-B84E-243F5DFD8075",
+      "name": "Lindenwood Diner",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:diner",
+          "name": "Diner"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:bar_grill",
+          "name": "Bar grill",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:caribbean_restaurant",
+          "name": "Caribbean restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:breakfast_restaurant",
+          "name": "Breakfast restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:diner",
+          "name": "Diner",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E3-nyc-caribbean.json"
+    },
+    {
+      "entity_id": "13DEAC73-E9CB-4281-B4E4-B79E83DB10A3",
+      "name": "Suede",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:caribbean",
+          "name": "Caribbean restaurant"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:brunch_restaurant",
+          "name": "Brunch restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:caribbean_restaurant",
+          "name": "Caribbean restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E3-nyc-caribbean.json"
+    },
+    {
+      "entity_id": "723B9C13-8F48-44D6-8A12-70987D783D9A",
+      "name": "Negril Village",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:caribbean",
+          "name": "Caribbean restaurant"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:caribbean_restaurant",
+          "name": "Caribbean restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:lounge_bar",
+          "name": "Lounge bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar_grill",
+          "name": "Bar grill",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E3-nyc-caribbean.json"
+    },
+    {
+      "entity_id": "648286F7-B651-42D5-9C62-CC58F755873C",
+      "name": "Victor's Cafe Cuban Restaurant",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:cuban",
+          "name": "Cuban restaurant"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:event_venue",
+          "name": "Event venue",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:restaurant",
+          "name": "Restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:lounge_bar",
+          "name": "Lounge bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:brunch_restaurant",
+          "name": "Brunch restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:cuban_restaurant",
+          "name": "Cuban restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:bar",
+          "name": "Bar",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:caribbean_restaurant",
+          "name": "Caribbean restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:tapas_bar",
+          "name": "Tapas bar",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E3-nyc-caribbean.json"
+    },
+    {
+      "entity_id": "494B51F9-FD29-49AB-AA10-11C1372B22BF",
+      "name": "The Edge Harlem",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:caribbean",
+          "name": "Caribbean restaurant"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:caribbean_restaurant",
+          "name": "Caribbean restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E3-nyc-caribbean.json"
+    },
+    {
+      "entity_id": "B20FB7C4-CC77-4562-A534-436860FFD2BB",
+      "name": "Trinciti Roti Shop & Restaurant",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:caribbean",
+          "name": "Caribbean restaurant"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:vegetarian_cafe_and_deli",
+          "name": "Vegetarian cafe and deli",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:vegetarian_restaurant",
+          "name": "Vegetarian restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:caribbean_restaurant",
+          "name": "Caribbean restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:indian_restaurant",
+          "name": "Indian restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E3-nyc-caribbean.json"
+    },
+    {
+      "entity_id": "D4690CD3-E2AC-4A77-8199-9D811DE143DE",
+      "name": "Malecon Restaurant (175th Street)",
+      "subtype": "urn:entity:place",
+      "properties": {
+        "primary_genre": {
+          "id": "urn:tag:genre:place:restaurant:dominican",
+          "name": "Dominican restaurant"
+        }
+      },
+      "tags": [
+        {
+          "id": "urn:tag:category:place:chicken_restaurant",
+          "name": "Chicken restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:caribbean_restaurant",
+          "name": "Caribbean restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:seafood_restaurant",
+          "name": "Seafood restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:latin_american_restaurant",
+          "name": "Latin american restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:family_restaurant",
+          "name": "Family restaurant",
+          "type": "urn:tag:category:place"
+        },
+        {
+          "id": "urn:tag:category:place:dominican_restaurant",
+          "name": "Dominican restaurant",
+          "type": "urn:tag:category:place"
+        }
+      ],
+      "source": "E3-nyc-caribbean.json"
+    }
+  ]
+}
