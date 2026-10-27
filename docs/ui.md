@@ -61,10 +61,27 @@ request. 400/429/502/offline each have their own message and a retry (or "Check 
 
 ## Design tokens and accessibility
 
-Warm cream surfaces, terracotta accent, deep ink; dark tokens under `prefers-color-scheme: dark`.
-Georgia-stack serif headings, system sans body, 18px base. WCAG contrast (computed): ink on
-background 14.5:1 (dark 14.9), muted 7.5:1 (9.6), accent 5.7:1 (7.4), text on accent 6.0:1 (7.1),
-status text on status backgrounds 5.4–6.2:1 (7.0–8.4), input borders 4.2:1. Focus ring 3px,
-offset 3px, 7.6:1 against the page (9.8 dark). Tap targets ≥ 44px. `aria-live="polite"` for
+Phase 9a palette: cream page `#FBF6EE`, white cards, espresso text `#2B1D16`, muted `#6B5B50`,
+border `#EADFD2`, icon-tile tints peach/sage/butter/lavender; dark mode `#1C1512` / `#2A201B` /
+`#F3E9DC` / `#B9A898`, tints at 12%. Terracotta is split in two: `--accent-fill` `#D9774F` (dark
+`#E5936F`) is only ever a button/badge background with espresso `--on-accent` text, never white;
+`--accent` is terracotta for text, links and borders. The brief's `#B85C38` gave 4.2:1 on cream,
+so `--accent` is `#A44F2E`, the nearest shade that clears 4.5:1 on every light surface and tint.
+Georgia-stack serif headings, system sans body, 18px base, no web fonts. WCAG contrast (computed):
+espresso on cream 15.1:1 (dark 15.0), muted 6.0:1 (7.8), accent text 5.2:1 on cream and ≥ 4.57:1
+on tints (dark 7.5 / ≥ 4.7), espresso on terracotta fill 5.2:1 (dark 6.8), status text on status
+backgrounds 5.4–6.2:1 (7.0–8.4), input borders 4.0:1. A rendered-page audit (every visible text
+node against its composited background) found no pair under AA on `/`, `/profile` or `/results`
+in either mode. Focus ring 3px, offset 3px, 7.7:1 against the page (10.0 dark).
+
+## Landing page (Phase 9a)
+
+`src/app/page.tsx` composes `src/app/_landing/` (Hero, SampleCard, Illustration, EntryCards,
+HowItWorks, TrustStrip; footer and nav stay in `layout.tsx`). The page sets `data-layout="wide"`
+and `layout.module.css` widens to 1120px with `:has()`, so other pages keep the reading width.
+The sample card is a static snapshot of a real result (`sampleResult.ts`, captured 2026-10-27
+from one live Sinatra-example search), rendered with the same `StatusBadge` as results. The
+illustration is an original inline SVG. `FadeUp` uses IntersectionObserver and only hides a
+section once armed by script, so content shows without JS and with reduced motion. Tap targets ≥ 44px. `aria-live="polite"` for
 progress and announcements; reduced motion stops the spinner. Error summary takes focus and links
 to fields; inline errors use `aria-invalid`.

@@ -17,7 +17,11 @@ Frank Sinatra profile) → **Find restaurants**. Results stream in within a few 
 **How Qloo shaped these results** to compare Qloo's ranking with and without the person's taste
 signals.
 
-![Welcome page](docs/screenshots/welcome-light.jpg)
+![Welcome page: headline and a real Sinatra-example result card](docs/screenshots/welcome-light.jpg)
+
+| Dark mode | Phone width (375px), light and dark |
+|---|---|
+| ![Welcome page in dark mode](docs/screenshots/welcome-dark.jpg) | ![Welcome page at 375px in light and dark mode](docs/screenshots/phase9a-mobile-375-light-dark.jpg) |
 
 ## The problem
 
@@ -76,7 +80,7 @@ texture. The top 3 places start on a shortlist; "Add to shortlist" on any card c
 |---|---|
 | ![How Qloo shaped these results](docs/screenshots/evidence-panel-dark.jpg) | ![Result card on a phone-width screen](docs/screenshots/mobile-card-dark.png) |
 
-More screenshots: [`docs/screenshots/`](docs/screenshots/) (welcome and profile in light and dark;
+More screenshots: [`docs/screenshots/`](docs/screenshots/) (welcome, illustration and profile in light and dark;
 the notice shown when the built-in planner stands in for Claude).
 
 ## How Qloo powers it

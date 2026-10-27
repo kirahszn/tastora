@@ -15,8 +15,8 @@ export function shareCard() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          background: "#faf5ec",
-          color: "#2b211a",
+          background: "#fbf6ee",
+          color: "#2b1d16",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
@@ -25,8 +25,8 @@ export function shareCard() {
               width: 72,
               height: 72,
               borderRadius: 18,
-              background: "#a3432a",
-              color: "#faf5ec",
+              background: "#d9774f",
+              color: "#2b1d16",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -41,11 +41,11 @@ export function shareCard() {
           <div style={{ fontSize: 76, fontWeight: 700, lineHeight: 1.1, maxWidth: 960 }}>
             Good food should still feel like home.
           </div>
-          <div style={{ fontSize: 34, color: "#5c4d41", maxWidth: 980 }}>
+          <div style={{ fontSize: 34, color: "#6b5b50", maxWidth: 980 }}>
             New York restaurant ideas from someone&apos;s own tastes, with clear notes on what to check.
           </div>
         </div>
-        <div style={{ display: "flex", fontSize: 28, color: "#a3432a", fontWeight: 700 }}>
+        <div style={{ display: "flex", fontSize: 28, color: "#a44f2e", fontWeight: 700 }}>
           Powered by Qloo taste intelligence
         </div>
       </div>

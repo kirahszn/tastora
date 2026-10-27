@@ -266,8 +266,8 @@
 }
 
 .shortlistToggle[aria-pressed="true"] {
-  border-color: var(--accent);
-  background: var(--accent);
+  border-color: var(--accent-fill);
+  background: var(--accent-fill);
   color: var(--on-accent);
 }
 
@@ -343,7 +343,7 @@
   width: 2.4rem;
   height: 2.4rem;
   border-radius: 999px;
-  background: var(--accent);
+  background: var(--accent-fill);
   color: var(--on-accent);
   font-family: var(--font-serif);
   font-weight: 700;
@@ -729,7 +729,7 @@
 
 .move_new {
   color: var(--on-accent);
-  background: var(--accent);
+  background: var(--accent-fill);
 }
 
 .traceList {

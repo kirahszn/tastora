@@ -1,0 +1,441 @@
+/* Landing page. Colours only from the tokens in globals.css (the illustration has its own palette
+   below, built from the same cream, terracotta, sage, butter and lavender). */
+.landing {
+  --section-gap: 96px;
+  --radius-xl: 32px;
+
+  display: grid;
+  gap: var(--section-gap);
+  padding-block: 40px var(--section-gap);
+}
+
+/* Shared */
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.cta {
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.arrow {
+  display: inline-flex;
+  transition: transform 160ms ease;
+}
+
+.cta:hover .arrow {
+  transform: translateX(2px);
+}
+
+.sectionTitle {
+  font-size: clamp(1.7rem, 3.6vw, 2.4rem);
+  line-height: 1.15;
+  max-width: 22ch;
+}
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: center;
+}
+
+.heroText {
+  display: grid;
+  gap: 1.4rem;
+  justify-items: start;
+}
+
+.headline {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 14ch;
+  text-wrap: balance;
+}
+
+.headlineAccent {
+  color: var(--accent);
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.lede {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 34rem;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+}
+
+/* Sample card */
+.sampleWrap {
+  transform: rotate(-1.5deg);
+}
+
+.sample {
+  display: grid;
+  gap: 0.5rem;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.sampleLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.sampleName {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.samplePlace {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--muted);
+}
+
+.sampleHeading {
+  margin-top: 0.5rem;
+  font-weight: 700;
+}
+
+.sampleReasons {
+  display: grid;
+  gap: 0.2rem;
+  padding-left: 1.1rem;
+}
+
+.sampleReasons li::marker {
+  color: var(--accent);
+}
+
+.sampleChips {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sampleAsk {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: var(--tint-lavender);
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+.sampleNote {
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Illustration */
+.illustration {
+  --ill-wall: #f7ecdf;
+  --ill-floor: #efdcc8;
+  --ill-light: #fdf6ea;
+  --ill-window: #e6eef0;
+  --ill-frame: #fbf6ee;
+  --ill-wood: #b98a64;
+  --ill-plate: #ffffff;
+  --ill-steam: #b9a898;
+  --ill-ink: #2b1d16;
+  --ill-trousers: #7a5c4a;
+  --ill-terracotta: #d9774f;
+  --ill-sage: #a9c3a3;
+  --ill-sage-deep: #5e7a5a;
+  --ill-butter: #f2d98f;
+  --ill-lavender: #ece6f5;
+  --ill-lavender-deep: #9d8cc4;
+  --ill-skin-a: #c68b63;
+  --ill-skin-b: #8d5a3b;
+  --ill-hair-a: #3b2a20;
+  --ill-hair-b: #5a3d2b;
+
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--line);
+  background: var(--ill-wall);
+}
+
+.illustration svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 220px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .illustration {
+    --ill-wall: #33271f;
+    --ill-floor: #2a201b;
+    --ill-light: #3b2e25;
+    --ill-window: #4a4a52;
+    --ill-frame: #1c1512;
+    --ill-wood: #8a6448;
+    --ill-plate: #e9dccb;
+    --ill-steam: #b9a898;
+    --ill-ink: #120d0b;
+    --ill-trousers: #4a372c;
+    --ill-terracotta: #c86a45;
+    --ill-sage: #7f9a79;
+    --ill-sage-deep: #4f6a4b;
+    --ill-butter: #c9ac62;
+    --ill-lavender: #5a5068;
+    --ill-lavender-deep: #7c6ca3;
+    --ill-skin-a: #b07a55;
+    --ill-skin-b: #7d4f33;
+  }
+}
+
+/* Entry cards */
+.entries {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.entry {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: 0.75rem;
+  padding: 36px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.entryAlt {
+  background: var(--tint-peach);
+  border-color: transparent;
+}
+
+.entryTitle {
+  font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+  line-height: 1.15;
+}
+
+.entryText {
+  color: var(--muted);
+  max-width: 30rem;
+}
+
+.entryActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.entry > .cta {
+  margin-top: 0.5rem;
+}
+
+.entryNote {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* How it works */
+.how {
+  display: grid;
+  gap: 32px;
+}
+
+.howGrid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.howCard {
+  display: grid;
+  align-content: start;
+  gap: 0.4rem;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.tile {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 0.6rem;
+  border-radius: 16px;
+  color: var(--ink);
+}
+
+.tintPeach {
+  background: var(--tint-peach);
+}
+
+.tintSage {
+  background: var(--tint-sage);
+}
+
+.tintButter {
+  background: var(--tint-butter);
+}
+
+.tintLavender {
+  background: var(--tint-lavender);
+}
+
+.howTitle {
+  font-size: 1.3rem;
+}
+
+.howText {
+  color: var(--muted);
+}
+
+/* Trust strip */
+.trust {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 18px 24px;
+  border-radius: var(--radius-lg);
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.trust svg {
+  margin-top: 0.15rem;
+  color: var(--accent);
+}
+
+/* Scroll fade-up (see FadeUp.tsx): hidden only once armed by script. */
+.fade {
+  transition:
+    opacity 600ms ease,
+    transform 600ms ease;
+}
+
+.fade[data-fade="armed"] {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+@media (max-width: 860px) {
+  .landing {
+    --section-gap: 64px;
+    padding-top: 24px;
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  .sampleWrap {
+    transform: rotate(-1deg);
+    margin-inline: 6px;
+  }
+
+  .entries,
+  .howGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .entry {
+    padding: 28px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* "Good food should / still feel / like home." at 375px, rather than "should" on its own line. */
+  .headline {
+    font-size: 2.2rem;
+  }
+
+  .heroActions,
+  .heroActions .cta {
+    width: 100%;
+  }
+
+  .heroActions .textLink {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .sample {
+    padding: 22px 20px;
+  }
+
+  /* Keep the record and the plant in frame on a phone. */
+  .illustration svg {
+    min-height: 170px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sample {
+    animation: none;
+  }
+
+  .cta:hover,
+  .cta:hover .arrow {
+    transform: none;
+  }
+}
