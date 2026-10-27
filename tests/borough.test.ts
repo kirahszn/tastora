@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { buildExplanationFacts } from "@/lib/agent/explanationFacts";
@@ -85,10 +85,11 @@ describe("detectVenueArea", () => {
     expect(areaLabel({ kind: "unknown" })).toBeNull();
   });
 
-  it("finds an area for every place in a recorded raw Qloo response", () => {
-    const raw = JSON.parse(
-      readFileSync(join(process.cwd(), "fixtures", "qloo", "raw", "E5i-italian-signal-sinatra.json"), "utf8"),
-    );
+  // Raw responses are gitignored (local only), so this check is skipped in a fresh clone.
+  const rawPath = join(process.cwd(), "fixtures", "qloo", "raw", "E5i-italian-signal-sinatra.json");
+
+  it.skipIf(!existsSync(rawPath))("finds an area for every place in a recorded raw Qloo response", () => {
+    const raw = JSON.parse(readFileSync(rawPath, "utf8"));
     const places = normalizePlaces(raw.body.results.entities);
     expect(places.length).toBeGreaterThan(10);
     expect(places.every((p) => p.geocode?.county)).toBe(true);
