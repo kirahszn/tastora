@@ -215,6 +215,39 @@ summary {
   top: 1rem;
 }
 
+/* Paper is always light: black ink, white page, no site header or footer. */
+@media print {
+  :root {
+    --bg: #fff;
+    --surface: #fff;
+    --surface-2: #fff;
+    --ink: #000;
+    --muted: #000;
+    --line: #000;
+    --line-strong: #000;
+    --accent: #000;
+    --bad: #000;
+    --shadow: none;
+    color-scheme: light;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+  }
+
+  body > header,
+  body > footer,
+  .skip-link {
+    display: none !important;
+  }
+
+  a {
+    color: #000;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

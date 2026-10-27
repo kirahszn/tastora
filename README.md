@@ -48,6 +48,25 @@ must avoid"), and it is explicit about what it cannot verify.
 5. **Feedback.** Mark places Like, Not for them, Not suitable or Already tried, then search
    again. The ranking takes the feedback into account, and "Not suitable" places are not shown
    again.
+6. **Share and print.** See below.
+
+### Share and print
+
+Caregivers rarely decide alone, and the restaurant still has to be asked about allergies and
+texture. The top 3 places start on a shortlist; "Add to shortlist" on any card changes it.
+
+- **Share** builds plain text on the device (no emoji, about 1,500 characters for 3 places): for
+  each place its area, one reason, up to 3 dishes to ask about, up to 3 questions to ask, phone and
+  a Google Maps link, then "Tastora can't confirm ingredients or allergens. Please check with the
+  restaurant." Send it with the phone's share sheet, copy it, or open it in WhatsApp
+  (`https://wa.me/?text=…`). Scores and set-aside dishes are never included.
+- **Print checklist** (`/results/print`) is a "Before you go — questions to ask" sheet: address,
+  phone in large type, dishes to ask about, warnings, and every question with a ☐ box and a line
+  for notes. "Print or save as PDF"; paper is always black on white, one place per block.
+
+| Shortlist and share text | Print checklist (print styles) |
+|---|---|
+| ![Share panel with the shortlist text](docs/screenshots/phase8-share-panel-desktop-light.jpg) | ![Printed questions checklist](docs/screenshots/phase8-print-media.jpg) |
 
 | Must-avoid section (light) | Result card (dark) |
 |---|---|
@@ -176,8 +195,8 @@ instead of hiding it.
 |---|---|
 | **Qloo** | Cuisine and taste-memory search text (e.g. "Italian-American", "Frank Sinatra"), the Qloo tag and entity IDs chosen, and the location text (e.g. "Queens"). |
 | **Anthropic (Claude)** | Only favourite cuisines, favourite dishes, dislikes and taste memories, plus the Qloo tool results (tag and entity names, top restaurant names). A test checks every request body. |
-| **Never sent to Qloo or Claude** | Allergies, dietary restrictions, texture, comfort needs and the display name. The display name ("Dad") is not sent to the server at all. |
-| **On the device** | The profile and feedback in `localStorage`, and the last search in `sessionStorage` (so reloading doesn't run a new search). Clearing the profile clears all three. |
+| **Never sent to Qloo or Claude** | Allergies, dietary restrictions, texture, comfort needs and the display name. The display name ("Dad") is not sent to the server at all; it only appears in share text you choose to send. |
+| **On the device** | The profile and feedback in `localStorage`, and the last search and shortlist in `sessionStorage` (so reloading doesn't run a new search). Clearing the profile clears all of them. Share text and the print checklist are built in the browser. |
 | **On the server** | No database and no accounts. An in-memory cache of Qloo responses (10 minutes) and in-memory rate-limit counters, per server instance. A failed search logs only the error's class name. |
 
 API keys are read server-side only and are never sent to the browser.

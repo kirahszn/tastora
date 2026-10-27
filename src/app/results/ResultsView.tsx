@@ -8,13 +8,18 @@ import { toolLabel } from "@/lib/ui/format";
 import { ERROR_COPY, SearchError, requestBody, runSearch, type SearchErrorKind } from "@/lib/ui/searchClient";
 import { splitSource } from "@/lib/ui/status";
 import {
+  clearShortlist,
+  defaultShortlist,
   feedbackCount,
+  initialShortlist,
   loadFeedback,
   loadLastSearch,
   loadProfile,
   saveFeedback,
   saveLastSearch,
+  saveShortlist,
   setVerdict,
+  toggleShortlist,
   toRankingFeedback,
   type FeedbackStore,
   type Verdict,
@@ -23,6 +28,7 @@ import type { RecommendResponse, TraceStep } from "@/lib/ui/types";
 import { EvidencePanel } from "./EvidencePanel";
 import { ResultCard } from "./ResultCard";
 import { SearchProgress } from "./SearchProgress";
+import { ShortlistBar } from "./ShortlistBar";
 import styles from "./results.module.css";
 
 export function ResultsView() {
@@ -60,6 +66,10 @@ function Results({ profile }: { profile: SeniorProfile }) {
   const [fallback, setFallback] = useState(false);
   const [feedback, setFeedback] = useState<FeedbackStore>(() => loadFeedback());
   const [feedbackAtSearch, setFeedbackAtSearch] = useState(() => JSON.stringify(loadFeedback()));
+  // Top three the first time a result set is shown; the caregiver's picks after that.
+  const [shortlist, setShortlist] = useState<string[]>(() =>
+    phase.kind === "done" ? initialShortlist(phase.response.results) : [],
+  );
   const abortRef = useRef<AbortController | null>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const searching = phase.kind === "searching";
@@ -76,6 +86,9 @@ function Results({ profile }: { profile: SeniorProfile }) {
     })
       .then((response) => {
         saveLastSearch(profile, response);
+        const picks = defaultShortlist(response.results);
+        saveShortlist(response.results, picks);
+        setShortlist(picks);
         setFeedbackAtSearch(JSON.stringify(fb));
         setPhase({ kind: "done", response });
         setTimeout(() => headingRef.current?.focus(), 0);
@@ -92,6 +105,8 @@ function Results({ profile }: { profile: SeniorProfile }) {
   const startSearch = () => {
     setSteps([]);
     setFallback(false);
+    clearShortlist();
+    setShortlist([]);
     setPhase({ kind: "searching" });
     setSearchId((n) => n + 1);
     window.scrollTo({ top: 0 });
@@ -172,6 +187,14 @@ function Results({ profile }: { profile: SeniorProfile }) {
   const notices = phase.response.notices ?? [];
   const count = feedbackCount(feedback);
 
+  // From the latest state, so quick taps in a row don't undo each other. The save is idempotent.
+  const onToggleShortlist = (id: string) =>
+    setShortlist((prev) => {
+      const next = toggleShortlist(results, prev, id);
+      saveShortlist(results, next);
+      return next;
+    });
+
   return (
     <div className={styles.results}>
       <div className={styles.resultsHead}>
@@ -231,17 +254,22 @@ function Results({ profile }: { profile: SeniorProfile }) {
           </div>
         </div>
       ) : (
-        <ol className={styles.cards} aria-label="Suggestions, best first">
-          {results.map((r) => (
-            <li key={r.candidateId}>
-              <ResultCard
-                result={r}
-                verdict={feedback.entries[r.candidateId]?.verdict ?? null}
-                onVerdict={(v) => onVerdict(r.candidateId, r.name, v)}
-              />
-            </li>
-          ))}
-        </ol>
+        <>
+          <ShortlistBar results={results} shortlist={shortlist} profileName={profile.displayName} />
+          <ol className={styles.cards} aria-label="Suggestions, best first">
+            {results.map((r) => (
+              <li key={r.candidateId}>
+                <ResultCard
+                  result={r}
+                  verdict={feedback.entries[r.candidateId]?.verdict ?? null}
+                  onVerdict={(v) => onVerdict(r.candidateId, r.name, v)}
+                  shortlisted={shortlist.includes(r.candidateId)}
+                  onToggleShortlist={() => onToggleShortlist(r.candidateId)}
+                />
+              </li>
+            ))}
+          </ol>
+        </>
       )}
 
       {excluded.length > 0 && (

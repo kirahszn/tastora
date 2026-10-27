@@ -33,7 +33,8 @@ Tastora finds New York City restaurants and explains each one: why it was sugges
 Needs confirmation / Conflict status for every need, dishes to ask about, dishes set aside and why,
 and questions to ask the restaurant. Allergies and texture are never shown as matched. An evidence
 panel compares Qloo's ranking with and without the person's taste signals. Feedback shapes the
-next search.
+next search. A shortlist can be shared with family as plain text (share sheet, WhatsApp or copy)
+or printed as a "questions to ask" checklist for phoning the restaurant.
 
 ## How we built it
 

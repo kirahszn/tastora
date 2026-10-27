@@ -17,7 +17,7 @@ import {
   type DraftField,
   type ProfileDraft,
 } from "@/lib/ui/profileDraft";
-import { clearAll, clearLastSearch, emptyFeedback, loadProfile, saveFeedback, saveProfile } from "@/lib/ui/storage";
+import { clearAll, clearLastSearch, clearShortlist, emptyFeedback, loadProfile, saveFeedback, saveProfile } from "@/lib/ui/storage";
 import styles from "./profile.module.css";
 
 const CUISINES = [
@@ -99,6 +99,7 @@ function Form() {
     // Feedback and cached results belong to the previous person.
     saveFeedback(emptyFeedback());
     clearLastSearch();
+    clearShortlist();
     setAnnouncement(`Example loaded: ${example.title}. Review it below, then choose Find restaurants.`);
   };
 
@@ -176,7 +177,8 @@ function Form() {
               A short name <span className={styles.optional}>(optional)</span>
             </label>
             <p id="f-displayName-hint" className={formStyles.hint}>
-              Just what you call them, like &ldquo;Mum&rdquo; or &ldquo;Uncle Joe&rdquo;. It stays on this device.
+              Just what you call them, like &ldquo;Mum&rdquo; or &ldquo;Uncle Joe&rdquo;. The name stays on this device &mdash; it&rsquo;s never sent to
+              Tastora&rsquo;s server, Qloo or Claude. It only appears in text you choose to share.
             </p>
             <input
               id="f-displayName"

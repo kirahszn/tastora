@@ -119,9 +119,59 @@ export const saveLastSearch = (profile: SeniorProfile, response: RecommendRespon
 
 export const clearLastSearch = (store = session()) => remove(store, LAST_SEARCH_KEY);
 
-/** "Clear profile": the profile, its feedback and the cached search. */
+// --- Shortlist (sessionStorage) --------------------------------------------------------------
+// The places picked for sharing and the print checklist. Tied to one result set: a shortlist saved
+// for other results is stale and ignored.
+
+export const SHORTLIST_KEY = "tastora.shortlist.v1";
+export const DEFAULT_SHORTLIST_SIZE = 3;
+
+const ShortlistSchema = z.object({
+  resultSet: z.string(),
+  ids: z.array(z.string().min(1).max(100)).max(100),
+});
+
+type ResultIds = readonly { candidateId: string }[];
+
+export const resultSetKey = (results: ResultIds) => results.map((r) => r.candidateId).join("|");
+
+/** The saved shortlist for these results (in result rank sequence), or null if missing, corrupted or stale. */
+export function loadShortlist(results: ResultIds, store = session()): string[] | null {
+  const saved = readJson(store, SHORTLIST_KEY, ShortlistSchema);
+  if (!saved || saved.resultSet !== resultSetKey(results)) return null;
+  const chosen = new Set(saved.ids);
+  return results.map((r) => r.candidateId).filter((id) => chosen.has(id));
+}
+
+export const saveShortlist = (results: ResultIds, ids: readonly string[], store = session()) =>
+  writeJson(store, SHORTLIST_KEY, { resultSet: resultSetKey(results), ids });
+
+export const clearShortlist = (store = session()) => remove(store, SHORTLIST_KEY);
+
+export const defaultShortlist = (results: ResultIds): string[] =>
+  results.slice(0, DEFAULT_SHORTLIST_SIZE).map((r) => r.candidateId);
+
+/** The saved shortlist, or the top three the first time these results are seen (and saves that). */
+export function initialShortlist(results: ResultIds, store = session()): string[] {
+  const saved = loadShortlist(results, store);
+  if (saved) return saved;
+  const ids = defaultShortlist(results);
+  saveShortlist(results, ids, store);
+  return ids;
+}
+
+/** Add or remove one place; the result keeps the results' rank sequence. */
+export function toggleShortlist(results: ResultIds, ids: readonly string[], id: string): string[] {
+  const chosen = new Set(ids);
+  if (chosen.has(id)) chosen.delete(id);
+  else chosen.add(id);
+  return results.map((r) => r.candidateId).filter((x) => chosen.has(x));
+}
+
+/** "Clear profile": the profile, its feedback, the cached search and the shortlist. */
 export function clearAll(): void {
   remove(local(), PROFILE_KEY);
   remove(local(), FEEDBACK_KEY);
   clearLastSearch();
+  clearShortlist();
 }

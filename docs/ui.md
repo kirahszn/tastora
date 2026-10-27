@@ -25,6 +25,18 @@ in `tests/ui-helpers.test.ts`). No UI libraries; CSS modules plus `src/app/globa
 | `tastora.profile.v1` | localStorage | `SeniorProfile` |
 | `tastora.feedback.v1` | localStorage | `{ entries: { [venueId]: { verdict, name } } }`; verdicts liked / disliked ("Not for them") / notSuitable / tried, sent as `feedback` (≤ 50 per list) |
 | `tastora.lastSearch.v1` | sessionStorage | Last response + the profile it was for, so reload/Back doesn't re-run a live search |
+| `tastora.shortlist.v1` | sessionStorage | `{ resultSet, ids }`: shortlisted venue ids for one result set (ids joined); stale or corrupted → top 3 again. Cleared when a new search starts |
+
+## Share and print (Phase 8)
+
+`buildShareText()` in `src/lib/ui/share.ts` (tested in `tests/share.test.ts`) lays out shortlisted
+facts as plain text within ~1,500 characters, trimming dishes, then the reason, then questions,
+then whole places ("And 2 more places on the shortlist."). The "Why" line prefers a favourite dish,
+then cuisine, never the Qloo rank unless nothing else exists. `ShortlistBar` offers the share sheet
+(`navigator.share`), copy (clipboard API, `execCommand` fallback) and `https://wa.me/?text=`.
+`/results/print` reads the cached search + shortlist; `@media print` in `globals.css` forces light
+tokens and hides the site header/footer. Hours are not in the response, so the checklist relies
+on the "Confirm opening hours (none listed)" question when Qloo has none.
 
 `displayName` is never sent to the server (`requestBody()` strips it). Loading an example or
 clearing the profile clears feedback and the cached search.

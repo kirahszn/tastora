@@ -30,10 +30,14 @@ export function ResultCard({
   result: r,
   verdict,
   onVerdict,
+  shortlisted,
+  onToggleShortlist,
 }: {
   result: RecommendResult;
   verdict: Verdict | null;
   onVerdict: (v: Verdict | null) => void;
+  shortlisted: boolean;
+  onToggleShortlist: () => void;
 }) {
   const headingId = `place-${r.rank}`;
   const price = priceLabel(r.venue.priceLevel);
@@ -75,6 +79,17 @@ export function ResultCard({
           </p>
         </div>
       </header>
+
+      <button
+        type="button"
+        className={styles.shortlistToggle}
+        aria-pressed={shortlisted}
+        onClick={onToggleShortlist}
+      >
+        <Icon name={shortlisted ? "check" : "plus"} />
+        {shortlisted ? "On your shortlist" : "Add to shortlist"}
+        <span className="sr-only">: {r.name}</span>
+      </button>
 
       {(r.warnings.length > 0 || conflicts.length > 0) && (
         <div className={styles.cardWarning} role="note" aria-label="Warnings">

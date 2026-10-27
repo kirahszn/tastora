@@ -1,0 +1,147 @@
+.empty {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.sheet {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.head {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.date {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.place {
+  display: grid;
+  gap: 0.4rem;
+  padding: 1.25rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.place h2 {
+  overflow-wrap: anywhere;
+}
+
+.place h3 {
+  margin-top: 0.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.where {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.phone {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.warnings {
+  list-style: none;
+  padding: 0.6rem 0.9rem;
+  border: 2px solid var(--bad);
+  border-radius: var(--radius-sm);
+}
+
+.dishes {
+  overflow-wrap: anywhere;
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.checklist li {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+}
+
+.checklist li > span:last-child {
+  flex: 1;
+}
+
+.box {
+  font-size: 1.4rem;
+  line-height: 1.1;
+}
+
+.noteLine {
+  display: block;
+  height: 1.9rem;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.disclaimer {
+  display: grid;
+  gap: 0.25rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--line-strong);
+}
+
+/* Paper: black on white, no backgrounds or buttons, one place never split across pages. */
+@media print {
+  .noPrint {
+    display: none !important;
+  }
+
+  .sheet {
+    gap: 1rem;
+  }
+
+  .head h1 {
+    font-size: 20pt;
+  }
+
+  .place h2 {
+    font-size: 15pt;
+  }
+
+  .place {
+    border: 1px solid #000;
+    border-radius: 0;
+    background: none;
+    padding: 0.8rem 1rem;
+  }
+
+  .where,
+  .date {
+    color: #000;
+  }
+
+  .warnings {
+    border-color: #000;
+  }
+
+  .noteLine {
+    border-bottom-color: #000;
+  }
+}
