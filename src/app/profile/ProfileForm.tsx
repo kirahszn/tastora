@@ -404,7 +404,7 @@ function Form() {
           <ul>
             <li>This profile is saved in this browser, on this device only.</li>
             <li>
-              When you search, it goes to Tastora&rsquo;s server (without the name, which never leaves this device).
+              When you search, it goes to Tastora&rsquo;s server (without the name, which is never sent to Tastora&rsquo;s server and only appears in text you choose to share).
               Their favourite foods, dislikes and taste memories are sent to Claude, an AI model, which plans
               searches on Qloo using those tastes and the area.
             </li>
