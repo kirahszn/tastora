@@ -1,0 +1,62 @@
+{
+  "request": {
+    "path": "/v2/insights",
+    "params": {
+      "filter.type": "urn:tag",
+      "filter.tag.types": "urn:tag:genre:music",
+      "signal.interests.entities": "679CEADA-31C3-4A06-99D0-D7384D6693BF",
+      "take": 10
+    }
+  },
+  "ok": true,
+  "status": 200,
+  "durationMs": 1068,
+  "resultCount": 10,
+  "body": {
+    "success": true,
+    "results": {
+      "tags": [
+        {
+          "tag_id": "urn:tag:genre:music:funk",
+          "name": " funk",
+          "subtype": "urn:tag:genre:music",
+          "query": {
+            "affinity": 0.9925309794601935
+          }
+        },
+        {
+          "tag_id": "urn:tag:genre:music:free_jazz",
+          "name": "free jazz",
+          "subtype": "urn:tag:genre:music",
+          "query": {
+            "affinity": 0.9896452215243592
+          }
+        },
+        {
+          "tag_id": "urn:tag:genre:music:jazz",
+          "name": " Jazz",
+          "subtype": "urn:tag:genre:music",
+          "query": {
+            "affinity": 0.9870989645221524
+          }
+        },
+        {
+          "tag_id": "urn:tag:genre:music:roots_reggae",
+          "name": "Roots - Reggae",
+          "subtype": "urn:tag:genre:music",
+          "query": {
+            "affinity": 0.9868443388219317
+          }
+        },
+        {
+          "tag_id": "urn:tag:genre:music:avant_garde",
+          "name": " avant-garde",
+          "subtype": "urn:tag:genre:music",
+          "query": {
+            "affinity": 0.9859955864878629
+          }
+        }
+      ]
+    }
+  }
+}

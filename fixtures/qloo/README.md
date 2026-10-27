@@ -14,5 +14,9 @@ Recorded real Qloo API responses from `npm run qloo:probe` (Phase 1). Never stor
   `primary_genre` and `category:place` tags, for the non-restaurant filter tests. Built from `raw/` by
   `scripts/extract-venue-filter-samples.ts`; shape `{ note, places[] }`.
 
+- `portrait-*.json` (Phase 7 validation, not used by tests): tag and cross-domain insights for Fela Kuti,
+  Frank Sinatra and Bob Marley. Shape `{ request, ok, status, durationMs, resultCount, body }`, with the
+  first 5 items slimmed to id/name/subtype/affinity. See "Taste portrait" in `docs/qloo-findings.md`.
+
 The other files have the shape `{ request: { path, params }, ok, status, body }`.
 Re-running `npm run qloo:probe` rewrites samples at full size; run the slim script afterwards.

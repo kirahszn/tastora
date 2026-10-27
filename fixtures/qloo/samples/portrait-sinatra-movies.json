@@ -1,0 +1,61 @@
+{
+  "request": {
+    "path": "/v2/insights",
+    "params": {
+      "filter.type": "urn:entity:movie",
+      "signal.interests.entities": "FC0F8D26-BA80-4D83-8BBF-FC011DC8D241",
+      "take": 10
+    }
+  },
+  "ok": true,
+  "status": 200,
+  "durationMs": 1865,
+  "resultCount": 10,
+  "body": {
+    "success": true,
+    "results": {
+      "entities": [
+        {
+          "entity_id": "5D9A9977-1D3F-4797-A73D-864916A10925",
+          "name": "Boyhood",
+          "subtype": "urn:entity:movie",
+          "query": {
+            "affinity": 0.9221334117458105
+          }
+        },
+        {
+          "entity_id": "BEE19E8A-3652-40EC-932A-60E53CBEADA8",
+          "name": "The Theory of Everything",
+          "subtype": "urn:entity:movie",
+          "query": {
+            "affinity": 0.9192060772076264
+          }
+        },
+        {
+          "entity_id": "4F8EBD51-46DB-4527-BC61-75B56472A50E",
+          "name": "Her",
+          "subtype": "urn:entity:movie",
+          "query": {
+            "affinity": 0.9184676679486135
+          }
+        },
+        {
+          "entity_id": "DF788007-B5EA-4F29-872B-96BCB8EEC42F",
+          "name": "The Grand Budapest Hotel",
+          "subtype": "urn:entity:movie",
+          "query": {
+            "affinity": 0.9170268410199932
+          }
+        },
+        {
+          "entity_id": "8B41843D-89DF-48D9-AD91-4F61C2B5C37B",
+          "name": "The Imitation Game",
+          "subtype": "urn:entity:movie",
+          "query": {
+            "affinity": 0.9126549509816351
+          }
+        }
+      ]
+    }
+  }
+}

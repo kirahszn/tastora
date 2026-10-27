@@ -1,0 +1,61 @@
+{
+  "request": {
+    "path": "/v2/insights",
+    "params": {
+      "filter.type": "urn:entity:artist",
+      "signal.interests.entities": "679CEADA-31C3-4A06-99D0-D7384D6693BF",
+      "take": 10
+    }
+  },
+  "ok": true,
+  "status": 200,
+  "durationMs": 3674,
+  "resultCount": 10,
+  "body": {
+    "success": true,
+    "results": {
+      "entities": [
+        {
+          "entity_id": "EED1BAE7-5A87-47EB-9998-089C3F6B3B68",
+          "name": "Antibalas Afrobeat Orchestra",
+          "subtype": "urn:entity:artist",
+          "query": {
+            "affinity": 0.9631996366348714
+          }
+        },
+        {
+          "entity_id": "414E4FFF-EB76-4102-B9BB-1BEFF4EA0C29",
+          "name": "Tony Allen",
+          "subtype": "urn:entity:artist",
+          "query": {
+            "affinity": 0.952772476101117
+          }
+        },
+        {
+          "entity_id": "A97D1C21-926D-43CB-931C-A6E18D7598B9",
+          "name": "Manu Dibango",
+          "subtype": "urn:entity:artist",
+          "query": {
+            "affinity": 0.9521466101806472
+          }
+        },
+        {
+          "entity_id": "A6C554AB-5554-456D-AB51-C80536794BCF",
+          "name": "Femi Kuti",
+          "subtype": "urn:entity:artist",
+          "query": {
+            "affinity": 0.9499928085997589
+          }
+        },
+        {
+          "entity_id": "24697AA5-3CF4-4FBC-8DDD-DDBA081E35B8",
+          "name": "Mulatu Astatke",
+          "subtype": "urn:entity:artist",
+          "query": {
+            "affinity": 0.9464989778378424
+          }
+        }
+      ]
+    }
+  }
+}

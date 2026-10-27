@@ -1,0 +1,30 @@
+{
+  "request": {
+    "path": "/v2/insights",
+    "params": {
+      "filter.type": "urn:tag",
+      "filter.parents.types": "urn:entity:place",
+      "signal.interests.entities": "679CEADA-31C3-4A06-99D0-D7384D6693BF",
+      "take": 50
+    }
+  },
+  "ok": true,
+  "status": 200,
+  "durationMs": 1122,
+  "resultCount": 1,
+  "body": {
+    "success": true,
+    "results": {
+      "tags": [
+        {
+          "tag_id": "urn:tag:residence:qloo:washington_d_c",
+          "name": "Washington D.C.",
+          "subtype": "urn:tag:residence:qloo",
+          "query": {
+            "affinity": 0.5755435837701417
+          }
+        }
+      ]
+    }
+  }
+}

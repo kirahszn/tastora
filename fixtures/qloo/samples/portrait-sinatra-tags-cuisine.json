@@ -1,0 +1,62 @@
+{
+  "request": {
+    "path": "/v2/insights",
+    "params": {
+      "filter.type": "urn:tag",
+      "filter.tag.types": "urn:tag:cuisine:qloo",
+      "signal.interests.entities": "FC0F8D26-BA80-4D83-8BBF-FC011DC8D241",
+      "take": 10
+    }
+  },
+  "ok": true,
+  "status": 200,
+  "durationMs": 695,
+  "resultCount": 8,
+  "body": {
+    "success": true,
+    "results": {
+      "tags": [
+        {
+          "tag_id": "urn:tag:cuisine:qloo:asian",
+          "name": "Asian",
+          "subtype": "urn:tag:cuisine:qloo",
+          "query": {
+            "affinity": 0.8492352512745812
+          }
+        },
+        {
+          "tag_id": "urn:tag:cuisine:qloo:japanese",
+          "name": "Japanese",
+          "subtype": "urn:tag:cuisine:qloo",
+          "query": {
+            "affinity": 0.6937367303609342
+          }
+        },
+        {
+          "tag_id": "urn:tag:cuisine:qloo:italian",
+          "name": "Italian",
+          "subtype": "urn:tag:cuisine:qloo",
+          "query": {
+            "affinity": 0.6562077766101186
+          }
+        },
+        {
+          "tag_id": "urn:tag:cuisine:qloo:mexican",
+          "name": "Mexican",
+          "subtype": "urn:tag:cuisine:qloo",
+          "query": {
+            "affinity": 0.5700335672871529
+          }
+        },
+        {
+          "tag_id": "urn:tag:cuisine:qloo:seafood",
+          "name": "Seafood",
+          "subtype": "urn:tag:cuisine:qloo",
+          "query": {
+            "affinity": 0.4576049665087404
+          }
+        }
+      ]
+    }
+  }
+}

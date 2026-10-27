@@ -206,6 +206,57 @@ lookup (not exercised).
   "American Italian", …). 19 NYC places came back with the Sinatra signal.
 - The non-restaurant filter rule is documented in `docs/agent.md`.
 
+## Taste portrait (Phase 7 validation, 2026-10-27)
+
+Question: can Qloo say what people who love a taste-memory entity "also tend to love", with
+**food/dining** items first (e.g. Fela Kuti → West African/Nigerian cuisine tags), plus a few
+cross-domain items? 12 live calls (`npm run qloo:probe -- P1 P1b P2`), no Anthropic calls. Entity ids
+reused from the Phase 1 `/search` responses (artist type): Fela Kuti `679CEADA-…`, Frank Sinatra
+`FC0F8D26-…`, Bob Marley `A921B4A4-…`. Samples: `fixtures/qloo/samples/portrait-*.json` (request,
+status, latency, result count, first 5 items with id/name/subtype/affinity).
+
+**Docs.** The parameter reference (docs.qloo.com/reference/parameters) does not list `urn:tag` in the
+`filter.type` enum, but `diversify.by` says "Use subtype with filter.type=urn:tag…", so tag output exists.
+`filter.tag.types` is listed, though its description says "audience types" and its compatibility column
+is blank. `filter.parents.types`, `signal.location.query` and `take` (max 50) are listed. `Destination`
+appears in compatibility columns, not in the `filter.type` enum. **UNCLEAR in docs, CONFIRMED live:**
+`filter.type=urn:tag` + `filter.tag.types` + `signal.interests.entities`, and
+`filter.type=urn:entity:destination`. Tag results come back as `results.tags[]` with `tag_id`, `name`,
+`subtype`, `types`, `tag_value`, `popularity`, `query.affinity`.
+
+| Call (all `/v2/insights`, `signal.interests.entities` = artist) | Results | Latency | Verdict |
+|---|---|---|---|
+| Fela · `urn:tag` · `filter.tag.types=urn:tag:cuisine:qloo` | **0** | 1.5 s | nothing |
+| Fela · same + `signal.location.query=New York City` | **0** | 0.5 s | nothing |
+| Fela · `urn:tag` · `filter.tag.types=urn:tag:genre:place` | **0** | 0.4 s | nothing |
+| Fela · `urn:tag` · `filter.parents.types=urn:entity:place` (no tag type), take 50 | 1: "Washington D.C." (`residence`) | 1.1 s | irrelevant |
+| Marley · cuisine tags | **0** | 0.8 s | nothing |
+| Sinatra · cuisine tags | 8: Asian, Japanese, Italian, Mexican, Seafood, American, Steakhouse, French | 0.7 s | generic, not Sinatra-specific (Italian is 3rd, after Asian/Japanese) |
+| Fela · `urn:tag` · `filter.tag.types=urn:tag:genre:music` (sanity) | 10: funk, free jazz, Jazz, Roots - Reggae, avant-garde… | 1.1 s | coherent; tag insights work, same domain |
+| Fela · `urn:entity:artist` | 10: Antibalas Afrobeat Orchestra, Tony Allen, Manu Dibango, Femi Kuti, Mulatu Astatke… | 3.7 s | excellent |
+| Fela · `urn:entity:destination` | 10: Accra, Addis Ababa, Kampala, Lagos, Maputo, Nairobi, Harare, Johannesburg, Luanda, Dakar | 0.3 s | excellent |
+| Fela · `urn:entity:movie` | The Act of Killing, The Look of Silence, Timbuktu, Leviathan, Son of Saul… | 2.6 s | arthouse/world cinema; partly coherent |
+| Sinatra · movies | Boyhood, The Theory of Everything, Her, The Grand Budapest Hotel, The Imitation Game… | 1.9 s | generic 2010s prestige films; not Sinatra-like |
+| Marley · movies | Lords of Dogtown, City of God, What's Eating Gilbert Grape, The Beach, The Basketball Diaries… | 2.1 s | generic; weak |
+
+**Verdict: NO-GO for the portrait as specified.** The food part is the point of the feature, and Qloo
+gives nothing usable for it: cuisine and restaurant-genre tag insights return **0** for Fela Kuti and
+Bob Marley (with or without a NYC location signal), and Sinatra's list looks like a general popularity
+order, not a taste association. Showing it as "people who love Sinatra also love Asian food" would be
+technically true output but misleading. The "Try this" cuisine chips have no honest source. Cross-domain
+results are mixed: artists and destinations are culturally coherent and human-readable; movies are
+weak for 2 of 3 signals. Latency 0.3–3.7 s per call, fine in parallel with the restaurant search.
+
+Restaurant-level taste effects (E5h–j: Fela re-ranks West African places, Sinatra pulls red-sauce
+Italian) remain the real, demonstrable food signal. They are already shown in the evidence panel.
+
+**Best honest alternative (not built):** a smaller "taste neighbours" line per signal from
+`urn:entity:artist` (same domain) and `urn:entity:destination` (cross-domain), e.g. "People who love
+Fela Kuti also tend to love: Tony Allen, Femi Kuti, Manu Dibango · and places like Accra, Lagos, Dakar".
+No food chips, no "Try this", no cuisine inference from destinations. 2 extra calls per signal, in
+parallel; destination calls ~0.3 s, artist ~3.7 s. Untested for non-music signals (films, places) and
+for Sinatra/Marley destinations.
+
 ## Decisions
 
 **Recommendation (not integrated):** Qloo **can be the primary restaurant source for NYC**. It covers

@@ -1,0 +1,21 @@
+{
+  "request": {
+    "path": "/v2/insights",
+    "params": {
+      "filter.type": "urn:tag",
+      "filter.tag.types": "urn:tag:cuisine:qloo",
+      "signal.interests.entities": "679CEADA-31C3-4A06-99D0-D7384D6693BF",
+      "take": 10
+    }
+  },
+  "ok": true,
+  "status": 200,
+  "durationMs": 1486,
+  "resultCount": 0,
+  "body": {
+    "success": true,
+    "results": {
+      "tags": []
+    }
+  }
+}

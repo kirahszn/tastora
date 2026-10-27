@@ -1,0 +1,61 @@
+{
+  "request": {
+    "path": "/v2/insights",
+    "params": {
+      "filter.type": "urn:entity:destination",
+      "signal.interests.entities": "679CEADA-31C3-4A06-99D0-D7384D6693BF",
+      "take": 10
+    }
+  },
+  "ok": true,
+  "status": 200,
+  "durationMs": 315,
+  "resultCount": 10,
+  "body": {
+    "success": true,
+    "results": {
+      "entities": [
+        {
+          "entity_id": "31678155-D9A3-4783-A98F-8F4F511A99A4",
+          "name": "Accra",
+          "subtype": "urn:entity:destination",
+          "query": {
+            "affinity": 0.9724174937098351
+          }
+        },
+        {
+          "entity_id": "DC7BF7E7-94D9-40E4-A8FC-5508180A9CF6",
+          "name": "Addis Ababa",
+          "subtype": "urn:entity:destination",
+          "query": {
+            "affinity": 0.9602738261932622
+          }
+        },
+        {
+          "entity_id": "1D477EB7-F648-49E4-ABBE-CBDABB32781B",
+          "name": "Kampala",
+          "subtype": "urn:entity:destination",
+          "query": {
+            "affinity": 0.960131333971932
+          }
+        },
+        {
+          "entity_id": "CB861641-CE41-4587-AB34-4466B5317F69",
+          "name": "Lagos",
+          "subtype": "urn:entity:destination",
+          "query": {
+            "affinity": 0.9485717277013949
+          }
+        },
+        {
+          "entity_id": "3539AFE8-CE41-49AD-B799-21C7D0F4AA46",
+          "name": "Maputo",
+          "subtype": "urn:entity:destination",
+          "query": {
+            "affinity": 0.9471035068759369
+          }
+        }
+      ]
+    }
+  }
+}

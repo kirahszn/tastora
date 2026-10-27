@@ -97,7 +97,9 @@ suggest and no way to connect "loves Frank Sinatra" to a specific Italian restau
 Taste signals work best as a re-ranker inside a cuisine and location filter; without one, a Fela
 Kuti signal drifted toward live-music venues. Signal strength varies, and some artists aren't in
 Qloo, so the app says when a memory wasn't used. For most allergy questions the honest answer is
-"ask the restaurant", so the app's job is to make that easy.
+"ask the restaurant", so the app's job is to make that easy. We also tested a cross-domain food
+"taste portrait" against Qloo, found no food-relevant tags for these signals, and chose not to ship
+a feature that would have required guessing.
 
 ## What's next
 

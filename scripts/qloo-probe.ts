@@ -119,6 +119,18 @@ function firstId(name: string, match?: (e: Obj) => boolean): string | undefined 
   return (hit?.entity_id ?? hit?.id) as string | undefined;
 }
 
+const PORTRAIT_ARTISTS = [
+  ["fela", "E6-search-fela-kuti"],
+  ["sinatra", "E5-search-frank-sinatra"],
+  ["marley", "E5-search-bob-marley"],
+] as const;
+
+function portraitArtist(searchFile: string): string {
+  const id = firstId(searchFile, (e) => (e.types as string[] | undefined)?.includes("urn:entity:artist") ?? false);
+  if (!id) throw new Error(`No artist in ${searchFile}`);
+  return id;
+}
+
 // ---- experiments ----
 
 const RESTAURANT = "urn:tag:category:place:restaurant";
@@ -228,6 +240,79 @@ const experiments: Record<string, () => Promise<void>> = {
   async E6() {
     await call("E6-search-katzs", "/search", { query: "Katz's Delicatessen", take: 5 });
     await call("E6-search-fela-kuti", "/search", { query: "Fela Kuti", take: 5 });
+  },
+
+  // Phase 7: taste-portrait validation. Entity ids come from the E5/E6 search responses.
+  async P1() {
+    await call("portrait-fela-tags-cuisine", "/v2/insights", {
+      "filter.type": "urn:tag",
+      "filter.tag.types": "urn:tag:cuisine:qloo",
+      "signal.interests.entities": portraitArtist("E6-search-fela-kuti"),
+      take: 10,
+    });
+  },
+
+  async P1b() {
+    // P1 (filter.tag.types=cuisine) returned 0 tags; see which tag types a place-parent filter gives.
+    await call("portrait-fela-tags-place-parent", "/v2/insights", {
+      "filter.type": "urn:tag",
+      "filter.parents.types": "urn:entity:place",
+      "signal.interests.entities": portraitArtist("E6-search-fela-kuti"),
+      take: 50,
+    });
+  },
+
+  async P2() {
+    const sinatra = portraitArtist("E5-search-frank-sinatra");
+    const marley = portraitArtist("E5-search-bob-marley");
+    // Sanity check: does tag insights work for a same-domain (music) tag family?
+    await call("portrait-fela-tags-genre-music", "/v2/insights", {
+      "filter.type": "urn:tag",
+      "filter.tag.types": "urn:tag:genre:music",
+      "signal.interests.entities": portraitArtist("E6-search-fela-kuti"),
+      take: 10,
+    });
+    for (const [name, id] of [["sinatra", sinatra], ["marley", marley]] as const) {
+      await call(`portrait-${name}-tags-cuisine`, "/v2/insights", {
+        "filter.type": "urn:tag",
+        "filter.tag.types": "urn:tag:cuisine:qloo",
+        "signal.interests.entities": id,
+        take: 10,
+      });
+    }
+    // Cross-domain entities: movies for all three.
+    for (const [name, file] of PORTRAIT_ARTISTS) {
+      await call(`portrait-${name}-movies`, "/v2/insights", {
+        "filter.type": "urn:entity:movie",
+        "signal.interests.entities": portraitArtist(file),
+        take: 10,
+      });
+    }
+    const fela = portraitArtist("E6-search-fela-kuti");
+    await call("portrait-fela-artists", "/v2/insights", {
+      "filter.type": "urn:entity:artist",
+      "signal.interests.entities": fela,
+      take: 10,
+    });
+    await call("portrait-fela-destinations", "/v2/insights", {
+      "filter.type": "urn:entity:destination",
+      "signal.interests.entities": fela,
+      take: 10,
+    });
+    // Dining tags with a NYC location signal, and the restaurant-genre family.
+    await call("portrait-fela-tags-cuisine-nyc", "/v2/insights", {
+      "filter.type": "urn:tag",
+      "filter.tag.types": "urn:tag:cuisine:qloo",
+      "signal.interests.entities": fela,
+      "signal.location.query": NYC,
+      take: 10,
+    });
+    await call("portrait-fela-tags-genre-place", "/v2/insights", {
+      "filter.type": "urn:tag",
+      "filter.tag.types": "urn:tag:genre:place",
+      "signal.interests.entities": fela,
+      take: 10,
+    });
   },
 
   async E7() {
