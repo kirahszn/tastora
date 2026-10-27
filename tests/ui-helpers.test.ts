@@ -5,7 +5,7 @@ import { SeniorProfileSchema } from "@/lib/domain/profile";
 import { priceLabel, ratingLabel, signed, toolLabel } from "@/lib/ui/format";
 import { safeHttpUrl, telHref } from "@/lib/ui/links";
 import { createNdjsonParser, NdjsonError, readNdjson } from "@/lib/ui/ndjson";
-import { EXAMPLES, emptyDraft, profileToDraft, validateDraft } from "@/lib/ui/profileDraft";
+import { EXAMPLES, emptyDraft, exampleById, profileToDraft, validateDraft } from "@/lib/ui/profileDraft";
 import { droppedOut, movementLabel, rankMovement } from "@/lib/ui/rankMovement";
 import { requestBody, runSearch, SearchError } from "@/lib/ui/searchClient";
 import { displayStatus, requirementLabel, splitSource, STATUS_DISPLAY } from "@/lib/ui/status";
@@ -236,8 +236,12 @@ describe("profile draft", () => {
     expect(long.ok === false && long.errors.favouriteDishes).toBe("One of these entries is too long. Please shorten it.");
   });
 
+  it("lists the Sinatra (Queens) example first", () => {
+    expect(EXAMPLES.map((e) => e.id)).toEqual(["sinatra", "fela"]);
+  });
+
   it("builds the two example profiles exactly as specified", () => {
-    const [a, b] = EXAMPLES.map((e) => validateDraft(e.draft));
+    const [a, b] = [exampleById("fela"), exampleById("sinatra")].map((e) => validateDraft(e.draft));
     expect(a.ok && b.ok).toBe(true);
     if (!a.ok || !b.ok) return;
     expect(a.profile).toMatchObject({
@@ -259,7 +263,7 @@ describe("profile draft", () => {
   });
 
   it("composes and splits the location", () => {
-    const r = validateDraft({ ...EXAMPLES[0].draft, neighbourhood: "Bed-Stuy" });
+    const r = validateDraft({ ...exampleById("fela").draft, neighbourhood: "Bed-Stuy" });
     expect(r.ok && r.profile.location).toBe("Bed-Stuy, Brooklyn");
     if (!r.ok) return;
     expect(profileToDraft(r.profile)).toMatchObject({ borough: "Brooklyn", neighbourhood: "Bed-Stuy" });
@@ -299,6 +303,18 @@ describe("runSearch", () => {
     await expect(runSearch(body, { fetchImpl, onFallback })).resolves.toEqual(result);
     expect(onFallback).toHaveBeenCalledOnce();
     expect(fetchImpl.mock.calls[1][0]).toBe("/api/recommend");
+  });
+
+  it("doesn't re-run the search when the stream breaks after progress arrived", async () => {
+    const onFallback = vi.fn();
+    const fetchImpl = vi.fn(async () =>
+      new Response('{"type":"step","step":{"step":1}}\n', { headers: { "content-type": "application/x-ndjson" } }),
+    );
+    const err = await runSearch(body, { fetchImpl, onFallback }).catch((e) => e);
+    expect(err).toBeInstanceOf(SearchError);
+    expect(err.kind).toBe("upstream");
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+    expect(onFallback).not.toHaveBeenCalled();
   });
 
   it("does not retry real HTTP errors or streamed upstream errors", async () => {
@@ -349,6 +365,40 @@ describe("UI copy", () => {
   it("scans the UI source", () => {
     expect(all.some((f) => f.endsWith("ResultCard.tsx"))).toBe(true);
     expect(all.some((f) => f.endsWith("ProfileForm.tsx"))).toBe(true);
+  });
+
+  it("never claims food is safe (only negated forms like \"never shown as safe\")", () => {
+    // UI source plus the server modules whose strings reach the screen.
+    const copyFiles = [
+      ...all.filter((f) => /\.tsx?$/.test(f)),
+      ...["src/lib/agent/explanationFacts.ts", "src/lib/agent/notices.ts", "src/lib/constraints/evaluate.ts"].map((f) =>
+        join(process.cwd(), f),
+      ),
+    ];
+    const unsafe = /\b(safe|safely|allergen[\s-]free|guaranteed?|guarantees|verified[\s-]safe)\b/gi;
+    const negation = /\b(not|never|no|can['’]t|cannot|isn['’]t|don['’]t|won['’]t|without)\b[^.;:]{0,40}$/i;
+    const hits: string[] = [];
+    for (const file of copyFiles) {
+      const text = readFileSync(file, "utf8");
+      for (const m of text.matchAll(unsafe)) {
+        const before = text.slice(Math.max(0, m.index - 60), m.index);
+        if (!negation.test(before)) hits.push(`${file.split(/[\\/]/).slice(-2).join("/")}: …${before.slice(-30)}${m[0]}`);
+      }
+    }
+    expect(hits).toEqual([]);
+  });
+
+  it("the unsafe-claim check catches a positive claim and allows a negated one", () => {
+    const unsafe = /\b(safe|allergen[\s-]free|guaranteed?)\b/i;
+    const negation = /\b(not|never|no|can['’]t|cannot)\b[^.;:]{0,40}$/i;
+    const flagged = (s: string) => {
+      const m = unsafe.exec(s);
+      return !!m && !negation.test(s.slice(0, m.index));
+    };
+    expect(flagged("This dish is safe for her")).toBe(true);
+    expect(flagged("Guaranteed allergen-free")).toBe(true);
+    expect(flagged("Tastora can't confirm it's safe")).toBe(false);
+    expect(flagged("never shown as safe")).toBe(false);
   });
 
   it("never uses ordering language (order, buy, checkout)", () => {

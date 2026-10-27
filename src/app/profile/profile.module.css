@@ -81,14 +81,26 @@
   font-weight: 400;
 }
 
-/* Hard constraints look different from preferences: a heavier, warmer frame. */
+/* Hard constraints are set apart from preferences: important and respected, not an error. */
 .mustAvoid {
-  border: 2px solid var(--warn);
-  background: var(--warn-bg);
+  border: 2px solid var(--accent);
+  border-left-width: 8px;
 }
 
-.mustAvoid h2 {
-  color: var(--ink);
+.avoidHeading {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.shield {
+  display: inline-grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
 }
 
 .mustAvoid .sectionHint {

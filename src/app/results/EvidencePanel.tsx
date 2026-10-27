@@ -49,8 +49,8 @@ export function EvidencePanel({ evidence }: { evidence: QlooEvidence | null }) {
 
       {signals.length === 0 ? (
         <p>
-          No taste memories were used in this search, so Qloo ranked {cuisine} restaurants without them. Add music,
-          films or places to the profile to see how their tastes change the list.
+          No taste signals shaped this search, so Qloo ranked {cuisine} restaurants by cuisine and area alone. Music,
+          films or places that Qloo recognises change this list; you can add them to the profile.
         </p>
       ) : (
         <>

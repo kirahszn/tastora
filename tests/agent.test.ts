@@ -182,7 +182,7 @@ describe("agent planner", () => {
     expect(res.meta.fallbackReason).toBe("Claude API error 500");
     expect(res.results[0].name).toBe("Buka");
     expect(res.evidence!.signalsUsed.map((s) => s.name)).toEqual(["Fela Kuti"]);
-    expect(res.trace[0].resultSummary).toBe("Stopped: Claude API error 500");
+    expect(res.trace[0].resultSummary).toBe("Not available right now (Claude API error 500)");
   });
 
   it("uses the fallback planner when no key is configured", async () => {

@@ -137,30 +137,16 @@ export function validateDraft(d: ProfileDraft): { ok: true; profile: SeniorProfi
 }
 
 export interface ExampleProfile {
-  id: "a" | "b";
+  id: "sinatra" | "fela";
   title: string;
   summary: string;
   draft: ProfileDraft;
 }
 
+// Sinatra first: its taste signal changes Qloo's list the most (4 of 10 places shared live).
 export const EXAMPLES: readonly ExampleProfile[] = [
   {
-    id: "a",
-    title: "Nigerian food in Brooklyn",
-    summary: "Loves jollof rice and Fela Kuti. Peanut allergy, needs soft food.",
-    draft: {
-      ...emptyDraft(),
-      displayName: "Mum",
-      favouriteCuisines: ["Nigerian"],
-      favouriteDishes: ["jollof rice"],
-      music: ["Fela Kuti"],
-      allergies: ["peanut"],
-      texture: "soft",
-      borough: "Brooklyn",
-    },
-  },
-  {
-    id: "b",
+    id: "sinatra",
     title: "Italian-American in Queens",
     summary: "Loves chicken parm and Frank Sinatra. No pork, needs wheelchair access.",
     draft: {
@@ -174,4 +160,21 @@ export const EXAMPLES: readonly ExampleProfile[] = [
       borough: "Queens",
     },
   },
+  {
+    id: "fela",
+    title: "Nigerian food in Brooklyn",
+    summary: "Loves jollof rice and Fela Kuti. Peanut allergy, needs soft food.",
+    draft: {
+      ...emptyDraft(),
+      displayName: "Mum",
+      favouriteCuisines: ["Nigerian"],
+      favouriteDishes: ["jollof rice"],
+      music: ["Fela Kuti"],
+      allergies: ["peanut"],
+      texture: "soft",
+      borough: "Brooklyn",
+    },
+  },
 ];
+
+export const exampleById = (id: ExampleProfile["id"]) => EXAMPLES.find((e) => e.id === id)!;

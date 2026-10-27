@@ -3,10 +3,16 @@ import Link from "next/link";
 import "./globals.css";
 import styles from "./layout.module.css";
 
+const TITLE = "Tastora — Good food should still feel like home";
+const DESCRIPTION =
+  "Find New York restaurants that match the tastes of someone you care for, with clear notes on what to check.";
+
 export const metadata: Metadata = {
-  title: "Tastora — Good food should still feel like home",
-  description:
-    "Find New York restaurants that match the tastes of someone you care for, with clear notes on what to check.",
+  metadataBase: new URL("https://tastora-three.vercel.app"),
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: { title: TITLE, description: DESCRIPTION, type: "website", siteName: "Tastora", url: "/" },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
 export const viewport: Viewport = {

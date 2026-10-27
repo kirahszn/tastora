@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { Icon } from "@/components/Icon";
 import { ListInput } from "@/components/ListInput";
 import formStyles from "@/components/form.module.css";
 import { useHydrated } from "@/components/useHydrated";
@@ -276,12 +277,15 @@ function Form() {
         </section>
 
         <section className={`${styles.section} ${styles.mustAvoid}`} aria-labelledby="avoid-h">
-          <h2 id="avoid-h">
-            <span aria-hidden="true">⚠ </span>Must avoid
+          <h2 id="avoid-h" className={styles.avoidHeading}>
+            <span className={styles.shield}>
+              <Icon name="shield" size={22} />
+            </span>
+            Must avoid
           </h2>
           <p className={styles.sectionHint}>
-            These are checked by Tastora&rsquo;s own rules, never treated as safe. Restaurants don&rsquo;t share
-            ingredient data, so you&rsquo;ll always see what to confirm with them.
+            Tastora checks every result against these. Restaurants don&rsquo;t share full ingredient lists, so each
+            suggestion also tells you what to confirm with them.
           </p>
           <ListInput
             id="f-allergies"

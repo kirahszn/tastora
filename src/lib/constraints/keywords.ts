@@ -51,9 +51,12 @@ export interface AllergenGroup {
   venueTags: readonly string[];
 }
 
+// Phase 5 matrix added South Asian and Mediterranean dairy words (malai, khoya, feta…). "Curd" is
+// left out on purpose: "bean curd" is tofu.
 const MILK_WORDS = [
   "milk", "dairy", "cheese", "cheesecake", "butter", "buttermilk", "cream", "yogurt", "yoghurt",
   "ghee", "paneer", "mozzarella", "parmesan", "parm", "ricotta", "burrata", "mascarpone",
+  "malai", "khoya", "khoa", "queso", "feta", "halloumi", "labneh", "kefir", "cheddar", "provolone",
 ];
 const EGG_WORDS = ["egg", "omelet", "omelette", "frittata", "mayonnaise", "mayo", "meringue", "aioli"];
 const WHEAT_WORDS = [
@@ -63,12 +66,21 @@ const WHEAT_WORDS = [
 const FISH_WORDS = [
   "fish", "salmon", "tuna", "cod", "tilapia", "anchovy", "anchovies", "sardine", "trout",
   "halibut", "snapper", "catfish", "mackerel", "herring", "lox", "bass", "sashimi", "yellowtail",
+  "saltfish", "codfish", "bacalao", "bacalhau", "whitefish", "kingfish", "swordfish", "branzino",
+  "grouper", "gefilte", "eel", "unagi",
 ];
-// Molluscs (squid, octopus, clams…) are grouped with crustaceans, as US menus usually do.
+// Molluscs (squid, octopus, clams, conch, snails…) are grouped with crustaceans, as US menus
+// usually do. Conch / lambi from the Phase 5 Caribbean and Haitian profiles.
 const SHELLFISH_WORDS = [
   "shellfish", "shrimp", "prawn", "crab", "lobster", "crayfish", "crawfish", "langoustine",
   "gambas", "scallop", "clam", "mussel", "oyster", "squid", "calamari", "octopus",
+  "conch", "lambi", "whelk", "cockle", "abalone", "scampi", "snail", "escargot",
 ];
+/**
+ * "Seafood platter" may hold fish or shellfish, so it counts for both allergies. Kept out of
+ * SHELLFISH_WORDS so that a kosher fish dish isn't treated as contradicting a kosher tag.
+ */
+const SEAFOOD_WORDS = ["seafood", "fruits de mer", "frutti di mare", "mariscos"];
 
 export const ALLERGEN_GROUPS: readonly AllergenGroup[] = [
   {
@@ -93,24 +105,36 @@ export const ALLERGEN_GROUPS: readonly AllergenGroup[] = [
   {
     key: "shellfish",
     aliases: ["shellfish", "crustacean", "seafood"],
-    dishKeywords: SHELLFISH_WORDS,
+    dishKeywords: [...SHELLFISH_WORDS, ...SEAFOOD_WORDS],
+    commonDishes: ["paella", "gumbo", "jambalaya"],
+    venueTags: [],
+  },
+  {
+    key: "fish",
+    aliases: ["fish", "seafood"],
+    dishKeywords: [...FISH_WORDS, ...SEAFOOD_WORDS],
     commonDishes: [],
     venueTags: [],
   },
-  { key: "fish", aliases: ["fish", "seafood"], dishKeywords: FISH_WORDS, commonDishes: [], venueTags: [] },
   { key: "egg", aliases: ["egg"], dishKeywords: EGG_WORDS, commonDishes: [], venueTags: [] },
   {
     key: "milk",
     aliases: ["milk", "dairy", "lactose"],
     dishKeywords: MILK_WORDS,
-    commonDishes: [],
+    // Phase 5 matrix (Jackson Heights): sweets and curries usually made with milk, cream or ghee.
+    commonDishes: [
+      "gulab jamun", "kheer", "kulfi", "lassi", "raita", "rasmalai", "ras malai", "rasgulla",
+      "falooda", "makhani", "korma", "tikka masala", "tzatziki", "moussaka", "pastitsio", "alfredo",
+      "tres leches", "tiramisu", "cannoli",
+    ],
     venueTags: ["Dairy free"],
   },
   {
     key: "sesame",
     aliases: ["sesame"],
     dishKeywords: ["sesame"],
-    commonDishes: ["hummus", "tahini"],
+    // Phase 5 matrix (Korean): sesame oil or seeds are standard in these.
+    commonDishes: ["hummus", "tahini", "baba ghanoush", "bibimbap", "japchae", "kimbap", "gimbap", "namul", "bulgogi"],
     venueTags: [],
   },
   {
@@ -189,13 +213,13 @@ export const DIET_RULES: readonly DietRule[] = [
     key: "vegetarian",
     aliases: ["vegetarian", "veggie", "no meat"],
     venueTags: ["Vegetarian", "Vegetarian meals", "Vegan", "Vegan meals", "Plant based"],
-    conflictKeywords: [...MEAT_WORDS, ...FISH_WORDS, ...SHELLFISH_WORDS],
+    conflictKeywords: [...MEAT_WORDS, ...FISH_WORDS, ...SHELLFISH_WORDS, ...SEAFOOD_WORDS],
   },
   {
     key: "vegan",
     aliases: ["vegan", "plant based", "plant-based"],
     venueTags: ["Vegan", "Vegan meals", "Plant based"],
-    conflictKeywords: [...MEAT_WORDS, ...FISH_WORDS, ...SHELLFISH_WORDS, ...MILK_WORDS, ...EGG_WORDS],
+    conflictKeywords: [...MEAT_WORDS, ...FISH_WORDS, ...SHELLFISH_WORDS, ...SEAFOOD_WORDS, ...MILK_WORDS, ...EGG_WORDS],
   },
   {
     key: "pescatarian",

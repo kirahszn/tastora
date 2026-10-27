@@ -28,6 +28,11 @@ export function relatedCuisines(cuisine: string): string[] {
   return out;
 }
 
+/** The broader family of a member cuisine ("Haitian" → "Caribbean"), or null. */
+export function cuisineFamilyOf(cuisine: string): string | null {
+  return CUISINE_FAMILIES.find((f) => f.members.some((m) => same(m, cuisine)))?.family ?? null;
+}
+
 /**
  * The related cuisine (as spelled in the map) that a venue tag names, or null. Qloo tag names
  * vary in case ("West african"), so the map's spelling is used for display.

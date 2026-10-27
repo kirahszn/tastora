@@ -201,6 +201,14 @@ describe("facts contain only source data", () => {
     expect(f.needsConfirmation).toEqual(["Confirm opening hours (none listed)"]);
   });
 
+  it("phrases 'no X' restrictions as a plain question", () => {
+    const profile = makeProfile({ dietaryRestrictions: ["no pork", "halal"] });
+    const [item] = rankCandidates(profile, [makeCandidate()]).ranked;
+    const asks = buildExplanationFacts(profile, item).needsConfirmation;
+    expect(asks).toContain("Ask which dishes are made without pork");
+    expect(asks).toContain("Ask about halal options");
+  });
+
   it("score breakdown sums to its total", () => {
     for (const f of facts) {
       const { total, ...parts } = f.scoreBreakdown;

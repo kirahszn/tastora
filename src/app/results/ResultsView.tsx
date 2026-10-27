@@ -168,6 +168,8 @@ function Results({ profile }: { profile: SeniorProfile }) {
   }
 
   const { results, excluded, evidence, meta, trace } = phase.response;
+  // Absent on results cached before Phase 5.
+  const notices = phase.response.notices ?? [];
   const count = feedbackCount(feedback);
 
   return (
@@ -188,6 +190,17 @@ function Results({ profile }: { profile: SeniorProfile }) {
           <strong>Tastora can&rsquo;t verify ingredients or allergens.</strong> Always confirm with the restaurant.
         </span>
       </p>
+
+      {notices.length > 0 && (
+        <section className={styles.searchNotes} aria-labelledby="notes-h">
+          <h2 id="notes-h">About this search</h2>
+          <ul>
+            {notices.map((n) => (
+              <li key={n}>{n}</li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {(feedbackChanged || count > 0) && (
         <div className={styles.againBar}>

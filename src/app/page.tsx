@@ -9,8 +9,8 @@ export default function Home() {
       <div className={styles.lede}>
         <p>
           Tell Tastora what someone you care for loves: favourite foods, and the music, films and places that feel
-          familiar. It suggests New York restaurants that suit their own tastes, keeping their allergies and needs
-          separate. For every place, you&rsquo;ll see why it was suggested and what to ask before you go.
+          familiar. Using Qloo&rsquo;s taste intelligence, it suggests New York restaurants that suit their own tastes,
+          keeping their allergies and needs separate. For every place, you&rsquo;ll see why it was suggested and what to ask before you go.
         </p>
       </div>
 
@@ -31,7 +31,10 @@ export default function Home() {
       <ol className={styles.steps} aria-label="How it works">
         <li>
           <h2>Their tastes</h2>
-          <p>Favourite foods, plus taste memories like a singer they love.</p>
+          <p>
+            Favourite foods, plus taste memories like a singer they love. Claude, an AI model, turns these into
+            searches on Qloo.
+          </p>
         </li>
         <li>
           <h2>Their needs</h2>

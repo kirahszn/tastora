@@ -97,15 +97,17 @@ export async function runSearch(
     signal,
   };
 
+  const out: { result?: RecommendResponse; failure?: SearchError; steps: number } = { steps: 0 };
   try {
     const res = await fetchImpl("/api/recommend?stream=1", init);
     if (!res.ok) throw await httpError(res);
     if (!res.body || !res.headers.get("content-type")?.includes("ndjson")) throw new NdjsonError("Not a stream");
-    const out: { result?: RecommendResponse; failure?: SearchError } = {};
     await readNdjson(res.body, (e) => {
       if (!isStreamEvent(e)) return;
-      if (e.type === "step") onStep?.(e.step);
-      else if (e.type === "result") out.result = e.result;
+      if (e.type === "step") {
+        out.steps += 1;
+        onStep?.(e.step);
+      } else if (e.type === "result") out.result = e.result;
       else if (e.type === "error") out.failure = new SearchError(errorKindForStatus(e.status), e.status);
     });
     if (out.failure) throw out.failure;
@@ -114,7 +116,10 @@ export async function runSearch(
   } catch (err) {
     if (signal?.aborted || err instanceof SearchError) throw err;
     if (isOffline()) throw new SearchError("offline", null);
-    // The stream broke (proxy buffering, dropped connection, parse error): try plain JSON once.
+    // The server was already working (steps arrived) when the stream broke, e.g. cut off at the
+    // host's time limit. Re-running would double the cost and likely fail the same way.
+    if (out.steps > 0) throw new SearchError("upstream", null);
+    // The stream never got going (proxy buffering, parse error): try plain JSON once.
   }
 
   onFallback?.();

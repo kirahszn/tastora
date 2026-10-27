@@ -35,6 +35,11 @@ Matching is whole-word and case-insensitive, tolerating a plural `s`/`es` and sp
   walnut…); shellfish (shrimp, prawn, crab, lobster, crayfish, and molluscs: clam, squid…); fish
   (salmon, tilapia…); egg; milk/dairy (cheese, butter, cream…); sesame; soy (tofu, miso…); wheat/gluten
   (bread, pasta, pizza…). "nuts" selects both peanut and tree nuts. Unknown allergies match their own word.
+- Phase 5 (live profile matrix, `docs/phase5-profile-matrix.md`) extended the lists: shellfish adds
+  conch, lambi, whelk, scampi, snail, escargot; "seafood" (also "mariscos", "fruits de mer") counts
+  for shellfish *and* fish allergies but not for kosher conflicts; fish adds saltfish, codfish,
+  bacalao, whitefish, eel…; milk adds malai, khoya, queso, feta, halloumi, labneh, kefir ("curd" is
+  left out: bean curd is tofu).
 - A dish naming the allergen is removed from suggestions: `mentions "peanut"`.
 - **Dish-name list**: dishes commonly made with an allergen, even though the name doesn't say so. They
   are removed with `commonly made with <allergen>; recipe not verified`:
@@ -43,7 +48,9 @@ Matching is whole-word and case-insensitive, tolerating a plural `s`/`es` and sp
   |---|---|
   | peanut | suya, satay, groundnut stew, maafe, mafe, domoda, pad thai, kung pao |
   | tree nuts | pesto, baklava |
-  | sesame | hummus, tahini |
+  | sesame | hummus, tahini, baba ghanoush, bibimbap, japchae, kimbap, gimbap, namul, bulgogi |
+  | shellfish | paella, gumbo, jambalaya |
+  | milk | gulab jamun, kheer, kulfi, lassi, raita, rasmalai, rasgulla, falooda, makhani, korma, tikka masala, tzatziki, moussaka, pastitsio, alfredo, tres leches, tiramisu, cannoli |
 
 - Each removed dish adds a warning naming it. Venue tags "Allergy friendly", plus group-specific ones
   ("Peanut free", "Gluten free", "Dairy free"…), are positive evidence only.

@@ -13,7 +13,10 @@
 //    live_music_bar, beer_garden) → kept only when the place is also tagged with a specific
 //    cuisine-restaurant category (`urn:tag:category:place`, e.g. "Italian restaurant"), so
 //    Pietro Nolita and Groove stay while Starr Bar and Union Hall go.
-// 3. No primary genre → kept (nothing proves it isn't a restaurant; 0 of 213 lacked one).
+// 3. Multi-vendor genres inside the restaurant namespace (food_court) → dropped (Phase 5 matrix:
+//    Smorgasburg Williamsburg ranked #1 for a Korean profile). There is no single kitchen to ask
+//    about allergens, and the "dishes" belong to different stalls.
+// 4. No primary genre → kept (nothing proves it isn't a restaurant; 0 of 213 lacked one).
 import { z } from "zod";
 
 const RESTAURANT_GENRE = "urn:tag:genre:place:restaurant";
@@ -23,6 +26,7 @@ const DRINK_FIRST = new Set(
     (g) => `${RESTAURANT_GENRE}:${g}`,
   ),
 );
+const MULTI_VENDOR = new Set([`${RESTAURANT_GENRE}:food_court`]);
 /** Category names that end in "restaurant" but say nothing about cuisine. */
 const GENERIC_CATEGORIES = new Set([
   "restaurant",
@@ -68,6 +72,9 @@ export function venueVerdict(raw: unknown): VenueVerdict {
   const inRestaurantNamespace = genre === RESTAURANT_GENRE || genre.startsWith(`${RESTAURANT_GENRE}:`);
   if (!inRestaurantNamespace && !/restaurant/i.test(slug(genre))) {
     return { keep: false, reason: `primary genre is ${slug(genre).replace(/_/g, " ")}` };
+  }
+  if (MULTI_VENDOR.has(genre)) {
+    return { keep: false, reason: `primary genre is ${slug(genre).replace(/_/g, " ")} (several vendors, no single kitchen)` };
   }
   if (DRINK_FIRST.has(genre)) {
     const cuisineCategory = parsed.data.tags.some(

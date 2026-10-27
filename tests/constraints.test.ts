@@ -37,6 +37,58 @@ describe("containsKeyword", () => {
   });
 });
 
+describe("Phase 5 matrix allergen additions", () => {
+  // Dish names exactly as Qloo listed them in the live profile matrix.
+  const removed = (allergy: string, dishes: string[]) => {
+    const evaluation = evaluateCandidate(makeProfile({ allergies: [allergy] }), makeCandidate({ dishHighlights: dishes }));
+    return Object.fromEntries(evaluation.excludedDishes.map((d) => [d.name, d.why]));
+  };
+
+  it("shellfish: generic seafood dishes, conch and snails", () => {
+    expect(removed("shellfish", ["Seafood platter", "Seafood buckets", "Curry conch", "Peppered snail", "Oxtail", "Escovitch fish"])).toEqual({
+      "Seafood platter": 'mentions "seafood"',
+      "Seafood buckets": 'mentions "seafood"',
+      "Curry conch": 'mentions "conch"',
+      "Peppered snail": 'mentions "snail"',
+    });
+  });
+
+  it("fish: saltfish and seafood platters", () => {
+    expect(Object.keys(removed("fish", ["Ackee and saltfish", "Seafood platter", "Jerk chicken"]))).toEqual([
+      "Ackee and saltfish",
+      "Seafood platter",
+    ]);
+  });
+
+  it("dairy: South Asian sweets and creamy dishes, but not bean curd", () => {
+    expect(removed("dairy", ["Gulab jamun", "Kheer mohan", "Ras malai", "Malai", "Falooda kulfi", "Chana masala", "Mapo bean curd"])).toEqual({
+      "Gulab jamun": "commonly made with milk; recipe not verified",
+      "Kheer mohan": "commonly made with milk; recipe not verified",
+      "Ras malai": 'mentions "malai"',
+      Malai: 'mentions "malai"',
+      "Falooda kulfi": "commonly made with milk; recipe not verified",
+    });
+  });
+
+  it("sesame: Korean dishes usually made with sesame oil", () => {
+    expect(Object.keys(removed("sesame", ["Japchae", "Bibimbap", "Bulgogi bibimbap", "Korean bulgogi beef bao", "Soft tofu stew"]))).toEqual([
+      "Japchae",
+      "Bibimbap",
+      "Bulgogi bibimbap",
+      "Korean bulgogi beef bao",
+    ]);
+  });
+
+  it("keeps a kosher tag matched next to a plain fish dish", () => {
+    const deli = makeCandidate({
+      tags: [tag(TAG_TYPES.dietaryOption, "Kosher")],
+      dishHighlights: ["Seafood salad", "Whitefish salad"],
+    });
+    const result = evaluateCandidate(makeProfile({ dietaryRestrictions: ["kosher"] }), deli);
+    expect(requirement(result.requirements, "diet: kosher").status).toBe("matched");
+  });
+});
+
 describe("keyword rules", () => {
   it("maps allergy synonyms to one group", () => {
     expect(allergenRule("Groundnuts").dishKeywords).toEqual(allergenRule("peanut").dishKeywords);

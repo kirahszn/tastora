@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "qloo:probe": "tsx --conditions=react-server scripts/qloo-probe.ts",
-    "smoke:recommend": "tsx --conditions=react-server scripts/smoke-recommend.ts"
+    "smoke:recommend": "tsx --conditions=react-server scripts/smoke-recommend.ts",
+    "matrix": "tsx --conditions=react-server scripts/profile-matrix.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.3.0",

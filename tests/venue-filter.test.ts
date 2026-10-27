@@ -61,6 +61,18 @@ describe("non-restaurant filter on recorded places", () => {
     expect(dropped.length).toBeGreaterThanOrEqual(35);
   });
 
+  it("drops food courts (Phase 5 matrix: Smorgasburg Williamsburg)", () => {
+    const smorgasburg = {
+      name: "Smorgasburg Williamsburg",
+      properties: { primary_genre: { id: "urn:tag:genre:place:restaurant:food_court", name: "Food court" } },
+      tags: [{ name: "Japanese restaurant", type: "urn:tag:category:place" }],
+    };
+    expect(venueVerdict(smorgasburg)).toEqual({
+      keep: false,
+      reason: "primary genre is food court (several vendors, no single kitchen)",
+    });
+  });
+
   it("keeps places with no primary genre", () => {
     expect(venueVerdict({ entity_id: "x", name: "No Genre" })).toEqual({ keep: true });
   });

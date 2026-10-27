@@ -213,7 +213,9 @@ function confirmationQuestion(r: RequirementResult): string | null {
     case "diet":
       return r.status === "matched"
         ? `Confirm the "${value}" claim; it is a venue-level tag`
-        : `Ask about ${value} options`;
+        : /^no\s+/i.test(value)
+          ? `Ask which dishes are made without ${value.replace(/^no\s+/i, "")}`
+          : `Ask about ${value} options`;
     case "texture":
       return `Ask which dishes are ${value}`;
     case "comfort":

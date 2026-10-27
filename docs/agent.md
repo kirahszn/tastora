@@ -62,7 +62,9 @@ Derived from the 213 unique places in the Phase 1 E3/E5 raw responses. Test samp
    `live_music_bar`, `beer_garden`) → kept only with a specific cuisine-restaurant category tag
    (e.g. "Italian restaurant"; not "Restaurant"/"Brunch restaurant"). So Pietro Nolita and Groove
    stay; Starr Bar, Union Hall and Bar Centrale go.
-3. No primary genre → kept (0 of 213 lacked one).
+3. Multi-vendor genres in the restaurant namespace (`restaurant:food_court`) → dropped (Phase 5:
+   Smorgasburg Williamsburg ranked #1 for a Korean profile; no single kitchen to ask).
+4. No primary genre → kept (0 of 213 lacked one).
 
 Kept places are renumbered `qlooRank` 1..n, so a dropped hotel doesn't cost the venues below it
 taste points. Drop counts appear in the trace (e.g. "19 places, 1 non-restaurant dropped").
@@ -136,6 +138,15 @@ Nigerian, where NYC has only about 10 places.
   equal the final `trace` (tested). The browser client falls back to plain JSON once if the stream
   breaks before a result (it never retries 400/429/502).
 - `evidence.cuisineTagNames` (Phase 4): display names of the main search's cuisine tags.
+- **`notices` (Phase 5, `src/lib/agent/notices.ts`)**: plain sentences shown as "About this search":
+  the built-in planner standing in for Claude; the NYC-wide location retry (only from searches that
+  contributed places); taste memories no used signal matches (fuzzy: accents, small typos, extra
+  words, so a typo Claude corrected isn't reported); and the related-cuisine fallback. **Related
+  cuisine:** if every search returned 0 places, the server looks up a favourite cuisine's family
+  (`cuisineFamilyOf`, e.g. Haitian → Caribbean) and searches it once *through the same session*
+  (ID rule, limits and trace apply), keeping the main search's entity signals; that search becomes
+  the evidence baseline. The client only falls back to plain JSON when the stream broke before any
+  step arrived; after steps it shows the 502 state rather than re-running a costly search.
 - **429** above 10 requests/minute per IP (first `x-forwarded-for` address). Fixed window, in
   memory, per instance: a soft guard on API credit, not a global quota.
 - **Max duration.** `export const maxDuration = 60` (Next.js 16 route segment config,

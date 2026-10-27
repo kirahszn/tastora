@@ -139,6 +139,39 @@
   color: var(--warn);
 }
 
+/* Land below the sticky notice when scrolled to (links, focus, "Show details"). */
+.card,
+.evidence,
+.searchNotes,
+.notShown {
+  scroll-margin-top: 6rem;
+}
+
+@media (max-width: 560px) {
+  .persistentNotice {
+    padding: 0.55rem 0.8rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+}
+
+.searchNotes {
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  display: grid;
+  gap: 0.35rem;
+}
+
+.searchNotes h2 {
+  font-size: 1.05rem;
+}
+
+.searchNotes ul {
+  display: grid;
+  gap: 0.25rem;
+}
+
 .againBar {
   display: flex;
   flex-wrap: wrap;

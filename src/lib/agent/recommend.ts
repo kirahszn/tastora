@@ -6,11 +6,25 @@ import Anthropic from "@anthropic-ai/sdk";
 import type { Candidate } from "@/lib/domain/place";
 import type { SeniorProfile } from "@/lib/domain/profile";
 import { getAnthropicEnv } from "@/lib/env";
-import { createQlooSearch, mergeByBestRank, type QlooSearch, type RestaurantSearchResult } from "@/lib/qloo/search";
+import { cuisineFamilyOf } from "@/lib/domain/cuisines";
+import {
+  createQlooSearch,
+  mergeByBestRank,
+  type QlooSearch,
+  type RestaurantSearchResult,
+  type TagCandidate,
+} from "@/lib/qloo/search";
 import { rankCandidates, type RankingFeedback } from "@/lib/ranking/rank";
 import { buildExplanationFacts, type ExplanationFacts } from "./explanationFacts";
 import { plannerInput, runClaudePlanner, type AnthropicLike } from "./claudePlanner";
 import { runFallbackPlanner } from "./fallbackPlanner";
+import {
+  locationNotices,
+  PLANNER_FALLBACK_NOTICE,
+  relatedCuisineNotice,
+  tasteMemoryNotice,
+  unusedTasteMemories,
+} from "./notices";
 import { SearchSession, type SearchRecord, type TasteSignal, type TraceStep } from "./session";
 
 /** Time the planner may use before the pipeline stops it (route maxDuration is 60 s). */
@@ -54,6 +68,8 @@ export interface RecommendResponse {
   excluded: (PlaceRef & { reasons: string[] })[];
   trace: TraceStep[];
   evidence: QlooEvidence | null;
+  /** Plain notes on how the search went (fallbacks, unmatched taste memories); see notices.ts. */
+  notices: string[];
   meta: {
     planner: "agent" | "fallback";
     model: string | null;
@@ -126,6 +142,36 @@ function originBySearch(searches: readonly SearchRecord[]): Map<string, SearchRe
   return new Map([...origin].map(([id, o]) => [id, o.record]));
 }
 
+/**
+ * Every search came back empty: try the regional family of a favourite cuisine once (Haitian →
+ * Caribbean), through the session, so the ID rule, limits and trace still apply. Taste signals
+ * from the main search are kept. Returns what was tried, or null if nothing was found.
+ */
+async function searchRelatedCuisine(
+  session: SearchSession,
+  profile: SeniorProfile,
+): Promise<{ cuisine: string; family: string } | null> {
+  const main = session.searches[0];
+  for (const cuisine of profile.favouriteCuisines) {
+    const family = cuisineFamilyOf(cuisine);
+    if (!family) continue;
+    const before = session.searches.length;
+    const lookup = await session.run("find_cuisine_tags", { query: family });
+    if (lookup.isError) return null;
+    const tags = (JSON.parse(lookup.content) as { tags: TagCandidate[] }).tags;
+    const tag = tags.find((t) => t.family === "cuisine") ?? tags[0];
+    if (!tag) continue;
+    const entityIds = main.signals.filter((s) => s.kind !== "tag").map((s) => s.id);
+    await session.run("search_restaurants", {
+      cuisine_tag_ids: [tag.id],
+      ...(entityIds.length ? { signal_entity_ids: entityIds } : {}),
+    });
+    const added = session.searches.slice(before);
+    if (added.some((s) => s.result.candidates.length)) return { cuisine, family };
+  }
+  return null;
+}
+
 export async function recommend(
   profile: SeniorProfile,
   feedback: RankingFeedback = {},
@@ -143,7 +189,10 @@ export async function recommend(
   // The no-signal baseline starts as soon as the main search returns, while planning continues.
   let baseline: { main: SearchRecord; promise: Promise<RestaurantSearchResult> } | null = null;
   const onSearch = (record: SearchRecord) => {
-    if (record.index !== 1 || baseline) return;
+    // The main search is the first one, unless it found nothing and a later one (e.g. the
+    // related-cuisine fallback) did: compare against a list that has places.
+    const replacesEmpty = baseline && !baseline.main.result.candidates.length && record.result.candidates.length;
+    if (baseline ? !replacesEmpty : record.index !== 1) return;
     const promise = search.searchRestaurants({
       cuisineTagIds: record.result.tagsUsed,
       location: record.result.locationUsed,
@@ -175,7 +224,7 @@ export async function recommend(
       session.note("planner", "Claude", `Planned ${session.searches.length} search(es) in ${result.turns} turn(s); ended by ${result.endedBy}`);
     } catch (err) {
       const reason = describeAnthropicError(err);
-      session.note("planner", "Claude", `Stopped: ${reason}`);
+      session.note("planner", "Claude", `Not available right now (${reason})`);
       if (!session.searches.length) fallbackReason = reason;
     }
     if (session.searches.length) planner = "agent";
@@ -187,8 +236,15 @@ export async function recommend(
   if (planner === "fallback") {
     trace.push(...session.trace);
     session = new SearchSession(search, profile.location, { onSearch, onStep });
-    session.note("planner", "fallback", `Using the deterministic planner (${fallbackReason})`);
+    session.note("planner", "built-in plan", `Searching with Tastora's built-in plan instead (${fallbackReason})`);
     await runFallbackPlanner(session, input);
+  }
+
+  const notices: string[] = [];
+  if (planner === "fallback") notices.push(PLANNER_FALLBACK_NOTICE);
+  if (session.searches.length && session.searches.every((s) => !s.result.candidates.length)) {
+    const related = await searchRelatedCuisine(session, profile);
+    if (related) notices.push(relatedCuisineNotice(related.cuisine, related.family, profile.location));
   }
   trace.push(...session.trace);
 
@@ -242,11 +298,18 @@ export async function recommend(
     }
   }
 
+  // Only searches that contributed places: an empty first search's retry note would just confuse.
+  const contributing = searches.filter((s) => s.result.candidates.length);
+  notices.push(...new Set(contributing.flatMap((s) => locationNotices(s.result.notes))));
+  const memoryNotice = tasteMemoryNotice(unusedTasteMemories(profile, searches.flatMap((s) => s.signals)));
+  if (memoryNotice) notices.push(memoryNotice);
+
   return {
     results,
     excluded: excluded.map((e) => ({ id: e.candidate.id, name: e.candidate.name, reasons: e.reasons })),
     trace: trace.map((s, i) => ({ ...s, step: i + 1 })),
     evidence,
+    notices,
     meta: {
       planner,
       model: planner === "agent" ? model : null,

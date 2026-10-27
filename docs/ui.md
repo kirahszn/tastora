@@ -13,6 +13,8 @@ in `tests/ui-helpers.test.ts`). No UI libraries; CSS modules plus `src/app/globa
 | Allergies/texture never safe | `displayStatus()` maps any allergy/texture `matched` to "Needs confirmation" (the engine never matches them; this guards the UI too) |
 | Status never colour alone | `STATUS_DISPLAY`: icon + text label + colour (Matched ✓ green, Needs confirmation ? amber, Conflict ✕ red) |
 | No ordering language | `tests/ui-helpers.test.ts` scans all UI source for order/buy/checkout/purchase/cart |
+| No safety claims | Same file bans "safe", "allergen-free", "guaranteed", "verified safe" in UI source and the server modules whose strings reach the screen, unless negated ("never shown as safe") |
+| Say what happened | `notices` from the server appear under "About this search" (fallbacks, unmatched taste memories) |
 | No invented restaurant text | Cards render only `results[]` facts; links pass `safeHttpUrl` / `telHref` |
 | Evidence only from `evidence` | `EvidencePanel` + `rankMovement()` |
 
@@ -32,6 +34,18 @@ clearing the profile clears feedback and the cached search.
 `runSearch()` posts to `/api/recommend?stream=1` and shows each real trace step as it arrives (no
 timed messages). If the stream breaks before a result it shows a plain notice and makes one JSON
 request. 400/429/502/offline each have their own message and a retry (or "Check the profile").
+
+## Presentation and headers (Phase 5)
+
+- Favicon `src/app/icon.svg` (original: bowl and steam on terracotta). Share card
+  `opengraph-image.tsx` / `twitter-image.tsx` via `next/og` (1200×630 PNG at build), with
+  `metadataBase` so Open Graph/Twitter URLs are absolute.
+- `next.config.ts` headers: `X-Content-Type-Options: nosniff`, `Referrer-Policy:
+  strict-origin-when-cross-origin`, `X-Frame-Options: SAMEORIGIN`, `Content-Security-Policy:
+  frame-ancestors 'self'`, a restrictive `Permissions-Policy`. No full CSP (untested risk). Framing
+  is same-origin rather than `DENY` so the app can be checked at 375px in a same-origin frame.
+- "Must avoid" is a calm terracotta-bordered panel with a shield icon ("Tastora checks every
+  result against these."), not an error colour. The Sinatra example is listed first.
 
 ## Design tokens and accessibility
 

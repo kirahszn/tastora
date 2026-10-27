@@ -1,7 +1,7 @@
 // Small inline icons. Always decorative: the text next to them carries the meaning.
 import type { StatusIcon } from "@/lib/ui/status";
 
-type Name = StatusIcon | "alert" | "info" | "external" | "phone" | "map";
+type Name = StatusIcon | "alert" | "info" | "external" | "phone" | "map" | "shield";
 
 const PATHS: Record<Name, string> = {
   check: "M5 12.5l4.5 4.5L19 7.5",
@@ -11,6 +11,7 @@ const PATHS: Record<Name, string> = {
   info: "M12 8v.01M11 12h1v5h1",
   external: "M14 5h5v5M19 5l-8 8M18 14v5H5V6h5",
   phone: "M6.5 4h3l1.5 4-2 1.5a11 11 0 0 0 5.5 5.5L16 13l4 1.5v3A2 2 0 0 1 18 19.5 15 15 0 0 1 4.5 6 2 2 0 0 1 6.5 4z",
+  shield: "M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6L12 3zM8.8 12l2.3 2.3 4.1-4.3",
   map: "M12 21s-6-5.6-6-11a6 6 0 0 1 12 0c0 5.4-6 11-6 11zM12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z",
 };
 
