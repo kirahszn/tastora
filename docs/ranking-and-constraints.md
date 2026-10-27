@@ -92,6 +92,7 @@ total is their sum.
 | Dislike penalty | −3 per removed disliked dish, max −9 |
 | Allergen-heavy penalty | −8 when ≥ 50% of the venue's listed dishes were set aside for one allergen; −15 when all of them were. Once per venue (worst allergen); only for venues listing ≥ 2 dishes |
 | Feedback | disliked −20; tried −3; shares a cuisine with a liked candidate +4 |
+| Borough (Phase 4) | +6 same borough as the profile; −6 clearly outside New York City; else 0. Only when the profile names a borough |
 
 - **Allergen-heavy penalty (Phase 3).** A venue whose menu is mostly an allergen (Brooklyn Suya:
   every dish is suya, commonly made with peanut) is a poor suggestion even though nothing excludes
@@ -99,6 +100,18 @@ total is their sum.
   mid-list venue several places without hiding it. "Listed dishes" are the de-duplicated
   highlights + specialty dishes. The facts add a warning: "Many listed dishes here commonly contain
   <allergen>" (source: the profile allergy and the dish count).
+- **Borough (Phase 4, `src/lib/domain/borough.ts`).** Qloo's `filter.location.query` is only a
+  proximity bias (a Queens search returned Manhattan, Brooklyn and Nassau places), so the borough is
+  ranked, never filtered. Profile: the first of Manhattan / Brooklyn / Queens / Bronx / Staten Island
+  named in `profile.location` (whole word, any case, neighbourhood text allowed). Venue, by priority:
+  (1) `properties.geocode.admin2_region`: New York / Kings / Queens / Bronx County, Staten Island or
+  Richmond County map to boroughs; any other county, or a non-US `country_code`, is outside NYC;
+  (2) the ZIP in `properties.address` (100–102 Manhattan, 103 Staten Island, 104 Bronx, 112 Brooklyn,
+  111/113/114/116 and 11004–5 Queens; another state or NY ZIP is outside; 110xx is split with Nassau,
+  so unknown); otherwise unknown (0). +6 is about one favourite dish's worth: it reorders close
+  neighbours but can't beat a large taste gap. Facts add `area {kind, label, inRequestedBorough,
+  source}` ("In Brooklyn", "Outside NYC (Nassau County)") and, in the requested borough, the reason
+  "In Brooklyn, the borough you chose".
 - **Taste decay (verified Phase 3).** Over a 20-result list the linear formula gives rank 1 = 50,
   rank 10 = 28, rank 20 = 3, with steps of 2–3 points between neighbours (no cliff). Kept as is;
   locked by a test.
@@ -143,13 +156,13 @@ Profile: Nigerian food, favourite dish jollof rice, peanut allergy, soft texture
 Brooklyn. Candidates: recorded sample `E5h-west-african-signal-fela.json` (West African filter + Fela
 Kuti signal, 5 places). Nothing is excluded. Locked in `tests/explanation-facts.test.ts`.
 
-| # | Venue | Taste | Fav. dish | Comfort | Complete | Dislike | Allergen | Feedback | **Total** |
-|---|---|---|---|---|---|---|---|---|---|
-| 1 | Buka | 50 | 8 | 0 | 10 | 0 | 0 | 0 | **68** |
-| 2 | Joloff | 40 | 0 | 0 | 10 | 0 | 0 | 0 | **50** |
-| 3 | Accra Express Restaurant | 30 | 8 | 0 | 10 | 0 | 0 | 0 | **48** |
-| 4 | Cafe Rue Dix | 20 | 0 | 0 | 10 | 0 | 0 | 0 | 30 |
-| 5 | Brooklyn Suya | 10 | 0 | 0 | 10 | 0 | −15 | 0 | 5 |
+| # | Venue | Taste | Fav. dish | Comfort | Complete | Dislike | Allergen | Feedback | Borough | **Total** |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | Buka | 50 | 8 | 0 | 10 | 0 | 0 | 0 | 6 | **74** |
+| 2 | Joloff | 40 | 0 | 0 | 10 | 0 | 0 | 0 | 6 | **56** |
+| 3 | Accra Express Restaurant | 30 | 8 | 0 | 10 | 0 | 0 | 0 | 0 (Manhattan) | **48** |
+| 4 | Cafe Rue Dix | 20 | 0 | 0 | 10 | 0 | 0 | 0 | 6 | 36 |
+| 5 | Brooklyn Suya | 10 | 0 | 0 | 10 | 0 | −15 | 0 | 6 | 11 |
 
 **Constraint statuses.** All five venues have the same two: `allergy: peanut` → `needs_confirmation`
 and `texture: soft food` → `needs_confirmation`.

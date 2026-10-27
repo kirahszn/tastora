@@ -128,6 +128,14 @@ Nigerian, where NYC has only about 10 places.
 - **502** `{ error: "We couldn't get restaurant suggestions right now. Please try again in a minute." }`
   when no restaurant search succeeds. Only the error class name is logged; there are no stacks,
   upstream messages or keys.
+- **Streaming (Phase 4): `POST /api/recommend?stream=1`.** Same body, validation and rate limit
+  (400/429 are normal JSON responses, sent before streaming starts). Then
+  `application/x-ndjson`: one `{"type":"step","step":TraceStep}` line per trace step *as it is
+  recorded* (`recommend(…, { onStep })`, wired through `SearchSession`'s `onStep` hook), then one
+  `{"type":"result","result":…}` or `{"type":"error","status":502,"error":…}`. The streamed steps
+  equal the final `trace` (tested). The browser client falls back to plain JSON once if the stream
+  breaks before a result (it never retries 400/429/502).
+- `evidence.cuisineTagNames` (Phase 4): display names of the main search's cuisine tags.
 - **429** above 10 requests/minute per IP (first `x-forwarded-for` address). Fixed window, in
   memory, per instance: a soft guard on API credit, not a global quota.
 - **Max duration.** `export const maxDuration = 60` (Next.js 16 route segment config,

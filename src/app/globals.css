@@ -1,25 +1,58 @@
+/* Tastora: warm, calm, homely. Cream surfaces, one terracotta accent, deep ink text.
+   Contrast (WCAG AA) checked for every text/background pair below; see docs/ui.md. */
 :root {
-  --background: #fdfbf7;
-  --foreground: #1c1917;
-  --muted: #44403c;
-  --accent: #9a3412;
-  --button-bg: #e7e5e4;
-  --button-fg: #292524;
-  --button-border: #78716c;
+  --bg: #faf5ec;
+  --surface: #fffcf6;
+  --surface-2: #f3eadb;
+  --ink: #2b211a;
+  --muted: #5c4d41;
+  --line: #e2d5c2;
+  --line-strong: #8c7763;
+  --accent: #a3432a;
+  --accent-hover: #87361f;
+  --on-accent: #fffaf3;
+  --accent-soft: #f6e3d8;
+  --focus: #1f4e8c;
+
+  --ok: #2e6b3a;
+  --ok-bg: #e4f0e1;
+  --warn: #7f4d00;
+  --warn-bg: #fcefd2;
+  --bad: #a12b20;
+  --bad-bg: #fbe4df;
+
+  --font-serif: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", serif;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --radius: 14px;
+  --radius-sm: 10px;
+  --shadow: 0 1px 2px rgb(60 40 20 / 6%), 0 6px 20px rgb(60 40 20 / 6%);
+
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1c1917;
-    --foreground: #fafaf9;
-    --muted: #d6d3d1;
-    --accent: #fdba74;
-    --button-bg: #292524;
-    --button-fg: #e7e5e4;
-    --button-border: #a8a29e;
-  }
+    --bg: #1d1814;
+    --surface: #27201b;
+    --surface-2: #322921;
+    --ink: #f4ebdf;
+    --muted: #cdbdab;
+    --line: #43372d;
+    --line-strong: #94806d;
+    --accent: #e8936f;
+    --accent-hover: #f0a887;
+    --on-accent: #2a1810;
+    --accent-soft: #3d2a20;
+    --focus: #9cc3ff;
 
-  html {
+    --ok: #92d39c;
+    --ok-bg: #1e3222;
+    --warn: #f0c46e;
+    --warn-bg: #382b13;
+    --bad: #f59a8e;
+    --bad-bg: #3d1f1b;
+
+    --shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 6px 20px rgb(0 0 0 / 25%);
     color-scheme: dark;
   }
 }
@@ -32,13 +65,163 @@
 
 html {
   font-size: 112.5%; /* 18px base */
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   min-height: 100vh;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
-    sans-serif;
+  display: flex;
+  flex-direction: column;
+  color: var(--ink);
+  background: var(--bg);
+  font-family: var(--font-sans);
   line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+}
+
+h2 {
+  font-size: 1.45rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+ul,
+ol {
+  padding-left: 1.3rem;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+summary {
+  cursor: pointer;
+}
+
+/* Buttons and button-like links. Every one is at least 44px tall. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0.6rem 1.25rem;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  color: var(--on-accent);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+.btn-secondary:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.btn-quiet {
+  background: transparent;
+  color: var(--accent);
+  border-color: transparent;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  padding-inline: 0.5rem;
+}
+
+.btn-quiet:hover {
+  color: var(--accent-hover);
+}
+
+.btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 10;
+  background: var(--surface);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--focus);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -50,6 +50,7 @@ export function makeCandidate(overrides: Partial<Candidate> = {}): Candidate {
     name: "Test Place",
     address: "1 Test St, New York, NY",
     neighborhood: null,
+    geocode: null,
     lat: 40.7,
     lon: -73.9,
     phone: "+12125550100",

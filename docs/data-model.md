@@ -41,6 +41,7 @@ malformed tag is dropped. Only `entity_id` and `name` are required.
 | `name` | `name` | trimmed |
 | `address` | `properties.address`, else `disambiguation` | |
 | `neighborhood` | `properties.neighborhood` | |
+| `geocode` | `properties.geocode.{city, admin2_region, admin1_region, country_code}` → `{city, county, region, countryCode}` | Phase 4. On every place in the Phase 1 raw responses (322/322 with geocode); stripped from the trimmed samples |
 | `lat`, `lon` | `location.lat`, `location.lon` | |
 | `phone` | `properties.phone` | |
 | `website` | `properties.website` | |

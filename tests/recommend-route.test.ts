@@ -113,6 +113,59 @@ describe("POST /api/recommend", () => {
     expect(statuses[10]).toBe(429);
   });
 
+  describe("?stream=1 (NDJSON)", () => {
+    const postStream = (body: unknown) =>
+      POST(
+        new Request("http://localhost/api/recommend?stream=1", {
+          method: "POST",
+          headers: { "content-type": "application/json", "x-forwarded-for": `10.0.1.${++ip}` },
+          body: JSON.stringify(body),
+        }),
+      );
+    const events = async (res: Response) =>
+      (await res.text())
+        .split("\n")
+        .filter(Boolean)
+        .map((l) => JSON.parse(l));
+
+    it("streams each trace step, then the same result as JSON mode", async () => {
+      stubFetch();
+      const res = await postStream({ profile: profileA });
+      expect(res.status).toBe(200);
+      expect(res.headers.get("content-type")).toContain("application/x-ndjson");
+      const lines = await events(res);
+      const steps = lines.filter((e) => e.type === "step").map((e) => e.step);
+      const last = lines.at(-1);
+      expect(last.type).toBe("result");
+      expect(lines.filter((e) => e.type === "result")).toHaveLength(1);
+      // The streamed steps are exactly the final trace, in order.
+      expect(steps).toEqual(last.result.trace);
+      expect(steps.map((s: { step: number }) => s.step)).toEqual(steps.map((_: unknown, i: number) => i + 1));
+      expect(Object.keys(last.result)).toEqual(["results", "excluded", "trace", "evidence", "meta"]);
+    });
+
+    it("ends with an error event when Qloo is down, leaking nothing", async () => {
+      stubFetch({ qlooDown: true });
+      const res = await postStream({ profile: profileA });
+      const text = await res.text();
+      expect(text).not.toContain(QLOO_KEY);
+      expect(text).not.toContain(ANTHROPIC_KEY);
+      const last = JSON.parse(text.trim().split("\n").at(-1)!);
+      expect(last).toEqual({
+        type: "error",
+        status: 502,
+        error: "We couldn't get restaurant suggestions right now. Please try again in a minute.",
+      });
+    });
+
+    it("answers validation errors with a normal 400 before streaming", async () => {
+      stubFetch();
+      const res = await postStream({ profile: { favouriteCuisines: [], location: "" } });
+      expect(res.status).toBe(400);
+      expect((await res.json()).error).toBe("Invalid request.");
+    });
+  });
+
   it("exports a max duration for Vercel", async () => {
     const route = await import("@/app/api/recommend/route");
     expect(route.maxDuration).toBe(60);

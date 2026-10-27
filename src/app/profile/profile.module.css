@@ -1,0 +1,212 @@
+.page {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.intro,
+.hint,
+.loading {
+  color: var(--muted);
+}
+
+.examples {
+  display: grid;
+  gap: 0.6rem;
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  scroll-margin-top: 1rem;
+}
+
+.exampleGrid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.exampleCard {
+  display: grid;
+  gap: 0.3rem;
+  text-align: left;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.exampleCard:hover {
+  border-color: var(--accent);
+}
+
+.exampleTitle {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.exampleSummary {
+  color: var(--muted);
+}
+
+.exampleCta {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.section {
+  display: grid;
+  gap: 1.1rem;
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.sectionHint {
+  color: var(--muted);
+  margin-top: -0.5rem;
+}
+
+.optional {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* Hard constraints look different from preferences: a heavier, warmer frame. */
+.mustAvoid {
+  border: 2px solid var(--warn);
+  background: var(--warn-bg);
+}
+
+.mustAvoid h2 {
+  color: var(--ink);
+}
+
+.mustAvoid .sectionHint {
+  color: var(--ink);
+}
+
+.fieldset {
+  border: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.radios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.radio,
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0.4rem 1rem 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--line-strong);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.check {
+  justify-self: start;
+}
+
+.radio input,
+.check input {
+  width: 1.3rem;
+  height: 1.3rem;
+  accent-color: var(--accent);
+}
+
+.radio:has(input:checked) {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  font-weight: 600;
+}
+
+.radio:has(input:focus-visible),
+.check:has(input:focus-visible) {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.privacy {
+  padding: 1.1rem 1.25rem;
+  border-radius: var(--radius);
+  border: 1px dashed var(--line-strong);
+  display: grid;
+  gap: 0.5rem;
+}
+
+.privacy h2 {
+  font-size: 1.15rem;
+}
+
+.privacy ul {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.errorSummary {
+  padding: 1.1rem 1.25rem;
+  border-radius: var(--radius);
+  border: 2px solid var(--bad);
+  background: var(--bad-bg);
+  display: grid;
+  gap: 0.5rem;
+}
+
+.errorSummary h2 {
+  font-size: 1.15rem;
+  color: var(--bad);
+}
+
+.errorSummary a {
+  color: var(--ink);
+}
+
+.submitRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.confirm {
+  padding: 1.1rem 1.25rem;
+  border-radius: var(--radius);
+  border: 2px solid var(--line-strong);
+  background: var(--surface);
+  display: grid;
+  gap: 0.75rem;
+}
+
+.confirmActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+@media (max-width: 480px) {
+  .section,
+  .examples {
+    padding: 1rem;
+  }
+
+  .submitRow :global(.btn-primary) {
+    width: 100%;
+  }
+}

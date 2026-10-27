@@ -1,7 +1,9 @@
 // POST /api/recommend: { profile, feedback? } → ranked results, agent trace and Qloo evidence.
-// Errors never include stack traces, upstream bodies or secrets.
+// `?stream=1` streams the trace steps as NDJSON first. Errors never include stack traces,
+// upstream bodies or secrets.
 import { z } from "zod";
-import { recommend } from "@/lib/agent/recommend";
+import { recommend, type RecommendResponse } from "@/lib/agent/recommend";
+import type { TraceStep } from "@/lib/agent/session";
 import { SeniorProfileSchema } from "@/lib/domain/profile";
 import { clientIp, createRateLimiter } from "@/lib/rateLimit";
 import { RankingFeedbackSchema } from "@/lib/ranking/feedback";
@@ -49,12 +51,60 @@ export async function POST(request: Request) {
     );
   }
 
+  const { profile, feedback } = parsed.data;
+  if (new URL(request.url).searchParams.get("stream") === "1") return streamRecommend(profile, feedback);
+
   try {
-    const result = await recommend(parsed.data.profile, parsed.data.feedback);
+    const result = await recommend(profile, feedback);
     return Response.json(result);
   } catch (err) {
-    // Log the error class only; messages could carry request details.
-    console.error("recommend failed:", err instanceof Error ? err.name : "unknown");
+    logFailure(err);
     return Response.json({ error: UPSTREAM_MESSAGE }, { status: 502 });
   }
 }
+
+// Log the error class only; messages could carry request details.
+const logFailure = (err: unknown) =>
+  console.error("recommend failed:", err instanceof Error ? err.name : "unknown");
+
+/**
+ * NDJSON stream: one `{"type":"step","step":…}` line per trace step as it happens, then a final
+ * `{"type":"result","result":…}` or `{"type":"error","status":502,"error":…}`. Validation and rate
+ * limits are answered before the stream starts, with normal status codes.
+ */
+function streamRecommend(profile: z.output<typeof BodySchema>["profile"], feedback: z.output<typeof BodySchema>["feedback"]) {
+  const encoder = new TextEncoder();
+  const stream = new ReadableStream<Uint8Array>({
+    async start(controller) {
+      let open = true;
+      const send = (event: StreamEvent) => {
+        if (!open) return;
+        try {
+          controller.enqueue(encoder.encode(`${JSON.stringify(event)}\n`));
+        } catch {
+          open = false; // client went away
+        }
+      };
+      try {
+        const result = await recommend(profile, feedback, { onStep: (step) => send({ type: "step", step }) });
+        send({ type: "result", result });
+      } catch (err) {
+        logFailure(err);
+        send({ type: "error", status: 502, error: UPSTREAM_MESSAGE });
+      }
+      if (open) controller.close();
+    },
+  });
+  return new Response(stream, {
+    headers: {
+      "Content-Type": "application/x-ndjson; charset=utf-8",
+      "Cache-Control": "no-store",
+      "X-Accel-Buffering": "no",
+    },
+  });
+}
+
+type StreamEvent =
+  | { type: "step"; step: TraceStep }
+  | { type: "result"; result: RecommendResponse }
+  | { type: "error"; status: number; error: string };

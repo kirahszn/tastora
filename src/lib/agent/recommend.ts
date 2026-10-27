@@ -32,6 +32,8 @@ export interface PlaceRef {
 export interface QlooEvidence {
   /** The main search's cuisine tag(s), as actually sent to Qloo. */
   cuisineTags: string[];
+  /** Display names of the main search's cuisine tags, e.g. "Nigerian". */
+  cuisineTagNames: string[];
   baselineTop10: PlaceRef[];
   personalisedTop10: PlaceRef[];
   overlapCount: number;
@@ -71,6 +73,8 @@ export interface RecommendDeps {
   model?: string;
   agentBudgetMs?: number;
   now?: () => number;
+  /** Each trace step as it happens, numbered as in the final `trace`. */
+  onStep?: (step: TraceStep) => void;
 }
 
 /** Plain reason for falling back; never includes upstream messages. */
@@ -101,6 +105,7 @@ function buildEvidence(main: SearchRecord, baseline: RestaurantSearchResult): Ql
   const baseIds = new Set(baselineTop10.map((p) => p.id));
   return {
     cuisineTags: main.result.tagsUsed,
+    cuisineTagNames: main.cuisineTags.map((t) => t.name),
     baselineTop10,
     personalisedTop10,
     overlapCount: personalisedTop10.filter((p) => baseIds.has(p.id)).length,
@@ -147,8 +152,12 @@ export async function recommend(
     baseline = { main: record, promise };
   };
 
+  // Steps reach the final trace in the sequence they are recorded, so a running count matches it.
+  let emitted = 0;
+  const onStep = (s: TraceStep) => deps.onStep?.({ ...s, step: ++emitted });
+
   const input = plannerInput(profile);
-  let session = new SearchSession(search, profile.location, { onSearch });
+  let session = new SearchSession(search, profile.location, { onSearch, onStep });
   const trace: TraceStep[] = [];
   let planner: "agent" | "fallback" = "fallback";
   let fallbackReason: string | undefined;
@@ -177,7 +186,7 @@ export async function recommend(
 
   if (planner === "fallback") {
     trace.push(...session.trace);
-    session = new SearchSession(search, profile.location, { onSearch });
+    session = new SearchSession(search, profile.location, { onSearch, onStep });
     session.note("planner", "fallback", `Using the deterministic planner (${fallbackReason})`);
     await runFallbackPlanner(session, input);
   }
@@ -204,8 +213,11 @@ export async function recommend(
       cuisines: item.candidate.cuisines,
     },
   }));
-  const step = (tool: string, inputSummary: string, resultSummary: string, ms: number) =>
-    trace.push({ step: 0, tool, inputSummary, resultSummary, ms });
+  const step = (tool: string, inputSummary: string, resultSummary: string, ms: number) => {
+    const s = { step: 0, tool, inputSummary, resultSummary, ms };
+    trace.push(s);
+    onStep(s);
+  };
   step(
     "rank",
     `${merged.length} unique places from ${searches.length} search(es)`,

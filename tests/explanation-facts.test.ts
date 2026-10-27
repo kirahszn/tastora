@@ -33,13 +33,21 @@ const factsFor = (name: string) => workedFacts().find((f) => f.name === name)!;
 describe("worked example (West African + Fela Kuti sample)", () => {
   it("ranks Buka, Joloff, Accra Express with these breakdowns", () => {
     const zero = { comfort: 0, completeness: 10, dislikePenalty: 0, feedback: 0 };
+    // Borough: the profile asks for Brooklyn; Accra Express is in Manhattan (ZIP 10035).
     expect(workedFacts().map((f) => [f.name, f.scoreBreakdown])).toEqual([
-      ["Buka", { ...zero, taste: 50, favouriteDishes: 8, allergenPenalty: 0, total: 68 }],
-      ["Joloff", { ...zero, taste: 40, favouriteDishes: 0, allergenPenalty: 0, total: 50 }],
-      ["Accra Express Restaurant", { ...zero, taste: 30, favouriteDishes: 8, allergenPenalty: 0, total: 48 }],
-      ["Cafe Rue Dix", { ...zero, taste: 20, favouriteDishes: 0, allergenPenalty: 0, total: 30 }],
+      ["Buka", { ...zero, taste: 50, favouriteDishes: 8, allergenPenalty: 0, borough: 6, total: 74 }],
+      ["Joloff", { ...zero, taste: 40, favouriteDishes: 0, allergenPenalty: 0, borough: 6, total: 56 }],
+      ["Accra Express Restaurant", { ...zero, taste: 30, favouriteDishes: 8, allergenPenalty: 0, borough: 0, total: 48 }],
+      ["Cafe Rue Dix", { ...zero, taste: 20, favouriteDishes: 0, allergenPenalty: 0, borough: 6, total: 36 }],
       // Every listed dish was set aside for peanut: the largest allergen penalty.
-      ["Brooklyn Suya", { ...zero, taste: 10, favouriteDishes: 0, allergenPenalty: -15, total: 5 }],
+      ["Brooklyn Suya", { ...zero, taste: 10, favouriteDishes: 0, allergenPenalty: -15, borough: 6, total: 11 }],
+    ]);
+    expect(workedFacts().map((f) => f.area.label)).toEqual([
+      "In Brooklyn",
+      "In Brooklyn",
+      "In Manhattan",
+      "In Brooklyn",
+      "In Brooklyn",
     ]);
   });
 
@@ -77,6 +85,10 @@ describe("worked example (West African + Fela Kuti sample)", () => {
       {
         text: "Lists Jollof rice, a favourite dish",
         source: "profile.favouriteDishes: jollof rice ↔ Qloo tag urn:tag:menu_highlight:qloo:jollof_rice",
+      },
+      {
+        text: "In Brooklyn, the borough you chose",
+        source: "profile.location: Brooklyn ↔ Qloo properties.address: NY 11238",
       },
     ]);
   });

@@ -84,7 +84,11 @@ export class SearchSession {
     private readonly search: QlooSearch,
     /** From the profile; the planner cannot change it. */
     private readonly location: string,
-    private readonly hooks: { onSearch?: (record: SearchRecord) => void } = {},
+    private readonly hooks: {
+      onSearch?: (record: SearchRecord) => void;
+      /** Called as each trace step is recorded (for streaming progress). */
+      onStep?: (step: TraceStep) => void;
+    } = {},
   ) {}
 
   get limitReached(): boolean {
@@ -93,7 +97,9 @@ export class SearchSession {
 
   /** Add a non-tool step (planner notes, ranking) to the trace. */
   note(tool: string, inputSummary: string, resultSummary: string, ms = 0): void {
-    this.trace.push({ step: this.trace.length + 1, tool, inputSummary, resultSummary, ms });
+    const step = { step: this.trace.length + 1, tool, inputSummary, resultSummary, ms };
+    this.trace.push(step);
+    this.hooks.onStep?.(step);
   }
 
   async run(name: string, rawInput: unknown): Promise<ToolOutcome> {

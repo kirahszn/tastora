@@ -2,6 +2,7 @@
 // docs/data-model.md); the breakdown always adds up to the total.
 import { evaluateCandidate, type CandidateEvaluation } from "@/lib/constraints/evaluate";
 import { containsKeyword } from "@/lib/constraints/keywords";
+import { detectProfileBorough, detectVenueArea, type Borough, type VenueArea } from "@/lib/domain/borough";
 import type { Candidate } from "@/lib/domain/place";
 import type { SeniorProfile } from "@/lib/domain/profile";
 
@@ -35,6 +36,9 @@ export const SCORE_WEIGHTS = {
   feedbackDisliked: -20,
   feedbackTried: -3,
   feedbackLikedCuisine: 4,
+  /** Only when the profile names a borough: same borough, or clearly outside New York City. */
+  sameBorough: 6,
+  outsideNyc: -6,
 } as const;
 
 export const DEFAULT_RESULT_LIMIT = 8;
@@ -56,6 +60,7 @@ export interface ScoreBreakdown {
   dislikePenalty: number;
   allergenPenalty: number;
   feedback: number;
+  borough: number;
 }
 
 /** An allergen for which at least half of a venue's listed dishes were set aside. */
@@ -75,6 +80,9 @@ export interface RankedCandidate {
   matchedFavouriteDishes: string[];
   /** Cuisines shared with a candidate the caregiver liked. */
   likedCuisines: string[];
+  /** Where the venue is, and the borough the profile asked for (null if none named). */
+  area: VenueArea;
+  requestedBorough: Borough | null;
 }
 
 export interface ExcludedCandidate {
@@ -151,6 +159,13 @@ export function allergenHeavyAllergens(evaluation: CandidateEvaluation): Allerge
     .sort((a, b) => b.removed - a.removed);
 }
 
+/** Ranks, never filters: a venue elsewhere stays in the list with a label. */
+export function boroughScore(requested: Borough | null, area: VenueArea): number {
+  if (!requested) return 0;
+  if (area.kind === "borough") return area.borough === requested ? SCORE_WEIGHTS.sameBorough : 0;
+  return area.kind === "outside_nyc" ? SCORE_WEIGHTS.outsideNyc : 0;
+}
+
 function allergenPenalty(heavy: AllergenHeavy[]): number {
   if (!heavy.length) return 0;
   return heavy[0].removed === heavy[0].total ? SCORE_WEIGHTS.allergenAllDishes : SCORE_WEIGHTS.allergenHeavy;
@@ -168,6 +183,7 @@ export function rankCandidates(
 ): RankingResult {
   const limit = options.limit ?? DEFAULT_RESULT_LIMIT;
   const maxRank = Math.max(1, ...candidates.map((c) => c.qlooRank));
+  const requestedBorough = detectProfileBorough(profile.location);
   const notSuitable = new Set(feedback.notSuitable ?? []);
   const disliked = new Set(feedback.disliked ?? []);
   const tried = new Set(feedback.tried ?? []);
@@ -190,6 +206,7 @@ export function rankCandidates(
 
     const matchedFavouriteDishes = matchFavouriteDishes(profile, evaluation);
     const likedCuisines = candidate.cuisines.filter((c) => likedCuisineSet.has(c.toLowerCase()));
+    const area = detectVenueArea(candidate);
     const breakdown: ScoreBreakdown = {
       taste: tasteScore(candidate.qlooRank, maxRank),
       favouriteDishes: Math.min(
@@ -204,6 +221,7 @@ export function rankCandidates(
         (disliked.has(candidate.id) ? SCORE_WEIGHTS.feedbackDisliked : 0) +
         (tried.has(candidate.id) ? SCORE_WEIGHTS.feedbackTried : 0) +
         (likedCuisines.length ? SCORE_WEIGHTS.feedbackLikedCuisine : 0),
+      borough: boroughScore(requestedBorough, area),
     };
     scored.push({
       candidate,
@@ -211,6 +229,8 @@ export function rankCandidates(
       score: { total: sum(breakdown), breakdown },
       matchedFavouriteDishes,
       likedCuisines,
+      area,
+      requestedBorough,
     });
   }
 

@@ -6,6 +6,7 @@
 // Parsing is tolerant: unknown fields are stripped and a malformed optional field becomes null
 // instead of rejecting the whole place.
 import { z } from "zod";
+import type { VenueGeocode } from "./borough";
 
 export const PLACE_ENTITY_TYPE = "urn:entity:place";
 
@@ -66,6 +67,14 @@ const PropertiesSchema = z.object({
   short_description: opt(z.string()),
   specialty_dishes: opt(z.array(z.object({ id: z.string().nullish(), name: z.string() }))),
   external: opt(ExternalSchema),
+  geocode: opt(
+    z.object({
+      city: opt(z.string()),
+      admin2_region: opt(z.string()),
+      admin1_region: opt(z.string()),
+      country_code: opt(z.string()),
+    }),
+  ),
 });
 
 export const QlooPlaceSchema = z.object({
@@ -122,6 +131,8 @@ export interface Candidate {
   name: string;
   address: string | null;
   neighborhood: string | null;
+  /** `properties.geocode`; used for the borough (see borough.ts). */
+  geocode: VenueGeocode | null;
   lat: number | null;
   lon: number | null;
   phone: string | null;
@@ -237,6 +248,14 @@ export function normalizePlace(place: QlooPlace, qlooRank: number): Candidate {
     name: place.name.trim(),
     address,
     neighborhood: nonEmpty(p.neighborhood),
+    geocode: p.geocode
+      ? {
+          city: nonEmpty(p.geocode.city),
+          county: nonEmpty(p.geocode.admin2_region),
+          region: nonEmpty(p.geocode.admin1_region),
+          countryCode: nonEmpty(p.geocode.country_code),
+        }
+      : null,
     lat: place.location?.lat ?? null,
     lon: place.location?.lon ?? null,
     phone: nonEmpty(p.phone),
