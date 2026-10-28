@@ -7,7 +7,7 @@ import { priceLabel, ratingLabel, signed, toolLabel } from "@/lib/ui/format";
 import { safeHttpUrl, telHref } from "@/lib/ui/links";
 import { createNdjsonParser, NdjsonError, readNdjson } from "@/lib/ui/ndjson";
 import { EXAMPLES, emptyDraft, exampleById, profileToDraft, validateDraft } from "@/lib/ui/profileDraft";
-import { droppedOut, movementLabel, rankMovement } from "@/lib/ui/rankMovement";
+import { droppedOut, evidenceSentence, joinList, movementLabel, rankMovement } from "@/lib/ui/rankMovement";
 import { ERROR_COPY, requestBody, runSearch, SearchError } from "@/lib/ui/searchClient";
 import { displayStatus, requirementLabel, splitSource, STATUS_DISPLAY } from "@/lib/ui/status";
 import {
@@ -137,6 +137,28 @@ describe("rank movement", () => {
   it("handles empty lists", () => {
     expect(rankMovement([], [])).toEqual([]);
     expect(rankMovement([], [p("a")])[0].movement).toEqual({ kind: "new" });
+  });
+});
+
+describe("evidence sentence", () => {
+  const top = (n: number) => Array.from({ length: n }, (_, i) => ({ id: `p${i}`, name: `P${i}` }));
+  const sig = (name: string) => ({ id: name, name, kind: "artist" as const });
+  const ev = (overlapCount: number, rankChanges: number, signals = [sig("Frank Sinatra")], n = 10) =>
+    ({ signalsUsed: signals, personalisedTop10: top(n), overlapCount, rankChanges }) as Parameters<typeof evidenceSentence>[0];
+
+  it("is computed from the evidence numbers", () => {
+    // The Sinatra figures in README: 4 of 10 shared, all 10 moved.
+    expect(evidenceSentence(ev(4, 10))).toBe("Frank Sinatra brought in 6 new places and moved all 10.");
+    expect(evidenceSentence(ev(9, 3))).toBe("Frank Sinatra brought in 1 new place and moved 3 of the 10.");
+    expect(evidenceSentence(ev(10, 7, [sig("Fela Kuti")]))).toBe("Fela Kuti brought in no new places but moved 7 of the 10.");
+    expect(evidenceSentence(ev(10, 0))).toBe("Frank Sinatra didn't change Qloo's top 10.");
+    expect(evidenceSentence(ev(2, 6, [sig("A"), sig("B")], 6))).toBe("A and B brought in 4 new places and moved all 6.");
+  });
+
+  it("says nothing without signals or places", () => {
+    expect(evidenceSentence(ev(4, 10, []))).toBeNull();
+    expect(evidenceSentence(ev(0, 0, undefined, 0))).toBeNull();
+    expect(joinList(["A", "B", "C"])).toBe("A, B and C");
   });
 });
 

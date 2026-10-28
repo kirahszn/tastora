@@ -372,7 +372,7 @@ function Form() {
               aria-describedby={err("city") ? "f-city-hint f-city-err" : "f-city-hint"}
               onChange={(e) => set("city", e.target.value)}
             />
-            <div className={formStyles.suggestions} role="group" aria-label="Quick picks for city">
+            <div className={`${formStyles.suggestions} ${styles.cityPicks}`} role="group" aria-label="Quick picks for city">
               {QUICK_CITIES.map((c) => {
                 const on = draft.city.trim().toLowerCase() === c.toLowerCase();
                 return (

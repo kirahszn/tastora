@@ -22,9 +22,9 @@ signals.
 
 | How it works | Why Qloo | Phone width (375px) |
 |---|---|---|
-| ![Accordion beside a phone showing the real result card for the open item](docs/screenshots/phase9a3-how-it-works-item3.jpg) | ![Three stat cards from Tastora's logged test searches](docs/screenshots/phase9a3-why-qloo.jpg) | ![Welcome page at 375px: logo, Find food pill and hero](docs/screenshots/phase9a3-mobile-375.jpg) |
+| ![Accordion beside a phone showing the real result card for the open item](docs/screenshots/landing-how-it-works.jpg) | ![Three stat cards from Tastora's logged test searches](docs/screenshots/phase9a3-why-qloo.jpg) | ![Welcome page at 375px: logo, Find food pill and hero](docs/screenshots/landing-mobile-375.jpg) |
 
-Full page: [desktop](docs/screenshots/phase9a3-desktop-full.jpg) · [375px](docs/screenshots/phase9a3-mobile-375-full.jpg).
+Full page: [desktop](docs/screenshots/landing-desktop-full.jpg) · [375px](docs/screenshots/landing-mobile-375-full.jpg).
 
 ## The problem
 
@@ -46,12 +46,15 @@ must avoid"), and it is explicit about what it cannot verify.
    access). Three example profiles are available (Queens, Brooklyn, London).
 2. **Search.** The search runs live: each real step (Claude's tool calls, Qloo lookups, ranking) is
    streamed to the screen as it happens.
-3. **Results.** You get up to 8 restaurants. Each card shows why it was suggested, a status for
-   each of the person's needs, dishes to ask about, questions to ask the restaurant, and website,
-   phone and Maps links. "Show details" lists dishes set aside for the person's needs (with the
-   reason) and the score breakdown.
-4. **Evidence.** The "How Qloo shaped these results" panel compares Qloo's top 10 with and without
-   the person's taste signals.
+3. **Results.** You get up to 8 restaurants. Each card leads with one plain reason (for example
+   "One of Qloo's top 5 matches for people who love Frank Sinatra"), then a status for each of the
+   person's needs, dishes to ask about, questions to ask the restaurant ("Which dishes are made
+   without pork?"), and shortlist, website, phone and Maps buttons. "Show details" lists every
+   reason with its source, dishes set aside for the person's needs (with the reason), Qloo's exact
+   rank and the score breakdown.
+4. **Evidence.** The "How Qloo shaped these results" panel opens with one sentence computed from
+   the comparison ("Frank Sinatra brought in 6 new places and moved all 10.") and shows Qloo's top
+   10 with and without the person's taste signals.
 5. **Feedback.** Mark places Like, Not for them, Not suitable or Already tried, then search
    again. The ranking takes the feedback into account, and "Not suitable" places are not shown
    again.
@@ -62,9 +65,10 @@ must avoid"), and it is explicit about what it cannot verify.
 Caregivers rarely decide alone, and the restaurant still has to be asked about allergies and
 texture. The top 3 places start on a shortlist; "Add to shortlist" on any card changes it.
 
-- **Share** builds plain text on the device (no emoji, about 1,500 characters for 3 places): for
-  each place its area, one reason, up to 3 dishes to ask about, up to 3 questions to ask, phone and
-  a Google Maps link, then "Tastora can't confirm ingredients or allergens. Please check with the
+- **Share** builds plain text on the device (no emoji, at most about 1,500 characters): for each
+  place its area, one reason, a "Good signs" line for comfort or diet needs a venue tag supports
+  (never allergies or texture), up to 3 dishes to ask about, up to 3 questions to ask, phone and a
+  Google Maps link, then "Tastora can't confirm ingredients or allergens. Please check with the
   restaurant." Send it with the phone's share sheet, copy it, or open it in WhatsApp
   (`https://wa.me/?text=…`). Scores and set-aside dishes are never included.
 - **Print checklist** (`/results/print`) is a "Before you go — questions to ask" sheet: address,
@@ -73,17 +77,20 @@ texture. The top 3 places start on a shortlist; "Add to shortlist" on any card c
 
 | Shortlist and share text | Print checklist (print styles) |
 |---|---|
-| ![Share panel with the shortlist text](docs/screenshots/phase8-share-panel-desktop-light.jpg) | ![Printed questions checklist](docs/screenshots/phase8-print-media.jpg) |
+| ![Share panel with the shortlist text](docs/screenshots/share-panel.jpg) | ![Printed questions checklist](docs/screenshots/print-page.jpg) |
 
-| Must-avoid section | Result card |
+| Profile: where | Profile: must avoid |
 |---|---|
-| ![Must avoid section of the profile form](docs/screenshots/profile-must-avoid-light.jpg) | ![Result card for Lenny's Clam Bar](docs/screenshots/results-card.jpg) |
+| ![Where section of the profile: City field with quick picks, optional neighbourhood](docs/screenshots/profile-where.jpg) | ![Must avoid section of the profile form](docs/screenshots/profile-must-avoid.jpg) |
 
-| Evidence panel | Mobile (375 px) |
+| Result card | Mobile (375 px) |
 |---|---|
-| ![How Qloo shaped these results](docs/screenshots/evidence-panel.jpg) | ![Result card on a phone-width screen](docs/screenshots/mobile-card.jpg) |
+| ![Result card for Lenny's Clam Bar](docs/screenshots/results-card.jpg) | ![Result card on a phone-width screen](docs/screenshots/mobile-card.jpg) |
 
-More screenshots: [`docs/screenshots/`](docs/screenshots/) (profile, results, print page, logo and favicon).
+![How Qloo shaped these results: "Frank Sinatra brought in 6 new places and moved all 10."](docs/screenshots/evidence-panel.jpg)
+
+Screenshots were taken on 2026-10-28 from the stored Sinatra-example response of 2026-10-27 (no new
+search). All of them are in [`docs/screenshots/`](docs/screenshots/).
 
 ## How Qloo powers it
 
@@ -235,7 +242,7 @@ API keys are read server-side only and are never sent to the browser.
 - **Qloo Insights API**: `/v2/tags`, `/search`, `/v2/insights`
 - **Claude** via `@anthropic-ai/sdk` (tool use; default model `claude-sonnet-5-5`)
 - **Zod** for profile, feedback and storage validation
-- **Vitest** (281 tests), ESLint
+- **Vitest** (289 tests), ESLint
 - CSS modules, no UI library. WCAG contrast checked, 44 px tap targets, one warm light theme.
 - Hosted on **Vercel**
 
@@ -285,12 +292,12 @@ defaults to `claude-sonnet-5-5`. The app builds and the tests run with no keys a
 | `npm run qloo:probe` | Phase 1 Qloo API spike (uses API credit) |
 | `npm run qloo:coverage` | Phase 9c coverage check for six cities (uses API credit, 24-call cap) |
 
-**Tests:** `npm test` runs 281 tests in 19 files. They cover the constraint engine, ranking, the
+**Tests:** `npm test` runs 289 tests in 19 files. They cover the constraint engine, ranking, the
 Qloo client and search layer (recorded responses), the agent (fake Claude and Qloo: limits,
 invented IDs, fallback, data minimisation), the API route (validation, streaming, rate limit), UI
 helpers (banned words, storage, status display) and locations beyond NYC (profile migration, the
 same-city rule on live samples, coverage note, phone format). One test reads a gitignored raw Qloo
-response and is skipped in a fresh clone (280 pass, 1 skipped).
+response and is skipped in a fresh clone (288 pass, 1 skipped).
 
 ## Known limitations
 

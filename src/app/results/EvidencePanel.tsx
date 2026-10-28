@@ -1,6 +1,13 @@
 "use client";
 // "How Qloo shaped these results": built only from the `evidence` object.
-import { droppedOut, movementLabel, rankMovement, type Movement } from "@/lib/ui/rankMovement";
+import {
+  droppedOut,
+  evidenceSentence,
+  joinList as list,
+  movementLabel,
+  rankMovement,
+  type Movement,
+} from "@/lib/ui/rankMovement";
 import type { QlooEvidence } from "@/lib/ui/types";
 import styles from "./results.module.css";
 
@@ -12,9 +19,6 @@ const KIND_LABELS: Record<string, string> = {
   place: "place",
   tag: "taste tag",
 };
-
-const list = (items: string[]) =>
-  items.length <= 1 ? (items[0] ?? "") : `${items.slice(0, -1).join(", ")} and ${items.at(-1)}`;
 
 function MovementBadge({ m }: { m: Movement }) {
   const { symbol, text } = movementLabel(m);
@@ -42,10 +46,12 @@ export function EvidencePanel({ evidence }: { evidence: QlooEvidence | null }) {
   const added = n - evidence.overlapCount;
   const cuisine = list(evidence.cuisineTagNames ?? []) || "this cuisine";
   const signals = evidence.signalsUsed.map((s) => s.name);
+  const lead = evidenceSentence(evidence);
 
   return (
     <section className={styles.evidence} aria-labelledby="evidence-h">
       <h2 id="evidence-h">How Qloo shaped these results</h2>
+      {lead && <p className={styles.evidenceLead}>{lead}</p>}
 
       {signals.length === 0 ? (
         <p>

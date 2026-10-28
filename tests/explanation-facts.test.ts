@@ -3,6 +3,7 @@ import {
   buildAllExplanationFacts,
   buildExplanationFacts,
   POSSIBLY_SOFT_NOTE,
+  tasteReasonText,
 } from "@/lib/agent/explanationFacts";
 import { rankCandidates } from "@/lib/ranking/rank";
 import {
@@ -75,7 +76,7 @@ describe("worked example (West African + Fela Kuti sample)", () => {
   it("explains Buka with sourced reasons", () => {
     expect(factsFor("Buka").reasons).toEqual([
       {
-        text: "Qloo ranked it #1 for this person's tastes",
+        text: "One of Qloo's top 5 matches for people who love Fela Kuti",
         source: "profile.tasteMemories ↔ Qloo taste rank #1 with signals: Fela Kuti (query.affinity 0.85)",
       },
       {
@@ -118,8 +119,8 @@ describe("worked example (West African + Fela Kuti sample)", () => {
       ["texture: soft food", "needs_confirmation"],
     ]);
     expect(buka.needsConfirmation).toEqual([
-      "Ask whether dishes can be made without peanut (Qloo has no allergen data)",
-      "Ask which dishes are soft food",
+      "Can dishes be made without peanut? (Qloo has no allergen data)",
+      "Which dishes are soft food?",
     ]);
   });
 
@@ -127,8 +128,30 @@ describe("worked example (West African + Fela Kuti sample)", () => {
     const suya = factsFor("Brooklyn Suya");
     expect(suya.dishesToAskAbout).toEqual([]);
     expect(suya.needsConfirmation).toContain(
-      "Every dish Qloo lists was set aside; ask what they can serve that fits",
+      "What can you serve that fits their needs? (every dish Qloo lists was set aside)",
     );
+  });
+});
+
+describe("Qloo taste reason wording", () => {
+  it("names the signals and a rank band, never the exact rank", () => {
+    expect(tasteReasonText(3, ["Frank Sinatra"])).toBe("One of Qloo's top 5 matches for people who love Frank Sinatra");
+    expect(tasteReasonText(5, ["Frank Sinatra", "Dean Martin"])).toBe(
+      "One of Qloo's top 5 matches for people who love Frank Sinatra and Dean Martin",
+    );
+    expect(tasteReasonText(6, ["Frank Sinatra"])).toBe("In Qloo's top 10 for people who love Frank Sinatra");
+    expect(tasteReasonText(10, ["A", "B", "C"])).toBe("In Qloo's top 10 for people who love A, B and C");
+    expect(tasteReasonText(11, ["Frank Sinatra"])).toBe("Matched by Qloo's taste data for this search");
+    expect(tasteReasonText(1, [])).toBe("Matched by Qloo's taste data for this search");
+  });
+
+  it("keeps the exact rank in the source", () => {
+    const profile = makeProfile({ favouriteCuisines: ["Italian"] });
+    const [item] = rankCandidates(profile, [makeCandidate({ qlooRank: 7 })]).ranked;
+    const reason = buildExplanationFacts(profile, item, { tasteSignals: [] }).reasons[0];
+    expect(reason.text).toBe("Matched by Qloo's taste data for this search");
+    expect(reason.source).toContain("Qloo rank #7 (no taste signals)");
+    for (const f of workedFacts()) expect(f.reasons[0].text).not.toMatch(/#\d/);
   });
 });
 
@@ -198,15 +221,24 @@ describe("facts contain only source data", () => {
     const [item] = rankCandidates(makeProfile(), [bare]).ranked;
     const f = buildExplanationFacts(makeProfile(), item);
     expect(f.links).toEqual({});
-    expect(f.needsConfirmation).toEqual(["Confirm opening hours (none listed)"]);
+    expect(f.needsConfirmation).toEqual(["What are your opening hours? (none listed)"]);
   });
 
   it("phrases 'no X' restrictions as a plain question", () => {
     const profile = makeProfile({ dietaryRestrictions: ["no pork", "halal"] });
     const [item] = rankCandidates(profile, [makeCandidate()]).ranked;
     const asks = buildExplanationFacts(profile, item).needsConfirmation;
-    expect(asks).toContain("Ask which dishes are made without pork");
-    expect(asks).toContain("Ask about halal options");
+    expect(asks).toContain("Which dishes are made without pork?");
+    expect(asks).toContain("What halal options do you have?");
+  });
+
+  it("writes every question as a question, with no 'Ask…' prefix", () => {
+    for (const f of facts) {
+      for (const q of f.needsConfirmation) {
+        expect(q).not.toMatch(/^(Ask|Confirm)\b/);
+        expect(q).toMatch(/\?( \(.+\))?$/);
+      }
+    }
   });
 
   it("score breakdown sums to its total", () => {

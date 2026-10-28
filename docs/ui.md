@@ -9,7 +9,7 @@ in `tests/ui-helpers.test.ts`). No UI libraries; CSS modules plus `src/app/globa
 | Principle | Implementation |
 |---|---|
 | Tastes, not age stereotypes | Profile asks only for the person's own foods and taste memories; no age field |
-| Preferences vs hard constraints | Separate form sections; "Must avoid" has a warning frame. Results show "Why it was suggested" apart from "Their needs" |
+| Preferences vs hard constraints | Separate form sections; "Must avoid" has a calm terracotta frame. Each card's one-line reason sits apart from "Their needs" |
 | Allergies/texture never safe | `displayStatus()` maps any allergy/texture `matched` to "Needs confirmation" (the engine never matches them; this guards the UI too) |
 | Status never colour alone | `STATUS_DISPLAY`: icon + text label + colour (Matched ✓ green, Needs confirmation ? amber, Conflict ✕ red) |
 | No ordering language | `tests/ui-helpers.test.ts` scans all UI source for order/buy/checkout/purchase/cart |
@@ -49,9 +49,11 @@ caption says the figures are "From Tastora's test searches in New York City, Oct
 ## Share and print (Phase 8)
 
 `buildShareText()` in `src/lib/ui/share.ts` (tested in `tests/share.test.ts`) lays out shortlisted
-facts as plain text within ~1,500 characters, trimming dishes, then the reason, then questions,
-then whole places ("And 2 more places on the shortlist."). The "Why" line prefers a favourite dish,
-then cuisine, never the Qloo rank unless nothing else exists. `ShortlistBar` offers the share sheet
+facts as plain text within ~1,500 characters, trimming dishes, then the reason and good signs, then
+questions, then whole places ("And 2 more places on the shortlist."). The "Why" line prefers Qloo's
+taste reason when it names a signal, then a favourite dish, then cuisine. "Good signs:" lists comfort
+and diet needs a venue tag matched ("Wheelchair access (venue tag)"), never allergies or texture.
+Questions are listed under "Questions to ask:" exactly as the facts phrase them. `ShortlistBar` offers the share sheet
 (`navigator.share`), copy (clipboard API, `execCommand` fallback) and `https://wa.me/?text=`.
 `/results/print` reads the cached search + shortlist; `@media print` in `globals.css` forces light
 tokens and hides the site header/footer. Hours are not in the response, so the checklist relies

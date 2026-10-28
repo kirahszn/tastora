@@ -21,6 +21,10 @@ export function shareHeading(profileName?: string | null): string {
 
 type Reason = RecommendResult["reasons"][number];
 
+/** Reason 0 is Qloo's taste reason; it names the signals ("…for people who love Frank Sinatra") when there were any. */
+const namesSignal = (x: Reason | undefined) =>
+  !!x && x.source.startsWith("profile.tasteMemories") && /\bwho love\b/.test(x.text);
+
 // Most telling to a family member first, by what the reason was matched from.
 const reasonWeight = (x: Reason) =>
   x.source.startsWith("profile.favouriteDishes")
@@ -34,13 +38,27 @@ const reasonWeight = (x: Reason) =>
         : 4;
 
 /**
- * The reason to show a family member. Reason 0 is Qloo's taste rank ("ranked it #3"), which reads
- * like a score out of context, so it is only used when there is nothing else.
+ * The reason to show a family member: Qloo's taste reason when it names a signal, then a
+ * favourite dish, then cuisine. The generic taste reason is only used when there is nothing else.
  */
 export function topReason(r: Pick<RecommendResult, "reasons">): string | null {
+  if (namesSignal(r.reasons[0])) return r.reasons[0].text;
   const rest = r.reasons.slice(1).map((x, i) => ({ x, i }));
   rest.sort((a, b) => reasonWeight(a.x) - reasonWeight(b.x) || a.i - b.i);
   return (rest[0]?.x ?? r.reasons[0])?.text ?? null;
+}
+
+/**
+ * Comfort and diet needs a Qloo venue tag supports, e.g. "Wheelchair access (venue tag)".
+ * Allergies and texture are never listed: Qloo has no data that could support them.
+ */
+export function goodSigns(r: Pick<RecommendResult, "constraintStatuses">): string[] {
+  return r.constraintStatuses
+    .filter((s) => s.status === "matched" && (s.kind === "comfort" || s.kind === "diet"))
+    .map((s) => {
+      const label = requirementLabel(s.requirement.slice(s.requirement.indexOf(":") + 2));
+      return s.kind === "diet" ? `${label} (venue tag; confirm)` : `${label} (venue tag)`;
+    });
 }
 
 /** Shortlisted results, in shortlist sequence; unknown ids are skipped. */
@@ -70,6 +88,8 @@ function placeBlock(r: RecommendResult, n: number, d: Detail): string {
   const lines = [`${n}. ${r.name}${where ? ` — ${where}` : ""}`];
   const reason = d.reason ? topReason(r) : null;
   if (reason) lines.push(`Why: ${reason}`);
+  const signs = d.reason ? goodSigns(r) : [];
+  if (signs.length) lines.push(`Good signs: ${signs.join(", ")}`);
   for (const w of r.warnings) lines.push(`Note: ${w.text}`);
   for (const c of r.constraintStatuses.filter((s) => s.status === "conflict")) {
     lines.push(`Conflict: ${requirementLabel(c.requirement)}`);
@@ -80,7 +100,7 @@ function placeBlock(r: RecommendResult, n: number, d: Detail): string {
   }
   const questions = r.needsConfirmation.slice(0, Math.min(d.questions, MAX_QUESTIONS));
   if (questions.length) {
-    lines.push("Ask them:", ...questions.map((q) => `- ${q}`));
+    lines.push("Questions to ask:", ...questions.map((q) => `- ${q}`));
     const more = r.needsConfirmation.length - questions.length;
     if (more > 0) lines.push(`- and ${more} more thing${more === 1 ? "" : "s"} to check`);
   }

@@ -28,15 +28,15 @@ const ITEMS: { title: string; text: string; shot: StaticImageData; alt: string }
   },
   {
     title: "Why this place",
-    text: "Each suggestion lists its reasons, like Qloo’s rank for their tastes or a related cuisine, and shows every need as Matched, Needs confirmation or Conflict.",
+    text: "Each suggestion leads with one plain reason, like “One of Qloo’s top 5 matches for people who love Frank Sinatra”, and shows every need as Matched, Needs confirmation or Conflict.",
     shot: whyShot,
-    alt: "A result card for Lenny's Clam Bar on a phone, with its reasons and their needs: Diet: no pork needs confirmation, Comfort: wheelchair access matched.",
+    alt: "A result card for Lenny's Clam Bar on a phone: “One of Qloo's top 5 matches for people who love Frank Sinatra”, then their needs: Diet: no pork needs confirmation, Comfort: wheelchair access matched.",
   },
   {
     title: "What to ask",
     text: "Every card ends with dishes to ask about and the questions to put to the restaurant before you go, plus Call and Website buttons when Qloo lists them.",
     shot: askShot,
-    alt: "The end of a result card on a phone: dishes to ask about, an “Ask the restaurant” box with “Ask which dishes are made without pork”, and Website, Call and Maps buttons.",
+    alt: "The end of a result card on a phone: dishes to ask about, an “Ask the restaurant” box with “Which dishes are made without pork?”, and the shortlist, Website, Call and Google Maps buttons.",
   },
 ];
 

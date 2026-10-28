@@ -28,7 +28,7 @@ export function Hero() {
       <Laptop>
         <Image
           src={resultsShot}
-          alt="Tastora's results page for the Sinatra example: “Places Dad might enjoy”, 8 suggestions near Queens. The first, Lenny's Clam Bar in Howard Beach, says why it was suggested: Qloo ranked it #3 for this person's tastes, Italian related to Italian-American, and a wheelchair accessible entrance."
+          alt="Tastora's results page for the Sinatra example: “Places Dad might enjoy”, 8 suggestions near Queens. The first, Lenny's Clam Bar in Howard Beach, is “One of Qloo's top 5 matches for people who love Frank Sinatra”, with its needs marked Needs confirmation or Matched."
           placeholder="blur"
           preload
           sizes="(max-width: 860px) calc(100vw - 4rem), 900px"

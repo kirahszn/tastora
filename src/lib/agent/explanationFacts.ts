@@ -95,6 +95,21 @@ function dishTagSource(candidate: Candidate, name: string, source: ExcludedDish[
 
 const tagIds = (tags: Tag[]) => tags.map((t) => `Qloo tag ${t.id}`).join(", ");
 
+/** "A", "A and B", "A, B and C". */
+const joinNames =(items: readonly string[]) =>
+  items.length <= 1 ? (items[0] ?? "") : `${items.slice(0, -1).join(", ")} and ${items.at(-1)}`;
+
+/**
+ * Plain wording for Qloo's taste rank. The exact rank stays in the source (and the score
+ * breakdown): on its own, "#3" reads oddly next to a place Tastora shows first.
+ */
+export function tasteReasonText(qlooRank: number, signals: readonly string[]): string {
+  const who = `people who love ${joinNames(signals)}`;
+  if (signals.length && qlooRank <= 5) return `One of Qloo's top 5 matches for ${who}`;
+  if (signals.length && qlooRank <= 10) return `In Qloo's top 10 for ${who}`;
+  return "Matched by Qloo's taste data for this search";
+}
+
 function tasteReason(profile: SeniorProfile, candidate: Candidate, ctx: ExplanationContext): Reason {
   const signals = ctx.tasteSignals ?? [
     ...profile.tasteMemories.music,
@@ -103,7 +118,7 @@ function tasteReason(profile: SeniorProfile, candidate: Candidate, ctx: Explanat
   ];
   const affinity = candidate.affinity !== null ? ` (query.affinity ${candidate.affinity.toFixed(2)})` : "";
   return {
-    text: `Qloo ranked it #${candidate.qlooRank} for this person's tastes`,
+    text: tasteReasonText(candidate.qlooRank, signals),
     source: signals.length
       ? `profile.tasteMemories ↔ Qloo taste rank #${candidate.qlooRank} with signals: ${signals.join(", ")}${affinity}`
       : `profile.favouriteCuisines: ${profile.favouriteCuisines.join(", ")} ↔ Qloo rank #${candidate.qlooRank} (no taste signals)${affinity}`,
@@ -216,27 +231,29 @@ function buildWarnings(item: RankedCandidate): FactWarning[] {
   }));
 }
 
+// Phrased as the question itself, so it reads the same on a card, in share text and on the
+// printed checklist ("Which dishes are made without pork?"). Notes for the caregiver follow it.
 function confirmationQuestion(r: RequirementResult): string | null {
   const value = r.requirement.slice(r.requirement.indexOf(":") + 2);
   switch (r.kind) {
     case "allergy":
-      return `Ask whether dishes can be made without ${value} (Qloo has no allergen data)`;
+      return `Can dishes be made without ${value}? (Qloo has no allergen data)`;
     case "diet":
       return r.status === "matched"
-        ? `Confirm the "${value}" claim; it is a venue-level tag`
+        ? `Can you confirm the ${value} options? (venue-level tag)`
         : /^no\s+/i.test(value)
-          ? `Ask which dishes are made without ${value.replace(/^no\s+/i, "")}`
-          : `Ask about ${value} options`;
+          ? `Which dishes are made without ${value.replace(/^no\s+/i, "")}?`
+          : `What ${value} options do you have?`;
     case "texture":
-      return `Ask which dishes are ${value}`;
+      return `Which dishes are ${value}?`;
     case "comfort":
       if (r.status === "matched") return null;
       if (r.requirement === "comfort: wheelchair access") {
-        return "Confirm wheelchair access, including the entrance";
+        return "Is there wheelchair access, including at the entrance?";
       }
       return r.status === "conflict"
-        ? "Qloo tags say it can be loud; ask about quieter times"
-        : "Ask how quiet it is at the time you plan to visit";
+        ? "When is it quieter? (Qloo tags say it can be loud)"
+        : "How quiet is it at the time we plan to visit?";
   }
 }
 
@@ -244,9 +261,9 @@ function buildNeedsConfirmation(item: RankedCandidate): string[] {
   const { evaluation, candidate } = item;
   const out = evaluation.requirements.map(confirmationQuestion).filter((q): q is string => !!q);
   if (!evaluation.allowedDishes.length && evaluation.excludedDishes.length) {
-    out.push("Every dish Qloo lists was set aside; ask what they can serve that fits");
+    out.push("What can you serve that fits their needs? (every dish Qloo lists was set aside)");
   }
-  if (!candidate.hours) out.push("Confirm opening hours (none listed)");
+  if (!candidate.hours) out.push("What are your opening hours? (none listed)");
   return [...new Set(out)];
 }
 

@@ -222,7 +222,7 @@ describe("agent planner", () => {
     expect(names).toHaveLength(5);
     // Buka was #1 in the signalled search and #5 in the other: rank 1 wins, with its signals.
     const buka = res.results.find((r) => r.name === "Buka")!;
-    expect(buka.reasons[0].text).toBe("Qloo ranked it #1 for this person's tastes");
+    expect(buka.reasons[0].text).toBe("One of Qloo's top 5 matches for people who love Fela Kuti");
     expect(buka.reasons[0].source).toContain("with signals: Fela Kuti");
   });
 

@@ -43,3 +43,6 @@ next-env.d.ts
 
 # full raw Qloo responses stay local (Phase 1)
 /fixtures/qloo/raw/
+
+# written by next dev (Next.js agent rules); not part of the project
+AGENTS.md

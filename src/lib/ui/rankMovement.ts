@@ -1,5 +1,26 @@
 // Rank movement between Qloo's top 10 without and with taste signals (from `evidence` only).
-import type { PlaceRef } from "./types";
+import type { PlaceRef, QlooEvidence } from "./types";
+
+/** "A", "A and B", "A, B and C". */
+export const joinList = (items: readonly string[]) =>
+  items.length <= 1 ? (items[0] ?? "") : `${items.slice(0, -1).join(", ")} and ${items.at(-1)}`;
+
+/**
+ * One plain sentence for the top of the evidence panel, e.g. "Frank Sinatra brought in 6 new
+ * places and moved all 10." Null when no signal was used or there is nothing to compare.
+ */
+export function evidenceSentence(
+  e: Pick<QlooEvidence, "signalsUsed" | "personalisedTop10" | "overlapCount" | "rankChanges">,
+): string | null {
+  const n = e.personalisedTop10.length;
+  if (!e.signalsUsed.length || !n) return null;
+  const who = joinList(e.signalsUsed.map((s) => s.name));
+  const added = n - e.overlapCount;
+  const moved = e.rankChanges === n ? `all ${n}` : `${e.rankChanges} of the ${n}`;
+  if (!e.rankChanges) return `${who} didn't change Qloo's top ${n}.`;
+  if (!added) return `${who} brought in no new places but moved ${moved}.`;
+  return `${who} brought in ${added} new place${added === 1 ? "" : "s"} and moved ${moved}.`;
+}
 
 export type Movement =
   | { kind: "up"; by: number }

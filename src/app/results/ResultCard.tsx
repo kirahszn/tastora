@@ -5,6 +5,7 @@ import { Icon } from "@/components/Icon";
 import { StatusBadge } from "@/components/StatusBadge";
 import { SCORE_LABELS, placeLine, priceLabel, ratingLabel, signed } from "@/lib/ui/format";
 import { safeHttpUrl, telHref } from "@/lib/ui/links";
+import { topReason } from "@/lib/ui/share";
 import { requirementLabel, splitSource } from "@/lib/ui/status";
 import type { Verdict } from "@/lib/ui/storage";
 import type { RecommendResult } from "@/lib/ui/types";
@@ -26,6 +27,9 @@ const VERDICT_NOTE: Record<Verdict, string> = {
 
 const NEW_TAB = <span className="sr-only"> (opens in a new tab)</span>;
 
+/** Dishes shown on the card; the full list is under "Show details". */
+const VISIBLE_DISHES = 6;
+
 export function ResultCard({
   result: r,
   verdict,
@@ -46,7 +50,10 @@ export function ResultCard({
   const maps = safeHttpUrl(r.links.mapsUrl);
   const tel = telHref(r.links.phone);
   const where = placeLine(r);
+  const why = topReason(r);
   const conflicts = r.constraintStatuses.filter((s) => s.status === "conflict");
+  const dishes = r.dishesToAskAbout.slice(0, VISIBLE_DISHES);
+  const moreDishes = r.dishesToAskAbout.length - dishes.length;
 
   return (
     <article className={styles.card} aria-labelledby={headingId}>
@@ -54,7 +61,7 @@ export function ResultCard({
         <span className={styles.rank} aria-hidden="true">
           {r.rank}
         </span>
-        <div>
+        <div className={styles.cardHeading}>
           <h3 id={headingId} className={styles.cardTitle}>
             <span className="sr-only">Suggestion {r.rank}: </span>
             {r.name}
@@ -80,16 +87,12 @@ export function ResultCard({
         </div>
       </header>
 
-      <button
-        type="button"
-        className={styles.shortlistToggle}
-        aria-pressed={shortlisted}
-        onClick={onToggleShortlist}
-      >
-        <Icon name={shortlisted ? "check" : "plus"} />
-        {shortlisted ? "On your shortlist" : "Add to shortlist"}
-        <span className="sr-only">: {r.name}</span>
-      </button>
+      {why && (
+        <p className={styles.why}>
+          <span className="sr-only">Why it was suggested: </span>
+          {why}
+        </p>
+      )}
 
       {(r.warnings.length > 0 || conflicts.length > 0) && (
         <div className={styles.cardWarning} role="note" aria-label="Warnings">
@@ -110,18 +113,6 @@ export function ResultCard({
       )}
 
       <div className={styles.cardBody}>
-        <div>
-          <h4>Why it was suggested</h4>
-          <ul className={styles.reasons}>
-            {r.reasons.slice(0, 3).map((reason) => (
-              <li key={reason.text}>
-                {reason.text}
-                {reason.strength === "related" && <span className={styles.tag}>related</span>}
-              </li>
-            ))}
-          </ul>
-        </div>
-
         {r.constraintStatuses.length > 0 && (
           <div>
             <h4>Their needs</h4>
@@ -137,9 +128,9 @@ export function ResultCard({
 
         <div>
           <h4>Dishes to ask about</h4>
-          {r.dishesToAskAbout.length > 0 ? (
+          {dishes.length > 0 ? (
             <ul className={styles.dishes}>
-              {r.dishesToAskAbout.map((d) => (
+              {dishes.map((d) => (
                 <li key={d.name}>
                   {d.name}
                   {d.note && <span className={styles.softNote}>{d.note}</span>}
@@ -149,10 +140,12 @@ export function ResultCard({
           ) : (
             <p className={styles.muted}>Qloo lists no dishes we could suggest here.</p>
           )}
-          {r.removedDishes.length > 0 && (
+          {(moreDishes > 0 || r.removedDishes.length > 0) && (
             <p className={styles.removedLine}>
-              {r.removedDishes.length === 1 ? "1 listed dish was" : `${r.removedDishes.length} listed dishes were`}{" "}
-              set aside for their needs. See details.
+              {moreDishes > 0 && `${moreDishes} more dish${moreDishes === 1 ? "" : "es"} to ask about. `}
+              {r.removedDishes.length > 0 &&
+                `${r.removedDishes.length === 1 ? "1 listed dish was" : `${r.removedDishes.length} listed dishes were`} set aside for their needs. `}
+              See details.
             </p>
           )}
         </div>
@@ -167,7 +160,19 @@ export function ResultCard({
             </ul>
           </div>
         )}
+      </div>
 
+      <div className={styles.actions}>
+        <button
+          type="button"
+          className={styles.shortlistToggle}
+          aria-pressed={shortlisted}
+          onClick={onToggleShortlist}
+        >
+          <Icon name={shortlisted ? "check" : "plus"} />
+          {shortlisted ? "On your shortlist" : "Add to shortlist"}
+          <span className="sr-only">: {r.name}</span>
+        </button>
         {(website || tel || maps) && (
           <div className={styles.links}>
             {website && (
@@ -182,7 +187,7 @@ export function ResultCard({
             )}
             {maps && (
               <a className="btn btn-secondary" href={maps} target="_blank" rel="noopener noreferrer">
-                <Icon name="map" /> Open in Google Maps{NEW_TAB}
+                <Icon name="map" /> Google Maps{NEW_TAB}
               </a>
             )}
           </div>
@@ -199,12 +204,22 @@ export function ResultCard({
             <ul className={styles.sourced}>
               {r.reasons.map((reason) => (
                 <li key={reason.text}>
-                  {reason.text}
+                  <span>
+                    {reason.text}
+                    {reason.strength === "related" && <span className={styles.tag}>related</span>}
+                  </span>
                   <span className={styles.source}>Source: {reason.source}</span>
                 </li>
               ))}
             </ul>
           </section>
+
+          {moreDishes > 0 && (
+            <section>
+              <h4>All dishes to ask about</h4>
+              <p>{r.dishesToAskAbout.map((d) => (d.note ? `${d.name} (${d.note})` : d.name)).join(" · ")}</p>
+            </section>
+          )}
 
           <section>
             <h4>Needs, in detail</h4>

@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   buildShareText,
+  goodSigns,
   SHARE_DISCLAIMER,
   SHARE_TEXT_LIMIT,
   SITE_URL,
@@ -43,8 +44,8 @@ function result(id: string, rank: number, extra: Partial<RecommendResult> = {}):
     name: `Place ${id.toUpperCase()}`,
     rank,
     reasons: [
-      { text: `Qloo ranked it #${rank + 4} for this person's tastes`, source: "x" },
-      { text: "Serves Italian-American food", source: "x" },
+      { text: "Matched by Qloo's taste data for this search", source: "profile.favouriteCuisines: x ↔ Qloo rank #9" },
+      { text: "Serves Italian-American food", source: "profile.favouriteCuisines: x" },
     ],
     dishesToAskAbout: [
       { name: "Chicken Parm", source: "qloo.dishHighlights" },
@@ -58,10 +59,10 @@ function result(id: string, rank: number, extra: Partial<RecommendResult> = {}):
     warnings: [],
     constraintStatuses: [],
     needsConfirmation: [
-      "Ask which dishes are made without pork",
-      "Confirm wheelchair access, including the entrance",
-      "Confirm opening hours (none listed)",
-      "Ask how quiet it is at the time you plan to visit",
+      "Which dishes are made without pork?",
+      "Is there wheelchair access, including at the entrance?",
+      "What are your opening hours? (none listed)",
+      "How quiet is it at the time we plan to visit?",
     ],
     area: { kind: "borough", label: "In Queens", inRequestedBorough: true, source: "qloo.properties.geocode" },
     links: {
@@ -109,10 +110,10 @@ describe("buildShareText", () => {
         "1. Place A — Astoria · In Queens",
         "Why: Serves Italian-American food",
         "Dishes to ask about: Chicken Parm, Meatballs, Polenta (possibly soft — confirm)",
-        "Ask them:",
-        "- Ask which dishes are made without pork",
-        "- Confirm wheelchair access, including the entrance",
-        "- Confirm opening hours (none listed)",
+        "Questions to ask:",
+        "- Which dishes are made without pork?",
+        "- Is there wheelchair access, including at the entrance?",
+        "- What are your opening hours? (none listed)",
         "- and 1 more thing to check",
         "Phone: (718) 555-0100",
         "Map: https://www.google.com/maps/search/?api=1&query=Place+a&query_place_id=ChIJa",
@@ -126,8 +127,33 @@ describe("buildShareText", () => {
   it("never includes set-aside dishes, scores or the Qloo rank", () => {
     const text = buildShareText(results, ["a", "b", "c"]);
     expect(text).not.toContain("Pork Chop");
-    expect(text).not.toMatch(/\b57\b|\b31\b|score|ranked it/i);
+    expect(text).not.toMatch(/\b57\b|\b31\b|score|#\d/i);
     expect(text).not.toContain("Lasagna"); // 4th dish: at most three
+  });
+
+  it("never reads 'Ask them: Ask…'", () => {
+    const text = buildShareText(results, ["a", "b", "c"]);
+    expect(text).not.toMatch(/Ask them:/);
+    expect(text).not.toMatch(/^- (Ask|Confirm)\b/m);
+  });
+
+  it("adds one 'Good signs' line for matched comfort and diet needs only", () => {
+    const statuses = [
+      { requirement: "comfort: wheelchair access", kind: "comfort", status: "matched", evidence: [], warnings: [] },
+      { requirement: "diet: vegetarian", kind: "diet", status: "matched", evidence: [], warnings: [] },
+      { requirement: "comfort: quiet place", kind: "comfort", status: "needs_confirmation", evidence: [], warnings: [] },
+      // Never matched by the engine; listed here to prove they can't leak into the text.
+      { requirement: "allergy: peanut", kind: "allergy", status: "matched", evidence: [], warnings: [] },
+      { requirement: "texture: soft food", kind: "texture", status: "matched", evidence: [], warnings: [] },
+    ] as unknown as RecommendResult["constraintStatuses"];
+    const r = result("g", 1, { constraintStatuses: statuses });
+    expect(goodSigns(r)).toEqual(["Wheelchair access (venue tag)", "Vegetarian (venue tag; confirm)"]);
+    const text = buildShareText([r], ["g"]);
+    expect(text).toContain("Good signs: Wheelchair access (venue tag), Vegetarian (venue tag; confirm)");
+    expect(text.match(/Good signs:/g)).toHaveLength(1);
+    expect(text).not.toMatch(/peanut|soft food \(venue/i);
+    expect(goodSigns(result("n", 1))).toEqual([]);
+    expect(buildShareText(results, ["a"])).not.toContain("Good signs");
   });
 
   it("includes warnings and conflicts from the facts", () => {
@@ -152,7 +178,7 @@ describe("buildShareText", () => {
     const three = buildShareText(results, ["a", "b", "c"]);
     expect(three.length).toBeLessThanOrEqual(SHARE_TEXT_LIMIT);
     expect(three).toContain("3. Place C");
-    expect(three).toContain("Ask them:");
+    expect(three).toContain("Questions to ask:");
 
     const many = Array.from({ length: 10 }, (_, i) => result(`p${i}`, i + 1));
     const text = buildShareText(many, many.map((r) => r.candidateId));
@@ -161,10 +187,20 @@ describe("buildShareText", () => {
     expect(text).toContain(SHARE_DISCLAIMER);
   });
 
-  it("picks a favourite dish or cuisine as the top reason, not the Qloo rank or a venue tag", () => {
+  it("prefers the Qloo reason when it names a signal", () => {
+    const reasons = [
+      { text: "One of Qloo's top 5 matches for people who love Frank Sinatra", source: "profile.tasteMemories ↔ Qloo taste rank #3 with signals: Frank Sinatra" },
+      { text: "Lists Chicken Parm, a favourite dish", source: "profile.favouriteDishes: chicken parm ↔ x" },
+    ];
+    expect(topReason({ reasons })).toBe("One of Qloo's top 5 matches for people who love Frank Sinatra");
+    const r = result("s", 1, { reasons });
+    expect(buildShareText([r], ["s"])).toContain("Why: One of Qloo's top 5 matches for people who love Frank Sinatra");
+  });
+
+  it("otherwise picks a favourite dish or cuisine, not the generic Qloo reason or a venue tag", () => {
     expect(topReason(results[0])).toBe("Serves Italian-American food");
     const reasons = [
-      { text: "Qloo ranked it #2 for this person's tastes", source: "profile.tasteMemories ↔ x" },
+      { text: "Matched by Qloo's taste data for this search", source: "profile.tasteMemories ↔ Qloo taste rank #12 with signals: x" },
       { text: "Venue tag: Wheelchair accessible entrance", source: "profile.comfort ↔ x" },
       { text: "Italian — related to Italian-American", source: "profile.favouriteCuisines: x", strength: "related" as const },
       { text: "Lists Chicken Parm, a favourite dish", source: "profile.favouriteDishes: chicken parm ↔ x" },

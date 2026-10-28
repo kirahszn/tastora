@@ -23,6 +23,22 @@
   color: currentColor;
 }
 
+/* Phones: status on the first line, the need on the second, no stray separator. */
+@media (max-width: 560px) {
+  .badge {
+    border-radius: var(--radius-sm);
+    padding: 0.4rem 0.75rem;
+  }
+
+  .requirement {
+    flex-basis: 100%;
+  }
+
+  .requirement::before {
+    content: none;
+  }
+}
+
 .ok {
   color: var(--ok);
   background: var(--ok-bg);

@@ -1,6 +1,6 @@
 .page {
   display: grid;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .intro,
@@ -9,12 +9,17 @@
   color: var(--muted);
 }
 
+.intro {
+  margin-top: -1.25rem;
+  font-size: 1.05rem;
+}
+
 .examples {
   display: grid;
-  gap: 0.6rem;
-  padding: 1.25rem;
-  border-radius: var(--radius);
-  background: var(--surface-2);
+  gap: 0.75rem;
+  padding: 1.75rem;
+  border-radius: var(--radius-lg);
+  background: var(--band);
   scroll-margin-top: 1rem;
 }
 
@@ -59,21 +64,27 @@
 
 .form {
   display: grid;
-  gap: 1.25rem;
+  gap: 1.75rem;
 }
 
+/* Same card language as the landing page: large radius, soft warm shadow. */
 .section {
   display: grid;
-  gap: 1.1rem;
-  padding: 1.25rem;
-  border-radius: var(--radius);
+  gap: 1.25rem;
+  padding: 1.75rem;
+  border-radius: var(--radius-lg);
   background: var(--surface);
   border: 1px solid var(--line);
+  box-shadow: var(--shadow-card);
+}
+
+.section h2 {
+  font-size: 1.35rem;
 }
 
 .sectionHint {
   color: var(--muted);
-  margin-top: -0.5rem;
+  margin-top: -0.6rem;
 }
 
 .optional {
@@ -81,10 +92,12 @@
   font-weight: 400;
 }
 
-/* Hard constraints are set apart from preferences: important and respected, not an error. */
+/* Hard constraints are set apart from preferences: important and respected, not an error.
+   A terracotta frame and a faint peach wash, never the error red. */
 .mustAvoid {
-  border: 2px solid var(--accent);
-  border-left-width: 8px;
+  border: 1.5px solid var(--accent);
+  border-left-width: 6px;
+  background: linear-gradient(var(--tint-peach), var(--surface) 7rem);
 }
 
 .avoidHeading {
@@ -96,11 +109,17 @@
 .shield {
   display: inline-grid;
   place-items: center;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2.4rem;
+  height: 2.4rem;
   border-radius: 999px;
-  background: var(--accent-soft);
+  background: var(--surface);
   color: var(--accent);
+  border: 1.5px solid var(--accent);
+}
+
+/* City quick picks: an even two-column grid on phones instead of a ragged wrap. */
+.cityPicks {
+  margin-top: 0.15rem;
 }
 
 .mustAvoid .sectionHint {
@@ -156,8 +175,8 @@
 }
 
 .privacy {
-  padding: 1.1rem 1.25rem;
-  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-lg);
   border: 1px dashed var(--line-strong);
   display: grid;
   gap: 0.5rem;
@@ -213,9 +232,31 @@
 }
 
 @media (max-width: 480px) {
+  .page {
+    gap: 1.5rem;
+  }
+
+  .intro {
+    margin-top: -0.75rem;
+  }
+
+  .form {
+    gap: 1.25rem;
+  }
+
   .section,
   .examples {
-    padding: 1rem;
+    padding: 1.1rem;
+    border-radius: var(--radius);
+  }
+
+  .cityPicks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cityPicks button {
+    padding-inline: 0.5rem;
   }
 
   .submitRow :global(.btn-primary) {

@@ -155,12 +155,19 @@ total is their sum.
 | `removedDishes[] {name, source, reason, requirement, why}` | What was removed, and why |
 | `warnings[] {text, source}` | Venue-level cautions, e.g. the allergen-heavy warning above |
 | `constraintStatuses` | The `evaluateCandidate` results |
-| `needsConfirmation[]` | Plain questions for the caregiver to ask the restaurant |
+| `needsConfirmation[]` | Questions to put to the restaurant, phrased as questions ("Which dishes are made without pork?"), with any note in brackets after them |
 | `links` | `website` / `phone` / `mapsUrl`, only when present |
 | `scoreBreakdown` | Components plus `total` |
 
 `tasteSignals` defaults to all profile taste memories; the search layer should pass the signals it
 actually sent.
+
+**Qloo taste reason (Phase 9b).** Reason 0 names the signals and a rank band, not the exact rank
+(a "#3" next to a place Tastora shows first confused people): rank ≤ 5 with signals → "One of
+Qloo's top 5 matches for people who love Frank Sinatra"; rank ≤ 10 → "In Qloo's top 10 for people
+who love …"; otherwise, or with no signals, "Matched by Qloo's taste data for this search". Several
+signals read "Frank Sinatra and Dean Martin". The exact rank and affinity stay in the source, under
+"Show details", and the score breakdown.
 
 **Related cuisines** (`src/lib/domain/cuisines.ts`). When a venue lacks the favourite cuisine's
 tag but carries a related one, a lower-weight reason follows the direct cuisine reasons:
@@ -192,7 +199,7 @@ and `texture: soft food` → `needs_confirmation`.
 
 **Buka**
 - Reasons:
-  - Qloo taste rank #1 with signals: Fela Kuti (affinity 0.85)
+  - One of Qloo's top 5 matches for people who love Fela Kuti (source: taste rank #1, affinity 0.85)
   - Serves Nigerian food (`urn:tag:cuisine:qloo:nigerian`)
   - Lists Jollof rice, a favourite (`urn:tag:menu_highlight:qloo:jollof_rice`)
 - Dishes to ask about: Jollof rice; Pounded yam, Amala, Moi moi, Pepper soup, Fufu (possibly soft —
@@ -215,9 +222,9 @@ and `texture: soft food` → `needs_confirmation`.
 **Further down the list**
 - Cafe Rue Dix (#4) loses Mafe (commonly made with peanut).
 - Brooklyn Suya (#5) loses every dish: 7 suya dishes, plus "Peanut aeoli" by keyword. Its facts say
-  "Every dish Qloo lists was set aside; ask what they can serve that fits", it takes the −15
+  "What can you serve that fits their needs? (every dish Qloo lists was set aside)", it takes the −15
   allergen-heavy penalty and carries the warning "Many listed dishes here commonly contain peanut".
 
 **Needs confirmation (all five):**
-- "Ask whether dishes can be made without peanut (Qloo has no allergen data)"
-- "Ask which dishes are soft food"
+- "Can dishes be made without peanut? (Qloo has no allergen data)"
+- "Which dishes are soft food?"
