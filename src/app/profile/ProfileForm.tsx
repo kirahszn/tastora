@@ -131,7 +131,10 @@ function Form() {
 
   return (
     <div className={styles.page}>
-      <h1>Tell us about them</h1>
+      <div className={styles.pageHead}>
+        <p className="eyebrow">Their profile</p>
+        <h1>Tell us about them</h1>
+      </div>
       <p className={styles.intro}>
         Only cuisines and a city are needed. Everything else helps Tastora find places that feel familiar and
         flag what to check.

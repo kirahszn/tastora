@@ -5,8 +5,8 @@
   gap: 0.35rem;
   padding: 0.3rem 0.7rem;
   border-radius: 999px;
-  border: 1.5px solid currentColor;
-  font-size: 0.95rem;
+  border: 1px solid currentColor;
+  font-size: var(--text-small);
   line-height: 1.3;
 }
 

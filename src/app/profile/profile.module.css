@@ -3,6 +3,11 @@
   gap: 2rem;
 }
 
+.pageHead {
+  display: grid;
+  gap: var(--space-2);
+}
+
 .intro,
 .hint,
 .loading {
@@ -10,8 +15,9 @@
 }
 
 .intro {
-  margin-top: -1.25rem;
-  font-size: 1.05rem;
+  margin-top: calc(-1 * var(--space-4));
+  max-width: var(--measure);
+  font-size: var(--text-lead);
 }
 
 .examples {
@@ -20,7 +26,7 @@
   padding: 1.75rem;
   border-radius: var(--radius-lg);
   background: var(--band);
-  scroll-margin-top: 1rem;
+  scroll-margin-top: 6rem; /* below the floating nav */
 }
 
 .exampleGrid {
@@ -35,10 +41,12 @@
   text-align: left;
   padding: 1rem 1.1rem;
   border-radius: var(--radius-sm);
-  border: 2px solid var(--line-strong);
+  border: 1px solid var(--line);
   background: var(--surface);
+  box-shadow: var(--shadow-card);
   color: var(--ink);
   cursor: pointer;
+  transition: border-color 160ms ease;
 }
 
 .exampleCard:hover {
@@ -46,9 +54,13 @@
 }
 
 .exampleTitle {
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
-  font-weight: 600;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.exampleSummary {
+  font-size: var(--text-small);
 }
 
 .exampleSummary {
@@ -64,14 +76,14 @@
 
 .form {
   display: grid;
-  gap: 1.75rem;
+  gap: var(--space-5);
 }
 
-/* Same card language as the landing page: large radius, soft warm shadow. */
+/* The one card (same values as .card in globals.css). */
 .section {
   display: grid;
-  gap: 1.25rem;
-  padding: 1.75rem;
+  gap: var(--space-5);
+  padding: var(--space-6);
   border-radius: var(--radius-lg);
   background: var(--surface);
   border: 1px solid var(--line);
@@ -79,7 +91,7 @@
 }
 
 .section h2 {
-  font-size: 1.35rem;
+  font-size: 1.3125rem;
 }
 
 .sectionHint {

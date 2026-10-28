@@ -9,7 +9,7 @@
 
 .hint {
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: var(--text-small);
 }
 
 .input,
@@ -17,7 +17,7 @@
   width: 100%;
   min-height: 48px;
   padding: 0.55rem 0.8rem;
-  border: 2px solid var(--line-strong);
+  border: 1.5px solid var(--line-strong);
   border-radius: var(--radius-sm);
   background: var(--surface);
   color: var(--ink);

@@ -156,3 +156,22 @@ nav to "How it works · Why Qloo · Our rules" and a "Find food ↗" pill (phone
   20089303 by Nothing Ahead (`family-table.jpg`, 1600px), 31705508 by Juan TM (`shared-plates.jpg`,
   2000px), all downloaded 2026-10-28. Credited under each photo, in the footer and in the README,
   worded so it doesn't imply the people use Tastora.
+## App pages (Phase 10 part 2)
+
+- `/profile`, `/results`, `/results/print` and the search progress use the Phase 10 tokens: Manrope,
+  smaller balanced sizes, the one card (`--radius-lg`, thin border, soft shadow), mono for the
+  card's cuisine/price/rating line and "possibly soft" notes, and eyebrows above the page headings.
+- Result card order: rank + name → area → cuisines/price/rating → one-line why (peach panel, no
+  serif) → warnings → needs → dishes → questions → shortlist and contact actions → details → feedback.
+- The sticky "can't verify ingredients" notice sits just below the floating nav
+  (`top: calc(60px + …)`), and cards scroll to below both (`scroll-margin-top: 11rem`).
+- **Evidence panel** reuses the landing re-rank list (`src/components/RerankList.tsx`, `useFlip`)
+  with this search's own `evidence`: chips switch between "With <signals>" and "Without taste
+  signals", rows glide, "New"/"↑n"/"↓n" come from `rankMovement`, and places that left the top 10
+  are listed underneath. No other data is used.
+- **Console:** on the live site (Phase 9b build) the only console error was "MetaMask encountered
+  an error setting the global Ethereum provider" from the MetaMask browser extension's `inpage.js`
+  (`chrome-extension://…`), not from Tastora; with it filtered out, `/`, `/profile`, `/results`
+  (with results) and `/results/print` log no errors or warnings of ours.
+- Checked at 375, 768, 1024 and 1440px (same-origin iframe, real stored results): no horizontal
+  scroll, no text under AA contrast, no tap target under 44px, on every page.

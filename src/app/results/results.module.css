@@ -1,4 +1,4 @@
-﻿.muted {
+.muted {
   color: var(--muted);
 }
 
@@ -134,7 +134,7 @@
   background: var(--warn-bg);
   color: var(--ink);
   position: sticky;
-  top: 0.5rem;
+  top: calc(60px + var(--space-3) + var(--space-2)); /* just below the floating nav */
   z-index: 2;
 }
 
@@ -148,13 +148,13 @@
 .evidence,
 .searchNotes,
 .notShown {
-  scroll-margin-top: 6rem;
+  scroll-margin-top: 11rem; /* below the nav and the sticky notice */
 }
 
 @media (max-width: 560px) {
   .persistentNotice {
     padding: 0.55rem 0.8rem;
-    font-size: 0.95rem;
+    font-size: var(--text-small);
     line-height: 1.4;
   }
 }
@@ -332,18 +332,18 @@
   list-style: none;
   padding: 0;
   display: grid;
-  gap: 1.75rem;
+  gap: var(--space-6);
 }
 
-/* Same card language as the landing page: large radius, soft warm shadow. */
+/* The one card (same values as .card in globals.css). */
 .card {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
-  padding: 1.75rem;
+  padding: var(--space-6);
   display: grid;
-  gap: 1.25rem;
+  gap: var(--space-5);
 }
 
 .cardHeader {
@@ -360,11 +360,11 @@
 
 /* The one-line reason: the first thing to read after the name and area. */
 .why {
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+  font-weight: 600;
   line-height: 1.45;
-  padding-left: 0.9rem;
-  border-left: 3px solid var(--accent-fill);
 }
 
 .rank {
@@ -375,18 +375,20 @@
   border-radius: 999px;
   background: var(--accent-fill);
   color: var(--on-accent);
-  font-family: var(--font-serif);
+  font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 0.9375rem;
   flex-shrink: 0;
 }
 
 .cardTitle {
-  font-size: 1.35rem;
+  font-size: 1.375rem;
+  letter-spacing: -0.025em;
   overflow-wrap: anywhere;
 }
 
 .where {
+  font-size: var(--text-small);
   font-weight: 600;
   color: var(--muted);
 }
@@ -402,9 +404,10 @@
 .meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem 0.9rem;
+  gap: 0.15rem 0.9rem;
   color: var(--muted);
-  font-size: 0.95rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
 }
 
 .cardWarning {
@@ -440,9 +443,9 @@
 .cardBody h4,
 .detailsBody h4 {
   font-family: var(--font-sans);
-  font-size: 0.9rem;
+  font-size: 0.78125rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 0.35rem;
@@ -474,16 +477,19 @@
 }
 
 .dishes li {
-  padding: 0.25rem 0.85rem;
-  border-radius: 999px;
-  background: var(--surface-2);
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-small);
+  font-weight: 600;
 }
 
 .softNote {
   display: block;
-  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.71875rem;
   color: var(--warn);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .softNote::before {
@@ -493,14 +499,18 @@
 .removedLine {
   margin-top: 0.5rem;
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: var(--text-small);
 }
 
 .ask {
-  padding: 1rem 1.15rem;
-  border-radius: var(--radius);
-  border-left: 4px solid var(--warn);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--warn);
   background: var(--warn-bg);
+}
+
+.ask li {
+  font-weight: 600;
 }
 
 .ask h4 {
@@ -661,17 +671,33 @@
 
 .evidence {
   display: grid;
-  gap: 1rem;
-  padding: 1.75rem;
+  gap: var(--space-4);
+  padding: var(--space-6);
   border-radius: var(--radius-lg);
   background: var(--band);
 }
 
 /* The one-sentence answer, computed from `evidence`. */
 .evidenceLead {
-  font-family: var(--font-serif);
   font-size: 1.25rem;
-  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+
+.evidenceList {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.evidenceChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
 }
 
 .evidenceSub {
@@ -714,64 +740,10 @@
 }
 
 .stats dd {
-  font-family: var(--font-serif);
   font-size: 1.5rem;
   font-weight: 700;
-}
-
-.compare {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  padding-top: 0.75rem;
-}
-
-.top10 {
-  display: grid;
-  gap: 0.25rem;
-  padding-left: 1.6rem;
-}
-
-.top10 li {
-  overflow-wrap: anywhere;
-}
-
-.gone {
-  color: var(--muted);
-}
-
-.goneNote {
-  display: block;
-  font-size: 0.9rem;
-}
-
-.move {
-  display: inline-block;
-  margin-left: 0.3rem;
-  padding: 0 0.45rem;
-  border-radius: 999px;
-  font-size: 0.9rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-}
-
-.move_up {
-  color: var(--ok);
-  background: var(--ok-bg);
-}
-
-.move_down {
-  color: var(--bad);
-  background: var(--bad-bg);
-}
-
-.move_same {
-  color: var(--muted);
-}
-
-.move_new {
-  color: var(--on-accent);
-  background: var(--accent-fill);
+  letter-spacing: -0.03em;
+  color: var(--accent);
 }
 
 .traceList {
@@ -791,10 +763,6 @@
 
   .card {
     gap: 1rem;
-  }
-
-  .compare {
-    grid-template-columns: 1fr;
   }
 
   .stats {

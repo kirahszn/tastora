@@ -1,13 +1,10 @@
 "use client";
-// "How Qloo shaped these results": built only from the `evidence` object.
-import {
-  droppedOut,
-  evidenceSentence,
-  joinList as list,
-  movementLabel,
-  rankMovement,
-  type Movement,
-} from "@/lib/ui/rankMovement";
+// "How Qloo shaped these results": built only from the `evidence` object. The two top-10 lists use
+// the landing page's re-rank list: switch between them and the rows glide to their new places.
+import { useState } from "react";
+import { RerankList } from "@/components/RerankList";
+import { useFlip } from "@/components/useFlip";
+import { droppedOut, evidenceSentence, joinList as list, rankMovement } from "@/lib/ui/rankMovement";
 import type { QlooEvidence } from "@/lib/ui/types";
 import styles from "./results.module.css";
 
@@ -20,17 +17,10 @@ const KIND_LABELS: Record<string, string> = {
   tag: "taste tag",
 };
 
-function MovementBadge({ m }: { m: Movement }) {
-  const { symbol, text } = movementLabel(m);
-  return (
-    <span className={`${styles.move} ${styles[`move_${m.kind}`]}`}>
-      <span aria-hidden="true">{symbol}</span>
-      <span className="sr-only">{text}</span>
-    </span>
-  );
-}
-
 export function EvidencePanel({ evidence }: { evidence: QlooEvidence | null }) {
+  const [withSignals, setWithSignals] = useState(true);
+  const { ref, capture } = useFlip<HTMLOListElement>();
+
   if (!evidence) {
     return (
       <section className={styles.evidence} aria-labelledby="evidence-h">
@@ -47,6 +37,13 @@ export function EvidencePanel({ evidence }: { evidence: QlooEvidence | null }) {
   const cuisine = list(evidence.cuisineTagNames ?? []) || "this cuisine";
   const signals = evidence.signalsUsed.map((s) => s.name);
   const lead = evidenceSentence(evidence);
+  const showPersonalised = signals.length > 0 && withSignals;
+
+  const choose = (next: boolean) => {
+    if (next === withSignals) return;
+    capture();
+    setWithSignals(next);
+  };
 
   return (
     <section className={styles.evidence} aria-labelledby="evidence-h">
@@ -96,32 +93,29 @@ export function EvidencePanel({ evidence }: { evidence: QlooEvidence | null }) {
         </>
       )}
 
-      <details className={styles.details} open={signals.length > 0}>
-        <summary>Compare the two top-10 lists</summary>
-        <div className={styles.compare}>
-          <div>
-            <h3 className={styles.evidenceSub}>Without taste signals</h3>
-            <ol className={styles.top10}>
-              {evidence.baselineTop10.map((p) => (
-                <li key={p.id} className={gone.some((g) => g.id === p.id) ? styles.gone : undefined}>
-                  {p.name}
-                  {gone.some((g) => g.id === p.id) && <span className={styles.goneNote}>left the top 10</span>}
-                </li>
-              ))}
-            </ol>
+      <div className={styles.evidenceList}>
+        <h3 className={styles.evidenceSub}>Qloo&rsquo;s top {n || evidence.baselineTop10.length}</h3>
+        {signals.length > 0 && (
+          <div className={styles.evidenceChips} role="group" aria-label="Which list to show">
+            <button type="button" className="chip" aria-pressed={withSignals} onClick={() => choose(true)}>
+              With {list(signals)}
+            </button>
+            <button type="button" className="chip" aria-pressed={!withSignals} onClick={() => choose(false)}>
+              Without taste signals
+            </button>
           </div>
-          <div>
-            <h3 className={styles.evidenceSub}>With taste signals</h3>
-            <ol className={styles.top10}>
-              {rows.map((row) => (
-                <li key={row.id}>
-                  {row.name} <MovementBadge m={row.movement} />
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </details>
+        )}
+        <RerankList
+          listRef={ref}
+          label={showPersonalised ? "Top 10 with taste signals, with movement" : "Top 10 without taste signals"}
+          rows={showPersonalised ? rows : evidence.baselineTop10}
+        />
+        {showPersonalised && gone.length > 0 && (
+          <p className={styles.muted}>
+            Left the top 10: {list(gone.map((g) => g.name))}.
+          </p>
+        )}
+      </div>
     </section>
   );
 }

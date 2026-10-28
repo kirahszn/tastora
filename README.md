@@ -25,14 +25,17 @@ Frank Sinatra profile) → **Find restaurants**. Results stream in within a few 
 **How Qloo shaped these results** to compare Qloo's ranking with and without the person's taste
 signals.
 
-![Welcome page: centred headline and a laptop frame showing the real Sinatra-example results page](docs/screenshots/welcome.jpg)
+![Landing page at 1440px: two-tone headline "Good food should still feel like home." beside a real result card for Lenny's Clam Bar](docs/screenshots/landing-1440.jpg)
 
-| How it works | Why Qloo | Phone width (375px) |
+| Watch Qloo re-rank | The safety check |
+|---|---|
+| ![Frank Sinatra chosen: Qloo's top 6 Italian restaurants in New York City, all marked New, with "Frank Sinatra brought in 10 new places and moved all 10."](docs/screenshots/landing-rerank.jpg) | ![Buka's dishes for a peanut allergy: 11 to ask about, Suya set aside as "commonly made with peanut; recipe not verified"](docs/screenshots/landing-safety-check.jpg) |
+
+| Phone (375px) | Tablet (768px) | Results (375px) |
 |---|---|---|
-| ![Accordion beside a phone showing the real result card for the open item](docs/screenshots/landing-how-it-works.jpg) | ![Three stat cards from Tastora's logged test searches](docs/screenshots/phase9a3-why-qloo.jpg) | ![Welcome page at 375px: logo, Find food pill and hero](docs/screenshots/landing-mobile-375.jpg) |
+| ![Landing page at 375px](docs/screenshots/landing-375.jpg) | ![Landing page at 768px](docs/screenshots/landing-768.jpg) | ![Results page at 375px with the shortlist bar](docs/screenshots/results-375.jpg) |
 
-Full page: [desktop](docs/screenshots/landing-desktop-full.jpg) · [375px](docs/screenshots/landing-mobile-375-full.jpg).
-
+Full page: [1440px](docs/screenshots/landing-1440-full.jpg) · [768px](docs/screenshots/landing-768-full.jpg) · [375px](docs/screenshots/landing-375-full.jpg).
 ## The problem
 
 Choosing a restaurant for someone else is hard when what matters is their taste, not yours. A

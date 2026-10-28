@@ -199,6 +199,7 @@ function Results({ profile }: { profile: SeniorProfile }) {
   return (
     <div className={styles.results}>
       <div className={styles.resultsHead}>
+        <p className="eyebrow">Suggestions</p>
         <h1 ref={headingRef} tabIndex={-1}>
           {results.length > 0 ? `Places ${who === "them" ? "they" : who} might enjoy` : "No suggestions this time"}
         </h1>
