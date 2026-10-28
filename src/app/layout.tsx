@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
+import { ChefMark } from "@/components/ChefMark";
 import "./globals.css";
 import styles from "./layout.module.css";
 
@@ -15,11 +16,10 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
+// Tastora has one warm light theme; the browser chrome matches the page.
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fbf6ee" },
-    { media: "(prefers-color-scheme: dark)", color: "#1c1512" },
-  ],
+  themeColor: "#fffbf7",
+  colorScheme: "light",
 };
 
 const REPO_URL = "https://github.com/kirahszn/tastora";
@@ -34,10 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <header className={styles.header}>
           <div className={styles.headerInner}>
             <Link href="/" className={styles.brand}>
-              <svg aria-hidden="true" focusable="false" className={styles.mark} viewBox="0 0 24 24" width="24" height="24">
-                <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" strokeWidth="2" />
-                <path d="M12 2.5a9.5 9.5 0 0 0 0 19z" fill="currentColor" />
-              </svg>
+              <ChefMark size={34} />
               Tastora
             </Link>
             <nav aria-label="Main">

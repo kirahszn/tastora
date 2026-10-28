@@ -49,7 +49,7 @@ request. 400/429/502/offline each have their own message and a retry (or "Check 
 
 ## Presentation and headers (Phase 5)
 
-- Favicon `src/app/icon.svg` (original: bowl and steam on terracotta). Share card
+- Favicon `src/app/icon.svg` (original chef mark on a terracotta tile, Phase 9a-2). Share card
   `opengraph-image.tsx` / `twitter-image.tsx` via `next/og` (1200×630 PNG at build), with
   `metadataBase` so Open Graph/Twitter URLs are absolute.
 - `next.config.ts` headers: `X-Content-Type-Options: nosniff`, `Referrer-Policy:
@@ -61,27 +61,42 @@ request. 400/429/502/offline each have their own message and a retry (or "Check 
 
 ## Design tokens and accessibility
 
-Phase 9a palette: cream page `#FBF6EE`, white cards, espresso text `#2B1D16`, muted `#6B5B50`,
-border `#EADFD2`, icon-tile tints peach/sage/butter/lavender; dark mode `#1C1512` / `#2A201B` /
-`#F3E9DC` / `#B9A898`, tints at 12%. Terracotta is split in two: `--accent-fill` `#D9774F` (dark
-`#E5936F`) is only ever a button/badge background with espresso `--on-accent` text, never white;
-`--accent` is terracotta for text, links and borders. The brief's `#B85C38` gave 4.2:1 on cream,
-so `--accent` is `#A44F2E`, the nearest shade that clears 4.5:1 on every light surface and tint.
-Georgia-stack serif headings, system sans body, 18px base, no web fonts. WCAG contrast (computed):
-espresso on cream 15.1:1 (dark 15.0), muted 6.0:1 (7.8), accent text 5.2:1 on cream and ≥ 4.57:1
-on tints (dark 7.5 / ≥ 4.7), espresso on terracotta fill 5.2:1 (dark 6.8), status text on status
-backgrounds 5.4–6.2:1 (7.0–8.4), input borders 4.0:1. A rendered-page audit (every visible text
-node against its composited background) found no pair under AA on `/`, `/profile` or `/results`
-in either mode. Focus ring 3px, offset 3px, 7.7:1 against the page (10.0 dark).
+One warm light theme only (Phase 9a-2): no `prefers-color-scheme` rules, `color-scheme: light`
+and a single `theme-color` `#FFFBF7`, so every page (/, /profile, /results, /results/print) is
+light whatever the OS setting. Page `#FFFBF7` (warm white), section band `#FBF0E6`, white cards,
+panel `#F5ECE0`, espresso text `#2B1D16`, muted `#6B5B50`, border `#EADFD2`. The landing page
+adds a very soft terracotta radial glow (8%) behind the hero, painted on the body so it has no
+edge, and a full-width warm band behind "How it works". Pastel tints (peach/sage/butter/lavender)
+back text; the icon-only tiles use slightly deeper versions (`--tile-*`) so they read on white.
+Terracotta is split in two: `--accent-fill` `#D9774F` is only ever a button/badge background with
+espresso `--on-accent` text, never white; `--accent` `#A44F2E` is terracotta for text, links and
+borders (the brief's `#B85C38` gave 4.2:1 on cream). Georgia-stack serif headings, system sans
+body, 18px base, no web fonts.
 
-## Landing page (Phase 9a)
+WCAG contrast (computed): espresso on page 15.8:1, on band 14.5:1, on the glow's strongest point
+14.6:1; muted 6.3:1 (band 5.8, glow 5.8); accent text 5.5:1 on the page, 5.0:1 on the band and
+glow, ≥ 4.57:1 on text tints; espresso on terracotta fill 5.2:1; status text on status
+backgrounds 5.4–6.2:1, and Matched/Needs confirmation/Conflict text on the band 5.7/6.3/6.5:1;
+icons on tiles ≥ 12.5:1; input borders 4.1:1 (band 3.8). A rendered-page audit (every visible
+text node against its composited background, OS set to dark) found no pair under AA on `/`,
+`/profile`, `/results` or `/results/print`. Focus ring 3px, offset 3px, 8.1:1 against the page.
+Tap targets ≥ 44px. `aria-live="polite"` for progress and announcements; reduced motion stops
+the spinner. Error summary takes focus and links to fields; inline errors use `aria-invalid`.
 
-`src/app/page.tsx` composes `src/app/_landing/` (Hero, SampleCard, Illustration, EntryCards,
+## Landing page (Phase 9a, 9a-2)
+
+`src/app/page.tsx` composes `src/app/_landing/` (Hero, SampleCard, Photo, EntryCards,
 HowItWorks, TrustStrip; footer and nav stay in `layout.tsx`). The page sets `data-layout="wide"`
 and `layout.module.css` widens to 1120px with `:has()`, so other pages keep the reading width.
 The sample card is a static snapshot of a real result (`sampleResult.ts`, captured 2026-10-27
-from one live Sinatra-example search), rendered with the same `StatusBadge` as results. The
-illustration is an original inline SVG. `FadeUp` uses IntersectionObserver and only hides a
-section once armed by script, so content shows without JS and with reduced motion. Tap targets ≥ 44px. `aria-live="polite"` for
-progress and announcements; reduced motion stops the spinner. Error summary takes focus and links
-to fields; inline errors use `aria-invalid`.
+from one live Sinatra-example search), rendered with the same `StatusBadge` as results.
+`FadeUp` uses IntersectionObserver and only hides a section once armed by script, so content
+shows without JS and with reduced motion.
+
+- **Logo:** `ChefMark` (`src/components/ChefMark.tsx`), an original flat chef (puffed hat, round
+  smiling face), decorative next to the "Tastora" wordmark. The favicon `src/app/icon.svg` and the
+  share card use the same shapes.
+- **Photo:** `Photo.tsx` serves `public/images/family-dinner.jpg` (2000×1333, 304 KB) through
+  `next/image` with a blur placeholder and `sizes`, so phones get a small WebP. Pexels photo
+  11368637 by Anna Shvets, Pexels License; credited under the photo and in the README, worded so
+  it doesn't imply the people use Tastora.

@@ -17,7 +17,7 @@
 }
 
 :global(body:has([data-layout="wide"])) .header {
-  background: var(--bg);
+  background: transparent;
   border-bottom-color: transparent;
 }
 
@@ -42,11 +42,6 @@
 
 .brand:hover {
   color: var(--accent);
-}
-
-.mark {
-  color: var(--accent);
-  flex-shrink: 0;
 }
 
 .navLink {

@@ -17,11 +17,11 @@ Frank Sinatra profile) → **Find restaurants**. Results stream in within a few 
 **How Qloo shaped these results** to compare Qloo's ranking with and without the person's taste
 signals.
 
-![Welcome page: headline and a real Sinatra-example result card](docs/screenshots/welcome-light.jpg)
+![Welcome page: chef logo, headline and a real Sinatra-example result card](docs/screenshots/welcome.jpg)
 
-| Dark mode | Phone width (375px), light and dark |
+| Photo band | Phone width (375px) |
 |---|---|
-| ![Welcome page in dark mode](docs/screenshots/welcome-dark.jpg) | ![Welcome page at 375px in light and dark mode](docs/screenshots/phase9a-mobile-375-light-dark.jpg) |
+| ![Photo of a family dinner below the hero, with its credit line](docs/screenshots/phase9a2-photo-band.jpg) | ![Welcome page at 375px: hero and photo](docs/screenshots/phase9a2-mobile-375.jpg) |
 
 ## The problem
 
@@ -72,16 +72,15 @@ texture. The top 3 places start on a shortlist; "Add to shortlist" on any card c
 |---|---|
 | ![Share panel with the shortlist text](docs/screenshots/phase8-share-panel-desktop-light.jpg) | ![Printed questions checklist](docs/screenshots/phase8-print-media.jpg) |
 
-| Must-avoid section (light) | Result card (dark) |
+| Must-avoid section | Result card |
 |---|---|
-| ![Must avoid section of the profile form](docs/screenshots/profile-must-avoid-light.jpg) | ![Result card for Lenny's Clam Bar](docs/screenshots/results-card-dark.jpg) |
+| ![Must avoid section of the profile form](docs/screenshots/profile-must-avoid-light.jpg) | ![Result card for Lenny's Clam Bar](docs/screenshots/results-card.jpg) |
 
 | Evidence panel | Mobile (375 px) |
 |---|---|
-| ![How Qloo shaped these results](docs/screenshots/evidence-panel-dark.jpg) | ![Result card on a phone-width screen](docs/screenshots/mobile-card-dark.png) |
+| ![How Qloo shaped these results](docs/screenshots/evidence-panel.jpg) | ![Result card on a phone-width screen](docs/screenshots/mobile-card.jpg) |
 
-More screenshots: [`docs/screenshots/`](docs/screenshots/) (welcome, illustration and profile in light and dark;
-the notice shown when the built-in planner stands in for Claude).
+More screenshots: [`docs/screenshots/`](docs/screenshots/) (profile, results, print page, logo and favicon).
 
 ## How Qloo powers it
 
@@ -211,8 +210,8 @@ API keys are read server-side only and are never sent to the browser.
 - **Qloo Insights API**: `/v2/tags`, `/search`, `/v2/insights`
 - **Claude** via `@anthropic-ai/sdk` (tool use; default model `claude-sonnet-5-5`)
 - **Zod** for profile, feedback and storage validation
-- **Vitest** (209 tests), ESLint
-- CSS modules, no UI library. WCAG contrast checked, 44 px tap targets, light and dark themes.
+- **Vitest** (227 tests), ESLint
+- CSS modules, no UI library. WCAG contrast checked, 44 px tap targets, one warm light theme.
 - Hosted on **Vercel**
 
 ## Project structure
@@ -298,3 +297,10 @@ and is skipped in a fresh clone (208 pass, 1 skipped).
 
 - [Qloo](https://www.qloo.com/) for the Taste AI API and for running the hackathon.
 - [Anthropic](https://www.anthropic.com/) for Claude, which plans the searches.
+
+## Credits
+
+- Landing page photo: [Anna Shvets on Pexels](https://www.pexels.com/photo/a-family-eating-dinner-together-11368637/),
+  used under the [Pexels License](https://www.pexels.com/license/) (free to use; attribution
+  appreciated, not required). The people in it are not Tastora users and do not endorse it.
+- Logo, favicon and icons are original to this project.

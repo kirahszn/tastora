@@ -1,5 +1,6 @@
 // The social share card (Open Graph + Twitter), rendered at build time by next/og.
 import { ImageResponse } from "next/og";
+import { ChefMark } from "@/components/ChefMark";
 
 export const SHARE_SIZE = { width: 1200, height: 630 };
 export const SHARE_ALT = "Tastora — Good food should still feel like home. Restaurant ideas for someone you care for.";
@@ -15,25 +16,23 @@ export function shareCard() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          background: "#fbf6ee",
+          background: "#fffbf7",
           color: "#2b1d16",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
           <div
             style={{
-              width: 72,
-              height: 72,
-              borderRadius: 18,
+              width: 88,
+              height: 88,
+              borderRadius: 22,
               background: "#d9774f",
-              color: "#2b1d16",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: 44,
             }}
           >
-            T
+            <ChefMark size={72} />
           </div>
           <div style={{ fontSize: 48, fontWeight: 700 }}>Tastora</div>
         </div>

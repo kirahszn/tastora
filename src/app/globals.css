@@ -1,9 +1,11 @@
-/* Tastora: warm, calm, homely. Cream page, white cards, one terracotta accent, espresso text.
+/* Tastora: warm, calm, homely. One light theme only: warm white page with soft warm bands,
+   white cards, one terracotta accent, espresso text.
    Contrast (WCAG AA) checked for every text/background pair below; see docs/ui.md.
    --accent is terracotta for text, links and borders (dark enough for 4.5:1 on every surface);
    --accent-fill is the brighter terracotta behind buttons, always with espresso --on-accent text. */
 :root {
-  --bg: #fbf6ee;
+  --bg: #fffbf7;
+  --band: #fbf0e6; /* alternating section bands */
   --surface: #ffffff;
   --surface-2: #f5ece0;
   --ink: #2b1d16;
@@ -24,6 +26,11 @@
   --tint-sage: #e3eddf;
   --tint-butter: #f7ebc8;
   --tint-lavender: #ece6f5;
+  /* Slightly deeper versions for the icon-only tiles, so they read clearly on white cards. */
+  --tile-peach: #f9dccb;
+  --tile-sage: #dcead6;
+  --tile-butter: #f6e5b5;
+  --tile-lavender: #e6def4;
 
   --ok: #2e6b3a;
   --ok-bg: #e4f0e1;
@@ -41,42 +48,6 @@
   --shadow-card: 0 8px 24px rgb(43 29 22 / 6%);
 
   color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #1c1512;
-    --surface: #2a201b;
-    --surface-2: #34291f;
-    --ink: #f3e9dc;
-    --muted: #b9a898;
-    --line: #3a2e27;
-    --line-strong: #94806d;
-    --accent: #e5936f;
-    --accent-hover: #eda887;
-    --accent-fill: #e5936f;
-    --accent-fill-hover: #eda887;
-    --on-accent: #2b1d16;
-    --accent-soft: #433731; /* peach at 12% over the surface */
-    --sage: #a9c3a3;
-    --focus: #9cc3ff;
-
-    --tint-peach: rgb(251 227 214 / 12%);
-    --tint-sage: rgb(227 237 223 / 12%);
-    --tint-butter: rgb(247 235 200 / 12%);
-    --tint-lavender: rgb(236 230 245 / 12%);
-
-    --ok: #92d39c;
-    --ok-bg: #1e3222;
-    --warn: #f0c46e;
-    --warn-bg: #382b13;
-    --bad: #f59a8e;
-    --bad-bg: #3d1f1b;
-
-    --shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 6px 20px rgb(0 0 0 / 25%);
-    --shadow-card: 0 8px 24px rgb(0 0 0 / 28%);
-    color-scheme: dark;
-  }
 }
 
 * {
