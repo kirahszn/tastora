@@ -186,13 +186,21 @@ function aliasCovers(term: string, alias: string): boolean {
 
 // --- Dietary restrictions ----------------------------------------------------------------------
 
+// Names that mean pork (Phase 10: carbonara and the Italian cured meats were missing). Whole-word
+// matching keeps "ham" out of "hamburger" and "Hamachi", and "lard" out of "lardo" (listed itself).
 const PORK_WORDS = [
-  "pork", "bacon", "ham", "prosciutto", "pancetta", "chorizo", "pepperoni", "salami", "lard",
+  "pork", "bacon", "ham", "prosciutto", "pancetta", "guanciale", "chorizo", "pepperoni", "salami",
+  "lard", "lardo", "carbonara", "mortadella", "soppressata", "sopressata", "capicola", "capocollo",
+  "porchetta", "nduja",
 ];
+// Phase 10: common meat dish names that don't contain a meat word ("Carnitas", "Shawarma").
 const MEAT_WORDS = [
   ...PORK_WORDS, "meat", "beef", "chicken", "lamb", "goat", "mutton", "veal", "turkey", "duck",
   "sausage", "pastrami", "brisket", "steak", "meatball", "bresaola", "short rib", "oxtail",
-  "burger", "hot dog", "gyro",
+  "burger", "hot dog", "gyro", "hamburger", "cheeseburger", "cheesesteak", "meatloaf", "ribs",
+  "ribeye", "kebab", "kabob", "shawarma", "kofta", "carnitas", "al pastor", "barbacoa", "birria",
+  "lechon", "bolognese", "osso buco", "liver", "tripe", "venison", "rabbit", "quail", "goose",
+  "bison", "jerky", "foie gras",
 ];
 export interface DietRule {
   key: string;
@@ -206,6 +214,11 @@ export interface DietRule {
    * contradicts it. Otherwise the tag means "has options" and conflicting dishes are just skipped.
    */
   venueWide?: boolean;
+  /**
+   * Dish names often made with something the restaurant may not name (meatballs: often pork).
+   * Set aside with "often made with <what>; recipe not verified", like the allergen dish lists.
+   */
+  commonDishes?: readonly { dish: string; madeWith: string }[];
 }
 
 export const DIET_RULES: readonly DietRule[] = [
@@ -241,8 +254,16 @@ export const DIET_RULES: readonly DietRule[] = [
     conflictKeywords: [...PORK_WORDS, ...SHELLFISH_WORDS],
     venueWide: true,
   },
-  // No Qloo tag means "pork-free", so this can never be "matched".
-  { key: "no pork", aliases: ["no pork", "pork free", "pork-free"], venueTags: [], conflictKeywords: PORK_WORDS },
+  // No Qloo tag means "pork-free", so this can never be "matched". Sausage and meatballs are only
+  // set aside here: they are often, not always, pork, and in the halal/kosher lists they would
+  // contradict a venue-wide tag at a place serving beef sausage.
+  {
+    key: "no pork",
+    aliases: ["no pork", "pork free", "pork-free"],
+    venueTags: [],
+    conflictKeywords: [...PORK_WORDS, "sausage"],
+    commonDishes: [{ dish: "meatball", madeWith: "pork" }],
+  },
   {
     key: "gluten free",
     aliases: ["gluten free", "gluten-free", "no gluten", "celiac", "coeliac"],

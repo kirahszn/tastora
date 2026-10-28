@@ -239,6 +239,50 @@ describe("dietary restrictions", () => {
     expect(ev.excludedDishes.map((d) => d.name)).toEqual(["Grilled pork chop with rice"]);
   });
 
+  describe("pork and meat word lists (Phase 10)", () => {
+    const noPork = makeProfile({ dietaryRestrictions: ["no pork"] });
+    const asideFor = (profile: ReturnType<typeof makeProfile>, dishes: string[]) =>
+      evaluateCandidate(profile, makeCandidate({ dishHighlights: dishes })).excludedDishes.map((d) => [d.name, d.why]);
+
+    it("sets carbonara, sausage and meatballs aside for 'no pork' on the recorded Sinatra sample", () => {
+      const aside = (name: string) =>
+        evaluateCandidate(noPork, sampleCandidate(SAMPLES.italianSinatra, name)).excludedDishes.map((d) => [d.name, d.why]);
+      expect(aside("Chazz Palminteri Italian Restaurant")).toEqual([["Bucatini carbonara", 'mentions "carbonara"']]);
+      expect(aside("Joanne Trattoria")).toEqual([
+        ["Joanne s spaghetti and meatball or sausage", 'mentions "sausage"'],
+        ["Meatball volcano", "often made with pork; recipe not verified"],
+        ["Spaghetti and meatballs", "often made with pork; recipe not verified"],
+      ]);
+      expect(aside("Da Marino NYC")).toEqual([["Meatballs", "often made with pork; recipe not verified"]]);
+    });
+
+    it("flags the Italian cured pork names, whole words only", () => {
+      const pork = ["Guanciale", "Mortadella", "Soppressata", "Capicola", "Capocollo", "Porchetta", "Lardo", "'Nduja pizza"];
+      expect(asideFor(noPork, pork).map(([n]) => n)).toEqual(pork);
+      expect(asideFor(noPork, ["Hamburger", "Hamachi crudo", "Graham cracker pie", "Shampoo"])).toEqual([]);
+      expect(asideFor(noPork, ["Honey ham", "Ham and cheese"]).map(([, why]) => why)).toEqual([
+        'mentions "ham"',
+        'mentions "ham"',
+      ]);
+    });
+
+    it("keeps halal and kosher on the unambiguous pork names, without sausage or meatballs", () => {
+      for (const diet of ["halal", "kosher"]) {
+        const profile = makeProfile({ dietaryRestrictions: [diet] });
+        expect(asideFor(profile, ["Beef sausage", "Lamb meatballs"])).toEqual([]);
+        expect(asideFor(profile, ["Spaghetti carbonara"]).map(([n]) => n)).toEqual(["Spaghetti carbonara"]);
+      }
+    });
+
+    it("sets the new meat and pork names aside for vegetarian and vegan, but not 'hamburger'-style substrings", () => {
+      const meat = ["Spaghetti carbonara", "Chicken shawarma", "Pork carnitas", "Tacos al pastor", "Beef birria", "Hamburger", "Rigatoni bolognese", "Osso buco"];
+      for (const diet of ["vegetarian", "vegan"]) {
+        expect(asideFor(makeProfile({ dietaryRestrictions: [diet] }), meat).map(([n]) => n)).toEqual(meat);
+      }
+      expect(asideFor(makeProfile({ dietaryRestrictions: ["vegetarian"] }), ["Graham cracker pie", "Bananas foster", "Delivery menu"])).toEqual([]);
+    });
+  });
+
   it("needs confirmation when no tag supports it", () => {
     const daMarino = sampleCandidate(SAMPLES.italianSinatra, "Da Marino NYC");
     const ev = evaluateCandidate(makeProfile({ dietaryRestrictions: ["kosher"] }), daMarino);

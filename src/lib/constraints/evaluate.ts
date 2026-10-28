@@ -165,7 +165,15 @@ function evaluateAllergy(candidate: Candidate, dishes: Dish[], allergy: string) 
 
 function evaluateDiet(candidate: Candidate, dishes: Dish[], restriction: string) {
   const rule = dietRule(restriction);
-  const conflicts = dishConflicts(dishes, rule.conflictKeywords, "diet", restriction);
+  const named = dishConflicts(dishes, rule.conflictKeywords, "diet", restriction);
+  const often = dishes.flatMap((dish): ExcludedDish[] => {
+    if (named.some((d) => d.name === dish.name)) return [];
+    const common = rule.commonDishes?.find((c) => containsKeyword(dish.name, c.dish));
+    if (!common) return [];
+    const why = `often made with ${common.madeWith}; recipe not verified`;
+    return [{ ...dish, reason: "diet", requirement: restriction, keyword: common.dish, why }];
+  });
+  const conflicts = [...named, ...often];
   const venueTags = tagsNamed(tagsOfType(candidate, DIETARY_TAG_TYPES), rule.venueTags);
   const dishList = conflicts.map((d) => `"${d.name}"`).join(", ");
   // A venue-wide tag contradicted by a dish name (e.g. "Halal" + "Pork chops") is not a match.

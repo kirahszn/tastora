@@ -62,6 +62,24 @@ venue-level. Dishes whose names conflict (e.g. "pork" for no-pork) are removed.
 - Vegetarian, vegan, gluten-free and dairy-free tags mean "has options": the tag still matches, and meat
   or other conflicting dishes are just not suggested.
 - "No pork" has no supporting tag, so it is never `matched`. Unknown "no X" or "X-free" conflicts with X.
+- Word lists (`src/lib/constraints/keywords.ts`, whole words, plural allowed, case-insensitive, so
+  "ham" never matches "hamburger" or "Hamachi"):
+  - **Pork** (no pork, halal, kosher): pork, bacon, ham, prosciutto, pancetta, guanciale, chorizo,
+    pepperoni, salami, lard, lardo, carbonara, mortadella, soppressata/sopressata, capicola,
+    capocollo, porchetta, nduja.
+  - **No pork only**: also "sausage" (`mentions "sausage"`), and meatballs set aside as a dish name
+    with "often made with pork; recipe not verified" (`DietRule.commonDishes`, the same pattern as
+    the allergen dish lists). Sausage and meatballs stay out of the halal/kosher lists: they are
+    often, not always, pork, and there they would contradict a venue-wide tag at a place serving beef
+    sausage.
+  - **Meat** (vegetarian, vegan, pescatarian): every pork word, plus meat, beef, chicken, lamb, goat,
+    mutton, veal, turkey, duck, sausage, pastrami, brisket, steak, meatball, bresaola, short rib,
+    oxtail, burger, hamburger, cheeseburger, cheesesteak, meatloaf, hot dog, gyro, ribs, ribeye,
+    kebab, kabob, shawarma, kofta, carnitas, al pastor, barbacoa, birria, lechon, bolognese, osso
+    buco, liver, tripe, venison, rabbit, quail, goose, bison, jerky, foie gras. Vegetarian and vegan
+    also use the fish, shellfish and seafood lists; vegan adds milk and egg.
+  - Phase 10 added carbonara, the Italian cured meats, sausage/meatballs for no pork, and the meat
+    dish names from "hamburger" on. Tests: `tests/constraints.test.ts` "pork and meat word lists".
 
 **Texture** (only if not `none`): always `needs_confirmation`. Remaining dishes whose names suggest soft
 food (soup, stew, porridge, mashed, pudding, fufu, pounded yam, amala, moi moi…) are flagged
