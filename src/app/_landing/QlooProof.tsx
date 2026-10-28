@@ -1,25 +1,23 @@
-import { SectionHead } from "./Devices";
+import { SectionHead } from "./Section";
 import styles from "./landing.module.css";
 import { QLOO_PROOF } from "./proofStats";
 
 export function QlooProof() {
   return (
-    <section id="qloo" className={styles.section} aria-labelledby="qloo-h">
-      <SectionHead id="qloo-h" eyebrow="Why Qloo" title="Taste signals change the answer">
-        <p className={styles.headText}>
-          Tastora runs every search twice, with and without the person&rsquo;s taste signals, and shows you what changed.
-        </p>
+    <section className={styles.section} aria-labelledby="proof-h">
+      <SectionHead id="proof-h" eyebrow="Why Qloo" title="Taste signals change the answer." muted="We measured it.">
+        <p>Every search runs twice, with and without the person&rsquo;s taste signals. Three real examples:</p>
       </SectionHead>
       <ul className={styles.stats}>
         {QLOO_PROOF.map((s) => (
-          <li key={s.who} className={styles.stat}>
+          <li key={s.who} className={`card ${styles.stat}`}>
             <p className={styles.statFigure}>{s.figure}</p>
             <p className={styles.statText}>{s.text}</p>
-            <p className={styles.statWho}>{s.who}</p>
+            <p className="mono">{s.who}</p>
           </li>
         ))}
       </ul>
-      <p className={styles.caption}>From Tastora&rsquo;s test searches in New York City, October 2026.</p>
+      <p className="mono">From Tastora&rsquo;s test searches in New York City, October 2026.</p>
     </section>
   );
 }

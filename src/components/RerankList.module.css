@@ -1,0 +1,76 @@
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 56px;
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.rank {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.place {
+  display: grid;
+  min-width: 0;
+}
+
+.name {
+  font-weight: 700;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.area {
+  font-size: 0.84375rem;
+  color: var(--muted);
+}
+
+/* Movement badges: text, not colour alone ("New", "↑3", "↓2", "="). */
+.move {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.78125rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.new {
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+}
+
+.up {
+  background: var(--ok-bg);
+  color: var(--ok);
+}
+
+.down {
+  background: var(--surface-2);
+  color: var(--muted);
+}
+
+.same {
+  background: var(--surface-2);
+  color: var(--muted);
+}

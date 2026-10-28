@@ -1,32 +1,33 @@
-import { Icon } from "@/components/Icon";
-import { SectionHead } from "./Devices";
-import styles from "./landing.module.css";
 import { Photo } from "./Photo";
+import { SectionHead } from "./Section";
+import styles from "./landing.module.css";
 
 // Claims about the general problem, not statistics.
 const ROWS = [
-  { icon: "star", tint: styles.tintPeach, text: "Food apps rank by popularity, not by the person you’re feeding." },
-  { icon: "info", tint: styles.tintButter, text: "Ingredient and allergen details are rarely online." },
-  { icon: "question", tint: styles.tintLavender, text: "Tastes get assumed from age instead of asked about." },
-  { icon: "phone", tint: styles.tintSage, text: "So caregivers end up phoning around, guessing." },
+  "Food apps rank by popularity, not by the person you’re feeding.",
+  "Ingredient and allergen details are rarely online.",
+  "Tastes get assumed from age instead of asked about.",
+  "So caregivers phone around and guess.",
 ] as const;
 
 export function Problem() {
   return (
     <section className={styles.section} aria-labelledby="problem-h">
-      <SectionHead id="problem-h" eyebrow="The problem" title="Finding food they’ll love shouldn’t be guesswork" />
-      <div className={styles.problem}>
+      <div className={styles.split}>
+        <div className={styles.stack}>
+          <SectionHead id="problem-h" eyebrow="The problem" title="Eating out gets harder." muted="The usual tools don’t help." />
+          <ol className={styles.numbered}>
+            {ROWS.map((text, i) => (
+              <li key={text} className={styles.numberedRow}>
+                <span className={styles.num} aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span>{text}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
         <Photo />
-        <ul className={styles.problemList}>
-          {ROWS.map((r) => (
-            <li key={r.text} className={styles.problemRow}>
-              <span className={`${styles.tile} ${r.tint}`}>
-                <Icon name={r.icon} size={24} />
-              </span>
-              <span>{r.text}</span>
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );

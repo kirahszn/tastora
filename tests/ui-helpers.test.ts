@@ -54,6 +54,23 @@ const throwingStore: KeyValueStore = {
 
 const profile = SeniorProfileSchema.parse({ favouriteCuisines: ["Nigerian"], location: "Brooklyn", displayName: "Mum" });
 
+/** Every landing file with visible copy (Phase 10); the copy scans below must cover each one. */
+const LANDING_COPY = [
+  "Hero.tsx",
+  "HeroCard.tsx",
+  "Problem.tsx",
+  "Rerank.tsx",
+  "SafetyCheck.tsx",
+  "Sieve.tsx",
+  "HowItWorks.tsx",
+  "QlooProof.tsx",
+  "proofStats.ts",
+  "Rules.tsx",
+  "Closing.tsx",
+  "Photo.tsx",
+  "Section.tsx",
+];
+
 describe("status display", () => {
   it("maps each status to an icon and a text label, never colour alone", () => {
     expect(STATUS_DISPLAY.matched).toEqual({ label: "Matched", icon: "check", tone: "ok" });
@@ -415,8 +432,8 @@ describe("UI copy", () => {
   it("scans the UI source", () => {
     expect(all.some((f) => f.endsWith("ResultCard.tsx"))).toBe(true);
     expect(all.some((f) => f.endsWith("ProfileForm.tsx"))).toBe(true);
-    // Landing copy (Phase 9a-3), including the "never call a meal safe" claims.
-    for (const name of ["Hero.tsx", "Problem.tsx", "Values.tsx", "Showcase.tsx", "QlooProof.tsx", "proofStats.ts", "Steps.tsx", "Closing.tsx"]) {
+    // Landing copy (Phase 10), including the "never call one safe" and rules claims.
+    for (const name of LANDING_COPY) {
       expect(all.some((f) => f.endsWith(join("_landing", name)))).toBe(true);
     }
   });
@@ -461,7 +478,7 @@ describe("UI copy", () => {
   });
 
   it("has no NYC-only wording in the public copy (Phase 9c)", () => {
-    const publicCopy = ["_landing/Hero.tsx", "_landing/Steps.tsx", "_landing/Values.tsx", "_landing/Showcase.tsx", "_landing/Closing.tsx", "_landing/Problem.tsx", "layout.tsx", "shareCard.tsx"];
+    const publicCopy = [...LANDING_COPY.map((n) => `_landing/${n}`), "layout.tsx", "shareCard.tsx", "../components/NavMenu.tsx"];
     const nycOnly = /\b(in NYC|NYC only|New York restaurants|NYC restaurants|caregivers in NYC|borough)\b/i;
     for (const name of publicCopy) {
       const text = readFileSync(join(process.cwd(), "src/app", name), "utf8");
@@ -469,8 +486,8 @@ describe("UI copy", () => {
     }
     const hero = readFileSync(join(process.cwd(), "src/app/_landing/Hero.tsx"), "utf8");
     expect(hero).toContain(">For caregivers<");
-    expect(hero).toContain("finds restaurants near them");
-    expect(readFileSync(join(process.cwd(), "src/app/_landing/Steps.tsx"), "utf8")).toContain("Qloo ranks restaurants near them by taste");
+    expect(hero).toContain("Find restaurants that fit their taste");
+    expect(readFileSync(join(process.cwd(), "src/app/_landing/HowItWorks.tsx"), "utf8")).toContain("Qloo ranks restaurants near them by taste");
     expect(readFileSync(join(process.cwd(), "src/app/_landing/QlooProof.tsx"), "utf8")).toContain(
       "From Tastora&rsquo;s test searches in New York City, October 2026.",
     );

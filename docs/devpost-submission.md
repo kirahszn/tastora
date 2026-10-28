@@ -35,6 +35,12 @@ Sinatra brought in 6 new places and moved all 10."). Feedback shapes the next se
 can be shared with family as plain text (share sheet, WhatsApp or copy) or printed as a "questions
 to ask" checklist.
 
+On the landing page, **Watch Qloo re-rank** lets you tap Frank Sinatra, Bob Marley or Fela Kuti and
+see real Qloo top-10 lists for the same Italian search in New York City change place by place. **The
+safety check** runs Tastora's own checks, at build time, on a stored Qloo response for a peanut
+allergy and shows dishes being set aside with the real reason ("commonly made with peanut; recipe not
+verified").
+
 It is best tested in New York City. Live checks in 6 more cities rated London, Toronto, Los Angeles,
 Chicago and Sydney Good (16–20 restaurants per search, almost all in the city or its metro) and
 Lagos Thin (6–13). Places in the chosen city rank a little higher and are labelled ("In London",

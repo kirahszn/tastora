@@ -1,0 +1,242 @@
+{
+  "note": "Real Qloo /v2/insights results for Italian restaurants in New York City (genre tag urn:tag:genre:place:restaurant:italian, take 20), filtered to food venues by Tastora's venue filter. Built by scripts/landing-rerank.ts from fixtures/qloo/raw/.",
+  "city": "New York City",
+  "cuisine": "Italian",
+  "baseline": {
+    "capturedOn": "2026-10-26",
+    "source": "E3-nyc-italian",
+    "top10": [
+      {
+        "id": "9D1F100F-DFF7-47BF-9C0E-6B3DA2A0AD92",
+        "name": "Eataly - Flatiron",
+        "area": "Flatiron District"
+      },
+      {
+        "id": "3AB0AB9B-2B50-4E92-8AEA-A5C782E72603",
+        "name": "Pietro Nolita",
+        "area": "Little Italy"
+      },
+      {
+        "id": "D391F17F-A137-40B4-A37D-9FB99EDEBC96",
+        "name": "L&B Spumoni Gardens",
+        "area": "Gravesend"
+      },
+      {
+        "id": "63A35036-3800-4F22-940F-15ECDB646882",
+        "name": "Carmine's - 44th Street - NYC",
+        "area": "Theater District"
+      },
+      {
+        "id": "51D6B9CF-BF3B-4EAA-912E-492E6C8B4125",
+        "name": "Rubirosa",
+        "area": "Little Italy"
+      },
+      {
+        "id": "0F59C798-367B-47ED-B290-8E0B085DC9C3",
+        "name": "Marea",
+        "area": "Columbus Circle"
+      },
+      {
+        "id": "5B6C7292-B8E4-492D-853B-DDF8CE1C505B",
+        "name": "Ferrara Bakery & Cafe",
+        "area": "Little Italy"
+      },
+      {
+        "id": "BA1A23D2-461B-45D1-BE16-98E3E5674A13",
+        "name": "OLIO E PIÙ",
+        "area": "West Village"
+      },
+      {
+        "id": "53699033-F718-4494-BC10-5DAFC214F852",
+        "name": "Carmine's - Upper West Side",
+        "area": "Upper West Side"
+      },
+      {
+        "id": "1CB4DBCA-4687-4DCB-B531-82F273D00FB6",
+        "name": "Battello - Italian Restaurant / Wedding & Events Venue",
+        "area": null
+      }
+    ]
+  },
+  "baselineRepeat": {
+    "capturedOn": "2026-10-28",
+    "source": "P10-italian-baseline-repeat",
+    "sameTop10": true
+  },
+  "signals": [
+    {
+      "name": "Frank Sinatra",
+      "kind": "artist",
+      "capturedOn": "2026-10-26",
+      "source": "E5i-italian-signal-sinatra",
+      "top10": [
+        {
+          "id": "D136B94B-2853-4097-9679-ADE4A3DEAA98",
+          "name": "Da Marino NYC",
+          "area": "Theater District"
+        },
+        {
+          "id": "90A167B7-B234-4688-A379-A60B4F9C818D",
+          "name": "Chazz Palminteri Italian Restaurant",
+          "area": "Midtown"
+        },
+        {
+          "id": "F78979DA-1509-4C71-B8D6-E892B221A748",
+          "name": "Joanne Trattoria",
+          "area": "Upper West Side"
+        },
+        {
+          "id": "200AF508-CD24-4152-AB20-41A9D8D871D2",
+          "name": "Come Prima",
+          "area": "Upper East Side"
+        },
+        {
+          "id": "2F07859E-6A8B-4C7C-92A2-C59F8A61DB5F",
+          "name": "Little Italy Pizza",
+          "area": "Midtown"
+        },
+        {
+          "id": "13F10698-7047-4402-B919-D7713A2AC8AB",
+          "name": "Luna Pizza",
+          "area": "Civic Center"
+        },
+        {
+          "id": "FBD2EFA4-1BD6-49E1-BEC5-8D96508D8C97",
+          "name": "IL Punto Ristorante",
+          "area": "Hudson Yards"
+        },
+        {
+          "id": "FE17FDCA-26A9-4E84-9A0D-56D78BE006AA",
+          "name": "Nicola's",
+          "area": "Upper East Side"
+        },
+        {
+          "id": "07D75426-7229-4C3D-B084-3FAEBA988F78",
+          "name": "Original Vincent's",
+          "area": "Little Italy"
+        },
+        {
+          "id": "0062CC1A-BF49-4407-8912-F6E43F1A878D",
+          "name": "Cafe Fiorello",
+          "area": "Lincoln Square"
+        }
+      ]
+    },
+    {
+      "name": "Bob Marley",
+      "kind": "artist",
+      "capturedOn": "2026-10-28",
+      "source": "P10-italian-signal-marley",
+      "top10": [
+        {
+          "id": "F201B2BC-A2CF-4BDA-BBC8-7AF21659E139",
+          "name": "Groove",
+          "area": "Greenwich Village"
+        },
+        {
+          "id": "3AB0AB9B-2B50-4E92-8AEA-A5C782E72603",
+          "name": "Pietro Nolita",
+          "area": "Little Italy"
+        },
+        {
+          "id": "659F659D-71E7-4E7E-957D-64A955247779",
+          "name": "Violette's Restaurant - Staten Island",
+          "area": "Grant City"
+        },
+        {
+          "id": "FF2D87E3-A47B-47B0-BC60-2B4FB5F37597",
+          "name": "Lido Harlem Restaurant",
+          "area": "Harlem"
+        },
+        {
+          "id": "2C8C5155-80B7-4429-9D5D-00FCE6B095DE",
+          "name": "The Marina Grille",
+          "area": null
+        },
+        {
+          "id": "D136B94B-2853-4097-9679-ADE4A3DEAA98",
+          "name": "Da Marino NYC",
+          "area": "Theater District"
+        },
+        {
+          "id": "53699033-F718-4494-BC10-5DAFC214F852",
+          "name": "Carmine's - Upper West Side",
+          "area": "Upper West Side"
+        },
+        {
+          "id": "6F8A67E1-CC65-4996-87FC-4C8EFA2E4C29",
+          "name": "Tre",
+          "area": "Lower East Side"
+        },
+        {
+          "id": "2F07859E-6A8B-4C7C-92A2-C59F8A61DB5F",
+          "name": "Little Italy Pizza",
+          "area": "Midtown"
+        },
+        {
+          "id": "3C9C9F0D-EAE5-4446-BFB2-35034187D649",
+          "name": "Marina Cafe Restaurant & Tiki Bar",
+          "area": "Great Kills"
+        }
+      ]
+    },
+    {
+      "name": "Fela Kuti",
+      "kind": "artist",
+      "capturedOn": "2026-10-26",
+      "source": "E5j-italian-signal-fela",
+      "top10": [
+        {
+          "id": "7BE3C910-A7A4-4BEB-8647-C45EF24BE590",
+          "name": "Pangea",
+          "area": "East Village"
+        },
+        {
+          "id": "F201B2BC-A2CF-4BDA-BBC8-7AF21659E139",
+          "name": "Groove",
+          "area": "Greenwich Village"
+        },
+        {
+          "id": "3409DD85-EF53-493A-899B-50CDA4E07E25",
+          "name": "Gran Torino",
+          "area": "Williamsburg"
+        },
+        {
+          "id": "D136B94B-2853-4097-9679-ADE4A3DEAA98",
+          "name": "Da Marino NYC",
+          "area": "Theater District"
+        },
+        {
+          "id": "B2DAA7FC-2016-492C-B564-3AF7C3D62090",
+          "name": "Ben's Pizzeria",
+          "area": "Greenwich Village"
+        },
+        {
+          "id": "13F10698-7047-4402-B919-D7713A2AC8AB",
+          "name": "Luna Pizza",
+          "area": "Civic Center"
+        },
+        {
+          "id": "F78979DA-1509-4C71-B8D6-E892B221A748",
+          "name": "Joanne Trattoria",
+          "area": "Upper West Side"
+        },
+        {
+          "id": "84A7D446-4F9D-4079-846C-BD34BCD80C5D",
+          "name": "Sam's",
+          "area": "Cobble Hill"
+        },
+        {
+          "id": "E6F8CEC5-73E8-4D4F-9BF0-42E379F87347",
+          "name": "Asia Roma",
+          "area": "Chinatown"
+        },
+        {
+          "id": "D0BC5C79-591D-4BFF-8CBB-1A0B3EDDC6BB",
+          "name": "La Lanterna di Vittorio",
+          "area": "Greenwich Village"
+        }
+      ]
+    }
+  ]
+}

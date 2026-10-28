@@ -1,40 +1,31 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@/components/Icon";
-import resultsShot from "../../../public/images/screen-results-desktop.jpg";
-import { Laptop } from "./Devices";
+import { HeroCard } from "./HeroCard";
 import styles from "./landing.module.css";
 
 export function Hero() {
   return (
     <section className={styles.hero} aria-labelledby="hero-h">
       <div className={styles.heroText}>
-        <p className={styles.eyebrow}>For caregivers</p>
+        <p className="eyebrow">For caregivers</p>
         <h1 id="hero-h" className={styles.headline}>
-          Good food should still feel <span className={styles.headlineAccent}>like home.</span>
+          Good food should still feel like home.{" "}
+          <span className="tone-muted">Find restaurants that fit their taste, and know what to ask before you go.</span>
         </h1>
-        <p className={styles.lede}>
-          Tell us what someone you care for loves, from favourite dishes to the singer they still hum along to.
-          Tastora finds restaurants near them that fit their taste, and tells you exactly what to ask before you go.
-        </p>
-        <Link href="/profile" className={`btn btn-primary ${styles.cta}`}>
-          Find food for someone you care for
-          <span className={styles.arrow}>
-            <Icon name="arrow" size={18} />
-          </span>
-        </Link>
-        <p className={styles.heroNote}>Free · No sign-up</p>
+        <div className={styles.ctaRow}>
+          <Link href="/profile" className={`btn btn-primary ${styles.cta}`}>
+            Find food for someone you care for
+            <span className={styles.arrow}>
+              <Icon name="arrow" size={18} />
+            </span>
+          </Link>
+          <Link href="/profile#examples" className="btn btn-secondary">
+            Try an example
+          </Link>
+        </div>
+        <p className="mono">Free · No sign-up</p>
       </div>
-      <Laptop>
-        <Image
-          src={resultsShot}
-          alt="Tastora's results page for the Sinatra example: “Places Dad might enjoy”, 8 suggestions near Queens. The first, Lenny's Clam Bar in Howard Beach, is “One of Qloo's top 5 matches for people who love Frank Sinatra”, with its needs marked Needs confirmation or Matched."
-          placeholder="blur"
-          preload
-          sizes="(max-width: 860px) calc(100vw - 4rem), 900px"
-          className={styles.screenImg}
-        />
-      </Laptop>
+      <HeroCard />
     </section>
   );
 }

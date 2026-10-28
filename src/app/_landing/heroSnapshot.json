@@ -1,0 +1,138 @@
+{
+  "note": "One result from a live Tastora search for the Sinatra example profile (Italian-American, Queens, Frank Sinatra; no pork; wheelchair access) on 2026-10-27 (planner: agent, 4 Qloo calls). Copied field for field from the response facts, with the Phase 9b wording of the taste reason and questions (scripts used for the Phase 9b screenshots). Nothing added.",
+  "capturedOn": "2026-10-27",
+  "profile": {
+    "cuisine": "Italian-American",
+    "area": "Queens",
+    "music": [
+      "Frank Sinatra"
+    ]
+  },
+  "result": {
+    "rank": 1,
+    "name": "Lenny's Clam Bar",
+    "area": {
+      "kind": "borough",
+      "label": "In Queens",
+      "inRequestedBorough": true,
+      "source": "qloo.properties.geocode.admin2_region: Queens County"
+    },
+    "venue": {
+      "address": "161-03 Cross Bay Blvd Howard Beach, NY 11414",
+      "neighborhood": "Howard Beach",
+      "priceLevel": 3,
+      "rating": 4.4,
+      "cuisines": [
+        "Italian",
+        "Barbecue",
+        "Seafood",
+        "Burgers",
+        "Steakhouse",
+        "Italian american"
+      ]
+    },
+    "reasons": [
+      {
+        "text": "One of Qloo's top 5 matches for people who love Frank Sinatra",
+        "source": "profile.tasteMemories ↔ Qloo taste rank #3 with signals: Frank Sinatra (query.affinity 0.82)"
+      },
+      {
+        "text": "Italian — related to Italian-American",
+        "source": "profile.favouriteCuisines: Italian-American ↔ Qloo tag urn:tag:cuisine:qloo:italian (related cuisine)",
+        "strength": "related"
+      },
+      {
+        "text": "Venue tag: Wheelchair accessible entrance",
+        "source": "profile.comfort.wheelchairAccess: true ↔ Qloo tag urn:tag:accessibility:place:wheelchair_accessible_entrance"
+      },
+      {
+        "text": "In Queens, the borough you chose",
+        "source": "profile.location: Queens ↔ Qloo properties.geocode.admin2_region: Queens County"
+      }
+    ],
+    "constraintStatuses": [
+      {
+        "kind": "diet",
+        "requirement": "diet: no pork",
+        "status": "needs_confirmation"
+      },
+      {
+        "kind": "comfort",
+        "requirement": "comfort: wheelchair access",
+        "status": "matched"
+      }
+    ],
+    "dishesToAskAbout": [
+      {
+        "name": "Broiled scallops",
+        "source": "qloo.dishHighlights"
+      },
+      {
+        "name": "Fried shrimp",
+        "source": "qloo.dishHighlights"
+      },
+      {
+        "name": "Baked clams",
+        "source": "qloo.dishHighlights"
+      },
+      {
+        "name": "Cannoli",
+        "source": "qloo.dishHighlights"
+      },
+      {
+        "name": "Fried calamari",
+        "source": "qloo.dishHighlights"
+      },
+      {
+        "name": "Lasagna",
+        "source": "qloo.dishHighlights"
+      },
+      {
+        "name": "Hawaiian skirt steak",
+        "source": "qloo.dishHighlights"
+      },
+      {
+        "name": "Stuffed shrimp",
+        "source": "qloo.dishHighlights"
+      },
+      {
+        "name": "Linguine with clam sauce",
+        "source": "qloo.dishHighlights"
+      },
+      {
+        "name": "Italian ricotta cheesecake",
+        "source": "qloo.dishHighlights"
+      },
+      {
+        "name": "Tiramisu",
+        "source": "qloo.dishHighlights"
+      },
+      {
+        "name": "Bruschetta",
+        "source": "qloo.dishHighlights"
+      },
+      {
+        "name": "Free Bruschetta",
+        "source": "qloo.specialtyDishes"
+      },
+      {
+        "name": "Clams",
+        "source": "qloo.specialtyDishes"
+      },
+      {
+        "name": "Seafood",
+        "source": "qloo.specialtyDishes"
+      }
+    ],
+    "removedDishes": [],
+    "warnings": [],
+    "needsConfirmation": [
+      "Which dishes are made without pork?"
+    ],
+    "links": {
+      "website": "http://lennysclambar.com/",
+      "phone": "+17188455100",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Lenny%27s+Clam+Bar%2C+161-03+Cross+Bay+Blvd+Howard+Beach%2C+NY+11414&query_place_id=ChIJJZUbfH9nwokRB4PiUl_hUls"
+    }
+  }
+}

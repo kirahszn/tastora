@@ -13,6 +13,13 @@ the restaurant. Tastora never presents an allergy as safe. Built for the Qloo Ag
 
 **Live demo: <https://tastora-three.vercel.app>**
 
+The landing page has two live demos built from real data: **Watch Qloo re-rank** (tap Frank
+Sinatra, Bob Marley or Fela Kuti and Qloo's real top 10 for the same Italian search in New York City
+re-orders; lists in [`src/app/_landing/rerankSnapshot.json`](src/app/_landing/rerankSnapshot.json),
+built by [`scripts/landing-rerank.ts`](scripts/landing-rerank.ts)) and **The safety check** (Tastora's
+own Phase 2 checks run at build time on a committed Qloo sample for a peanut allergy, setting dishes
+aside with the real reason; [`src/app/_landing/sieveData.ts`](src/app/_landing/sieveData.ts)).
+
 **Try it in 30 seconds:** open the site → **Try an example** → **Italian-American in Queens** (the
 Frank Sinatra profile) → **Find restaurants**. Results stream in within a few seconds. Scroll to
 **How Qloo shaped these results** to compare Qloo's ranking with and without the person's taste
@@ -338,7 +345,12 @@ response and is skipped in a fresh clone (288 pass, 1 skipped).
 
 ## Credits
 
-- Landing page photo: [Anna Shvets on Pexels](https://www.pexels.com/photo/a-family-eating-dinner-together-11368637/),
-  used under the [Pexels License](https://www.pexels.com/license/) (free to use; attribution
-  appreciated, not required). The people in it are not Tastora users and do not endorse it.
+- Landing page photos, all used under the [Pexels License](https://www.pexels.com/license/) (free
+  to use; attribution appreciated, not required). The people in them are not Tastora users and do
+  not endorse it:
+  [Anna Shvets](https://www.pexels.com/photo/a-family-eating-dinner-together-11368637/) (family dinner),
+  [Nothing Ahead](https://www.pexels.com/photo/choice-of-food-during-family-dinner-20089303/) (hands sharing dishes),
+  [Juan TM](https://www.pexels.com/photo/engaging-dinner-gathering-with-shared-plates-31705508/) (shared plates, closing band).
+- Body type: [Manrope](https://fonts.google.com/specimen/Manrope) (SIL Open Font License),
+  self-hosted at build time by `next/font`.
 - Logo, favicon and icons are original to this project.

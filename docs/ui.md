@@ -92,8 +92,16 @@ edge, and a full-width warm band behind "How it works", and a peach band (`--tin
 back text; the icon-only tiles use slightly deeper versions (`--tile-*`) so they read on white.
 Terracotta is split in two: `--accent-fill` `#D9774F` is only ever a button/badge background with
 espresso `--on-accent` text, never white; `--accent` `#A44F2E` is terracotta for text, links and
-borders (the brief's `#B85C38` gave 4.2:1 on cream). Georgia-stack serif headings, system sans
-body, 18px base, no web fonts.
+borders (the brief's `#B85C38` gave 4.2:1 on cream).
+
+**Type and layout (Phase 10).** Manrope via `next/font/google` (self-hosted at build; the browser
+never calls Google) for headings (700, tight tracking) and body (17px, `--text-body`), a mono stack
+for captions and numbers (`.mono`), and the Georgia serif only for the "Tastora" wordmark. Sizes are
+tokens in `globals.css` (`--text-h1` clamp(2.25rem, 5vw, 3.75rem), `--text-h2` clamp(1.75rem, 3.5vw,
+2.75rem)), with a spacing scale `--space-1…10`, page width `--page-max` 1180px and line length
+`--measure` 62ch. Shared pieces: `.card` (the one card: white, thin warm border, soft shadow),
+`.chip` (pill toggle; `aria-pressed` shows the choice), `.eyebrow`, `.tone-muted` (second clause of
+a two-tone headline). The header is a floating, sticky pill on every page.
 
 WCAG contrast (computed): espresso on page 15.8:1, on band 14.5:1, on the glow's strongest point
 14.6:1; muted 6.3:1 (band 5.8, glow 5.8); accent text 5.5:1 on the page, 5.0:1 on the band and
@@ -105,32 +113,46 @@ text node against its composited background, OS set to dark) found no pair under
 Tap targets ≥ 44px. `aria-live="polite"` for progress and announcements; reduced motion stops
 the spinner. Error summary takes focus and links to fields; inline errors use `aria-invalid`.
 
-## Landing page (Phase 9a, 9a-2, 9a-3)
+## Landing page (Phase 10)
 
-`src/app/page.tsx` composes `src/app/_landing/` as a story: Hero (laptop frame) → Problem (photo
-+ four rows) → Values (three tinted cards) → Showcase (`#how`, accordion + phone) → QlooProof
-(`#qloo`, stat cards) → Steps → Closing band. Footer and nav stay in `layout.tsx`. The page sets
-`data-layout="wide"`, and `:has()` rules widen it to 1120px and swap the nav: on the landing page
-"How it works", "Why Qloo", "Profile" and a "Find food" pill (phones: the pill only); every other
-page keeps the single Profile link.
+`src/app/page.tsx` composes `src/app/_landing/`, left-aligned and editorial: Hero (HTML result
+card) → Problem (numbered 01–04 + photo) → Rerank (`#qloo`) → SafetyCheck (sieve) → HowItWorks
+(`#how`, three numbered steps with line drawings) → QlooProof (metric cards) → Rules (`#rules`) →
+Closing band (dimmed photo). The page sets `data-layout="wide"`: `:has()` rules make `<main>` full
+width (each section keeps to 1180px; the closing band spans the page without `100vw`) and swap the
+nav to "How it works · Why Qloo · Our rules" and a "Find food ↗" pill (phones: the pill and a
+`<details>` menu, `NavMenu.tsx`); every other page keeps the single Profile link.
 
-- **Device frames** (`Devices.tsx`) are pure CSS around real screenshots in `public/images/screen-*`,
-  captured 2026-10-28 from the live app with the Sinatra-example response of 2026-10-27 seeded into
-  storage (no new search): the results page (laptop) and four 390×844 phone views (taste memories,
-  must avoid, a result card's reasons, its "Ask the restaurant" box).
-- **Accordion** (`Showcase.tsx`): `<button aria-expanded aria-controls>` in an `h3`, panels with
-  `role="region"`. Before hydration (and without JS) every panel is open and the phone shows the
-  first screen; after it one panel is open at a time and the phone swaps screens (all four images
-  load eagerly so a swap never waits).
+- **Hero card** (`HeroCard.tsx`): HTML, from `heroSnapshot.json`, one real result (Lenny's Clam Bar)
+  of the live Sinatra-example search on 2026-10-27, laid out with the results page's own helpers.
+- **Watch Qloo re-rank** (`Rerank.tsx`): chips for Plain search, Frank Sinatra, Bob Marley and Fela
+  Kuti. Lists are `rerankSnapshot.json`, built by `scripts/landing-rerank.ts` from stored Qloo
+  responses: one request (Italian genre tag, New York City, take 20), only the signal differs
+  (Sinatra and Fela from the Phase 1 probe, 2026-10-26; Bob Marley and a repeat of the plain search
+  live on 2026-10-28, 2 Qloo calls; the repeat matched the stored top 10 exactly), filtered by the
+  app's venue filter. Rows glide with FLIP (`useFlip.ts`, Web Animations; none with reduced
+  motion); "New"/"↑n"/"↓n" and the sentence come from `rankMovement`/`evidenceSentence`; an
+  `aria-live` line announces it. Top 6 shown; counts compare the full top 10s.
+- **The safety check** (`Sieve.tsx`, data `sieveData.ts`): at build time the app's Phase 2 code
+  (`normalizePlaces` → `rankCandidates` → `buildExplanationFacts`) runs on the committed sample
+  `E5h-west-african-signal-fela.json` with the "Nigerian food in Brooklyn" example profile. Buka,
+  Accra Express and Brooklyn Suya are shown: dishes as Qloo lists them, then sorted into "Dishes to
+  ask about" and "Set aside" with the engine's reason. Server render, no JS and reduced motion show
+  the sorted state; with motion it sorts once when scrolled into view and on each tap.
+- **Our rules** (`Rules.tsx`): seven statements, each with the test that backs it in a comment.
+  Called "Our rules" (`#rules`), not "Guarantees": the UI-copy test bans "guarantee(s)" outside a
+  negation, and a guarantee next to allergies reads as a safety promise.
 - **Qloo proof** (`proofStats.ts`): each figure carries the doc and the exact quote it comes from;
-  `tests/landing.test.ts` fails if a quote disappears from its doc.
+  `tests/landing.test.ts` fails if a quote disappears from its doc. The same file checks the
+  re-rank snapshot, the sieve output and the hero snapshot.
 - `FadeUp` uses IntersectionObserver and only hides a section once armed by script, so content
   shows without JS and with reduced motion.
 
 - **Logo:** `ChefMark` (`src/components/ChefMark.tsx`), an original flat chef (puffed hat, round
   smiling face), decorative next to the "Tastora" wordmark. The favicon `src/app/icon.svg` and the
   share card use the same shapes.
-- **Photo:** `Photo.tsx` serves `public/images/family-dinner.jpg` (2000×1333, 304 KB) through
-  `next/image` with a blur placeholder and `sizes`, so phones get a small WebP. Pexels photo
-  11368637 by Anna Shvets, Pexels License; credited under the photo and in the README, worded so
-  it doesn't imply the people use Tastora.
+- **Photos:** `Photo.tsx` and `Closing.tsx` serve three Pexels photos (Pexels License) through
+  `next/image` with blur placeholders and `sizes`: 11368637 by Anna Shvets (`family-dinner.jpg`),
+  20089303 by Nothing Ahead (`family-table.jpg`, 1600px), 31705508 by Juan TM (`shared-plates.jpg`,
+  2000px), all downloaded 2026-10-28. Credited under each photo, in the footer and in the README,
+  worded so it doesn't imply the people use Tastora.
