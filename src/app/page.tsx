@@ -1,9 +1,11 @@
-import { EntryCards } from "./_landing/EntryCards";
+import { Closing } from "./_landing/Closing";
 import { FadeUp } from "./_landing/FadeUp";
 import { Hero } from "./_landing/Hero";
-import { HowItWorks } from "./_landing/HowItWorks";
-import { Photo } from "./_landing/Photo";
-import { TrustStrip } from "./_landing/TrustStrip";
+import { Problem } from "./_landing/Problem";
+import { QlooProof } from "./_landing/QlooProof";
+import { Showcase } from "./_landing/Showcase";
+import { Steps } from "./_landing/Steps";
+import { Values } from "./_landing/Values";
 import styles from "./_landing/landing.module.css";
 
 export default function Home() {
@@ -11,16 +13,22 @@ export default function Home() {
     <div className={styles.landing} data-layout="wide">
       <Hero />
       <FadeUp>
-        <Photo />
+        <Problem />
       </FadeUp>
       <FadeUp>
-        <EntryCards />
+        <Values />
       </FadeUp>
       <FadeUp>
-        <HowItWorks />
+        <Showcase />
       </FadeUp>
       <FadeUp>
-        <TrustStrip />
+        <QlooProof />
+      </FadeUp>
+      <FadeUp>
+        <Steps />
+      </FadeUp>
+      <FadeUp>
+        <Closing />
       </FadeUp>
     </div>
   );

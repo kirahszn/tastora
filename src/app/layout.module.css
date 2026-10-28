@@ -61,6 +61,55 @@
   background: var(--surface-2);
 }
 
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.navText {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 0.85rem;
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.navText:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.navPill {
+  min-height: 44px;
+  margin-left: 0.5rem;
+  padding: 0 1.3rem;
+}
+
+/* Landing-only links (see layout.tsx). */
+.nav .landingOnly,
+.nav .landingPill {
+  display: none;
+}
+
+:global(body:has([data-layout="wide"])) .nav .landingOnly,
+:global(body:has([data-layout="wide"])) .nav .landingPill {
+  display: inline-flex;
+}
+
+:global(body:has([data-layout="wide"])) .otherPagesOnly {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  :global(body:has([data-layout="wide"])) .nav .landingOnly {
+    display: none;
+  }
+}
+
 .main {
   flex: 1;
   width: 100%;

@@ -66,7 +66,7 @@ and a single `theme-color` `#FFFBF7`, so every page (/, /profile, /results, /res
 light whatever the OS setting. Page `#FFFBF7` (warm white), section band `#FBF0E6`, white cards,
 panel `#F5ECE0`, espresso text `#2B1D16`, muted `#6B5B50`, border `#EADFD2`. The landing page
 adds a very soft terracotta radial glow (8%) behind the hero, painted on the body so it has no
-edge, and a full-width warm band behind "How it works". Pastel tints (peach/sage/butter/lavender)
+edge, and a full-width warm band behind "How it works", and a peach band (`--tint-peach`) for the closing call to action. Pastel tints (peach/sage/butter/lavender)
 back text; the icon-only tiles use slightly deeper versions (`--tile-*`) so they read on white.
 Terracotta is split in two: `--accent-fill` `#D9774F` is only ever a button/badge background with
 espresso `--on-accent` text, never white; `--accent` `#A44F2E` is terracotta for text, links and
@@ -83,15 +83,27 @@ text node against its composited background, OS set to dark) found no pair under
 Tap targets ≥ 44px. `aria-live="polite"` for progress and announcements; reduced motion stops
 the spinner. Error summary takes focus and links to fields; inline errors use `aria-invalid`.
 
-## Landing page (Phase 9a, 9a-2)
+## Landing page (Phase 9a, 9a-2, 9a-3)
 
-`src/app/page.tsx` composes `src/app/_landing/` (Hero, SampleCard, Photo, EntryCards,
-HowItWorks, TrustStrip; footer and nav stay in `layout.tsx`). The page sets `data-layout="wide"`
-and `layout.module.css` widens to 1120px with `:has()`, so other pages keep the reading width.
-The sample card is a static snapshot of a real result (`sampleResult.ts`, captured 2026-10-27
-from one live Sinatra-example search), rendered with the same `StatusBadge` as results.
-`FadeUp` uses IntersectionObserver and only hides a section once armed by script, so content
-shows without JS and with reduced motion.
+`src/app/page.tsx` composes `src/app/_landing/` as a story: Hero (laptop frame) → Problem (photo
++ four rows) → Values (three tinted cards) → Showcase (`#how`, accordion + phone) → QlooProof
+(`#qloo`, stat cards) → Steps → Closing band. Footer and nav stay in `layout.tsx`. The page sets
+`data-layout="wide"`, and `:has()` rules widen it to 1120px and swap the nav: on the landing page
+"How it works", "Why Qloo", "Profile" and a "Find food" pill (phones: the pill only); every other
+page keeps the single Profile link.
+
+- **Device frames** (`Devices.tsx`) are pure CSS around real screenshots in `public/images/screen-*`,
+  captured 2026-10-28 from the live app with the Sinatra-example response of 2026-10-27 seeded into
+  storage (no new search): the results page (laptop) and four 390×844 phone views (taste memories,
+  must avoid, a result card's reasons, its "Ask the restaurant" box).
+- **Accordion** (`Showcase.tsx`): `<button aria-expanded aria-controls>` in an `h3`, panels with
+  `role="region"`. Before hydration (and without JS) every panel is open and the phone shows the
+  first screen; after it one panel is open at a time and the phone swaps screens (all four images
+  load eagerly so a swap never waits).
+- **Qloo proof** (`proofStats.ts`): each figure carries the doc and the exact quote it comes from;
+  `tests/landing.test.ts` fails if a quote disappears from its doc.
+- `FadeUp` uses IntersectionObserver and only hides a section once armed by script, so content
+  shows without JS and with reduced motion.
 
 - **Logo:** `ChefMark` (`src/components/ChefMark.tsx`), an original flat chef (puffed hat, round
   smiling face), decorative next to the "Tastora" wordmark. The favicon `src/app/icon.svg` and the

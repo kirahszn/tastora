@@ -17,11 +17,13 @@ Frank Sinatra profile) → **Find restaurants**. Results stream in within a few 
 **How Qloo shaped these results** to compare Qloo's ranking with and without the person's taste
 signals.
 
-![Welcome page: chef logo, headline and a real Sinatra-example result card](docs/screenshots/welcome.jpg)
+![Welcome page: centred headline and a laptop frame showing the real Sinatra-example results page](docs/screenshots/welcome.jpg)
 
-| Photo band | Phone width (375px) |
-|---|---|
-| ![Photo of a family dinner below the hero, with its credit line](docs/screenshots/phase9a2-photo-band.jpg) | ![Welcome page at 375px: hero and photo](docs/screenshots/phase9a2-mobile-375.jpg) |
+| How it works | Why Qloo | Phone width (375px) |
+|---|---|---|
+| ![Accordion beside a phone showing the real result card for the open item](docs/screenshots/phase9a3-how-it-works-item3.jpg) | ![Three stat cards from Tastora's logged test searches](docs/screenshots/phase9a3-why-qloo.jpg) | ![Welcome page at 375px: logo, Find food pill and hero](docs/screenshots/phase9a3-mobile-375.jpg) |
+
+Full page: [desktop](docs/screenshots/phase9a3-desktop-full.jpg) · [375px](docs/screenshots/phase9a3-mobile-375-full.jpg).
 
 ## The problem
 

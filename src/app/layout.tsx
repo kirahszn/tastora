@@ -37,9 +37,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <ChefMark size={34} />
               Tastora
             </Link>
-            <nav aria-label="Main">
-              <Link href="/profile" className={styles.navLink}>
+            {/* The landing page shows its section links and a "Find food" pill (phones: the pill
+                only); every other page keeps the single Profile link. */}
+            <nav aria-label="Main" className={styles.nav}>
+              <Link href="/#how" className={`${styles.navText} ${styles.landingOnly}`}>
+                How it works
+              </Link>
+              <Link href="/#qloo" className={`${styles.navText} ${styles.landingOnly}`}>
+                Why Qloo
+              </Link>
+              <Link href="/profile" className={`${styles.navText} ${styles.landingOnly}`}>
                 Profile
+              </Link>
+              <Link href="/profile" className={`${styles.navLink} ${styles.otherPagesOnly}`}>
+                Profile
+              </Link>
+              <Link href="/profile" className={`btn btn-primary ${styles.navPill} ${styles.landingPill}`}>
+                Find food
               </Link>
             </nav>
           </div>

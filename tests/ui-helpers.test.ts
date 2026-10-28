@@ -365,6 +365,10 @@ describe("UI copy", () => {
   it("scans the UI source", () => {
     expect(all.some((f) => f.endsWith("ResultCard.tsx"))).toBe(true);
     expect(all.some((f) => f.endsWith("ProfileForm.tsx"))).toBe(true);
+    // Landing copy (Phase 9a-3), including the "never call a meal safe" claims.
+    for (const name of ["Hero.tsx", "Problem.tsx", "Values.tsx", "Showcase.tsx", "QlooProof.tsx", "proofStats.ts", "Steps.tsx", "Closing.tsx"]) {
+      expect(all.some((f) => f.endsWith(join("_landing", name)))).toBe(true);
+    }
   });
 
   it("never claims food is safe (only negated forms like \"never shown as safe\")", () => {

@@ -15,7 +15,7 @@ export function Photo() {
           src={familyDinner}
           alt="Three generations around a candlelit dinner table at home: two older women and a young girl smile and talk over plates, glasses and a sweet pie."
           placeholder="blur"
-          sizes="(max-width: 1152px) calc(100vw - 2rem), 1120px"
+          sizes="(max-width: 860px) calc(100vw - 2rem), 580px"
           className={styles.photoImg}
         />
       </div>

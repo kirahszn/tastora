@@ -16,7 +16,9 @@ type Name =
   | "heart"
   | "sparkle"
   | "ask"
-  | "arrow";
+  | "arrow"
+  | "star"
+  | "minus";
 
 const PATHS: Record<Name, string> = {
   check: "M5 12.5l4.5 4.5L19 7.5",
@@ -32,10 +34,12 @@ const PATHS: Record<Name, string> = {
   print: "M7 9V4h10v5M7 17H5v-7h14v7h-2M7 14h10v6H7z",
   copy: "M9 9h10v11H9zM5 15V4h10",
   plus: "M12 5v14M5 12h14",
+  minus: "M5 12h14",
   heart: "M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z",
   sparkle: "M12 3.5l1.9 5.6 5.6 1.9-5.6 1.9-1.9 5.6-1.9-5.6-5.6-1.9 5.6-1.9zM18.5 16.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z",
   ask: "M4.5 5.5h15v10h-8l-4.5 3.5v-3.5H4.5zM10.2 8.8a1.9 1.9 0 1 1 2.6 1.8c-.5.2-.8.6-.8 1.1M12 13.4v.01",
   arrow: "M5 12h14M13 6l6 6-6 6",
+  star: "M12 3.8l2.5 5.2 5.7.8-4.1 4 1 5.7-5.1-2.7-5.1 2.7 1-5.7-4.1-4 5.7-.8z",
 };
 
 export function Icon({ name, size = 18 }: { name: Name; size?: number }) {

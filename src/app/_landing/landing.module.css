@@ -3,16 +3,17 @@
 /* A very soft terracotta glow behind the hero, on the page itself so it never shows an edge. */
 :global(body:has([data-layout="wide"])) {
   background:
-    radial-gradient(70rem 34rem at 70% 0, rgb(217 119 79 / 8%), transparent 70%) no-repeat,
+    radial-gradient(70rem 34rem at 50% 0, rgb(217 119 79 / 8%), transparent 70%) no-repeat,
     var(--bg);
 }
+
 .landing {
-  --section-gap: 96px;
+  --section-gap: 128px;
   --radius-xl: 32px;
 
   display: grid;
   gap: var(--section-gap);
-  padding-block: 40px var(--section-gap);
+  padding-top: 56px;
 }
 
 /* Shared */
@@ -45,268 +46,48 @@
   transform: translateX(2px);
 }
 
-.sectionTitle {
-  font-size: clamp(1.7rem, 3.6vw, 2.4rem);
-  line-height: 1.15;
-  max-width: 22ch;
-}
-
-/* Hero */
-.hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  gap: 56px;
-  align-items: center;
-}
-
-.heroText {
-  display: grid;
-  gap: 1.4rem;
-  justify-items: start;
-}
-
-.headline {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  max-width: 14ch;
-  text-wrap: balance;
-}
-
-.headlineAccent {
-  color: var(--accent);
-  font-style: italic;
-  white-space: nowrap;
-}
-
-.lede {
-  font-size: 1.1rem;
-  color: var(--muted);
-  max-width: 34rem;
-}
-
-.heroActions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem 1.25rem;
-}
-
-.textLink {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  font-weight: 600;
-}
-
-/* Sample card */
-.sampleWrap {
-  transform: rotate(-1.5deg);
-}
-
-.sample {
-  display: grid;
-  gap: 0.5rem;
-  padding: 28px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  50% {
-    transform: translateY(-4px);
-  }
-}
-
-.sampleLabel {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.sampleName {
-  font-family: var(--font-serif);
-  font-size: 1.7rem;
-  font-weight: 600;
-  line-height: 1.15;
-}
-
-.samplePlace {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  color: var(--muted);
-}
-
-.sampleHeading {
-  margin-top: 0.5rem;
-  font-weight: 700;
-}
-
-.sampleReasons {
-  display: grid;
-  gap: 0.2rem;
-  padding-left: 1.1rem;
-}
-
-.sampleReasons li::marker {
-  color: var(--accent);
-}
-
-.sampleChips {
-  list-style: none;
-  padding: 0;
-  margin-top: 0.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.sampleAsk {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.3rem 0.75rem;
-  border-radius: 999px;
-  background: var(--tint-lavender);
-  font-size: 0.95rem;
-  line-height: 1.3;
-}
-
-.sampleNote {
-  margin-top: 0.5rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--line);
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-/* Photo band (Photo.tsx) */
-.photo {
-  display: grid;
-  gap: 0.6rem;
-}
-
-.photoFrame {
-  overflow: hidden;
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-card);
-  aspect-ratio: 16 / 7;
-  background: var(--band);
-}
-
-.photoImg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 12%;
-}
-
-.credit {
-  font-size: 0.85rem;
-  color: var(--muted);
-  text-align: right;
-}
-
-.credit a {
-  display: inline-block;
-  padding-block: 0.6rem; /* 44px tap target with the line height */
-}
-
-/* Entry cards */
-.entries {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
-}
-
-.entry {
-  display: grid;
-  align-content: start;
-  justify-items: start;
-  gap: 0.75rem;
-  padding: 36px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-}
-
-.entryAlt {
-  background: var(--tint-peach);
-  border-color: transparent;
-}
-
-.entryTitle {
-  font-size: clamp(1.5rem, 2.6vw, 1.9rem);
-  line-height: 1.15;
-}
-
-.entryText {
-  color: var(--muted);
-  max-width: 30rem;
-}
-
-.entryActions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1rem;
-  margin-top: 0.5rem;
-}
-
-.entry > .cta {
-  margin-top: 0.5rem;
-}
-
-.entryNote {
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-/* How it works: a full-width warm band (the shadow paints the band past the content column,
-   clip-path keeps it from adding horizontal scroll). */
-.how {
-  display: grid;
-  gap: 32px;
-  padding-block: 72px;
-  background: var(--band);
+/* Full-width warm band behind a section: the shadow paints past the content column and clip-path
+   keeps it from adding horizontal scroll. */
+.band {
+  padding-block: 96px;
   box-shadow: 0 0 0 100vmax var(--band);
+  background: var(--band);
   clip-path: inset(0 -100vmax);
 }
 
-.howGrid {
-  list-style: none;
-  padding: 0;
+/* Centred section heading (SectionHead) */
+.section {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  gap: 56px;
 }
 
-.howCard {
+.head {
   display: grid;
-  align-content: start;
-  gap: 0.4rem;
-  padding: 28px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
+  justify-items: center;
+  gap: 0.9rem;
+  text-align: center;
 }
 
+.sectionTitle {
+  font-size: clamp(1.8rem, 4vw, 2.75rem);
+  line-height: 1.12;
+  max-width: 20ch;
+  text-wrap: balance;
+}
+
+.headText {
+  max-width: 38rem;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+/* Icon tiles */
 .tile {
   display: inline-grid;
+  flex-shrink: 0;
   place-items: center;
   width: 52px;
   height: 52px;
-  margin-bottom: 0.6rem;
   border-radius: 16px;
   color: var(--ink);
 }
@@ -327,28 +108,438 @@
   background: var(--tile-lavender);
 }
 
-.howTitle {
-  font-size: 1.3rem;
+/* Hero */
+.hero {
+  display: grid;
+  gap: 64px;
 }
 
-.howText {
+.heroText {
+  display: grid;
+  justify-items: center;
+  gap: 1.4rem;
+  text-align: center;
+}
+
+.headline {
+  font-size: clamp(2.5rem, 6.4vw, 4.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 15ch;
+  text-wrap: balance;
+}
+
+.headlineAccent {
+  color: var(--accent);
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.lede {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 40rem;
+}
+
+.heroText .cta {
+  margin-top: 0.5rem;
+}
+
+.heroNote {
+  margin-top: -0.4rem;
+  font-size: 0.9rem;
   color: var(--muted);
 }
 
-/* Trust strip */
-.trust {
+/* Device frames (Devices.tsx), drawn in CSS around real screenshots */
+.laptop {
+  display: grid;
+  justify-items: center;
+  width: min(100%, 980px);
+  margin-inline: auto;
+}
+
+.laptopLid {
+  width: 88%;
+  padding: 1.6% 1.6% 2.4%;
+  background: var(--ink);
+  border-radius: 22px 22px 0 0;
+  box-shadow: 0 30px 60px rgb(43 29 22 / 14%);
+}
+
+.laptopScreen {
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.laptopBase {
+  position: relative;
+  width: 100%;
+  height: clamp(10px, 1.8vw, 18px);
+  background: linear-gradient(var(--surface-2), var(--line));
+  border: 1px solid var(--line);
+  border-radius: 2px 2px 18px 18px;
+  box-shadow: 0 14px 24px rgb(43 29 22 / 10%);
+}
+
+.laptopBase::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 14%;
+  height: 40%;
+  transform: translateX(-50%);
+  background: var(--line);
+  border-radius: 0 0 10px 10px;
+}
+
+.screenImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.phone {
+  width: min(300px, 78vw);
+  padding: 10px;
+  background: var(--ink);
+  border-radius: 46px;
+  box-shadow: 0 30px 60px rgb(43 29 22 / 16%);
+}
+
+.phoneScreen {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 390 / 844;
+  border-radius: 37px;
+  background: var(--bg);
+}
+
+.phoneImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    opacity 300ms ease,
+    visibility 300ms;
+}
+
+.phoneImg[data-active="false"] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* The problem */
+.problem {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: center;
+}
+
+.problemList {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.problemRow {
   display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 18px 24px;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: var(--surface-2);
+  font-size: 1.05rem;
+}
+
+/* Photo (Photo.tsx) */
+.photo {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.photoFrame {
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  aspect-ratio: 4 / 3.4;
+  background: var(--band);
+}
+
+.photoImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 45% 30%;
+}
+
+.credit {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.credit a {
+  display: inline-block;
+  padding-block: 0.6rem; /* 44px tap target with the line height */
+}
+
+/* Value cards */
+.values {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.value {
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+  padding: 40px 32px;
+  border-radius: var(--radius-xl);
+}
+
+.cardPeach {
+  background: var(--tint-peach);
+}
+
+.cardSage {
+  background: var(--tint-sage);
+}
+
+.cardLavender {
+  background: var(--tint-lavender);
+}
+
+.valueIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 0.8rem;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--accent);
+}
+
+.valueTitle {
+  font-size: 1.45rem;
+}
+
+/* How it works: accordion beside a phone, on the warm band */
+.showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 72px;
+  align-items: center;
+  max-width: 1000px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.accordion {
+  padding: 12px 36px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+}
+
+.accItem + .accItem {
+  border-top: 1px solid var(--line);
+}
+
+.accHeading {
+  font-size: 1.35rem;
+}
+
+.accButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  min-height: 72px;
+  padding: 16px 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.accButton:hover {
+  color: var(--accent);
+}
+
+.accSign {
+  display: inline-grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 50%;
   color: var(--ink);
 }
 
-.trust svg {
-  margin-top: 0.15rem;
+.accItem[data-open="true"] .accSign {
+  border-color: var(--accent-fill);
+  background: var(--accent-fill);
+  color: var(--on-accent);
+}
+
+.accPanel {
+  padding: 0 52px 24px 0;
+  color: var(--muted);
+}
+
+/* Why Qloo: stat cards */
+.stats {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.stat {
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: 0.35rem;
+  padding: 40px 28px;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+}
+
+.statFigure {
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 5vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.1;
   color: var(--accent);
+}
+
+.statText {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.statWho {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.caption {
+  margin-top: -32px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Three steps: alternating sides along a dotted line (one column on phones) */
+.steps {
+  --num: 60px;
+
+  position: relative;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 40px;
+  max-width: 920px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.steps::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  bottom: 30px;
+  left: 50%;
+  border-left: 3px dotted var(--line-strong);
+  transform: translateX(-50%);
+}
+
+.step {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--num) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+
+.stepNum {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1;
+  display: grid;
+  place-items: center;
+  width: var(--num);
+  height: var(--num);
+  border-radius: 50%;
+  background: var(--accent-fill);
+  color: var(--on-accent);
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  box-shadow: 0 0 0 8px var(--bg);
+}
+
+.stepCard {
+  grid-row: 1;
+  grid-column: 1;
+  display: grid;
+  gap: 0.4rem;
+  padding: 28px 32px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.step:nth-child(even) .stepCard {
+  grid-column: 3;
+}
+
+.stepTitle {
+  font-size: 1.35rem;
+}
+
+.stepCard p {
+  color: var(--muted);
+}
+
+/* Closing band: full width, touching the footer */
+.closing {
+  display: grid;
+  justify-items: center;
+  gap: 32px;
+  padding-block: 96px;
+  background: var(--tint-peach);
+  box-shadow: 0 0 0 100vmax var(--tint-peach);
+  clip-path: inset(0 -100vmax);
+}
+
+.closing .headText {
+  color: var(--ink);
 }
 
 /* Scroll fade-up (see FadeUp.tsx): hidden only once armed by script. */
@@ -365,62 +556,117 @@
 
 @media (max-width: 860px) {
   .landing {
-    --section-gap: 64px;
-    padding-top: 24px;
+    --section-gap: 88px;
+    padding-top: 32px;
   }
 
-  .hero {
-    grid-template-columns: minmax(0, 1fr);
+  .section {
     gap: 40px;
   }
 
-  .sampleWrap {
-    transform: rotate(-1deg);
-    margin-inline: 6px;
+  .hero {
+    gap: 48px;
   }
 
-  .entries,
-  .howGrid {
+  .problem,
+  .values,
+  .stats,
+  .showcase {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .entry {
-    padding: 28px 24px;
+  .showcase {
+    gap: 48px;
+    justify-items: center;
+  }
+
+  .accordion {
+    width: 100%;
+    padding: 4px 22px;
+  }
+
+  .accPanel {
+    padding-right: 0;
+  }
+
+  .band,
+  .closing {
+    padding-block: 72px;
+  }
+
+  .value,
+  .stat {
+    padding: 32px 26px;
+  }
+
+  .caption {
+    margin-top: -16px;
+  }
+
+  .steps::before {
+    left: calc(var(--num) / 2);
+  }
+
+  .step {
+    grid-template-columns: var(--num) minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .stepNum {
+    grid-column: 1;
+  }
+
+  .stepCard,
+  .step:nth-child(even) .stepCard {
+    grid-column: 2;
   }
 }
 
 @media (max-width: 480px) {
-  /* "Good food should / still feel / like home." at 375px, rather than "should" on its own line. */
   .headline {
     font-size: 2.2rem;
   }
 
-  .heroActions,
-  .heroActions .cta {
+  /* "Find food for someone / you care for" rather than "for" alone on the second line. */
+  .heroText .cta {
     width: 100%;
+    text-wrap: balance;
   }
 
-  .heroActions .textLink {
-    justify-content: center;
-    width: 100%;
+  .laptopLid {
+    width: 92%;
+    border-radius: 14px 14px 0 0;
   }
 
-  .sample {
-    padding: 22px 20px;
+  .laptopBase {
+    border-radius: 2px 2px 10px 10px;
   }
 
-  .photoFrame {
-    aspect-ratio: 4 / 3;
+  .steps {
+    --num: 48px;
+  }
+
+  .stepNum {
+    font-size: 1.25rem;
+  }
+
+  .stepCard {
+    padding: 22px;
+  }
+
+  .problemRow {
+    padding: 16px;
+    font-size: 1rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sample {
-    animation: none;
-  }
-
   .cta:hover,
   .cta:hover .arrow {
     transform: none;
+  }
+
+  .phoneImg {
+    transition: none;
   }
 }
