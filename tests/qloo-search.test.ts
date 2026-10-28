@@ -69,7 +69,7 @@ describe("searchRestaurants", () => {
     expect(r.notes[0]).toMatch(/returned nothing/);
   });
 
-  it("retries in New York City when the profile location finds nothing", async () => {
+  it("retries city-wide (New York City when no fallback is given) when the location finds nothing", async () => {
     const { search } = fakeQloo({
       insights: (p) => (p["filter.location.query"] === NYC_LOCATION ? fakeQlooPlaces() : []),
     });

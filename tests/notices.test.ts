@@ -42,7 +42,7 @@ describe("notices", () => {
     expect(tasteMemoryNotice([])).toBeNull();
   });
 
-  it("turns the NYC-wide retry note into plain words, ignoring other notes", () => {
+  it("turns the city-wide retry note into plain words, ignoring other notes", () => {
     expect(
       locationNotices(['No places found for "Paris"; searched New York City instead', "Genre tag x returned nothing; used y"]),
     ).toEqual(["No places were found for “Paris”, so Tastora searched all of New York City."]);

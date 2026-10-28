@@ -66,7 +66,7 @@ suggest and no way to connect "loves Frank Sinatra" to a specific Italian restau
   Italian restaurants, a Sinatra signal brought up classic red-sauce places instead of Eataly and
   Marea. A Bob Marley signal moved a general restaurant search toward Caribbean places.
 - **Measured, not claimed.** Every search runs again without signals, and the app shows both top-10
-  lists. Live results: Sinatra (Italian-American, Queens), 4 of 10 places shared and 10 moved; Bob
+  lists. From test searches in New York City: Sinatra (Italian-American, Queens), 4 of 10 places shared and 10 moved; Bob
   Marley (Caribbean, Bronx), 0 of 10 shared; Barbra Streisand (Jewish deli), 6 of 10; Fela Kuti
   (Nigerian, Brooklyn), 10 of 10 shared but 7 re-ordered, since NYC has only about 10 Nigerian
   places. The baseline is deterministic, so these differences are real.

@@ -105,7 +105,7 @@ ranking is fully deterministic, so the differences are not noise.
 
 **Evidence panel.** For every search, Tastora runs the main Qloo query again without taste
 signals and shows both top-10 lists. It reports how many places appear in both, how many are new
-and how many moved. Results from live runs
+and how many moved. Results from Tastora's test searches in New York City, October 2026
 ([`docs/phase5-profile-matrix.md`](docs/phase5-profile-matrix.md),
 [`docs/phase3-smoke.md`](docs/phase3-smoke.md)):
 
