@@ -99,7 +99,8 @@ total is their sum.
 | Dislike penalty | −3 per removed disliked dish, max −9 |
 | Allergen-heavy penalty | −8 when ≥ 50% of the venue's listed dishes were set aside for one allergen; −15 when all of them were. Once per venue (worst allergen); only for venues listing ≥ 2 dishes |
 | Feedback | disliked −20; tried −3; shares a cuisine with a liked candidate +4 |
-| Borough (Phase 4) | +6 same borough as the profile; −6 clearly outside New York City; else 0. Only when the profile names a borough |
+| Borough (Phase 4), NYC only | +6 same borough as the profile; −6 clearly outside New York City; else 0. Only when the profile names a borough |
+| Same city (Phase 9c), other cities | +6 when Qloo's `geocode.city` or `geocode.metro` is the profile city; else 0 (never negative). Same breakdown field (`borough`, shown as "Location") |
 
 - **Allergen-heavy penalty (Phase 3).** A venue whose menu is mostly an allergen (Brooklyn Suya:
   every dish is suya, commonly made with peanut) is a poor suggestion even though nothing excludes
@@ -118,7 +119,22 @@ total is their sum.
   so unknown); otherwise unknown (0). +6 is about one favourite dish's worth: it reorders close
   neighbours but can't beat a large taste gap. Facts add `area {kind, label, inRequestedBorough,
   source}` ("In Brooklyn", "Outside NYC (Nassau County)") and, in the requested borough, the reason
-  "In Brooklyn, the borough you chose".
+  "In Brooklyn, the borough you chose". Since Phase 9c the profile has `city` + optional `area`; the
+  borough comes from the area (or a borough typed as the city), and this rule runs only when the city
+  is New York City ("New York City", "NYC", "New York", "New York, NY", or a borough name). It is
+  otherwise unchanged (`tests/location.test.ts` checks old `location: "Brooklyn"` and new
+  `city: "New York City", area: "Brooklyn"` score the same).
+- **Same city (Phase 9c, `src/lib/domain/location.ts`), every other city.** Built only from fields the
+  coverage check found on every place (docs/qloo-findings.md, "Coverage beyond NYC"). The profile city
+  is compared (lower case, accents and punctuation removed, text before any comma) with the venue's
+  `properties.geocode.city`, then `geocode.metro`; the locality Qloo resolved the search to (first part
+  of `query.localities.filter[0].disambiguation`) also counts as a name for the city, so "LA" matches
+  "Los Angeles". Venue city matches → +6, label "In London", reason "In London, the city you chose";
+  metro matches → +6, "In the Sydney area" (Sydney's `geocode.city` is usually a council name; LA
+  suburbs such as Santa Monica have metro "Los Angeles"); another `geocode.city` → 0, "Nearby:
+  Markham"; no geocode city → 0 and no label (nothing is guessed). +6 is the same weight as a borough
+  match. Ranks, never filters. `area.kind` is `same_city` / `same_metro` / `nearby` / `unknown`, with
+  `inRequestedCity`. Tested on the live samples in `tests/location.test.ts`.
 - **Taste decay (verified Phase 3).** Over a 20-result list the linear formula gives rank 1 = 50,
   rank 10 = 28, rank 20 = 3, with steps of 2–3 points between neighbours (no cliff). Kept as is;
   locked by a test.

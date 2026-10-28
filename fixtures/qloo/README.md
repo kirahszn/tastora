@@ -18,5 +18,12 @@ Recorded real Qloo API responses from `npm run qloo:probe` (Phase 1). Never stor
   Frank Sinatra and Bob Marley. Shape `{ request, ok, status, durationMs, resultCount, body }`, with the
   first 5 items slimmed to id/name/subtype/affinity. See "Taste portrait" in `docs/qloo-findings.md`.
 
+- `city-*.json` (Phase 9c coverage check, `npm run qloo:coverage`; read by `tests/location.test.ts`):
+  one file per city (London, Toronto, Los Angeles, Chicago, Lagos, Sydney) plus `city-edges.json`
+  (unresolvable location, "Queens, New York City"). Shape `{ city, sinatraTop10OverlapWithItalian,
+  runs[] }`; each run has its requests, resolved locality, raw/kept/in-city counts, field coverage,
+  phone samples, top 10 ids/names and 5 slim places (name, primary genre, address, geocode, locality,
+  phone, website/hours/dish flags). See "Coverage beyond NYC" in `docs/qloo-findings.md`.
+
 The other files have the shape `{ request: { path, params }, ok, status, body }`.
 Re-running `npm run qloo:probe` rewrites samples at full size; run the slim script afterwards.

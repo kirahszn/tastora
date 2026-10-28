@@ -6,7 +6,7 @@ import styles from "./layout.module.css";
 
 const TITLE = "Tastora — Good food should still feel like home";
 const DESCRIPTION =
-  "Find New York restaurants that match the tastes of someone you care for, with clear notes on what to check.";
+  "Find restaurants near someone you care for that match their tastes, with clear notes on what to check.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tastora-three.vercel.app"),

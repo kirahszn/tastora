@@ -19,7 +19,7 @@ export function QlooProof() {
           </li>
         ))}
       </ul>
-      <p className={styles.caption}>From Tastora&rsquo;s test searches, October 2026.</p>
+      <p className={styles.caption}>From Tastora&rsquo;s test searches in New York City, October 2026.</p>
     </section>
   );
 }

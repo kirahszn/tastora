@@ -3,6 +3,7 @@
 import { evaluateCandidate, type CandidateEvaluation } from "@/lib/constraints/evaluate";
 import { containsKeyword } from "@/lib/constraints/keywords";
 import { detectProfileBorough, detectVenueArea, type Borough, type VenueArea } from "@/lib/domain/borough";
+import { detectCityArea, isNewYorkCity, type CityArea } from "@/lib/domain/location";
 import type { Candidate } from "@/lib/domain/place";
 import type { SeniorProfile } from "@/lib/domain/profile";
 
@@ -36,10 +37,15 @@ export const SCORE_WEIGHTS = {
   feedbackDisliked: -20,
   feedbackTried: -3,
   feedbackLikedCuisine: 4,
-  /** Only when the profile names a borough: same borough, or clearly outside New York City. */
+  /** New York City, only when the profile names a borough: same borough, or clearly outside NYC. */
   sameBorough: 6,
   outsideNyc: -6,
+  /** Other cities (location.ts): Qloo's geocode city or metro is the city asked for. Same weight as a borough. */
+  sameCity: 6,
 } as const;
+
+/** Where a venue is: NYC borough areas, or the same-city rule elsewhere. */
+export type PlaceArea = VenueArea | CityArea;
 
 export const DEFAULT_RESULT_LIMIT = 8;
 
@@ -60,6 +66,7 @@ export interface ScoreBreakdown {
   dislikePenalty: number;
   allergenPenalty: number;
   feedback: number;
+  /** Location: the borough rule in NYC, the same-city rule elsewhere. */
   borough: number;
 }
 
@@ -80,9 +87,11 @@ export interface RankedCandidate {
   matchedFavouriteDishes: string[];
   /** Cuisines shared with a candidate the caregiver liked. */
   likedCuisines: string[];
-  /** Where the venue is, and the borough the profile asked for (null if none named). */
-  area: VenueArea;
+  /** Where the venue is, and the borough the profile asked for (null if none named, or not NYC). */
+  area: PlaceArea;
   requestedBorough: Borough | null;
+  /** The profile's city as typed. */
+  requestedCity: string;
 }
 
 export interface ExcludedCandidate {
@@ -166,6 +175,11 @@ export function boroughScore(requested: Borough | null, area: VenueArea): number
   return area.kind === "outside_nyc" ? SCORE_WEIGHTS.outsideNyc : 0;
 }
 
+/** Outside NYC. Ranks, never filters: "Nearby" and unknown places get 0, not a penalty. */
+export function cityScore(area: CityArea | null): number {
+  return area && (area.kind === "same_city" || area.kind === "same_metro") ? SCORE_WEIGHTS.sameCity : 0;
+}
+
 function allergenPenalty(heavy: AllergenHeavy[]): number {
   if (!heavy.length) return 0;
   return heavy[0].removed === heavy[0].total ? SCORE_WEIGHTS.allergenAllDishes : SCORE_WEIGHTS.allergenHeavy;
@@ -179,11 +193,25 @@ export function rankCandidates(
   profile: SeniorProfile,
   candidates: readonly Candidate[],
   feedback: RankingFeedback = {},
-  options: { limit?: number } = {},
+  options: {
+    limit?: number;
+    /** Other names for the profile city, e.g. the locality Qloo resolved it to ("Los Angeles" for "LA"). */
+    cityNames?: readonly string[];
+  } = {},
 ): RankingResult {
   const limit = options.limit ?? DEFAULT_RESULT_LIMIT;
   const maxRank = Math.max(1, ...candidates.map((c) => c.qlooRank));
-  const requestedBorough = detectProfileBorough(profile.location);
+  const nyc = isNewYorkCity(profile.city);
+  const requestedBorough = nyc ? (detectProfileBorough(profile.area ?? "") ?? detectProfileBorough(profile.city)) : null;
+  const cityNames = [profile.city, ...(options.cityNames ?? [])];
+  const locate = (c: Candidate): { area: PlaceArea; points: number } => {
+    if (nyc) {
+      const area = detectVenueArea(c);
+      return { area, points: boroughScore(requestedBorough, area) };
+    }
+    const area = detectCityArea(c.geocode, cityNames);
+    return { area: area ?? { kind: "unknown" }, points: cityScore(area) };
+  };
   const notSuitable = new Set(feedback.notSuitable ?? []);
   const disliked = new Set(feedback.disliked ?? []);
   const tried = new Set(feedback.tried ?? []);
@@ -206,7 +234,7 @@ export function rankCandidates(
 
     const matchedFavouriteDishes = matchFavouriteDishes(profile, evaluation);
     const likedCuisines = candidate.cuisines.filter((c) => likedCuisineSet.has(c.toLowerCase()));
-    const area = detectVenueArea(candidate);
+    const { area, points } = locate(candidate);
     const breakdown: ScoreBreakdown = {
       taste: tasteScore(candidate.qlooRank, maxRank),
       favouriteDishes: Math.min(
@@ -221,7 +249,7 @@ export function rankCandidates(
         (disliked.has(candidate.id) ? SCORE_WEIGHTS.feedbackDisliked : 0) +
         (tried.has(candidate.id) ? SCORE_WEIGHTS.feedbackTried : 0) +
         (likedCuisines.length ? SCORE_WEIGHTS.feedbackLikedCuisine : 0),
-      borough: boroughScore(requestedBorough, area),
+      borough: points,
     };
     scored.push({
       candidate,
@@ -231,6 +259,7 @@ export function rankCandidates(
       likedCuisines,
       area,
       requestedBorough,
+      requestedCity: profile.city,
     });
   }
 

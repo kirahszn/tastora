@@ -7,6 +7,7 @@ import { z } from "zod";
 import { QlooApiError } from "@/lib/qloo/client";
 import {
   ENTITY_KINDS,
+  LocationNotFoundError,
   type EntityCandidate,
   type EntityKind,
   type QlooSearch,
@@ -88,6 +89,8 @@ export class SearchSession {
       onSearch?: (record: SearchRecord) => void;
       /** Called as each trace step is recorded (for streaming progress). */
       onStep?: (step: TraceStep) => void;
+      /** Whole-city location to retry when `location` finds nothing (search.ts default: NYC). */
+      fallbackLocation?: string;
     } = {},
   ) {}
 
@@ -125,6 +128,8 @@ export class SearchSession {
           return await this.searchRestaurants(parsed.data as z.output<typeof ToolInputs.search_restaurants>, started);
       }
     } catch (err) {
+      // Not something the planner can work around: the caregiver has to change the city.
+      if (err instanceof LocationNotFoundError) throw err;
       const ms = Math.round(performance.now() - started);
       // Never forward upstream bodies or messages; they could echo request details.
       const status = err instanceof QlooApiError ? (err.status ?? "timeout") : "error";
@@ -199,6 +204,7 @@ export class SearchSession {
     const result = await this.search.searchRestaurants({
       cuisineTagIds: input.cuisine_tag_ids,
       location: this.location,
+      ...(this.hooks.fallbackLocation ? { fallbackLocation: this.hooks.fallbackLocation } : {}),
       signalEntityIds: entityIds,
       signalTagIds: tagIds,
     });

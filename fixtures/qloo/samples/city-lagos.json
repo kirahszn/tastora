@@ -1,0 +1,699 @@
+{
+  "city": "Lagos",
+  "phase": "9c coverage",
+  "sinatraTop10OverlapWithItalian": 6,
+  "sinatraTop10SamePosition": 0,
+  "runs": [
+    {
+      "label": "Italian",
+      "requests": [
+        {
+          "path": "/v2/insights",
+          "params": {
+            "filter.type": "urn:entity:place",
+            "filter.location.query": "Lagos",
+            "filter.tags": "urn:tag:genre:place:restaurant:italian",
+            "take": 20
+          },
+          "status": 200,
+          "durationMs": 454
+        }
+      ],
+      "localityResolved": [
+        "Lagos, Nigeria"
+      ],
+      "rawPlaces": 9,
+      "kept": 8,
+      "dropped": [
+        {
+          "id": "CD8384F7-51BB-41B2-A371-45BD10837596",
+          "name": "Manuela Residence and La Pizza",
+          "reason": "primary genre is resort"
+        }
+      ],
+      "notes": [],
+      "inCity": 8,
+      "geocodeCity": {
+        "Lagos": 8
+      },
+      "localityCity": {
+        "Lagos": 8
+      },
+      "geocodeName": {
+        "Victoria Island": 6,
+        "∅": 2
+      },
+      "countryCode": {
+        "NG": 8
+      },
+      "fieldCoverage": {
+        "geocode": 8,
+        "geocodeCity": 8,
+        "geocodeName": 6,
+        "admin1": 8,
+        "admin2": 8,
+        "localityCity": 8,
+        "localityNeighborhood": 6,
+        "neighborhoodProp": 6,
+        "address": 8,
+        "phone": 7,
+        "website": 3,
+        "hours": 8,
+        "dishes": 6
+      },
+      "phoneSamples": [
+        "+2348106800744",
+        "+2348169561783",
+        "+2348031310976",
+        "+2348121111222"
+      ],
+      "top10": [
+        {
+          "id": "95C38E88-72C6-45D3-B4F2-E501083EFF9C",
+          "name": "Pizze-Riah restaurant"
+        },
+        {
+          "id": "8EE692C7-24C1-43F9-A0AC-42C91F2D015F",
+          "name": "La Taverna Lagos"
+        },
+        {
+          "id": "1DAFF463-4576-4C46-9DAA-8A1996D19C9C",
+          "name": "Basilico Italian Restaurant - Italian Formula"
+        },
+        {
+          "id": "5F450931-7120-4A6A-B921-422896B09663",
+          "name": "Umutu Restaurant"
+        },
+        {
+          "id": "C0CE500B-E1FD-4552-B645-983BA03F0F22",
+          "name": "La Veranda Italian Cuisine"
+        },
+        {
+          "id": "98E6A01A-BCC7-439D-B203-FE698B024F61",
+          "name": "Panarottis Admiralty"
+        },
+        {
+          "id": "26A72509-C56C-41F0-9E3F-7CA037D04D0C",
+          "name": "Panarottis Lekki Mall"
+        },
+        {
+          "id": "5CA725D2-E014-4984-893B-198186ABABA1",
+          "name": "Bar Campione"
+        }
+      ],
+      "samplePlaces": [
+        {
+          "entity_id": "95C38E88-72C6-45D3-B4F2-E501083EFF9C",
+          "name": "Pizze-Riah restaurant",
+          "primary_genre": "urn:tag:genre:place:restaurant:pizza",
+          "address": "13 Musa Yar' Adua St Victoria Island Lagos 106104 Lagos, Nigeria",
+          "neighborhood": "Victoria Island",
+          "geocode": {
+            "city": "Lagos",
+            "name": "Victoria Island",
+            "metro": null,
+            "admin1_region": "Lagos",
+            "admin2_region": "Eti Osa",
+            "country_code": "NG"
+          },
+          "locality": {
+            "city": "Lagos",
+            "metro": null,
+            "neighborhood": "Victoria Island"
+          },
+          "phone": "+2348106800744",
+          "hasWebsite": false,
+          "hasHours": true,
+          "dishCount": 3
+        },
+        {
+          "entity_id": "8EE692C7-24C1-43F9-A0AC-42C91F2D015F",
+          "name": "La Taverna Lagos",
+          "primary_genre": "urn:tag:genre:place:restaurant",
+          "address": "48 Balarabe Musa Cres Victoria Island Lagos 23401 Lagos, Nigeria",
+          "neighborhood": "Victoria Island",
+          "geocode": {
+            "city": "Lagos",
+            "name": "Victoria Island",
+            "metro": null,
+            "admin1_region": "Lagos",
+            "admin2_region": "Eti Osa",
+            "country_code": "NG"
+          },
+          "locality": {
+            "city": "Lagos",
+            "metro": null,
+            "neighborhood": "Victoria Island"
+          },
+          "phone": null,
+          "hasWebsite": false,
+          "hasHours": true,
+          "dishCount": 4
+        },
+        {
+          "entity_id": "1DAFF463-4576-4C46-9DAA-8A1996D19C9C",
+          "name": "Basilico Italian Restaurant - Italian Formula",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "15 Musa Yar' Adua St Victoria Island Lagos 106104 Lagos, Nigeria",
+          "neighborhood": "Victoria Island",
+          "geocode": {
+            "city": "Lagos",
+            "name": "Victoria Island",
+            "metro": null,
+            "admin1_region": "Lagos",
+            "admin2_region": "Eti Osa",
+            "country_code": "NG"
+          },
+          "locality": {
+            "city": "Lagos",
+            "metro": null,
+            "neighborhood": "Victoria Island"
+          },
+          "phone": "+2348169561783",
+          "hasWebsite": false,
+          "hasHours": true,
+          "dishCount": 9
+        },
+        {
+          "entity_id": "5F450931-7120-4A6A-B921-422896B09663",
+          "name": "Umutu Restaurant",
+          "primary_genre": "urn:tag:genre:place:restaurant",
+          "address": "27A Oju Olobun Cl Victoria Island Lagos 106104 Lagos, Nigeria",
+          "neighborhood": "Victoria Island",
+          "geocode": {
+            "city": "Lagos",
+            "name": "Victoria Island",
+            "metro": null,
+            "admin1_region": "Lagos",
+            "admin2_region": "Eti Osa",
+            "country_code": "NG"
+          },
+          "locality": {
+            "city": "Lagos",
+            "metro": null,
+            "neighborhood": "Victoria Island"
+          },
+          "phone": "+2348031310976",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 3
+        },
+        {
+          "entity_id": "C0CE500B-E1FD-4552-B645-983BA03F0F22",
+          "name": "La Veranda Italian Cuisine",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "17 Oju Olobun Cl Victoria Island Lagos 106104 Lagos, Nigeria",
+          "neighborhood": "Victoria Island",
+          "geocode": {
+            "city": "Lagos",
+            "name": "Victoria Island",
+            "metro": null,
+            "admin1_region": "Lagos",
+            "admin2_region": "Eti Osa",
+            "country_code": "NG"
+          },
+          "locality": {
+            "city": "Lagos",
+            "metro": null,
+            "neighborhood": "Victoria Island"
+          },
+          "phone": "+2348121111222",
+          "hasWebsite": false,
+          "hasHours": true,
+          "dishCount": 1
+        }
+      ]
+    },
+    {
+      "label": "Nigerian",
+      "requests": [
+        {
+          "path": "/v2/insights",
+          "params": {
+            "filter.type": "urn:entity:place",
+            "filter.location.query": "Lagos",
+            "filter.tags": "urn:tag:cuisine:qloo:nigerian",
+            "take": 20
+          },
+          "status": 200,
+          "durationMs": 540
+        }
+      ],
+      "localityResolved": [
+        "Lagos, Nigeria"
+      ],
+      "rawPlaces": 20,
+      "kept": 13,
+      "dropped": [
+        {
+          "id": "B15A3789-6289-4F03-86C4-03561CC9AAF8",
+          "name": "Terra Kulture",
+          "reason": "primary genre is cultural center"
+        },
+        {
+          "id": "1F3D6351-B001-48D2-B576-626DE41C8C57",
+          "name": "SPAR Market Ilupeju",
+          "reason": "primary genre is hypermarket"
+        },
+        {
+          "id": "41C76715-8BEA-47CC-970E-1F86F5F6805B",
+          "name": "Farmcity",
+          "reason": "lounge bar without a cuisine-restaurant category"
+        },
+        {
+          "id": "6244F0B9-51A8-4EC9-91B5-11AD5A8F6031",
+          "name": "Westgate Lifecare Supermarket",
+          "reason": "primary genre is supermarket"
+        },
+        {
+          "id": "25905EF0-63A2-4069-946D-8B363780BCC6",
+          "name": "THE HOUSE Lagos",
+          "reason": "lounge bar without a cuisine-restaurant category"
+        },
+        {
+          "id": "7CCFC04F-1ABE-4BBE-BA6F-F7113154D6D8",
+          "name": "SPAR Market Victoria Island",
+          "reason": "primary genre is hypermarket"
+        },
+        {
+          "id": "E852A6A2-F046-415F-875E-87F9E422912D",
+          "name": "Sidewalk Lounge",
+          "reason": "bar without a cuisine-restaurant category"
+        }
+      ],
+      "notes": [],
+      "inCity": 13,
+      "geocodeCity": {
+        "Lagos": 13
+      },
+      "localityCity": {
+        "Lagos": 13
+      },
+      "geocodeName": {
+        "Victoria Island": 1,
+        "Ogudu": 1,
+        "∅": 8,
+        "Ikoyi": 1,
+        "Oregun": 1,
+        "Oshosun": 1
+      },
+      "countryCode": {
+        "NG": 13
+      },
+      "fieldCoverage": {
+        "geocode": 13,
+        "geocodeCity": 13,
+        "geocodeName": 5,
+        "admin1": 13,
+        "admin2": 13,
+        "localityCity": 13,
+        "localityNeighborhood": 5,
+        "neighborhoodProp": 5,
+        "address": 13,
+        "phone": 10,
+        "website": 9,
+        "hours": 13,
+        "dishes": 13
+      },
+      "phoneSamples": [
+        "+2348027777666",
+        "+2348090165919",
+        "+2349162119375",
+        "+2348121100111"
+      ],
+      "top10": [
+        {
+          "id": "96CCFE9D-965B-4BCD-8E79-9725C0A1FE38",
+          "name": "Cactus Restaurant"
+        },
+        {
+          "id": "EE37088E-D000-48DD-A49F-1E4F3B0ABC74",
+          "name": "Chicken Republic - Ogudu GRA"
+        },
+        {
+          "id": "C7CEE19D-5793-4A9B-A680-F3C8DD5C4A50",
+          "name": "The Place Restaurant, Surulere"
+        },
+        {
+          "id": "42C8EC1C-A553-4AFA-BAC3-E4FB7F547AFA",
+          "name": "Bay Lounge"
+        },
+        {
+          "id": "4F5EF664-4393-425F-A28A-ADCAD9553B46",
+          "name": "Danfo Bistros & Dives"
+        },
+        {
+          "id": "ACDC5A02-0F89-4F89-A4DF-70C5691091B5",
+          "name": "Bukka Hut Suya"
+        },
+        {
+          "id": "6AED42A0-E6F1-4475-8559-8CD7EEEE087E",
+          "name": "Sailors Lounge | Restaurant | Lounge | Bar in Lekki Lagos"
+        },
+        {
+          "id": "1C2C2372-10F8-4986-AFEB-6215488B4C7F",
+          "name": "Yellow Chilli Restaurant & Bar"
+        },
+        {
+          "id": "AB299B8B-93C6-42C8-AFF7-132479D03072",
+          "name": "Jevinik Place"
+        },
+        {
+          "id": "4CF5ECE9-A40D-4115-AF62-CF4F02A811E6",
+          "name": "Ofadaboy"
+        }
+      ],
+      "samplePlaces": [
+        {
+          "entity_id": "96CCFE9D-965B-4BCD-8E79-9725C0A1FE38",
+          "name": "Cactus Restaurant",
+          "primary_genre": "urn:tag:genre:place:restaurant",
+          "address": "20/24 Ozumba Mbadiwe Ave Victoria Island Lagos 106104 Lagos, Nigeria",
+          "neighborhood": "Victoria Island",
+          "geocode": {
+            "city": "Lagos",
+            "name": "Victoria Island",
+            "metro": null,
+            "admin1_region": "Lagos",
+            "admin2_region": "Eti Osa",
+            "country_code": "NG"
+          },
+          "locality": {
+            "city": "Lagos",
+            "metro": null,
+            "neighborhood": "Victoria Island"
+          },
+          "phone": "+2348027777666",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 16
+        },
+        {
+          "entity_id": "EE37088E-D000-48DD-A49F-1E4F3B0ABC74",
+          "name": "Chicken Republic - Ogudu GRA",
+          "primary_genre": "urn:tag:genre:place:restaurant:fast_food",
+          "address": "124 Ogudu Rd Ogudu Lagos 100242 Lagos, Nigeria",
+          "neighborhood": "Ogudu",
+          "geocode": {
+            "city": "Lagos",
+            "name": "Ogudu",
+            "metro": null,
+            "admin1_region": "Lagos",
+            "admin2_region": "Kosofe",
+            "country_code": "NG"
+          },
+          "locality": {
+            "city": "Lagos",
+            "metro": null,
+            "neighborhood": "Ogudu"
+          },
+          "phone": "+2348090165919",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 11
+        },
+        {
+          "entity_id": "C7CEE19D-5793-4A9B-A680-F3C8DD5C4A50",
+          "name": "The Place Restaurant, Surulere",
+          "primary_genre": "urn:tag:genre:place:restaurant",
+          "address": "36 Adeniran Ogunsanya St Surulere Lagos 101241 Lagos, Nigeria",
+          "neighborhood": null,
+          "geocode": {
+            "city": "Lagos",
+            "name": null,
+            "metro": null,
+            "admin1_region": "Lagos",
+            "admin2_region": "Surulere",
+            "country_code": "NG"
+          },
+          "locality": {
+            "city": "Lagos",
+            "metro": null,
+            "neighborhood": null
+          },
+          "phone": null,
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 21
+        },
+        {
+          "entity_id": "42C8EC1C-A553-4AFA-BAC3-E4FB7F547AFA",
+          "name": "Bay Lounge",
+          "primary_genre": "urn:tag:genre:place:restaurant",
+          "address": "Block 12A 10 Admiralty Rd Lekki Phase 1 Lagos 105102, Lagos, Nigeria",
+          "neighborhood": null,
+          "geocode": {
+            "city": "Lagos",
+            "name": null,
+            "metro": null,
+            "admin1_region": "Lagos",
+            "admin2_region": "Eti Osa",
+            "country_code": "NG"
+          },
+          "locality": {
+            "city": "Lagos",
+            "metro": null,
+            "neighborhood": null
+          },
+          "phone": "+2349162119375",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 21
+        },
+        {
+          "entity_id": "4F5EF664-4393-425F-A28A-ADCAD9553B46",
+          "name": "Danfo Bistros & Dives",
+          "primary_genre": "urn:tag:genre:place:restaurant",
+          "address": "2 Alexander Ave Ikoyi Lagos 100001 Lagos, Nigeria",
+          "neighborhood": "Ikoyi",
+          "geocode": {
+            "city": "Lagos",
+            "name": "Ikoyi",
+            "metro": null,
+            "admin1_region": "Lagos",
+            "admin2_region": "Eti Osa",
+            "country_code": "NG"
+          },
+          "locality": {
+            "city": "Lagos",
+            "metro": null,
+            "neighborhood": "Ikoyi"
+          },
+          "phone": "+2348121100111",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 12
+        }
+      ]
+    },
+    {
+      "label": "Italian + Frank Sinatra",
+      "requests": [
+        {
+          "path": "/v2/insights",
+          "params": {
+            "filter.type": "urn:entity:place",
+            "filter.location.query": "Lagos",
+            "filter.tags": "urn:tag:genre:place:restaurant:italian",
+            "signal.interests.entities": [
+              "FC0F8D26-BA80-4D83-8BBF-FC011DC8D241"
+            ],
+            "take": 20
+          },
+          "status": 200,
+          "durationMs": 497
+        }
+      ],
+      "localityResolved": [
+        "Lagos, Nigeria"
+      ],
+      "rawPlaces": 6,
+      "kept": 6,
+      "dropped": [],
+      "notes": [],
+      "inCity": 6,
+      "geocodeCity": {
+        "Lagos": 6
+      },
+      "localityCity": {
+        "Lagos": 6
+      },
+      "geocodeName": {
+        "Victoria Island": 5,
+        "∅": 1
+      },
+      "countryCode": {
+        "NG": 6
+      },
+      "fieldCoverage": {
+        "geocode": 6,
+        "geocodeCity": 6,
+        "geocodeName": 5,
+        "admin1": 6,
+        "admin2": 6,
+        "localityCity": 6,
+        "localityNeighborhood": 5,
+        "neighborhoodProp": 5,
+        "address": 6,
+        "phone": 5,
+        "website": 2,
+        "hours": 6,
+        "dishes": 6
+      },
+      "phoneSamples": [
+        "+2348121111222",
+        "+2348031310976",
+        "+2349138151886",
+        "+2348106800744"
+      ],
+      "top10": [
+        {
+          "id": "C0CE500B-E1FD-4552-B645-983BA03F0F22",
+          "name": "La Veranda Italian Cuisine"
+        },
+        {
+          "id": "5F450931-7120-4A6A-B921-422896B09663",
+          "name": "Umutu Restaurant"
+        },
+        {
+          "id": "98E6A01A-BCC7-439D-B203-FE698B024F61",
+          "name": "Panarottis Admiralty"
+        },
+        {
+          "id": "95C38E88-72C6-45D3-B4F2-E501083EFF9C",
+          "name": "Pizze-Riah restaurant"
+        },
+        {
+          "id": "8EE692C7-24C1-43F9-A0AC-42C91F2D015F",
+          "name": "La Taverna Lagos"
+        },
+        {
+          "id": "1DAFF463-4576-4C46-9DAA-8A1996D19C9C",
+          "name": "Basilico Italian Restaurant - Italian Formula"
+        }
+      ],
+      "samplePlaces": [
+        {
+          "entity_id": "C0CE500B-E1FD-4552-B645-983BA03F0F22",
+          "name": "La Veranda Italian Cuisine",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "17 Oju Olobun Cl Victoria Island Lagos 106104 Lagos, Nigeria",
+          "neighborhood": "Victoria Island",
+          "geocode": {
+            "city": "Lagos",
+            "name": "Victoria Island",
+            "metro": null,
+            "admin1_region": "Lagos",
+            "admin2_region": "Eti Osa",
+            "country_code": "NG"
+          },
+          "locality": {
+            "city": "Lagos",
+            "metro": null,
+            "neighborhood": "Victoria Island"
+          },
+          "phone": "+2348121111222",
+          "hasWebsite": false,
+          "hasHours": true,
+          "dishCount": 1
+        },
+        {
+          "entity_id": "5F450931-7120-4A6A-B921-422896B09663",
+          "name": "Umutu Restaurant",
+          "primary_genre": "urn:tag:genre:place:restaurant",
+          "address": "27A Oju Olobun Cl Victoria Island Lagos 106104 Lagos, Nigeria",
+          "neighborhood": "Victoria Island",
+          "geocode": {
+            "city": "Lagos",
+            "name": "Victoria Island",
+            "metro": null,
+            "admin1_region": "Lagos",
+            "admin2_region": "Eti Osa",
+            "country_code": "NG"
+          },
+          "locality": {
+            "city": "Lagos",
+            "metro": null,
+            "neighborhood": "Victoria Island"
+          },
+          "phone": "+2348031310976",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 3
+        },
+        {
+          "entity_id": "98E6A01A-BCC7-439D-B203-FE698B024F61",
+          "name": "Panarottis Admiralty",
+          "primary_genre": "urn:tag:genre:place:restaurant:pizza",
+          "address": "DELAKES MALL Admiralty Wy Lekki Phase 1 Lagos 105102, Lagos, Nigeria",
+          "neighborhood": null,
+          "geocode": {
+            "city": "Lagos",
+            "name": null,
+            "metro": null,
+            "admin1_region": "Lagos",
+            "admin2_region": "Eti Osa",
+            "country_code": "NG"
+          },
+          "locality": {
+            "city": "Lagos",
+            "metro": null,
+            "neighborhood": null
+          },
+          "phone": "+2349138151886",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 9
+        },
+        {
+          "entity_id": "95C38E88-72C6-45D3-B4F2-E501083EFF9C",
+          "name": "Pizze-Riah restaurant",
+          "primary_genre": "urn:tag:genre:place:restaurant:pizza",
+          "address": "13 Musa Yar' Adua St Victoria Island Lagos 106104 Lagos, Nigeria",
+          "neighborhood": "Victoria Island",
+          "geocode": {
+            "city": "Lagos",
+            "name": "Victoria Island",
+            "metro": null,
+            "admin1_region": "Lagos",
+            "admin2_region": "Eti Osa",
+            "country_code": "NG"
+          },
+          "locality": {
+            "city": "Lagos",
+            "metro": null,
+            "neighborhood": "Victoria Island"
+          },
+          "phone": "+2348106800744",
+          "hasWebsite": false,
+          "hasHours": true,
+          "dishCount": 3
+        },
+        {
+          "entity_id": "8EE692C7-24C1-43F9-A0AC-42C91F2D015F",
+          "name": "La Taverna Lagos",
+          "primary_genre": "urn:tag:genre:place:restaurant",
+          "address": "48 Balarabe Musa Cres Victoria Island Lagos 23401 Lagos, Nigeria",
+          "neighborhood": "Victoria Island",
+          "geocode": {
+            "city": "Lagos",
+            "name": "Victoria Island",
+            "metro": null,
+            "admin1_region": "Lagos",
+            "admin2_region": "Eti Osa",
+            "country_code": "NG"
+          },
+          "locality": {
+            "city": "Lagos",
+            "metro": null,
+            "neighborhood": "Victoria Island"
+          },
+          "phone": null,
+          "hasWebsite": false,
+          "hasHours": true,
+          "dishCount": 4
+        }
+      ]
+    }
+  ]
+}

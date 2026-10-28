@@ -18,6 +18,25 @@ in `tests/ui-helpers.test.ts`). No UI libraries; CSS modules plus `src/app/globa
 | No invented restaurant text | Cards render only `results[]` facts; links pass `safeHttpUrl` / `telHref` |
 | Evidence only from `evidence` | `EvidencePanel` + `rankMovement()` |
 
+## Location (Phase 9c)
+
+The profile's "Where" section has a required free-text **City** (≤ 60 characters, trimmed) with
+quick-pick chips for New York City and the cities rated Good in the coverage check (London, Toronto,
+Los Angeles, Chicago, Sydney; Lagos was Thin, so no chip), and an optional **Neighbourhood or area**
+(≤ 60). Saved profiles from before Phase 9c had one `location` string from the borough form;
+`SeniorProfileSchema` migrates it on read: a value naming a borough ("Queens", "Bed-Stuy, Brooklyn")
+becomes city "New York City" + that area. The same key `tastora.profile.v1` is kept.
+
+Results: card labels come from `area.label` ("In Brooklyn", "Outside NYC (…)"; elsewhere "In
+London", "In the Sydney area", "Nearby: Markham"; nothing when unknown). A calm note (grey panel, not
+the warning style) shows `coverageNote` from the server: "Fewer matches found around <city>. Qloo's
+restaurant coverage varies by city." when fewer than 4 places came back or the city is rated
+Thin/Poor. If Qloo can't resolve the city, the server answers 400 `code: "location_not_found"` and the
+page says "We couldn't find that place … try the nearest larger city" with a "Change the city" button.
+Phones in share text and the print checklist: US/Canada as "(416) 504-9669", others as Qloo gives them
+(international form); `tel:` links stay E.164. Landing copy has no NYC-only wording; the Qloo proof
+caption says the figures are "From Tastora's test searches in New York City, October 2026."
+
 ## Storage (all `try/catch` guarded, Zod-validated on read)
 
 | Key | Where | Content |
@@ -45,7 +64,8 @@ clearing the profile clears feedback and the cached search.
 
 `runSearch()` posts to `/api/recommend?stream=1` and shows each real trace step as it arrives (no
 timed messages). If the stream breaks before a result it shows a plain notice and makes one JSON
-request. 400/429/502/offline each have their own message and a retry (or "Check the profile").
+request. 400/429/502/offline each have their own message and a retry (or "Check the profile";
+"Change the city" for an unresolvable location).
 
 ## Presentation and headers (Phase 5)
 

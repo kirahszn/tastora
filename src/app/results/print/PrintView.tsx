@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { useHydrated } from "@/components/useHydrated";
 import { placeLine } from "@/lib/ui/format";
-import { telHref } from "@/lib/ui/links";
+import { formatPhone, telHref } from "@/lib/ui/links";
 import { SHARE_DISCLAIMER, SITE_URL, shortlistedResults } from "@/lib/ui/share";
 import { requirementLabel } from "@/lib/ui/status";
 import { loadLastSearch, loadProfile, loadShortlist } from "@/lib/ui/storage";
@@ -63,7 +63,7 @@ export function PrintView() {
       {places.map((r, i) => {
         const where = placeLine(r);
         const conflicts = r.constraintStatuses.filter((s) => s.status === "conflict");
-        const phone = r.links.phone && telHref(r.links.phone) ? r.links.phone.trim() : null;
+        const phone = r.links.phone && telHref(r.links.phone) ? formatPhone(r.links.phone) : null;
         return (
           <article key={r.candidateId} className={styles.place} aria-labelledby={`p-${r.candidateId}`}>
             <h2 id={`p-${r.candidateId}`}>

@@ -114,7 +114,7 @@ describe("buildShareText", () => {
         "- Confirm wheelchair access, including the entrance",
         "- Confirm opening hours (none listed)",
         "- and 1 more thing to check",
-        "Phone: +1 718-555-0100",
+        "Phone: (718) 555-0100",
         "Map: https://www.google.com/maps/search/?api=1&query=Place+a&query_place_id=ChIJa",
         "",
         SHARE_DISCLAIMER,

@@ -1,0 +1,732 @@
+{
+  "city": "Los Angeles",
+  "phase": "9c coverage",
+  "sinatraTop10OverlapWithItalian": 4,
+  "sinatraTop10SamePosition": 0,
+  "runs": [
+    {
+      "label": "Italian",
+      "requests": [
+        {
+          "path": "/v2/insights",
+          "params": {
+            "filter.type": "urn:entity:place",
+            "filter.location.query": "Los Angeles",
+            "filter.tags": "urn:tag:genre:place:restaurant:italian",
+            "take": 20
+          },
+          "status": 200,
+          "durationMs": 521
+        }
+      ],
+      "localityResolved": [
+        "Los Angeles, Los Angeles County, California, United States"
+      ],
+      "rawPlaces": 20,
+      "kept": 18,
+      "dropped": [
+        {
+          "id": "EB6EA33E-62A0-4446-BDA9-0BB64F04F28C",
+          "name": "Rainbow Bar & Grill",
+          "reason": "primary genre is bar & grill"
+        },
+        {
+          "id": "5568E60D-0C95-441D-87AF-A01AFFEC015C",
+          "name": "Shutters on the Beach",
+          "reason": "primary genre is hotel"
+        }
+      ],
+      "notes": [],
+      "inCity": 18,
+      "geocodeCity": {
+        "Santa Monica": 1,
+        "Los Angeles": 14,
+        "West Hollywood": 1,
+        "Beverly Hills": 2
+      },
+      "localityCity": {
+        "Santa Monica": 1,
+        "Los Angeles": 14,
+        "West Hollywood": 1,
+        "Beverly Hills": 2
+      },
+      "geocodeName": {
+        "∅": 4,
+        "Downtown": 3,
+        "Century City": 1,
+        "Hollywood Hills West": 1,
+        "Beverly Grove": 2,
+        "Hancock Park": 2,
+        "Los Feliz Neighborhood Council District": 1,
+        "Venice": 2,
+        "Fairfax": 2
+      },
+      "countryCode": {
+        "US": 18
+      },
+      "fieldCoverage": {
+        "geocode": 18,
+        "geocodeCity": 18,
+        "geocodeName": 14,
+        "admin1": 18,
+        "admin2": 18,
+        "localityCity": 18,
+        "localityNeighborhood": 14,
+        "neighborhoodProp": 14,
+        "address": 18,
+        "phone": 18,
+        "website": 18,
+        "hours": 18,
+        "dishes": 18
+      },
+      "phoneSamples": [
+        "+14243202384",
+        "+12135145724",
+        "+12133108000",
+        "+13104322000"
+      ],
+      "top10": [
+        {
+          "id": "51AE0EAB-04AA-4AD7-880D-B9D7BB752906",
+          "name": "Élephante"
+        },
+        {
+          "id": "41A4CBF8-F20C-4D2B-8EA4-33D0D4175FEB",
+          "name": "Bestia"
+        },
+        {
+          "id": "DDFDCF4D-45C5-4668-A39B-44284281A46C",
+          "name": "Eataly"
+        },
+        {
+          "id": "2D33E17E-7539-4CEC-8E85-13AE05CCBC51",
+          "name": "Cecconi's West Hollywood"
+        },
+        {
+          "id": "FFF2988A-9E41-4549-B776-8AA4B19C3CCA",
+          "name": "Hyde Sunset Kitchen + Cocktails"
+        },
+        {
+          "id": "D7172EBD-5F15-4087-8C0F-13065538EB8F",
+          "name": "The Nice Guy"
+        },
+        {
+          "id": "5D2C540E-EFF5-41E1-9A00-A8AC2F602565",
+          "name": "Bottega Louie"
+        },
+        {
+          "id": "32824146-B83E-4061-A95E-361A900D6DEE",
+          "name": "Il Pastaio"
+        },
+        {
+          "id": "F57F9922-6748-4DB9-9241-44030789570B",
+          "name": "Pizzeria Mozza"
+        },
+        {
+          "id": "45F6E5F4-95A0-49A6-A424-BC7FE939BC8A",
+          "name": "The Ivy"
+        }
+      ],
+      "samplePlaces": [
+        {
+          "entity_id": "51AE0EAB-04AA-4AD7-880D-B9D7BB752906",
+          "name": "Élephante",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "1332 2nd St Rooftop Santa Monica, CA 90401",
+          "neighborhood": null,
+          "geocode": {
+            "city": "Santa Monica",
+            "name": null,
+            "metro": "Los Angeles",
+            "admin1_region": "California",
+            "admin2_region": "Los Angeles County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Santa Monica",
+            "metro": "Los Angeles",
+            "neighborhood": null
+          },
+          "phone": "+14243202384",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 35
+        },
+        {
+          "entity_id": "41A4CBF8-F20C-4D2B-8EA4-33D0D4175FEB",
+          "name": "Bestia",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "2121 E 7th Pl Los Angeles, CA 90021",
+          "neighborhood": "Downtown",
+          "geocode": {
+            "city": "Los Angeles",
+            "name": "Downtown",
+            "metro": "Los Angeles",
+            "admin1_region": "California",
+            "admin2_region": "Los Angeles County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Los Angeles",
+            "metro": "Los Angeles",
+            "neighborhood": "Downtown"
+          },
+          "phone": "+12135145724",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 25
+        },
+        {
+          "entity_id": "DDFDCF4D-45C5-4668-A39B-44284281A46C",
+          "name": "Eataly",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "10250 Santa Monica Blvd Los Angeles, CA 90067",
+          "neighborhood": "Century City",
+          "geocode": {
+            "city": "Los Angeles",
+            "name": "Century City",
+            "metro": "Los Angeles",
+            "admin1_region": "California",
+            "admin2_region": "Los Angeles County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Los Angeles",
+            "metro": "Los Angeles",
+            "neighborhood": "Century City"
+          },
+          "phone": "+12133108000",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 5
+        },
+        {
+          "entity_id": "2D33E17E-7539-4CEC-8E85-13AE05CCBC51",
+          "name": "Cecconi's West Hollywood",
+          "primary_genre": "urn:tag:genre:place:restaurant",
+          "address": "8764 Melrose Ave West Hollywood, CA 90069",
+          "neighborhood": null,
+          "geocode": {
+            "city": "West Hollywood",
+            "name": null,
+            "metro": "Los Angeles",
+            "admin1_region": "California",
+            "admin2_region": "Los Angeles County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "West Hollywood",
+            "metro": "Los Angeles",
+            "neighborhood": null
+          },
+          "phone": "+13104322000",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 51
+        },
+        {
+          "entity_id": "FFF2988A-9E41-4549-B776-8AA4B19C3CCA",
+          "name": "Hyde Sunset Kitchen + Cocktails",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "8117 Sunset Blvd Los Angeles, CA 90046",
+          "neighborhood": "Hollywood Hills West",
+          "geocode": {
+            "city": "Los Angeles",
+            "name": "Hollywood Hills West",
+            "metro": "Los Angeles",
+            "admin1_region": "California",
+            "admin2_region": "Los Angeles County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Los Angeles",
+            "metro": "Los Angeles",
+            "neighborhood": "Hollywood Hills West"
+          },
+          "phone": "+13237164200",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 3
+        }
+      ]
+    },
+    {
+      "label": "Korean",
+      "requests": [
+        {
+          "path": "/v2/insights",
+          "params": {
+            "filter.type": "urn:entity:place",
+            "filter.location.query": "Los Angeles",
+            "filter.tags": "urn:tag:genre:place:restaurant:korean",
+            "take": 20
+          },
+          "status": 200,
+          "durationMs": 482
+        }
+      ],
+      "localityResolved": [
+        "Los Angeles, Los Angeles County, California, United States"
+      ],
+      "rawPlaces": 20,
+      "kept": 20,
+      "dropped": [],
+      "notes": [],
+      "inCity": 20,
+      "geocodeCity": {
+        "Los Angeles": 19,
+        "Beverly Hills": 1
+      },
+      "localityCity": {
+        "Los Angeles": 19,
+        "Beverly Hills": 1
+      },
+      "geocodeName": {
+        "Koreatown": 13,
+        "Hancock Park": 1,
+        "Downtown": 1,
+        "Van Nuys": 1,
+        "∅": 1,
+        "Harvard Heights": 1,
+        "East Hollywood": 1,
+        "Pico-Union": 1
+      },
+      "countryCode": {
+        "US": 20
+      },
+      "fieldCoverage": {
+        "geocode": 20,
+        "geocodeCity": 20,
+        "geocodeName": 19,
+        "admin1": 20,
+        "admin2": 20,
+        "localityCity": 20,
+        "localityNeighborhood": 19,
+        "neighborhoodProp": 19,
+        "address": 20,
+        "phone": 20,
+        "website": 18,
+        "hours": 20,
+        "dishes": 20
+      },
+      "phoneSamples": [
+        "+12133826677",
+        "+12133898777",
+        "+12133881988",
+        "+13235490760"
+      ],
+      "top10": [
+        {
+          "id": "CCA952D0-2327-4254-807C-3D2471B3FB48",
+          "name": "BCD Tofu House"
+        },
+        {
+          "id": "C683CBB5-0733-451D-800D-80C9E3D927B6",
+          "name": "Hae Jang Chon Korean BBQ Restaurant"
+        },
+        {
+          "id": "48A026FC-FB24-4D1D-A23C-CE857F2EFDE3",
+          "name": "Bulgogi Hut"
+        },
+        {
+          "id": "9F47773C-9088-445C-900F-2219802191BC",
+          "name": "Genwa Korean BBQ (Mid Wilshire)"
+        },
+        {
+          "id": "D5000116-64F1-4B97-A153-AD0D665932D1",
+          "name": "Park's BBQ"
+        },
+        {
+          "id": "43DD7831-28AC-49F2-BE58-8F7E411C9F53",
+          "name": "KB 333 Korean BBQ"
+        },
+        {
+          "id": "7911D811-F87D-493E-BCD6-62903B4D0F5F",
+          "name": "Cafe Concerto"
+        },
+        {
+          "id": "EF63D9ED-DF57-4E9A-9662-F5BEDE711BC5",
+          "name": "Moodaepo"
+        },
+        {
+          "id": "9417885A-A296-48E4-AF7F-465845666D16",
+          "name": "YUP DDUK LA"
+        },
+        {
+          "id": "34578992-BF3F-4688-8688-04CAAA80A8ED",
+          "name": "AYCE GOGI Van Nuys"
+        }
+      ],
+      "samplePlaces": [
+        {
+          "entity_id": "CCA952D0-2327-4254-807C-3D2471B3FB48",
+          "name": "BCD Tofu House",
+          "primary_genre": "urn:tag:genre:place:restaurant:korean",
+          "address": "3575 Wilshire Blvd Los Angeles, CA 90010",
+          "neighborhood": "Koreatown",
+          "geocode": {
+            "city": "Los Angeles",
+            "name": "Koreatown",
+            "metro": "Los Angeles",
+            "admin1_region": "California",
+            "admin2_region": "Los Angeles County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Los Angeles",
+            "metro": "Los Angeles",
+            "neighborhood": "Koreatown"
+          },
+          "phone": "+12133826677",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 16
+        },
+        {
+          "entity_id": "C683CBB5-0733-451D-800D-80C9E3D927B6",
+          "name": "Hae Jang Chon Korean BBQ Restaurant",
+          "primary_genre": "urn:tag:genre:place:restaurant:korean_barbecue",
+          "address": "3821 W 6th St Los Angeles, CA 90020",
+          "neighborhood": "Koreatown",
+          "geocode": {
+            "city": "Los Angeles",
+            "name": "Koreatown",
+            "metro": "Los Angeles",
+            "admin1_region": "California",
+            "admin2_region": "Los Angeles County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Los Angeles",
+            "metro": "Los Angeles",
+            "neighborhood": "Koreatown"
+          },
+          "phone": "+12133898777",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 14
+        },
+        {
+          "entity_id": "48A026FC-FB24-4D1D-A23C-CE857F2EFDE3",
+          "name": "Bulgogi Hut",
+          "primary_genre": "urn:tag:genre:place:restaurant:korean_barbecue",
+          "address": "3600 Wilshire Blvd #100c Los Angeles, CA 90010",
+          "neighborhood": "Koreatown",
+          "geocode": {
+            "city": "Los Angeles",
+            "name": "Koreatown",
+            "metro": "Los Angeles",
+            "admin1_region": "California",
+            "admin2_region": "Los Angeles County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Los Angeles",
+            "metro": "Los Angeles",
+            "neighborhood": "Koreatown"
+          },
+          "phone": "+12133881988",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 16
+        },
+        {
+          "entity_id": "9F47773C-9088-445C-900F-2219802191BC",
+          "name": "Genwa Korean BBQ (Mid Wilshire)",
+          "primary_genre": "urn:tag:genre:place:restaurant:korean_barbecue",
+          "address": "5115 Wilshire Blvd Ste A Los Angeles, CA 90036",
+          "neighborhood": "Hancock Park",
+          "geocode": {
+            "city": "Los Angeles",
+            "name": "Hancock Park",
+            "metro": "Los Angeles",
+            "admin1_region": "California",
+            "admin2_region": "Los Angeles County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Los Angeles",
+            "metro": "Los Angeles",
+            "neighborhood": "Hancock Park"
+          },
+          "phone": "+13235490760",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 17
+        },
+        {
+          "entity_id": "D5000116-64F1-4B97-A153-AD0D665932D1",
+          "name": "Park's BBQ",
+          "primary_genre": "urn:tag:genre:place:restaurant:korean_barbecue",
+          "address": "955 S Vermont Ave G Los Angeles, CA 90006",
+          "neighborhood": "Koreatown",
+          "geocode": {
+            "city": "Los Angeles",
+            "name": "Koreatown",
+            "metro": "Los Angeles",
+            "admin1_region": "California",
+            "admin2_region": "Los Angeles County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Los Angeles",
+            "metro": "Los Angeles",
+            "neighborhood": "Koreatown"
+          },
+          "phone": "+12133801717",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 28
+        }
+      ]
+    },
+    {
+      "label": "Italian + Frank Sinatra",
+      "requests": [
+        {
+          "path": "/v2/insights",
+          "params": {
+            "filter.type": "urn:entity:place",
+            "filter.location.query": "Los Angeles",
+            "filter.tags": "urn:tag:genre:place:restaurant:italian",
+            "signal.interests.entities": [
+              "FC0F8D26-BA80-4D83-8BBF-FC011DC8D241"
+            ],
+            "take": 20
+          },
+          "status": 200,
+          "durationMs": 604
+        }
+      ],
+      "localityResolved": [
+        "Los Angeles, Los Angeles County, California, United States"
+      ],
+      "rawPlaces": 20,
+      "kept": 19,
+      "dropped": [
+        {
+          "id": "5568E60D-0C95-441D-87AF-A01AFFEC015C",
+          "name": "Shutters on the Beach",
+          "reason": "primary genre is hotel"
+        }
+      ],
+      "notes": [],
+      "inCity": 18,
+      "geocodeCity": {
+        "Universal City": 1,
+        "Los Angeles": 14,
+        "Beverly Hills": 1,
+        "Santa Monica": 2,
+        "West Hollywood": 1
+      },
+      "localityCity": {
+        "∅": 1,
+        "Los Angeles": 14,
+        "Beverly Hills": 1,
+        "Santa Monica": 2,
+        "West Hollywood": 1
+      },
+      "geocodeName": {
+        "Universal City": 1,
+        "Beverly Grove": 2,
+        "∅": 4,
+        "Hancock Park": 2,
+        "Downtown": 3,
+        "Hollywood Hills West": 1,
+        "University Park": 1,
+        "West Los Angeles": 1,
+        "Century City": 1,
+        "Brentwood": 1,
+        "Venice": 2
+      },
+      "countryCode": {
+        "US": 19
+      },
+      "fieldCoverage": {
+        "geocode": 19,
+        "geocodeCity": 19,
+        "geocodeName": 15,
+        "admin1": 19,
+        "admin2": 19,
+        "localityCity": 18,
+        "localityNeighborhood": 15,
+        "neighborhoodProp": 15,
+        "address": 19,
+        "phone": 18,
+        "website": 19,
+        "hours": 18,
+        "dishes": 19
+      },
+      "phoneSamples": [
+        "+18186220424",
+        "+13102748303",
+        "+13102769990",
+        "+13103945550"
+      ],
+      "top10": [
+        {
+          "id": "B23BAA70-4E48-4120-B204-1D8080530629",
+          "name": "VIVO Italian Kitchen"
+        },
+        {
+          "id": "45F6E5F4-95A0-49A6-A424-BC7FE939BC8A",
+          "name": "The Ivy"
+        },
+        {
+          "id": "4E4729D3-5419-4AD9-88D6-8CFB1E828713",
+          "name": "Il Cielo"
+        },
+        {
+          "id": "A9066930-1396-4A70-A6E3-07B28549102A",
+          "name": "Capo"
+        },
+        {
+          "id": "F05F67BE-5BDB-478C-B6F5-559C31EC341A",
+          "name": "Osteria Mozza"
+        },
+        {
+          "id": "29807173-8B03-413F-B85C-109FF60432BA",
+          "name": "Cicada Restaurant and Lounge"
+        },
+        {
+          "id": "41A4CBF8-F20C-4D2B-8EA4-33D0D4175FEB",
+          "name": "Bestia"
+        },
+        {
+          "id": "51AE0EAB-04AA-4AD7-880D-B9D7BB752906",
+          "name": "Élephante"
+        },
+        {
+          "id": "FFF2988A-9E41-4549-B776-8AA4B19C3CCA",
+          "name": "Hyde Sunset Kitchen + Cocktails"
+        },
+        {
+          "id": "79C97909-D5CA-41D6-9F03-B427642596B5",
+          "name": "Vistango"
+        }
+      ],
+      "samplePlaces": [
+        {
+          "entity_id": "B23BAA70-4E48-4120-B204-1D8080530629",
+          "name": "VIVO Italian Kitchen",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "100 Universal City Plaza Los Angeles, CA 90068",
+          "neighborhood": "Universal City",
+          "geocode": {
+            "city": "Universal City",
+            "name": "Universal City",
+            "metro": null,
+            "admin1_region": "California",
+            "admin2_region": "Los Angeles County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": null,
+            "metro": null,
+            "neighborhood": "Universal City"
+          },
+          "phone": "+18186220424",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 10
+        },
+        {
+          "entity_id": "45F6E5F4-95A0-49A6-A424-BC7FE939BC8A",
+          "name": "The Ivy",
+          "primary_genre": "urn:tag:genre:place:restaurant:californian",
+          "address": "113 N Robertson Blvd Los Angeles, CA 90048",
+          "neighborhood": "Beverly Grove",
+          "geocode": {
+            "city": "Los Angeles",
+            "name": "Beverly Grove",
+            "metro": "Los Angeles",
+            "admin1_region": "California",
+            "admin2_region": "Los Angeles County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Los Angeles",
+            "metro": "Los Angeles",
+            "neighborhood": "Beverly Grove"
+          },
+          "phone": "+13102748303",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 20
+        },
+        {
+          "entity_id": "4E4729D3-5419-4AD9-88D6-8CFB1E828713",
+          "name": "Il Cielo",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "9018 Burton Wy Beverly Hills, CA 90211",
+          "neighborhood": null,
+          "geocode": {
+            "city": "Beverly Hills",
+            "name": null,
+            "metro": "Los Angeles",
+            "admin1_region": "California",
+            "admin2_region": "Los Angeles County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Beverly Hills",
+            "metro": "Los Angeles",
+            "neighborhood": null
+          },
+          "phone": "+13102769990",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 23
+        },
+        {
+          "entity_id": "A9066930-1396-4A70-A6E3-07B28549102A",
+          "name": "Capo",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "1810 Ocean Ave Santa Monica, CA 90401",
+          "neighborhood": null,
+          "geocode": {
+            "city": "Santa Monica",
+            "name": null,
+            "metro": "Los Angeles",
+            "admin1_region": "California",
+            "admin2_region": "Los Angeles County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Santa Monica",
+            "metro": "Los Angeles",
+            "neighborhood": null
+          },
+          "phone": "+13103945550",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 13
+        },
+        {
+          "entity_id": "F05F67BE-5BDB-478C-B6F5-559C31EC341A",
+          "name": "Osteria Mozza",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "6602 Melrose Ave Los Angeles, CA 90038",
+          "neighborhood": "Hancock Park",
+          "geocode": {
+            "city": "Los Angeles",
+            "name": "Hancock Park",
+            "metro": "Los Angeles",
+            "admin1_region": "California",
+            "admin2_region": "Los Angeles County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Los Angeles",
+            "metro": "Los Angeles",
+            "neighborhood": "Hancock Park"
+          },
+          "phone": "+13232970100",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 37
+        }
+      ]
+    }
+  ]
+}

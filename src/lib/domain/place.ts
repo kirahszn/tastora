@@ -70,6 +70,7 @@ const PropertiesSchema = z.object({
   geocode: opt(
     z.object({
       city: opt(z.string()),
+      metro: opt(z.string()),
       admin2_region: opt(z.string()),
       admin1_region: opt(z.string()),
       country_code: opt(z.string()),
@@ -131,7 +132,7 @@ export interface Candidate {
   name: string;
   address: string | null;
   neighborhood: string | null;
-  /** `properties.geocode`; used for the borough (see borough.ts). */
+  /** `properties.geocode`; used for the borough (borough.ts) or the city elsewhere (location.ts). */
   geocode: VenueGeocode | null;
   lat: number | null;
   lon: number | null;
@@ -254,6 +255,7 @@ export function normalizePlace(place: QlooPlace, qlooRank: number): Candidate {
           county: nonEmpty(p.geocode.admin2_region),
           region: nonEmpty(p.geocode.admin1_region),
           countryCode: nonEmpty(p.geocode.country_code),
+          metro: nonEmpty(p.geocode.metro),
         }
       : null,
     lat: place.location?.lat ?? null,

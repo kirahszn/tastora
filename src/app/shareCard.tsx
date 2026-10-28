@@ -41,7 +41,7 @@ export function shareCard() {
             Good food should still feel like home.
           </div>
           <div style={{ fontSize: 34, color: "#6b5b50", maxWidth: 980 }}>
-            New York restaurant ideas from someone&apos;s own tastes, with clear notes on what to check.
+            Restaurant ideas from someone&apos;s own tastes, with clear notes on what to check.
           </div>
         </div>
         <div style={{ display: "flex", fontSize: 28, color: "#a44f2e", fontWeight: 700 }}>

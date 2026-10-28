@@ -4,11 +4,12 @@
 // menu, and nothing here says or implies that food can be ordered.
 import type { ExcludedDish, RequirementResult } from "@/lib/constraints/evaluate";
 import { containsKeyword } from "@/lib/constraints/keywords";
-import { areaLabel, type VenueArea } from "@/lib/domain/borough";
+import { areaLabel } from "@/lib/domain/borough";
+import { cityAreaLabel } from "@/lib/domain/location";
 import { relatedCuisineMatch } from "@/lib/domain/cuisines";
 import { TAG_TYPES, type Candidate, type Tag } from "@/lib/domain/place";
 import type { SeniorProfile } from "@/lib/domain/profile";
-import { allergenHeavyAllergens, type RankedCandidate, type ScoreBreakdown } from "@/lib/ranking/rank";
+import { allergenHeavyAllergens, type PlaceArea, type RankedCandidate, type ScoreBreakdown } from "@/lib/ranking/rank";
 
 export const POSSIBLY_SOFT_NOTE = "possibly soft — confirm";
 
@@ -42,10 +43,12 @@ export interface RemovedDish {
 }
 
 export interface AreaFact {
-  kind: VenueArea["kind"];
+  kind: PlaceArea["kind"];
   label: string | null;
   /** True when the venue is in the borough the profile named. */
   inRequestedBorough: boolean;
+  /** Outside NYC: true when Qloo's geocode city or metro is the city the profile named. */
+  inRequestedCity: boolean;
   /** Qloo field the area came from; absent when unknown. */
   source?: string;
 }
@@ -62,7 +65,10 @@ export interface ExplanationFacts {
   constraintStatuses: RequirementResult[];
   /** Plain list of things the caregiver should ask the restaurant. */
   needsConfirmation: string[];
-  /** Where the venue is: "In Brooklyn", "Outside NYC (Nassau County)"; null label if unknown. */
+  /**
+   * Where the venue is: "In Brooklyn", "Outside NYC (Nassau County)"; elsewhere "In London",
+   * "In the Sydney area", "Nearby: Markham". Null label if unknown.
+   */
   area: AreaFact;
   /** Only the links Qloo provided. */
   links: { website?: string; phone?: string; mapsUrl?: string };
@@ -160,6 +166,11 @@ function buildReasons(profile: SeniorProfile, item: RankedCandidate, ctx: Explan
       // area.source is "qloo.properties.…"; reasons cite "Qloo <field>".
       source: `profile.location: ${item.requestedBorough} ↔ Qloo ${area.source!.replace(/^qloo\./, "")}`,
     });
+  } else if (area.inRequestedCity) {
+    reasons.push({
+      text: `${area.label}, the city you chose`,
+      source: `profile.city: ${item.requestedCity} ↔ Qloo ${area.source!.replace(/^qloo\./, "")}`,
+    });
   }
 
   if (item.likedCuisines.length) {
@@ -241,10 +252,12 @@ function buildNeedsConfirmation(item: RankedCandidate): string[] {
 
 function buildArea(item: RankedCandidate): AreaFact {
   const { area, requestedBorough } = item;
+  const isCityArea = area.kind === "same_city" || area.kind === "same_metro" || area.kind === "nearby";
   return {
     kind: area.kind,
-    label: areaLabel(area),
+    label: isCityArea ? cityAreaLabel(area) : areaLabel(area),
     inRequestedBorough: area.kind === "borough" && area.borough === requestedBorough,
+    inRequestedCity: area.kind === "same_city" || area.kind === "same_metro",
     ...(area.kind !== "unknown" ? { source: area.source } : {}),
   };
 }

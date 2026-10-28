@@ -60,6 +60,8 @@ export interface VenueGeocode {
   /** State or region, e.g. "New York", "New Jersey". */
   region: string | null;
   countryCode: string | null;
+  /** Metro area, e.g. "Sydney", "Los Angeles"; used outside NYC (location.ts). */
+  metro?: string | null;
 }
 
 export type VenueArea =

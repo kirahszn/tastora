@@ -5,7 +5,7 @@ const STEPS = [
   { title: "Tell us their tastes", text: "Favourite foods, taste memories, and anything they must avoid." },
   {
     title: "Tastora searches with Qloo",
-    text: "Claude plans the search; Qloo ranks NYC restaurants by taste; Tastora checks every need.",
+    text: "Claude plans the search; Qloo ranks restaurants near them by taste; Tastora checks every need.",
   },
   {
     title: "Share and call ahead",

@@ -36,8 +36,13 @@ Only endpoints and params confirmed in `docs/qloo-findings.md`:
 | `searchRestaurants(…)` | `GET /v2/insights` `filter.type=urn:entity:place`, `filter.location.query`, `filter.tags`, `signal.interests.entities`, `signal.interests.tags`, `take=20` | One call per cuisine tag (≤ 2), in parallel |
 
 - **Fallbacks.** A genre tag returning 0 places is retried with the cuisine-family tag (Nigerian
-  genre 0 → cuisine 18). If every tag returns 0 for a non-NYC location, the search is retried with
-  "New York City". Both are noted in the trace.
+  genre 0 → cuisine 18). If every tag returns 0 for the location, or Qloo can't resolve it (HTTP 400
+  "filter.location.query is unable to resolve to a valid locality"), the search is retried city-wide
+  (`fallbackLocation`: the profile city; "New York City" in NYC). Both are noted in the trace. If the
+  city itself can't be resolved, `LocationNotFoundError` stops the run (Phase 9c).
+- **Location text (Phase 9c, `searchLocation()` in `src/lib/domain/location.ts`).** The profile has
+  `city` + optional `area`. Sent to Qloo: in NYC an area naming a borough on its own, exactly as
+  before ("Bed-Stuy, Brooklyn"); otherwise "area, city" ("Shoreditch, London"), or the city alone.
 - **Location behaviour (Phase 3 live).** `filter.location.query=Queens` resolves to the right
   locality ("Queens, Queens County, New York…"), but it is a proximity *bias*, not a hard filter:
   in one 20-result Italian-American call, 11 places were in Queens County and the rest in
@@ -123,10 +128,15 @@ Nigerian, where NYC has only about 10 places.
 - Body `{ profile, feedback? }`: `SeniorProfileSchema` and `RankingFeedbackSchema`
   (`src/lib/ranking/feedback.ts`; ids ≤ 100 chars, ≤ 50 per list). Invalid → **400**
   `{ error, fieldErrors: [{ path, message }] }`. Non-JSON body → 400.
-- **200** `{ results, excluded, trace, evidence, meta }`. `results[]` are the Phase 2 explanation
-  facts, plus `venue { address, neighborhood, priceLevel, rating, cuisines }`. `meta` has
-  `planner`, `model`, `fallbackReason?`, `location`, `qlooCalls`, `qlooCacheHits`,
-  `anthropicRequests` and `durationMs`.
+- **200** `{ results, excluded, trace, evidence, notices, coverageNote, meta }`. `results[]` are the
+  Phase 2 explanation facts, plus `venue { address, neighborhood, priceLevel, rating, cuisines }`.
+  `coverageNote` (Phase 9c) is "Fewer matches found around <city>. Qloo's restaurant coverage varies
+  by city." when fewer than 4 unique places came back or the city is rated Thin/Poor, else null.
+  `meta` has `planner`, `model`, `fallbackReason?`, `location` (the text sent to Qloo), `city`,
+  `qlooCalls`, `qlooCacheHits`, `anthropicRequests` and `durationMs`.
+- **400** `{ error: "Qloo couldn't find that city or area. Please try the nearest larger city.",
+  code: "location_not_found" }` when Qloo can't resolve the city (Phase 9c); streamed as
+  `{"type":"error","status":400,"code":"location_not_found",…}`.
 - **502** `{ error: "We couldn't get restaurant suggestions right now. Please try again in a minute." }`
   when no restaurant search succeeds. Only the error class name is logged; there are no stacks,
   upstream messages or keys.
@@ -139,7 +149,7 @@ Nigerian, where NYC has only about 10 places.
   breaks before a result (it never retries 400/429/502).
 - `evidence.cuisineTagNames` (Phase 4): display names of the main search's cuisine tags.
 - **`notices` (Phase 5, `src/lib/agent/notices.ts`)**: plain sentences shown as "About this search":
-  the built-in planner standing in for Claude; the NYC-wide location retry (only from searches that
+  the built-in planner standing in for Claude; the city-wide location retry (only from searches that
   contributed places); taste memories no used signal matches (fuzzy: accents, small typos, extra
   words, so a typo Claude corrected isn't reported); and the related-cuisine fallback. **Related
   cuisine:** if every search returned 0 places, the server looks up a favourite cuisine's family

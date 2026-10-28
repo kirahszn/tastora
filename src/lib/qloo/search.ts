@@ -6,7 +6,7 @@
 import "server-only";
 import { isPlaceEntity, normalizePlaces, type Candidate } from "@/lib/domain/place";
 import { cacheKey, TtlCache } from "./cache";
-import { qlooGet, type QlooParams } from "./client";
+import { QlooApiError, qlooGet, type QlooParams } from "./client";
 import { venueVerdict } from "./venueFilter";
 
 export const NYC_LOCATION = "New York City";
@@ -39,9 +39,31 @@ export interface EntityCandidate {
   detail: string | null;
 }
 
+/**
+ * Qloo could not turn the location into a place. Live (Phase 9c): HTTP 400,
+ * `{"errors":[{"message":"filter.location.query is unable to resolve to a valid locality.","path":"filter.location"}]}`.
+ */
+export class LocationNotFoundError extends Error {
+  constructor(readonly location: string) {
+    super("Qloo could not resolve the location");
+    this.name = "LocationNotFoundError";
+  }
+}
+
+export function isUnresolvedLocation(err: unknown): boolean {
+  if (!(err instanceof QlooApiError) || err.status !== 400) return false;
+  const errors = asObj(err.body).errors;
+  return (
+    Array.isArray(errors) &&
+    errors.some((e) => asObj(e).path === "filter.location" || /unable to resolve/i.test(String(asObj(e).message ?? "")))
+  );
+}
+
 export interface RestaurantSearchParams {
   cuisineTagIds: readonly string[];
   location: string;
+  /** Searched when `location` finds nothing or can't be resolved (the whole city). Default: New York City. */
+  fallbackLocation?: string;
   signalEntityIds?: readonly string[];
   signalTagIds?: readonly string[];
   take?: number;
@@ -177,9 +199,10 @@ export function createQlooSearch(deps: QlooSearchDeps = {}) {
 
   /**
    * One insights call per cuisine tag (in parallel). If a genre tag returns no places, retry with
-   * the cuisine-family tag (Nigerian genre returned 0, cuisine 18). If a non-NYC location
-   * returns nothing, retry with New York City. Results are filtered to food venues, merged
-   * (best rank wins) and normalised.
+   * the cuisine-family tag (Nigerian genre returned 0, cuisine 18). If the location returns
+   * nothing or can't be resolved, retry with the fallback (the whole city; New York City by
+   * default). If that can't be resolved either, throws LocationNotFoundError. Results are
+   * filtered to food venues, merged (best rank wins) and normalised.
    */
   async function searchRestaurants(p: RestaurantSearchParams): Promise<RestaurantSearchResult> {
     const take = p.take ?? 20;
@@ -209,11 +232,26 @@ export function createQlooSearch(deps: QlooSearchDeps = {}) {
       return { used, places: res.places, locality: res.locality };
     };
 
-    let runs = await Promise.all(p.cuisineTagIds.map((t) => runTag(t, p.location)));
-    if (runs.every((r) => !r.places.length) && p.location !== NYC_LOCATION) {
-      notes.push(`No places found for "${p.location}"; searched ${NYC_LOCATION} instead`);
-      locationUsed = NYC_LOCATION;
-      runs = await Promise.all(p.cuisineTagIds.map((t) => runTag(t, NYC_LOCATION)));
+    const wide = p.fallbackLocation ?? NYC_LOCATION;
+    const runAll = async (location: string) => {
+      try {
+        return await Promise.all(p.cuisineTagIds.map((t) => runTag(t, location)));
+      } catch (err) {
+        if (isUnresolvedLocation(err)) return null;
+        throw err;
+      }
+    };
+    let runs = await runAll(p.location);
+    if (!runs && p.location === wide) throw new LocationNotFoundError(p.location);
+    if (!runs || (runs.every((r) => !r.places.length) && p.location !== wide)) {
+      notes.push(
+        runs
+          ? `No places found for "${p.location}"; searched ${wide} instead`
+          : `Qloo could not find "${p.location}"; searched ${wide} instead`,
+      );
+      locationUsed = wide;
+      runs = await runAll(wide);
+      if (!runs) throw new LocationNotFoundError(wide);
     }
 
     const dropped: DroppedVenue[] = [];

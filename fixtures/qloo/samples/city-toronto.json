@@ -1,0 +1,721 @@
+{
+  "city": "Toronto",
+  "phase": "9c coverage",
+  "sinatraTop10OverlapWithItalian": 1,
+  "sinatraTop10SamePosition": 0,
+  "runs": [
+    {
+      "label": "Italian",
+      "requests": [
+        {
+          "path": "/v2/insights",
+          "params": {
+            "filter.type": "urn:entity:place",
+            "filter.location.query": "Toronto",
+            "filter.tags": "urn:tag:genre:place:restaurant:italian",
+            "take": 20
+          },
+          "status": 200,
+          "durationMs": 477
+        }
+      ],
+      "localityResolved": [
+        "Toronto, Golden Horseshoe, Ontario, Canada"
+      ],
+      "rawPlaces": 20,
+      "kept": 19,
+      "dropped": [
+        {
+          "id": "2DAC5662-C947-4CA2-9369-8639EF63D11F",
+          "name": "Bar Poet",
+          "reason": "bar without a cuisine-restaurant category"
+        }
+      ],
+      "notes": [],
+      "inCity": 18,
+      "geocodeCity": {
+        "Toronto": 17,
+        "Markham": 1,
+        "Vaughan": 1
+      },
+      "localityCity": {
+        "Toronto": 17,
+        "Markham": 1,
+        "Vaughan": 1
+      },
+      "geocodeName": {
+        "Spadina—Fort York": 4,
+        "Toronto Centre": 3,
+        "University—Rosedale": 5,
+        "German Mills": 1,
+        "Dufferin Grove": 2,
+        "Harbourfront-CityPlace": 1,
+        "Little Portugal": 1,
+        "Mimico": 1,
+        "Woodbridge": 1
+      },
+      "countryCode": {
+        "CA": 19
+      },
+      "fieldCoverage": {
+        "geocode": 19,
+        "geocodeCity": 19,
+        "geocodeName": 19,
+        "admin1": 19,
+        "admin2": 19,
+        "localityCity": 19,
+        "localityNeighborhood": 19,
+        "neighborhoodProp": 19,
+        "address": 19,
+        "phone": 18,
+        "website": 18,
+        "hours": 18,
+        "dishes": 19
+      },
+      "phoneSamples": [
+        "+14165049669",
+        "+14168649761",
+        "+13653879240",
+        "+14165043939"
+      ],
+      "top10": [
+        {
+          "id": "3E0CD93B-4035-47D0-A879-C7D532FAD0B6",
+          "name": "Gusto 101"
+        },
+        {
+          "id": "8C2B376B-8B1C-449A-9609-1C25F958AAA7",
+          "name": "The Old Spaghetti Factory"
+        },
+        {
+          "id": "C6A1C835-757F-439B-A137-635946AF5F30",
+          "name": "Piano Piano Restaurant"
+        },
+        {
+          "id": "75134748-115E-4867-AD47-577900ABC36D",
+          "name": "Cibo Wine Bar King West"
+        },
+        {
+          "id": "8B9806BD-CA9F-4B0C-84CC-AC6534FCD0E2",
+          "name": "Frankie Tomatto's"
+        },
+        {
+          "id": "B6FA6B23-5877-4B3B-99A5-7397A519E276",
+          "name": "Trattoria Nervosa"
+        },
+        {
+          "id": "B121AECA-581E-4156-B9D1-FCFEA7B0A71D",
+          "name": "Cibo Wine Bar Yorkville"
+        },
+        {
+          "id": "19A533A7-9B38-4B7C-9256-1FDB137F94A1",
+          "name": "Cafe Diplomatico Restaurant & Pizzeria"
+        },
+        {
+          "id": "FF8EECBF-A1CB-4ED0-A030-5C12CD572D3A",
+          "name": "7 West Cafe"
+        },
+        {
+          "id": "C11C6532-2552-45E2-9DFC-D3F059F162E5",
+          "name": "Sugo"
+        }
+      ],
+      "samplePlaces": [
+        {
+          "entity_id": "3E0CD93B-4035-47D0-A879-C7D532FAD0B6",
+          "name": "Gusto 101",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "101 Portland St Toronto, ON M5V 2N3 Canada",
+          "neighborhood": "Spadina—Fort York",
+          "geocode": {
+            "city": "Toronto",
+            "name": "Spadina—Fort York",
+            "metro": "Toronto",
+            "admin1_region": "Ontario",
+            "admin2_region": "Toronto",
+            "country_code": "CA"
+          },
+          "locality": {
+            "city": "Toronto",
+            "metro": "Toronto",
+            "neighborhood": "Spadina—Fort York"
+          },
+          "phone": "+14165049669",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 20
+        },
+        {
+          "entity_id": "8C2B376B-8B1C-449A-9609-1C25F958AAA7",
+          "name": "The Old Spaghetti Factory",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "54 The Esplanade Toronto, ON M5E 1A6 Canada",
+          "neighborhood": "Toronto Centre",
+          "geocode": {
+            "city": "Toronto",
+            "name": "Toronto Centre",
+            "metro": "Toronto",
+            "admin1_region": "Ontario",
+            "admin2_region": "Toronto",
+            "country_code": "CA"
+          },
+          "locality": {
+            "city": "Toronto",
+            "metro": "Toronto",
+            "neighborhood": "Toronto Centre"
+          },
+          "phone": "+14168649761",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 26
+        },
+        {
+          "entity_id": "C6A1C835-757F-439B-A137-635946AF5F30",
+          "name": "Piano Piano Restaurant",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "88 Harbord St Toronto, ON M5S 1G5 Canada",
+          "neighborhood": "University—Rosedale",
+          "geocode": {
+            "city": "Toronto",
+            "name": "University—Rosedale",
+            "metro": "Toronto",
+            "admin1_region": "Ontario",
+            "admin2_region": "Toronto",
+            "country_code": "CA"
+          },
+          "locality": {
+            "city": "Toronto",
+            "metro": "Toronto",
+            "neighborhood": "University—Rosedale"
+          },
+          "phone": "+13653879240",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 37
+        },
+        {
+          "entity_id": "75134748-115E-4867-AD47-577900ABC36D",
+          "name": "Cibo Wine Bar King West",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "522 King St W Toronto, ON M5V 2L5 Canada",
+          "neighborhood": "Spadina—Fort York",
+          "geocode": {
+            "city": "Toronto",
+            "name": "Spadina—Fort York",
+            "metro": "Toronto",
+            "admin1_region": "Ontario",
+            "admin2_region": "Toronto",
+            "country_code": "CA"
+          },
+          "locality": {
+            "city": "Toronto",
+            "metro": "Toronto",
+            "neighborhood": "Spadina—Fort York"
+          },
+          "phone": "+14165043939",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 14
+        },
+        {
+          "entity_id": "8B9806BD-CA9F-4B0C-84CC-AC6534FCD0E2",
+          "name": "Frankie Tomatto's",
+          "primary_genre": "urn:tag:genre:place:restaurant:buffet",
+          "address": "7225 Woodbine Ave Markham, ON L3R 1A3 Canada",
+          "neighborhood": "German Mills",
+          "geocode": {
+            "city": "Markham",
+            "name": "German Mills",
+            "metro": "Toronto",
+            "admin1_region": "Ontario",
+            "admin2_region": "York",
+            "country_code": "CA"
+          },
+          "locality": {
+            "city": "Markham",
+            "metro": "Toronto",
+            "neighborhood": "German Mills"
+          },
+          "phone": null,
+          "hasWebsite": false,
+          "hasHours": false,
+          "dishCount": 5
+        }
+      ]
+    },
+    {
+      "label": "Chinese",
+      "requests": [
+        {
+          "path": "/v2/insights",
+          "params": {
+            "filter.type": "urn:entity:place",
+            "filter.location.query": "Toronto",
+            "filter.tags": "urn:tag:genre:place:restaurant:chinese",
+            "take": 20
+          },
+          "status": 200,
+          "durationMs": 475
+        }
+      ],
+      "localityResolved": [
+        "Toronto, Golden Horseshoe, Ontario, Canada"
+      ],
+      "rawPlaces": 20,
+      "kept": 20,
+      "dropped": [],
+      "notes": [],
+      "inCity": 19,
+      "geocodeCity": {
+        "Toronto": 17,
+        "Mississauga": 1,
+        "Markham": 2
+      },
+      "localityCity": {
+        "Toronto": 17,
+        "Mississauga": 1,
+        "Markham": 2
+      },
+      "geocodeName": {
+        "Don Valley East": 1,
+        "University—Rosedale": 6,
+        "Burnhamthorpe": 1,
+        "Scarborough Centre": 1,
+        "Spadina—Fort York": 3,
+        "Etobicoke City Centre": 1,
+        "York University Heights": 1,
+        "Kensington Market": 2,
+        "Etobicoke North": 1,
+        "German Mills": 1,
+        "Scarborough North": 1,
+        "∅": 1
+      },
+      "countryCode": {
+        "CA": 20
+      },
+      "fieldCoverage": {
+        "geocode": 20,
+        "geocodeCity": 20,
+        "geocodeName": 19,
+        "admin1": 20,
+        "admin2": 20,
+        "localityCity": 20,
+        "localityNeighborhood": 19,
+        "neighborhoodProp": 19,
+        "address": 20,
+        "phone": 20,
+        "website": 20,
+        "hours": 20,
+        "dishes": 20
+      },
+      "phoneSamples": [
+        "+16473487886",
+        "+14162172008",
+        "+19056257786",
+        "+16473418882"
+      ],
+      "top10": [
+        {
+          "id": "A739D76A-5EA1-46FF-B23B-1C2D551B5ACA",
+          "name": "Dragon Pearl Buffet"
+        },
+        {
+          "id": "C1515867-D2C3-4E5E-A44F-D737E12D22F1",
+          "name": "Mother's Dumplings"
+        },
+        {
+          "id": "5C4B89EB-1A34-4E4D-8BC4-9A8B68F25A8B",
+          "name": "Zauq Mississauga - Halal Pakistani, Indian & Hakka Cuisine"
+        },
+        {
+          "id": "6F9FB052-B236-46AA-BF97-2157F9775D74",
+          "name": "DaiLo"
+        },
+        {
+          "id": "7565C6E7-CDAC-47EE-807B-0C058D1790BF",
+          "name": "Mandarin Restaurant"
+        },
+        {
+          "id": "1BC3BF69-88B3-433C-87C7-5C46FE4E7033",
+          "name": "R&D"
+        },
+        {
+          "id": "D2C02F8D-FA70-4BF5-A8FF-0AAE349AC1AA",
+          "name": "Patois"
+        },
+        {
+          "id": "E6A73D5E-FC81-40A3-8518-1ED9C3C9AAA9",
+          "name": "Mandarin Restaurant"
+        },
+        {
+          "id": "9FA0DEC6-2AE9-40D6-A967-139BA29EB4B7",
+          "name": "Dim Sum King Seafood Restaurant"
+        },
+        {
+          "id": "A0235310-DDD6-43ED-9741-0C4C29490857",
+          "name": "Mandarin Restaurant"
+        }
+      ],
+      "samplePlaces": [
+        {
+          "entity_id": "A739D76A-5EA1-46FF-B23B-1C2D551B5ACA",
+          "name": "Dragon Pearl Buffet",
+          "primary_genre": "urn:tag:genre:place:restaurant:chinese",
+          "address": "865 York Mills Rd North York, ON M3B 1Y6 Canada",
+          "neighborhood": "Don Valley East",
+          "geocode": {
+            "city": "Toronto",
+            "name": "Don Valley East",
+            "metro": "Toronto",
+            "admin1_region": "Ontario",
+            "admin2_region": "Toronto",
+            "country_code": "CA"
+          },
+          "locality": {
+            "city": "Toronto",
+            "metro": "Toronto",
+            "neighborhood": "Don Valley East"
+          },
+          "phone": "+16473487886",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 19
+        },
+        {
+          "entity_id": "C1515867-D2C3-4E5E-A44F-D737E12D22F1",
+          "name": "Mother's Dumplings",
+          "primary_genre": "urn:tag:genre:place:restaurant:chinese",
+          "address": "421 Spadina Ave. Toronto, ON M5T 2G6 Canada",
+          "neighborhood": "University—Rosedale",
+          "geocode": {
+            "city": "Toronto",
+            "name": "University—Rosedale",
+            "metro": "Toronto",
+            "admin1_region": "Ontario",
+            "admin2_region": "Toronto",
+            "country_code": "CA"
+          },
+          "locality": {
+            "city": "Toronto",
+            "metro": "Toronto",
+            "neighborhood": "University—Rosedale"
+          },
+          "phone": "+14162172008",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 25
+        },
+        {
+          "entity_id": "5C4B89EB-1A34-4E4D-8BC4-9A8B68F25A8B",
+          "name": "Zauq Mississauga - Halal Pakistani, Indian & Hakka Cuisine",
+          "primary_genre": "urn:tag:genre:place:restaurant:pakistani",
+          "address": "1275 Eglinton Ave E #62b Mississauga, ON L4W 2Z2 Canada",
+          "neighborhood": "Burnhamthorpe",
+          "geocode": {
+            "city": "Mississauga",
+            "name": "Burnhamthorpe",
+            "metro": null,
+            "admin1_region": "Ontario",
+            "admin2_region": "Peel",
+            "country_code": "CA"
+          },
+          "locality": {
+            "city": "Mississauga",
+            "metro": null,
+            "neighborhood": "Burnhamthorpe"
+          },
+          "phone": "+19056257786",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 35
+        },
+        {
+          "entity_id": "6F9FB052-B236-46AA-BF97-2157F9775D74",
+          "name": "DaiLo",
+          "primary_genre": "urn:tag:genre:place:restaurant:asian",
+          "address": "503 College St Toronto, ON M6G 1A5 Canada",
+          "neighborhood": "University—Rosedale",
+          "geocode": {
+            "city": "Toronto",
+            "name": "University—Rosedale",
+            "metro": "Toronto",
+            "admin1_region": "Ontario",
+            "admin2_region": "Toronto",
+            "country_code": "CA"
+          },
+          "locality": {
+            "city": "Toronto",
+            "metro": "Toronto",
+            "neighborhood": "University—Rosedale"
+          },
+          "phone": "+16473418882",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 33
+        },
+        {
+          "entity_id": "7565C6E7-CDAC-47EE-807B-0C058D1790BF",
+          "name": "Mandarin Restaurant",
+          "primary_genre": "urn:tag:genre:place:restaurant",
+          "address": "2206 Eglinton Ave E Scarborough, ON M1L 4S7 Canada",
+          "neighborhood": "Scarborough Centre",
+          "geocode": {
+            "city": "Toronto",
+            "name": "Scarborough Centre",
+            "metro": "Toronto",
+            "admin1_region": "Ontario",
+            "admin2_region": "Toronto",
+            "country_code": "CA"
+          },
+          "locality": {
+            "city": "Toronto",
+            "metro": "Toronto",
+            "neighborhood": "Scarborough Centre"
+          },
+          "phone": "+14162881177",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 22
+        }
+      ]
+    },
+    {
+      "label": "Italian + Frank Sinatra",
+      "requests": [
+        {
+          "path": "/v2/insights",
+          "params": {
+            "filter.type": "urn:entity:place",
+            "filter.location.query": "Toronto",
+            "filter.tags": "urn:tag:genre:place:restaurant:italian",
+            "signal.interests.entities": [
+              "FC0F8D26-BA80-4D83-8BBF-FC011DC8D241"
+            ],
+            "take": 20
+          },
+          "status": 200,
+          "durationMs": 531
+        }
+      ],
+      "localityResolved": [
+        "Toronto, Golden Horseshoe, Ontario, Canada"
+      ],
+      "rawPlaces": 20,
+      "kept": 20,
+      "dropped": [],
+      "notes": [],
+      "inCity": 19,
+      "geocodeCity": {
+        "Toronto": 18,
+        "Vaughan": 1,
+        "Markham": 1
+      },
+      "localityCity": {
+        "Toronto": 18,
+        "Vaughan": 1,
+        "Markham": 1
+      },
+      "geocodeName": {
+        "Spadina—Fort York": 7,
+        "Toronto Centre": 2,
+        "University—Rosedale": 3,
+        "Woodbridge": 1,
+        "Brookhaven-Amesbury": 1,
+        "Don Valley West": 1,
+        "German Mills": 1,
+        "Davenport": 1,
+        "Etobicoke City Centre": 1,
+        "Stonegate-Queensway": 1,
+        "Lansing-Westgate": 1
+      },
+      "countryCode": {
+        "CA": 20
+      },
+      "fieldCoverage": {
+        "geocode": 20,
+        "geocodeCity": 20,
+        "geocodeName": 20,
+        "admin1": 20,
+        "admin2": 20,
+        "localityCity": 20,
+        "localityNeighborhood": 20,
+        "neighborhoodProp": 20,
+        "address": 20,
+        "phone": 19,
+        "website": 19,
+        "hours": 19,
+        "dishes": 20
+      },
+      "phoneSamples": [
+        "+14163632742",
+        "+14165049998",
+        "+14169620011",
+        "+19056053302"
+      ],
+      "top10": [
+        {
+          "id": "303C4634-4235-4FB8-9332-48B1A6C3D45B",
+          "name": "Aria"
+        },
+        {
+          "id": "79633377-161F-4757-94CA-82003C1A87F6",
+          "name": "La Bettola Di Terroni"
+        },
+        {
+          "id": "B2778F5B-CE16-492E-8331-283ADD8E9C27",
+          "name": "Ristorante Sotto Sotto"
+        },
+        {
+          "id": "A81FE276-3AE3-4085-B7C5-9081024496A9",
+          "name": "Ice Cream Patio"
+        },
+        {
+          "id": "DED48507-6F38-4ABE-9CF4-8352A857B84D",
+          "name": "Stelvio Toronto"
+        },
+        {
+          "id": "B4D5C44B-D1B1-409B-97E1-48C819CFC1AC",
+          "name": "TOCA"
+        },
+        {
+          "id": "75134748-115E-4867-AD47-577900ABC36D",
+          "name": "Cibo Wine Bar King West"
+        },
+        {
+          "id": "3C555A6C-DD86-48CC-A9DA-180F3674E2F4",
+          "name": "bosk"
+        },
+        {
+          "id": "269BD76F-998A-4D87-8BB3-42AADC15E5AC",
+          "name": "Speducci Mercatto"
+        },
+        {
+          "id": "754BB73E-F317-42A9-8BE4-00A464E774D1",
+          "name": "Tutti Matti"
+        }
+      ],
+      "samplePlaces": [
+        {
+          "entity_id": "303C4634-4235-4FB8-9332-48B1A6C3D45B",
+          "name": "Aria",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "25 York St Toronto, ON M5J 2V5 Canada",
+          "neighborhood": "Spadina—Fort York",
+          "geocode": {
+            "city": "Toronto",
+            "name": "Spadina—Fort York",
+            "metro": "Toronto",
+            "admin1_region": "Ontario",
+            "admin2_region": "Toronto",
+            "country_code": "CA"
+          },
+          "locality": {
+            "city": "Toronto",
+            "metro": "Toronto",
+            "neighborhood": "Spadina—Fort York"
+          },
+          "phone": "+14163632742",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 13
+        },
+        {
+          "entity_id": "79633377-161F-4757-94CA-82003C1A87F6",
+          "name": "La Bettola Di Terroni",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "106 Victoria St Toronto, ON M5C 2B4 Canada",
+          "neighborhood": "Toronto Centre",
+          "geocode": {
+            "city": "Toronto",
+            "name": "Toronto Centre",
+            "metro": "Toronto",
+            "admin1_region": "Ontario",
+            "admin2_region": "Toronto",
+            "country_code": "CA"
+          },
+          "locality": {
+            "city": "Toronto",
+            "metro": "Toronto",
+            "neighborhood": "Toronto Centre"
+          },
+          "phone": "+14165049998",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 11
+        },
+        {
+          "entity_id": "B2778F5B-CE16-492E-8331-283ADD8E9C27",
+          "name": "Ristorante Sotto Sotto",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "120 Avenue Rd Toronto, ON M5R 2H4 Canada",
+          "neighborhood": "University—Rosedale",
+          "geocode": {
+            "city": "Toronto",
+            "name": "University—Rosedale",
+            "metro": "Toronto",
+            "admin1_region": "Ontario",
+            "admin2_region": "Toronto",
+            "country_code": "CA"
+          },
+          "locality": {
+            "city": "Toronto",
+            "metro": "Toronto",
+            "neighborhood": "University—Rosedale"
+          },
+          "phone": "+14169620011",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 6
+        },
+        {
+          "entity_id": "A81FE276-3AE3-4085-B7C5-9081024496A9",
+          "name": "Ice Cream Patio",
+          "primary_genre": "urn:tag:genre:place:restaurant:pizza",
+          "address": "7611 Pine Valley Dr Unit 34 Woodbridge, ON L4L 0A2 Canada",
+          "neighborhood": "Woodbridge",
+          "geocode": {
+            "city": "Vaughan",
+            "name": "Woodbridge",
+            "metro": null,
+            "admin1_region": "Ontario",
+            "admin2_region": "York",
+            "country_code": "CA"
+          },
+          "locality": {
+            "city": "Vaughan",
+            "metro": null,
+            "neighborhood": "Woodbridge"
+          },
+          "phone": "+19056053302",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 13
+        },
+        {
+          "entity_id": "DED48507-6F38-4ABE-9CF4-8352A857B84D",
+          "name": "Stelvio Toronto",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "791 Dundas St W Toronto, ON M6J 1V2 Canada",
+          "neighborhood": "Spadina—Fort York",
+          "geocode": {
+            "city": "Toronto",
+            "name": "Spadina—Fort York",
+            "metro": "Toronto",
+            "admin1_region": "Ontario",
+            "admin2_region": "Toronto",
+            "country_code": "CA"
+          },
+          "locality": {
+            "city": "Toronto",
+            "metro": "Toronto",
+            "neighborhood": "Spadina—Fort York"
+          },
+          "phone": "+14165466727",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 12
+        }
+      ]
+    }
+  ]
+}

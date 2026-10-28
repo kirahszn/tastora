@@ -1,13 +1,14 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it, vi } from "vitest";
+import { cityAreaLabel, coverageNotice, searchLocation } from "@/lib/domain/location";
 import { SeniorProfileSchema } from "@/lib/domain/profile";
 import { priceLabel, ratingLabel, signed, toolLabel } from "@/lib/ui/format";
 import { safeHttpUrl, telHref } from "@/lib/ui/links";
 import { createNdjsonParser, NdjsonError, readNdjson } from "@/lib/ui/ndjson";
 import { EXAMPLES, emptyDraft, exampleById, profileToDraft, validateDraft } from "@/lib/ui/profileDraft";
 import { droppedOut, movementLabel, rankMovement } from "@/lib/ui/rankMovement";
-import { requestBody, runSearch, SearchError } from "@/lib/ui/searchClient";
+import { ERROR_COPY, requestBody, runSearch, SearchError } from "@/lib/ui/searchClient";
 import { displayStatus, requirementLabel, splitSource, STATUS_DISPLAY } from "@/lib/ui/status";
 import {
   FEEDBACK_KEY,
@@ -221,7 +222,7 @@ describe("storage", () => {
     const response = { results: [], excluded: [], trace: [], evidence: null, meta: {} } as unknown as RecommendResponse;
     saveLastSearch(profile, response, store);
     expect(loadLastSearch(profile, store)).toEqual(response);
-    expect(loadLastSearch({ ...profile, location: "Queens" }, store)).toBeNull();
+    expect(loadLastSearch({ ...profile, area: "Queens" }, store)).toBeNull();
   });
 });
 
@@ -231,26 +232,40 @@ describe("profile draft", () => {
     expect(result.ok).toBe(false);
     if (result.ok) return;
     expect(result.errors.favouriteCuisines).toBe("Add at least one cuisine they love.");
-    expect(result.errors.borough).toBe("Choose the borough you'd like to eat in.");
+    expect(result.errors.city).toBe("Type the city they'd like to eat in, for example London.");
     const long = validateDraft({ ...EXAMPLES[0].draft, favouriteDishes: ["x".repeat(81)] });
     expect(long.ok === false && long.errors.favouriteDishes).toBe("One of these entries is too long. Please shorten it.");
   });
 
-  it("lists the Sinatra (Queens) example first", () => {
-    expect(EXAMPLES.map((e) => e.id)).toEqual(["sinatra", "fela"]);
+  it("validates the city and area: required, trimmed, length-limited", () => {
+    const base = exampleById("london").draft;
+    const blank = validateDraft({ ...base, city: "   " });
+    expect(blank.ok === false && blank.errors.city).toBe("Type the city they'd like to eat in, for example London.");
+    const longCity = validateDraft({ ...base, city: "x".repeat(61) });
+    expect(longCity.ok === false && longCity.errors.city).toBe("Please keep the city to 60 characters or fewer.");
+    const longArea = validateDraft({ ...base, area: "x".repeat(61) });
+    expect(longArea.ok === false && longArea.errors.area).toBe("Please keep the area to 60 characters or fewer.");
+    const trimmed = validateDraft({ ...base, city: "  Toronto ", area: "  " });
+    expect(trimmed.ok && trimmed.profile).toMatchObject({ city: "Toronto" });
+    expect(trimmed.ok && trimmed.profile).not.toHaveProperty("area");
   });
 
-  it("builds the two example profiles exactly as specified", () => {
-    const [a, b] = [exampleById("fela"), exampleById("sinatra")].map((e) => validateDraft(e.draft));
-    expect(a.ok && b.ok).toBe(true);
-    if (!a.ok || !b.ok) return;
+  it("lists the Sinatra (Queens) example first, then Fela (Brooklyn) and London", () => {
+    expect(EXAMPLES.map((e) => e.id)).toEqual(["sinatra", "fela", "london"]);
+  });
+
+  it("builds the example profiles exactly as specified", () => {
+    const [a, b, c] = [exampleById("fela"), exampleById("sinatra"), exampleById("london")].map((e) => validateDraft(e.draft));
+    expect(a.ok && b.ok && c.ok).toBe(true);
+    if (!a.ok || !b.ok || !c.ok) return;
     expect(a.profile).toMatchObject({
       favouriteCuisines: ["Nigerian"],
       favouriteDishes: ["jollof rice"],
       allergies: ["peanut"],
       texture: "soft",
       tasteMemories: { music: ["Fela Kuti"] },
-      location: "Brooklyn",
+      city: "New York City",
+      area: "Brooklyn",
     });
     expect(b.profile).toMatchObject({
       favouriteCuisines: ["Italian-American"],
@@ -258,16 +273,29 @@ describe("profile draft", () => {
       dietaryRestrictions: ["no pork"],
       comfort: { wheelchairAccess: true },
       tasteMemories: { music: ["Frank Sinatra"] },
-      location: "Queens",
+      city: "New York City",
+      area: "Queens",
     });
+    expect(c.profile).toMatchObject({
+      favouriteCuisines: ["Indian"],
+      favouriteDishes: ["dal"],
+      dietaryRestrictions: ["vegetarian"],
+      comfort: { quietPreferred: true },
+      tasteMemories: { music: ["Lata Mangeshkar"] },
+      city: "London",
+    });
+    // The NYC examples send Qloo the same location text as before Phase 9c.
+    expect([a, b, c].map((r) => searchLocation(r.profile))).toEqual(["Brooklyn", "Queens", "London"]);
   });
 
-  it("composes and splits the location", () => {
-    const r = validateDraft({ ...exampleById("fela").draft, neighbourhood: "Bed-Stuy" });
-    expect(r.ok && r.profile.location).toBe("Bed-Stuy, Brooklyn");
+  it("round-trips the city and area through the draft", () => {
+    const r = validateDraft({ ...exampleById("fela").draft, area: "Bed-Stuy, Brooklyn" });
+    expect(r.ok && r.profile).toMatchObject({ city: "New York City", area: "Bed-Stuy, Brooklyn" });
     if (!r.ok) return;
-    expect(profileToDraft(r.profile)).toMatchObject({ borough: "Brooklyn", neighbourhood: "Bed-Stuy" });
-    expect(profileToDraft({ ...r.profile, location: "Brooklyn" })).toMatchObject({ borough: "Brooklyn", neighbourhood: "" });
+    expect(profileToDraft(r.profile)).toMatchObject({ city: "New York City", area: "Bed-Stuy, Brooklyn" });
+    const { area: _area, ...noArea } = r.profile;
+    void _area;
+    expect(profileToDraft(noArea)).toMatchObject({ city: "New York City", area: "" });
   });
 
   it("never sends the display name", () => {
@@ -375,9 +403,14 @@ describe("UI copy", () => {
     // UI source plus the server modules whose strings reach the screen.
     const copyFiles = [
       ...all.filter((f) => /\.tsx?$/.test(f)),
-      ...["src/lib/agent/explanationFacts.ts", "src/lib/agent/notices.ts", "src/lib/constraints/evaluate.ts"].map((f) =>
-        join(process.cwd(), f),
-      ),
+      ...[
+        "src/lib/agent/explanationFacts.ts",
+        "src/lib/agent/notices.ts",
+        "src/lib/constraints/evaluate.ts",
+        // Phase 9c: coverage note, "In <city>" labels and the location-not-found message.
+        "src/lib/domain/location.ts",
+        "src/app/api/recommend/route.ts",
+      ].map((f) => join(process.cwd(), f)),
     ];
     const unsafe = /\b(safe|safely|allergen[\s-]free|guaranteed?|guarantees|verified[\s-]safe)\b/gi;
     const negation = /\b(not|never|no|can['’]t|cannot|isn['’]t|don['’]t|won['’]t|without)\b[^.;:]{0,40}$/i;
@@ -403,6 +436,35 @@ describe("UI copy", () => {
     expect(flagged("Guaranteed allergen-free")).toBe(true);
     expect(flagged("Tastora can't confirm it's safe")).toBe(false);
     expect(flagged("never shown as safe")).toBe(false);
+  });
+
+  it("has no NYC-only wording in the public copy (Phase 9c)", () => {
+    const publicCopy = ["_landing/Hero.tsx", "_landing/Steps.tsx", "_landing/Values.tsx", "_landing/Showcase.tsx", "_landing/Closing.tsx", "_landing/Problem.tsx", "layout.tsx", "shareCard.tsx"];
+    const nycOnly = /\b(in NYC|NYC only|New York restaurants|NYC restaurants|caregivers in NYC|borough)\b/i;
+    for (const name of publicCopy) {
+      const text = readFileSync(join(process.cwd(), "src/app", name), "utf8");
+      expect({ name, hit: text.match(nycOnly)?.[0] ?? null }).toEqual({ name, hit: null });
+    }
+    const hero = readFileSync(join(process.cwd(), "src/app/_landing/Hero.tsx"), "utf8");
+    expect(hero).toContain(">For caregivers<");
+    expect(hero).toContain("finds restaurants near them");
+    expect(readFileSync(join(process.cwd(), "src/app/_landing/Steps.tsx"), "utf8")).toContain("Qloo ranks restaurants near them by taste");
+    expect(readFileSync(join(process.cwd(), "src/app/_landing/QlooProof.tsx"), "utf8")).toContain(
+      "From Tastora&rsquo;s test searches in New York City, October 2026.",
+    );
+  });
+
+  it("keeps the new location copy free of safety claims and ordering language", () => {
+    const copy = [
+      coverageNotice("Lagos"),
+      cityAreaLabel({ kind: "same_city", city: "London", source: "" }),
+      cityAreaLabel({ kind: "same_metro", metro: "Sydney", source: "" }),
+      cityAreaLabel({ kind: "nearby", place: "Markham", source: "" }),
+      ERROR_COPY.location_not_found.title,
+      ERROR_COPY.location_not_found.body,
+    ].join("\n");
+    expect(copy).not.toMatch(/\b(safe|safely|allergen[\s-]free|guaranteed?|verified[\s-]safe)\b/i);
+    expect(copy).not.toMatch(/\b(order(s|ed|ing)?|buy(s|ing)?|checkout|purchase|cart)\b/i);
   });
 
   it("never uses ordering language (order, buy, checkout)", () => {

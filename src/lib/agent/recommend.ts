@@ -3,12 +3,14 @@
 // decides how to search; statuses, exclusions, ranking and facts always come from Phase 2.
 import "server-only";
 import Anthropic from "@anthropic-ai/sdk";
+import { cityWide, coverageNote, describeLocation, searchLocation } from "@/lib/domain/location";
 import type { Candidate } from "@/lib/domain/place";
 import type { SeniorProfile } from "@/lib/domain/profile";
 import { getAnthropicEnv } from "@/lib/env";
 import { cuisineFamilyOf } from "@/lib/domain/cuisines";
 import {
   createQlooSearch,
+  LocationNotFoundError,
   mergeByBestRank,
   type QlooSearch,
   type RestaurantSearchResult,
@@ -70,11 +72,15 @@ export interface RecommendResponse {
   evidence: QlooEvidence | null;
   /** Plain notes on how the search went (fallbacks, unmatched taste memories); see notices.ts. */
   notices: string[];
+  /** "Fewer matches found around <city>…" when few places came back or the city's coverage is Thin/Poor. */
+  coverageNote: string | null;
   meta: {
     planner: "agent" | "fallback";
     model: string | null;
     fallbackReason?: string;
+    /** What was sent to Qloo as the location, e.g. "Bed-Stuy, Brooklyn", "Shoreditch, London". */
     location: string;
+    city: string;
     qlooCalls: number;
     qlooCacheHits: number;
     anthropicRequests: number;
@@ -206,7 +212,9 @@ export async function recommend(
   const onStep = (s: TraceStep) => deps.onStep?.({ ...s, step: ++emitted });
 
   const input = plannerInput(profile);
-  let session = new SearchSession(search, profile.location, { onSearch, onStep });
+  const location = searchLocation(profile);
+  const sessionHooks = { onSearch, onStep, fallbackLocation: cityWide(profile) };
+  let session = new SearchSession(search, location, sessionHooks);
   const trace: TraceStep[] = [];
   let planner: "agent" | "fallback" = "fallback";
   let fallbackReason: string | undefined;
@@ -223,6 +231,7 @@ export async function recommend(
       });
       session.note("planner", "Claude", `Planned ${session.searches.length} search(es) in ${result.turns} turn(s); ended by ${result.endedBy}`);
     } catch (err) {
+      if (err instanceof LocationNotFoundError) throw err;
       const reason = describeAnthropicError(err);
       session.note("planner", "Claude", `Not available right now (${reason})`);
       if (!session.searches.length) fallbackReason = reason;
@@ -235,7 +244,7 @@ export async function recommend(
 
   if (planner === "fallback") {
     trace.push(...session.trace);
-    session = new SearchSession(search, profile.location, { onSearch, onStep });
+    session = new SearchSession(search, location, sessionHooks);
     session.note("planner", "built-in plan", `Searching with Tastora's built-in plan instead (${fallbackReason})`);
     await runFallbackPlanner(session, input);
   }
@@ -244,7 +253,7 @@ export async function recommend(
   if (planner === "fallback") notices.push(PLANNER_FALLBACK_NOTICE);
   if (session.searches.length && session.searches.every((s) => !s.result.candidates.length)) {
     const related = await searchRelatedCuisine(session, profile);
-    if (related) notices.push(relatedCuisineNotice(related.cuisine, related.family, profile.location));
+    if (related) notices.push(relatedCuisineNotice(related.cuisine, related.family, describeLocation(profile)));
   }
   trace.push(...session.trace);
 
@@ -256,7 +265,9 @@ export async function recommend(
   const merged = mergeByBestRank(searches.map((s) => s.result.candidates));
   const origin = originBySearch(searches);
   const rankStarted = performance.now();
-  const { ranked, excluded } = rankCandidates(profile, merged, feedback);
+  // "Los Angeles, Los Angeles County, …" → "Los Angeles": lets "LA" match Qloo's geocode city.
+  const cityNames = searches.flatMap((s) => s.result.localityResolved?.split(",")[0]?.trim() || []);
+  const { ranked, excluded } = rankCandidates(profile, merged, feedback, { cityNames });
   const results: RecommendResult[] = ranked.map((item) => ({
     ...buildExplanationFacts(profile, item, {
       tasteSignals: (origin.get(item.candidate.id)?.signals ?? []).map((s) => s.name),
@@ -310,11 +321,13 @@ export async function recommend(
     trace: trace.map((s, i) => ({ ...s, step: i + 1 })),
     evidence,
     notices,
+    coverageNote: coverageNote(profile.city, merged.length),
     meta: {
       planner,
       model: planner === "agent" ? model : null,
       ...(fallbackReason ? { fallbackReason } : {}),
-      location: profile.location,
+      location,
+      city: profile.city,
       qlooCalls: search.stats.calls,
       qlooCacheHits: search.stats.cacheHits,
       anthropicRequests: anthropicCounter.n,

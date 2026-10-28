@@ -1,6 +1,7 @@
 # Qloo findings
 
-Notes from testing the Qloo API against real NYC data (Phase 1 spike, 2026-10-26).
+Notes from testing the Qloo API against real NYC data (Phase 1 spike, 2026-10-26). Six other
+cities were checked in Phase 9c: see "Coverage beyond NYC".
 Evidence: `npm run qloo:probe` → full responses in `fixtures/qloo/raw/` (local only, gitignored),
 trimmed samples (≤5 entities) in `fixtures/qloo/samples/` (slimmed to 4 files and the used fields in
 Phase 2; see `fixtures/qloo/README.md`). 34 live calls in total.
@@ -256,6 +257,91 @@ Fela Kuti also tend to love: Tony Allen, Femi Kuti, Manu Dibango · and places l
 No food chips, no "Try this", no cuisine inference from destinations. 2 extra calls per signal, in
 parallel; destination calls ~0.3 s, artist ~3.7 s. Untested for non-music signals (films, places) and
 for Sinatra/Marley destinations.
+
+## Coverage beyond NYC (Phase 9c, 2026-10-28)
+
+Question: does Qloo have enough restaurant data outside New York for Tastora to be useful, and which
+location fields can rank and label places honestly? **23 live Qloo calls** (`npm run qloo:coverage`,
+budget 24), **0 Anthropic calls**. Every search went through the real search layer
+(`createQlooSearch`: venue filter, genre → cuisine fallback) with `filter.location.query=<city>`,
+`take=20`. Per city: Italian (`urn:tag:genre:place:restaurant:italian`), one local cuisine, and Italian
++ Frank Sinatra (`signal.interests.entities`, artist id `FC0F8D26-…` from Phase 1) to see if a taste
+signal reorders results. Tag ids for Indian, Korean and Polish came from 3 `/v2/tags` calls (genre tags
+`urn:tag:genre:place:restaurant:{indian,korean,polish}` exist). Slim samples:
+`fixtures/qloo/samples/city-*.json` (request, locality, counts, field coverage, phone samples, top 10,
+5 slim places per search); raw responses in `fixtures/qloo/raw/city-*.json` (gitignored).
+
+"Kept" = places left after the venue filter. "In city/metro" = kept places whose
+`properties.geocode.city` or `geocode.metro` equals the city searched. Coverage columns are of kept places.
+
+| City · search | Resolved locality (`query.localities.filter[0].disambiguation`) | Kept / raw | In city / metro | Phone | Website | Dishes |
+|---|---|---|---|---|---|---|
+| London · Italian | London, London Borough of Lambeth, Inner London - East, Surrey, Greater London, England, United Kingdom | 18/20 | 18/18 | 14/18 | 18/18 | 18/18 |
+| London · Indian | (same) | 20/20 | 20/20 | 18/20 | 20/20 | 20/20 |
+| London · Italian + Sinatra | (same) | 20/20 | 20/20 | 19/20 | 20/20 | 20/20 |
+| Toronto · Italian | Toronto, Golden Horseshoe, Ontario, Canada | 19/20 | 18/19 | 18/19 | 18/19 | 19/19 |
+| Toronto · Chinese | (same) | 20/20 | 19/20 | 20/20 | 20/20 | 20/20 |
+| Toronto · Italian + Sinatra | (same) | 20/20 | 19/20 | 19/20 | 19/20 | 20/20 |
+| Los Angeles · Italian | Los Angeles, Los Angeles County, California, United States | 18/20 | 18/18 | 18/18 | 18/18 | 18/18 |
+| Los Angeles · Korean | (same) | 20/20 | 20/20 | 20/20 | 18/20 | 20/20 |
+| Los Angeles · Italian + Sinatra | (same) | 19/20 | 18/19 | 18/19 | 19/19 | 19/19 |
+| Chicago · Italian | Chicago, Cook County, Illinois, United States | 20/20 | 20/20 | 19/20 | 20/20 | 20/20 |
+| Chicago · Polish | (same) | 16/17 | 15/16 | 16/16 | 13/16 | 15/16 |
+| Chicago · Italian + Sinatra | (same) | 20/20 | 20/20 | 20/20 | 20/20 | 20/20 |
+| Lagos · Italian | Lagos, Nigeria | 8/9 | 8/8 | 7/8 | 3/8 | 6/8 |
+| Lagos · Nigerian (cuisine tag) | (same) | 13/20 | 13/13 | 10/13 | 9/13 | 13/13 |
+| Lagos · Italian + Sinatra | (same) | 6/6 | 6/6 | 5/6 | 2/6 | 6/6 |
+| Sydney · Italian | Sydney, Blacktown City Council, New South Wales, Australia | 19/20 | 19/19 | 18/19 | 19/19 | 19/19 |
+| Sydney · Chinese | (same) | 17/20 | 17/17 | 17/17 | 15/17 | 17/17 |
+| Sydney · Italian + Sinatra | (same) | 20/20 | 20/20 | 19/20 | 20/20 | 20/20 |
+
+**Taste signal (Italian + Sinatra vs Italian, top 10):** London 1/10 shared, Toronto 1/10, Los Angeles
+4/10, Chicago 5/10 (2 in the same position), Sydney 5/10, Lagos 6/6 shared but **0 in the same
+position**. The signal reorders results in every city; in Lagos it can only reshuffle the same few places.
+
+**Location fields.** Every kept place in all six cities had `properties.geocode` with `city`,
+`admin1_region`, `admin2_region` and `country_code`, plus `properties.address`. Differences that matter:
+- `geocode.city` is the city name in London (all London boroughs → "London"), Toronto, Los Angeles,
+  Chicago and Lagos, with real suburbs where they apply (Markham, Vaughan, Mississauga; Santa Monica,
+  Beverly Hills, West Hollywood; Cicero, Rosemont, Hammond in Indiana). One London place had
+  `geocode.city` "Inner London - West" (metro "London").
+- **Sydney:** `geocode.city` is usually the local council ("Council of the City of Sydney", "Waverley
+  Council", "North Sydney Council"); only 5 of 56 sampled say "Sydney". `geocode.metro` is "Sydney" on
+  all of them. So a city-only rule would mislabel central Sydney; the metro is needed.
+- `geocode.metro`: present in London, Toronto (incl. Markham; null for Vaughan and Mississauga), Los
+  Angeles (incl. Santa Monica, Beverly Hills; null for Universal City), Chicago (incl. Harwood Heights,
+  Elmwood Park; null for Hammond, Indiana) and Sydney; **null on every Lagos place**.
+- `geocode.name` (neighbourhood) is patchy: London gives boroughs ("Westminster", "London Borough of
+  Tower Hamlets"), Toronto gives federal ridings ("Spadina—Fort York"), LA 14/18, Lagos 5/13. Not used
+  for labels.
+- Phones are E.164 everywhere: `+442073994330`, `+14165049669`, `+12133826677`, `+13124641744`,
+  `+2348106800744`, `+61293659000`.
+
+**Venue filter outside NYC.** Dropped as expected: hotels, food courts, clubs and an RSL club (Sydney),
+a resort, supermarkets/hypermarkets, a cultural centre, and drink-first bars without a cuisine category
+(7 of 20 Lagos Nigerian results). Kept places looked like restaurants on a name check (incl. chains such
+as Chicken Republic in Lagos and Eataly in LA, whose primary genre is a restaurant genre). No rule change.
+
+**Edge checks.** An unknown place (`Qwxzvillezz`) → **HTTP 400**
+`{"errors":[{"message":"filter.location.query is unable to resolve to a valid locality.","path":"filter.location"}]}`.
+`"Queens, New York City"` resolved to "Court Square, Long Island City, Queens, Queens County, New York,
+New York, United States" with 11 of 20 places in Queens County (6 New York County, 3 Kings): the same
+11/20 as "Queens" alone in Phase 3, so "area, city" queries work.
+
+**Verdicts** (Good: every search ≥ 15 kept places, ≥ 90% in city/metro, phone and website on most;
+Thin: fewer places or weak link coverage; Poor: little or nothing):
+
+| City | Verdict | Why |
+|---|---|---|
+| London | **Good** | 18–20 kept per search, 58/58 in London (city or metro), phone 51/58, website 58/58 |
+| Toronto | **Good** | 19–20 kept, 56/59 in Toronto (rest Markham/Vaughan/Mississauga), phone 57/59 |
+| Los Angeles | **Good** | 18–20 kept, 56/57 in the LA metro, phone 56/57 |
+| Chicago | **Good** | 16–20 kept, 55/56 in city/metro; Polish website 13/16 |
+| Sydney | **Good** | 17–20 kept, 56/56 in the Sydney metro (council names in `geocode.city`) |
+| Lagos | **Thin** | 6–13 kept, 7 of 20 Nigerian results were not restaurants, website 14/27 |
+
+No city was Poor. Tested once each, on one day, with two cuisines: this says Qloo *has* restaurant data
+there, not how good it is for every cuisine. Dietary/accessibility tag coverage was not measured outside NYC.
 
 ## Decisions
 

@@ -2,7 +2,7 @@
 // facts from `results[]`; it never adds restaurant text, scores or set-aside dishes, and the
 // display name only ever appears in this text, built on the device.
 import { placeLine } from "./format";
-import { safeHttpUrl, telHref } from "./links";
+import { formatPhone, safeHttpUrl, telHref } from "./links";
 import { requirementLabel } from "./status";
 import type { RecommendResult } from "./types";
 
@@ -84,7 +84,7 @@ function placeBlock(r: RecommendResult, n: number, d: Detail): string {
     const more = r.needsConfirmation.length - questions.length;
     if (more > 0) lines.push(`- and ${more} more thing${more === 1 ? "" : "s"} to check`);
   }
-  const phone = r.links.phone && telHref(r.links.phone) ? r.links.phone.trim() : null;
+  const phone = r.links.phone && telHref(r.links.phone) ? formatPhone(r.links.phone) : null;
   if (phone) lines.push(`Phone: ${phone}`);
   const maps = safeHttpUrl(r.links.mapsUrl);
   if (maps) lines.push(`Map: ${maps}`);

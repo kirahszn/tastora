@@ -1,6 +1,6 @@
 // The profile form's state, its conversion to/from `SeniorProfile`, client-side validation with
-// the same Zod schema the server uses, and the two example profiles.
-import { BOROUGHS, detectProfileBorough, type Borough } from "@/lib/domain/borough";
+// the same Zod schema the server uses, and the example profiles.
+import { AREA_MAX, CITY_MAX } from "@/lib/domain/location";
 import { SeniorProfileSchema, type SeniorProfile, type TextureNeed } from "@/lib/domain/profile";
 
 export interface ProfileDraft {
@@ -16,8 +16,9 @@ export interface ProfileDraft {
   texture: TextureNeed;
   quietPreferred: boolean;
   wheelchairAccess: boolean;
-  borough: Borough | "";
-  neighbourhood: string;
+  city: string;
+  /** Neighbourhood or area; optional. */
+  area: string;
 }
 
 export type DraftField = keyof ProfileDraft;
@@ -35,19 +36,15 @@ export const emptyDraft = (): ProfileDraft => ({
   texture: "none",
   quietPreferred: false,
   wheelchairAccess: false,
-  borough: "",
-  neighbourhood: "",
+  city: "",
+  area: "",
 });
 
-export const NEIGHBOURHOOD_MAX = 60;
-
-export function composeLocation(borough: string, neighbourhood: string): string {
-  const n = neighbourhood.trim();
-  return n ? `${n}, ${borough}` : borough;
-}
+export { AREA_MAX, CITY_MAX };
 
 export function draftToInput(d: ProfileDraft) {
   const name = d.displayName.trim();
+  const area = d.area.trim();
   return {
     ...(name ? { displayName: name } : {}),
     favouriteCuisines: d.favouriteCuisines,
@@ -58,16 +55,12 @@ export function draftToInput(d: ProfileDraft) {
     dietaryRestrictions: d.dietaryRestrictions,
     texture: d.texture,
     comfort: { quietPreferred: d.quietPreferred, wheelchairAccess: d.wheelchairAccess },
-    location: d.borough ? composeLocation(d.borough, d.neighbourhood) : "",
+    city: d.city.trim(),
+    ...(area ? { area } : {}),
   };
 }
 
 export function profileToDraft(p: SeniorProfile): ProfileDraft {
-  const borough = detectProfileBorough(p.location) ?? "";
-  // Strip the borough back off "Bed-Stuy, Brooklyn"; keep any other text as the neighbourhood.
-  const neighbourhood = borough
-    ? p.location.replace(new RegExp(`,?\\s*(the\\s+)?${borough}\\s*$`, "i"), "").trim()
-    : p.location;
   return {
     displayName: p.displayName ?? "",
     favouriteCuisines: [...p.favouriteCuisines],
@@ -81,8 +74,8 @@ export function profileToDraft(p: SeniorProfile): ProfileDraft {
     texture: p.texture,
     quietPreferred: p.comfort.quietPreferred,
     wheelchairAccess: p.comfort.wheelchairAccess,
-    borough,
-    neighbourhood: neighbourhood.toLowerCase() === (borough as string).toLowerCase() ? "" : neighbourhood,
+    city: p.city,
+    area: p.area ?? "",
   };
 }
 
@@ -97,13 +90,17 @@ const MESSAGES: Partial<Record<DraftField, { tooSmall?: string; tooBig?: string 
   allergies: { tooBig: "Up to 10 allergies, please." },
   dietaryRestrictions: { tooBig: "Up to 10 dietary needs, please." },
   displayName: { tooBig: "Please keep the name short (40 characters or fewer)." },
+  city: {
+    tooSmall: "Type the city they'd like to eat in, for example London.",
+    tooBig: `Please keep the city to ${CITY_MAX} characters or fewer.`,
+  },
+  area: { tooBig: `Please keep the area to ${AREA_MAX} characters or fewer.` },
 };
 
 function fieldFor(path: readonly PropertyKey[]): DraftField {
   const [first, second] = path.map(String);
   if (first === "tasteMemories") return (second as DraftField) ?? "music";
   if (first === "comfort") return second as DraftField;
-  if (first === "location") return "borough";
   return first as DraftField;
 }
 
@@ -111,10 +108,6 @@ export type DraftErrors = Partial<Record<DraftField, string>>;
 
 export function validateDraft(d: ProfileDraft): { ok: true; profile: SeniorProfile } | { ok: false; errors: DraftErrors } {
   const errors: DraftErrors = {};
-  if (!d.borough || !BOROUGHS.includes(d.borough)) errors.borough = "Choose the borough you'd like to eat in.";
-  if (d.neighbourhood.trim().length > NEIGHBOURHOOD_MAX) {
-    errors.neighbourhood = `Please keep the neighbourhood to ${NEIGHBOURHOOD_MAX} characters or fewer.`;
-  }
   const parsed = SeniorProfileSchema.safeParse(draftToInput(d));
   if (!parsed.success) {
     for (const issue of parsed.error.issues) {
@@ -137,7 +130,7 @@ export function validateDraft(d: ProfileDraft): { ok: true; profile: SeniorProfi
 }
 
 export interface ExampleProfile {
-  id: "sinatra" | "fela";
+  id: "sinatra" | "fela" | "london";
   title: string;
   summary: string;
   draft: ProfileDraft;
@@ -157,7 +150,8 @@ export const EXAMPLES: readonly ExampleProfile[] = [
       music: ["Frank Sinatra"],
       dietaryRestrictions: ["no pork"],
       wheelchairAccess: true,
-      borough: "Queens",
+      city: "New York City",
+      area: "Queens",
     },
   },
   {
@@ -172,7 +166,24 @@ export const EXAMPLES: readonly ExampleProfile[] = [
       music: ["Fela Kuti"],
       allergies: ["peanut"],
       texture: "soft",
-      borough: "Brooklyn",
+      city: "New York City",
+      area: "Brooklyn",
+    },
+  },
+  // London rated Good in the Phase 9c coverage check (Indian: 20 of 20 places in London).
+  {
+    id: "london",
+    title: "Indian food in London",
+    summary: "Loves dal and Lata Mangeshkar. Vegetarian, prefers a quiet place.",
+    draft: {
+      ...emptyDraft(),
+      displayName: "Mum",
+      favouriteCuisines: ["Indian"],
+      favouriteDishes: ["dal"],
+      music: ["Lata Mangeshkar"],
+      dietaryRestrictions: ["vegetarian"],
+      quietPreferred: true,
+      city: "London",
     },
   },
 ];

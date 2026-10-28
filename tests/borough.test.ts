@@ -133,6 +133,7 @@ describe("borough ranking", () => {
       kind: "outside_nyc",
       label: "Outside NYC (Nassau County)",
       inRequestedBorough: false,
+      inRequestedCity: false,
       source: "qloo.properties.geocode.admin2_region: Nassau County",
     });
     const bk = facts.find((f) => f.candidateId === "bk")!;
@@ -142,6 +143,7 @@ describe("borough ranking", () => {
       kind: "unknown",
       label: null,
       inRequestedBorough: false,
+      inRequestedCity: false,
     });
   });
 

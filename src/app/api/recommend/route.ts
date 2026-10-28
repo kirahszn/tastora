@@ -3,6 +3,7 @@
 // upstream bodies or secrets.
 import { z } from "zod";
 import { recommend, type RecommendResponse } from "@/lib/agent/recommend";
+import { LocationNotFoundError } from "@/lib/qloo/search";
 import type { TraceStep } from "@/lib/agent/session";
 import { SeniorProfileSchema } from "@/lib/domain/profile";
 import { clientIp, createRateLimiter } from "@/lib/rateLimit";
@@ -23,6 +24,13 @@ const BodySchema = z.object({
 
 const UPSTREAM_MESSAGE =
   "We couldn't get restaurant suggestions right now. Please try again in a minute.";
+
+// Same code as LOCATION_NOT_FOUND in lib/ui/searchClient.ts (client code, not imported here).
+const LOCATION_NOT_FOUND = {
+  status: 400,
+  code: "location_not_found",
+  error: "Qloo couldn't find that city or area. Please try the nearest larger city.",
+} as const;
 
 export async function POST(request: Request) {
   const rate = checkRate(clientIp(request.headers));
@@ -58,6 +66,9 @@ export async function POST(request: Request) {
     const result = await recommend(profile, feedback);
     return Response.json(result);
   } catch (err) {
+    if (err instanceof LocationNotFoundError) {
+      return Response.json({ error: LOCATION_NOT_FOUND.error, code: LOCATION_NOT_FOUND.code }, { status: 400 });
+    }
     logFailure(err);
     return Response.json({ error: UPSTREAM_MESSAGE }, { status: 502 });
   }
@@ -89,8 +100,11 @@ function streamRecommend(profile: z.output<typeof BodySchema>["profile"], feedba
         const result = await recommend(profile, feedback, { onStep: (step) => send({ type: "step", step }) });
         send({ type: "result", result });
       } catch (err) {
-        logFailure(err);
-        send({ type: "error", status: 502, error: UPSTREAM_MESSAGE });
+        if (err instanceof LocationNotFoundError) send({ type: "error", ...LOCATION_NOT_FOUND });
+        else {
+          logFailure(err);
+          send({ type: "error", status: 502, error: UPSTREAM_MESSAGE });
+        }
       }
       if (open) controller.close();
     },
@@ -107,4 +121,4 @@ function streamRecommend(profile: z.output<typeof BodySchema>["profile"], feedba
 type StreamEvent =
   | { type: "step"; step: TraceStep }
   | { type: "result"; result: RecommendResponse }
-  | { type: "error"; status: number; error: string };
+  | { type: "error"; status: number; error: string; code?: string };

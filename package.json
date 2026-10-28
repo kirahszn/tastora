@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "qloo:probe": "tsx --conditions=react-server scripts/qloo-probe.ts",
+    "qloo:coverage": "tsx --conditions=react-server scripts/qloo-coverage.ts",
     "smoke:recommend": "tsx --conditions=react-server scripts/smoke-recommend.ts",
     "matrix": "tsx --conditions=react-server scripts/profile-matrix.ts"
   },

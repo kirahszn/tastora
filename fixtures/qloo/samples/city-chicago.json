@@ -1,0 +1,727 @@
+{
+  "city": "Chicago",
+  "phase": "9c coverage",
+  "sinatraTop10OverlapWithItalian": 5,
+  "sinatraTop10SamePosition": 2,
+  "runs": [
+    {
+      "label": "Italian",
+      "requests": [
+        {
+          "path": "/v2/insights",
+          "params": {
+            "filter.type": "urn:entity:place",
+            "filter.location.query": "Chicago",
+            "filter.tags": "urn:tag:genre:place:restaurant:italian",
+            "take": 20
+          },
+          "status": 200,
+          "durationMs": 479
+        }
+      ],
+      "localityResolved": [
+        "Chicago, Cook County, Illinois, United States"
+      ],
+      "rawPlaces": 20,
+      "kept": 20,
+      "dropped": [],
+      "notes": [],
+      "inCity": 20,
+      "geocodeCity": {
+        "Chicago": 19,
+        "Cicero": 1
+      },
+      "localityCity": {
+        "Chicago": 19,
+        "Cicero": 1
+      },
+      "geocodeName": {
+        "Magnificent Mile": 1,
+        "Lincoln Park": 1,
+        "River North": 4,
+        "Streeterville": 3,
+        "West Loop": 3,
+        "Chinatown": 1,
+        "West Town": 2,
+        "Lake View": 1,
+        "Uptown": 1,
+        "∅": 1,
+        "Near West Side": 1,
+        "Near North Side": 1
+      },
+      "countryCode": {
+        "US": 20
+      },
+      "fieldCoverage": {
+        "geocode": 20,
+        "geocodeCity": 20,
+        "geocodeName": 19,
+        "admin1": 20,
+        "admin2": 20,
+        "localityCity": 20,
+        "localityNeighborhood": 19,
+        "neighborhoodProp": 19,
+        "address": 20,
+        "phone": 19,
+        "website": 20,
+        "hours": 19,
+        "dishes": 20
+      },
+      "phoneSamples": [
+        "+13124641744",
+        "+17733271512",
+        "+13122221888",
+        "+13126985000"
+      ],
+      "top10": [
+        {
+          "id": "2AB18020-5AF4-4379-B2B1-03FD26DB09B1",
+          "name": "The Purple Pig Restaurant"
+        },
+        {
+          "id": "2A1B63CD-10D7-46A6-9410-8A6D376B14C6",
+          "name": "Pequod's Pizza"
+        },
+        {
+          "id": "313AC5B0-B649-4FC2-A4CF-F98D422B5A49",
+          "name": "RPM Italian"
+        },
+        {
+          "id": "499CCD0B-353A-4B58-8FCB-8B2DE0E884BB",
+          "name": "Quartino Ristorante"
+        },
+        {
+          "id": "264EE9C5-C8AE-460B-AEE2-155DCA8AC344",
+          "name": "Gino's East"
+        },
+        {
+          "id": "5E5671C5-C927-4BB1-935F-3BBE803087EC",
+          "name": "Gibsons Italia"
+        },
+        {
+          "id": "9BDDA132-1AA5-4557-A91E-C8B70088BC59",
+          "name": "Siena Tavern"
+        },
+        {
+          "id": "C3AD41B9-B879-46C7-BCA8-E782941894B8",
+          "name": "Bar Siena"
+        },
+        {
+          "id": "12236071-2778-4FD4-9E0F-A06C9C2E095C",
+          "name": "Monteverde Restaurant & Pastificio"
+        },
+        {
+          "id": "9DF33483-7900-4637-9CDB-AFBE28DC4F99",
+          "name": "Harry Caray's Italian Steakhouse"
+        }
+      ],
+      "samplePlaces": [
+        {
+          "entity_id": "2AB18020-5AF4-4379-B2B1-03FD26DB09B1",
+          "name": "The Purple Pig Restaurant",
+          "primary_genre": "urn:tag:genre:place:restaurant:mediterranean",
+          "address": "444 N Michigan Ave Upper Level Chicago, IL 60611",
+          "neighborhood": "Magnificent Mile",
+          "geocode": {
+            "city": "Chicago",
+            "name": "Magnificent Mile",
+            "metro": "Chicago",
+            "admin1_region": "Illinois",
+            "admin2_region": "Cook County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Chicago",
+            "metro": "Chicago",
+            "neighborhood": "Magnificent Mile"
+          },
+          "phone": "+13124641744",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 43
+        },
+        {
+          "entity_id": "2A1B63CD-10D7-46A6-9410-8A6D376B14C6",
+          "name": "Pequod's Pizza",
+          "primary_genre": "urn:tag:genre:place:restaurant:pizza",
+          "address": "2207 N Clybourn Ave Chicago, IL 60614",
+          "neighborhood": "Lincoln Park",
+          "geocode": {
+            "city": "Chicago",
+            "name": "Lincoln Park",
+            "metro": "Chicago",
+            "admin1_region": "Illinois",
+            "admin2_region": "Cook County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Chicago",
+            "metro": "Chicago",
+            "neighborhood": "Lincoln Park"
+          },
+          "phone": "+17733271512",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 18
+        },
+        {
+          "entity_id": "313AC5B0-B649-4FC2-A4CF-F98D422B5A49",
+          "name": "RPM Italian",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "52 W Illinois St Chicago, IL 60654",
+          "neighborhood": "River North",
+          "geocode": {
+            "city": "Chicago",
+            "name": "River North",
+            "metro": "Chicago",
+            "admin1_region": "Illinois",
+            "admin2_region": "Cook County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Chicago",
+            "metro": "Chicago",
+            "neighborhood": "River North"
+          },
+          "phone": "+13122221888",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 13
+        },
+        {
+          "entity_id": "499CCD0B-353A-4B58-8FCB-8B2DE0E884BB",
+          "name": "Quartino Ristorante",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "626 N State St Chicago, IL 60654",
+          "neighborhood": "River North",
+          "geocode": {
+            "city": "Chicago",
+            "name": "River North",
+            "metro": "Chicago",
+            "admin1_region": "Illinois",
+            "admin2_region": "Cook County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Chicago",
+            "metro": "Chicago",
+            "neighborhood": "River North"
+          },
+          "phone": "+13126985000",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 22
+        },
+        {
+          "entity_id": "264EE9C5-C8AE-460B-AEE2-155DCA8AC344",
+          "name": "Gino's East",
+          "primary_genre": "urn:tag:genre:place:restaurant:pizza",
+          "address": "162 E Superior St Chicago, IL 60611",
+          "neighborhood": "Streeterville",
+          "geocode": {
+            "city": "Chicago",
+            "name": "Streeterville",
+            "metro": "Chicago",
+            "admin1_region": "Illinois",
+            "admin2_region": "Cook County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Chicago",
+            "metro": "Chicago",
+            "neighborhood": "Streeterville"
+          },
+          "phone": "+13122663337",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 11
+        }
+      ]
+    },
+    {
+      "label": "Polish",
+      "requests": [
+        {
+          "path": "/v2/insights",
+          "params": {
+            "filter.type": "urn:entity:place",
+            "filter.location.query": "Chicago",
+            "filter.tags": "urn:tag:genre:place:restaurant:polish",
+            "take": 20
+          },
+          "status": 200,
+          "durationMs": 431
+        }
+      ],
+      "localityResolved": [
+        "Chicago, Cook County, Illinois, United States"
+      ],
+      "rawPlaces": 17,
+      "kept": 16,
+      "dropped": [
+        {
+          "id": "CDBD1C1C-C51F-4921-9588-7282CD90FCD1",
+          "name": "KD Fresh Market",
+          "reason": "primary genre is grocery store"
+        }
+      ],
+      "notes": [],
+      "inCity": 15,
+      "geocodeCity": {
+        "Chicago": 13,
+        "Harwood Heights": 1,
+        "Hammond": 1,
+        "Elmwood Park": 1
+      },
+      "localityCity": {
+        "Chicago": 13,
+        "Harwood Heights": 1,
+        "Hammond": 1,
+        "Elmwood Park": 1
+      },
+      "geocodeName": {
+        "Avondale": 2,
+        "Dunning": 2,
+        "Norwood Park": 2,
+        "Portage Park": 1,
+        "Harwood Heights": 1,
+        "Belmont Cragin": 1,
+        "∅": 1,
+        "Jefferson Park": 2,
+        "Montclare": 1,
+        "Elmwood Park": 1,
+        "Clearing": 1,
+        "Archer Heights": 1
+      },
+      "countryCode": {
+        "US": 16
+      },
+      "fieldCoverage": {
+        "geocode": 16,
+        "geocodeCity": 16,
+        "geocodeName": 15,
+        "admin1": 16,
+        "admin2": 16,
+        "localityCity": 16,
+        "localityNeighborhood": 15,
+        "neighborhoodProp": 15,
+        "address": 16,
+        "phone": 16,
+        "website": 13,
+        "hours": 16,
+        "dishes": 15
+      },
+      "phoneSamples": [
+        "+17733420779",
+        "+17737367606",
+        "+17737633407",
+        "+17732051771"
+      ],
+      "top10": [
+        {
+          "id": "89D585E5-45AF-4460-993C-3F3D209494D2",
+          "name": "Staropolska Restaurant"
+        },
+        {
+          "id": "7F400676-1E76-42D7-B8F5-BF7DBE89C477",
+          "name": "Jolly Inn Restaurant & Banquet Hall"
+        },
+        {
+          "id": "67A747EA-9DEE-4C46-8B01-3C9F60112527",
+          "name": "Red Apple Buffet-Restaurant"
+        },
+        {
+          "id": "330FC6D0-64BB-429A-80C8-714CCD2D58D7",
+          "name": "Smakosz Restaurant"
+        },
+        {
+          "id": "77DB9C1F-482E-4948-A49B-60DB7F449726",
+          "name": "Baltic - Good Polish Food"
+        },
+        {
+          "id": "D0753341-AE4F-4886-92EF-EE15AC78FF6E",
+          "name": "Tasty Polish Food"
+        },
+        {
+          "id": "9766FBC4-F8F8-4C32-B565-2B108D738647",
+          "name": "MILANO Cafe Bar"
+        },
+        {
+          "id": "0A8B5D00-6B71-454F-B4EE-F50C3F4A7DE7",
+          "name": "Polish Bistro"
+        },
+        {
+          "id": "7382651F-8E77-4DE0-BE10-6DB68A02CED1",
+          "name": "Cavalier Inn"
+        },
+        {
+          "id": "01CC7FF3-5493-455B-86F7-89878F53DD00",
+          "name": "Stardust Banquet Hall"
+        }
+      ],
+      "samplePlaces": [
+        {
+          "entity_id": "89D585E5-45AF-4460-993C-3F3D209494D2",
+          "name": "Staropolska Restaurant",
+          "primary_genre": "urn:tag:genre:place:restaurant:polish",
+          "address": "3030 N Milwaukee Ave Chicago, IL 60618",
+          "neighborhood": "Avondale",
+          "geocode": {
+            "city": "Chicago",
+            "name": "Avondale",
+            "metro": "Chicago",
+            "admin1_region": "Illinois",
+            "admin2_region": "Cook County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Chicago",
+            "metro": "Chicago",
+            "neighborhood": "Avondale"
+          },
+          "phone": "+17733420779",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 18
+        },
+        {
+          "entity_id": "7F400676-1E76-42D7-B8F5-BF7DBE89C477",
+          "name": "Jolly Inn Restaurant & Banquet Hall",
+          "primary_genre": "urn:tag:genre:place:restaurant:polish",
+          "address": "6501 W Irving Park Rd Chicago, IL 60634",
+          "neighborhood": "Dunning",
+          "geocode": {
+            "city": "Chicago",
+            "name": "Dunning",
+            "metro": "Chicago",
+            "admin1_region": "Illinois",
+            "admin2_region": "Cook County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Chicago",
+            "metro": "Chicago",
+            "neighborhood": "Dunning"
+          },
+          "phone": "+17737367606",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 21
+        },
+        {
+          "entity_id": "67A747EA-9DEE-4C46-8B01-3C9F60112527",
+          "name": "Red Apple Buffet-Restaurant",
+          "primary_genre": "urn:tag:genre:place:restaurant:buffet",
+          "address": "6474 N Milwaukee Ave Chicago, IL 60631",
+          "neighborhood": "Norwood Park",
+          "geocode": {
+            "city": "Chicago",
+            "name": "Norwood Park",
+            "metro": "Chicago",
+            "admin1_region": "Illinois",
+            "admin2_region": "Cook County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Chicago",
+            "metro": "Chicago",
+            "neighborhood": "Norwood Park"
+          },
+          "phone": "+17737633407",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 11
+        },
+        {
+          "entity_id": "330FC6D0-64BB-429A-80C8-714CCD2D58D7",
+          "name": "Smakosz Restaurant",
+          "primary_genre": "urn:tag:genre:place:restaurant:polish",
+          "address": "5619 W Lawrence Ave Chicago, IL 60630",
+          "neighborhood": "Portage Park",
+          "geocode": {
+            "city": "Chicago",
+            "name": "Portage Park",
+            "metro": "Chicago",
+            "admin1_region": "Illinois",
+            "admin2_region": "Cook County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Chicago",
+            "metro": "Chicago",
+            "neighborhood": "Portage Park"
+          },
+          "phone": "+17732051771",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 11
+        },
+        {
+          "entity_id": "77DB9C1F-482E-4948-A49B-60DB7F449726",
+          "name": "Baltic - Good Polish Food",
+          "primary_genre": "urn:tag:genre:place:restaurant:polish",
+          "address": "Lawrence Court 7352 W Lawrence Ave Harwood Heights, IL 60706",
+          "neighborhood": "Harwood Heights",
+          "geocode": {
+            "city": "Harwood Heights",
+            "name": "Harwood Heights",
+            "metro": "Chicago",
+            "admin1_region": "Illinois",
+            "admin2_region": "Cook County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Harwood Heights",
+            "metro": "Chicago",
+            "neighborhood": "Harwood Heights"
+          },
+          "phone": "+17088678865",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 7
+        }
+      ]
+    },
+    {
+      "label": "Italian + Frank Sinatra",
+      "requests": [
+        {
+          "path": "/v2/insights",
+          "params": {
+            "filter.type": "urn:entity:place",
+            "filter.location.query": "Chicago",
+            "filter.tags": "urn:tag:genre:place:restaurant:italian",
+            "signal.interests.entities": [
+              "FC0F8D26-BA80-4D83-8BBF-FC011DC8D241"
+            ],
+            "take": 20
+          },
+          "status": 200,
+          "durationMs": 517
+        }
+      ],
+      "localityResolved": [
+        "Chicago, Cook County, Illinois, United States"
+      ],
+      "rawPlaces": 20,
+      "kept": 20,
+      "dropped": [],
+      "notes": [],
+      "inCity": 20,
+      "geocodeCity": {
+        "Chicago": 16,
+        "Rosemont": 2,
+        "Park Ridge": 1,
+        "Lincolnwood": 1
+      },
+      "localityCity": {
+        "Chicago": 16,
+        "Rosemont": 2,
+        "Park Ridge": 1,
+        "Lincolnwood": 1
+      },
+      "geocodeName": {
+        "Streeterville": 2,
+        "Rosemont": 2,
+        "River North": 6,
+        "Lincoln Park": 2,
+        "∅": 1,
+        "West Loop": 1,
+        "Loop": 1,
+        "Lower West Side": 1,
+        "West Town": 1,
+        "Irving Park": 1,
+        "Lincolnwood": 1,
+        "Magnificent Mile": 1
+      },
+      "countryCode": {
+        "US": 20
+      },
+      "fieldCoverage": {
+        "geocode": 20,
+        "geocodeCity": 20,
+        "geocodeName": 19,
+        "admin1": 20,
+        "admin2": 20,
+        "localityCity": 20,
+        "localityNeighborhood": 19,
+        "neighborhoodProp": 19,
+        "address": 20,
+        "phone": 20,
+        "website": 20,
+        "hours": 20,
+        "dishes": 20
+      },
+      "phoneSamples": [
+        "+13122663337",
+        "+18475180990",
+        "+13122221888",
+        "+13128280966"
+      ],
+      "top10": [
+        {
+          "id": "264EE9C5-C8AE-460B-AEE2-155DCA8AC344",
+          "name": "Gino's East"
+        },
+        {
+          "id": "3D7F157E-883E-42E0-A67C-7206D382F279",
+          "name": "Carlucci Rosemont"
+        },
+        {
+          "id": "313AC5B0-B649-4FC2-A4CF-F98D422B5A49",
+          "name": "RPM Italian"
+        },
+        {
+          "id": "9DF33483-7900-4637-9CDB-AFBE28DC4F99",
+          "name": "Harry Caray's Italian Steakhouse"
+        },
+        {
+          "id": "FAE6B235-4090-4866-B2C2-A4DCD08DF81F",
+          "name": "Erie Cafe"
+        },
+        {
+          "id": "E02D3862-4E22-4200-9681-622864F45152",
+          "name": "Carmine's Italian Rosemont"
+        },
+        {
+          "id": "9BDDA132-1AA5-4557-A91E-C8B70088BC59",
+          "name": "Siena Tavern"
+        },
+        {
+          "id": "B4CCD3F6-1D6E-469E-A350-F9A95CD4308A",
+          "name": "Riccardo Trattoria"
+        },
+        {
+          "id": "F1602C8F-ADB8-4CC8-829F-CD28EF9A2F07",
+          "name": "Pazzi Di Pizza Park Ridge"
+        },
+        {
+          "id": "2A1B63CD-10D7-46A6-9410-8A6D376B14C6",
+          "name": "Pequod's Pizza"
+        }
+      ],
+      "samplePlaces": [
+        {
+          "entity_id": "264EE9C5-C8AE-460B-AEE2-155DCA8AC344",
+          "name": "Gino's East",
+          "primary_genre": "urn:tag:genre:place:restaurant:pizza",
+          "address": "162 E Superior St Chicago, IL 60611",
+          "neighborhood": "Streeterville",
+          "geocode": {
+            "city": "Chicago",
+            "name": "Streeterville",
+            "metro": "Chicago",
+            "admin1_region": "Illinois",
+            "admin2_region": "Cook County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Chicago",
+            "metro": "Chicago",
+            "neighborhood": "Streeterville"
+          },
+          "phone": "+13122663337",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 11
+        },
+        {
+          "entity_id": "3D7F157E-883E-42E0-A67C-7206D382F279",
+          "name": "Carlucci Rosemont",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "6111 N River Rd Rosemont, IL 60018",
+          "neighborhood": "Rosemont",
+          "geocode": {
+            "city": "Rosemont",
+            "name": "Rosemont",
+            "metro": "Chicago",
+            "admin1_region": "Illinois",
+            "admin2_region": "Cook County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Rosemont",
+            "metro": "Chicago",
+            "neighborhood": "Rosemont"
+          },
+          "phone": "+18475180990",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 8
+        },
+        {
+          "entity_id": "313AC5B0-B649-4FC2-A4CF-F98D422B5A49",
+          "name": "RPM Italian",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "52 W Illinois St Chicago, IL 60654",
+          "neighborhood": "River North",
+          "geocode": {
+            "city": "Chicago",
+            "name": "River North",
+            "metro": "Chicago",
+            "admin1_region": "Illinois",
+            "admin2_region": "Cook County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Chicago",
+            "metro": "Chicago",
+            "neighborhood": "River North"
+          },
+          "phone": "+13122221888",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 13
+        },
+        {
+          "entity_id": "9DF33483-7900-4637-9CDB-AFBE28DC4F99",
+          "name": "Harry Caray's Italian Steakhouse",
+          "primary_genre": "urn:tag:genre:place:restaurant:steak_house",
+          "address": "33 W Kinzie St Chicago, IL 60654",
+          "neighborhood": "River North",
+          "geocode": {
+            "city": "Chicago",
+            "name": "River North",
+            "metro": "Chicago",
+            "admin1_region": "Illinois",
+            "admin2_region": "Cook County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Chicago",
+            "metro": "Chicago",
+            "neighborhood": "River North"
+          },
+          "phone": "+13128280966",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 15
+        },
+        {
+          "entity_id": "FAE6B235-4090-4866-B2C2-A4DCD08DF81F",
+          "name": "Erie Cafe",
+          "primary_genre": "urn:tag:genre:place:restaurant:steak_house",
+          "address": "536 W Erie St Chicago, IL 60654",
+          "neighborhood": "River North",
+          "geocode": {
+            "city": "Chicago",
+            "name": "River North",
+            "metro": "Chicago",
+            "admin1_region": "Illinois",
+            "admin2_region": "Cook County",
+            "country_code": "US"
+          },
+          "locality": {
+            "city": "Chicago",
+            "metro": "Chicago",
+            "neighborhood": "River North"
+          },
+          "phone": "+13122662300",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 11
+        }
+      ]
+    }
+  ]
+}

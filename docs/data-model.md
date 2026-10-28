@@ -17,7 +17,8 @@ facts. All pure TypeScript; no UI, no live calls, no LLM. Field names come from 
 | `dietaryRestrictions` | string[] | 0–10, each ≤ 60 |
 | `texture` | `none` \| `soft` \| `easy_to_chew` | default `none` |
 | `comfort.quietPreferred` / `.wheelchairAccess` | boolean | default false |
-| `location` | string | required, ≤ 80 |
+| `city` | string | required, ≤ 60 (Phase 9c) |
+| `area` | string | optional, ≤ 60: neighbourhood or area. A pre-Phase 9c `location` is migrated on parse (borough → city "New York City" + area) |
 
 All strings are trimmed; empty entries are rejected. Optional lists default to `[]`.
 

@@ -163,9 +163,9 @@ function Results({ profile }: { profile: SeniorProfile }) {
           </ul>
         )}
         <div className={styles.row}>
-          {phase.error === "invalid" ? (
+          {phase.error === "invalid" || phase.error === "location_not_found" ? (
             <Link href="/profile" className="btn btn-primary">
-              Check the profile
+              {phase.error === "invalid" ? "Check the profile" : "Change the city"}
             </Link>
           ) : (
             <>
@@ -183,8 +183,9 @@ function Results({ profile }: { profile: SeniorProfile }) {
   }
 
   const { results, excluded, evidence, meta, trace } = phase.response;
-  // Absent on results cached before Phase 5.
+  // Absent on results cached before Phase 5 / Phase 9c.
   const notices = phase.response.notices ?? [];
+  const coverageNote = phase.response.coverageNote ?? null;
   const count = feedbackCount(feedback);
 
   // From the latest state, so quick taps in a row don't undo each other. The save is idempotent.
@@ -214,6 +215,12 @@ function Results({ profile }: { profile: SeniorProfile }) {
         </span>
       </p>
 
+      {coverageNote && (
+        <p className={styles.coverageNote} role="note">
+          {coverageNote}
+        </p>
+      )}
+
       {notices.length > 0 && (
         <section className={styles.searchNotes} aria-labelledby="notes-h">
           <h2 id="notes-h">About this search</h2>
@@ -241,8 +248,8 @@ function Results({ profile }: { profile: SeniorProfile }) {
       {results.length === 0 ? (
         <div className={styles.emptyCard}>
           <p>
-            No restaurants fit this search. Try another favourite cuisine, a neighbouring borough, or fewer comfort
-            needs.
+            No restaurants fit this search. Try another favourite cuisine, a nearby area or larger city, or fewer
+            comfort needs.
           </p>
           <div className={styles.row}>
             <Link href="/profile" className="btn btn-primary">

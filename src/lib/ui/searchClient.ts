@@ -5,7 +5,10 @@ import type { RankingFeedback } from "@/lib/ranking/rank";
 import { NdjsonError, readNdjson } from "./ndjson";
 import type { RecommendResponse, TraceStep } from "./types";
 
-export type SearchErrorKind = "invalid" | "rate_limited" | "upstream" | "offline" | "unknown";
+export type SearchErrorKind = "invalid" | "location_not_found" | "rate_limited" | "upstream" | "offline" | "unknown";
+
+/** `code` the server sends with a 400 when Qloo can't resolve the city or area. */
+export const LOCATION_NOT_FOUND = "location_not_found";
 
 export class SearchError extends Error {
   constructor(
@@ -18,8 +21,8 @@ export class SearchError extends Error {
   }
 }
 
-export function errorKindForStatus(status: number): SearchErrorKind {
-  if (status === 400) return "invalid";
+export function errorKindForStatus(status: number, code?: unknown): SearchErrorKind {
+  if (status === 400) return code === LOCATION_NOT_FOUND ? "location_not_found" : "invalid";
   if (status === 429) return "rate_limited";
   if (status >= 500) return "upstream";
   return "unknown";
@@ -29,6 +32,10 @@ export const ERROR_COPY: Record<SearchErrorKind, { title: string; body: string }
   invalid: {
     title: "Something in the profile needs a look",
     body: "Tastora couldn't read part of the profile. Please check it and try again.",
+  },
+  location_not_found: {
+    title: "We couldn't find that place",
+    body: "Qloo didn't recognise the city or area. Please try the nearest larger city instead, and leave the area blank.",
   },
   rate_limited: {
     title: "Lots of searches at once",
@@ -51,7 +58,7 @@ export const ERROR_COPY: Record<SearchErrorKind, { title: string; body: string }
 type StreamEvent =
   | { type: "step"; step: TraceStep }
   | { type: "result"; result: RecommendResponse }
-  | { type: "error"; status: number; error: string };
+  | { type: "error"; status: number; error: string; code?: string };
 
 function isStreamEvent(e: unknown): e is StreamEvent {
   return !!e && typeof e === "object" && typeof (e as { type?: unknown }).type === "string";
@@ -59,13 +66,15 @@ function isStreamEvent(e: unknown): e is StreamEvent {
 
 async function httpError(res: Response): Promise<SearchError> {
   let fieldErrors: { path: string; message: string }[] = [];
+  let code: unknown;
   try {
     const body = await res.json();
     if (Array.isArray(body?.fieldErrors)) fieldErrors = body.fieldErrors;
+    code = body?.code;
   } catch {
     // body is optional
   }
-  return new SearchError(errorKindForStatus(res.status), res.status, fieldErrors);
+  return new SearchError(errorKindForStatus(res.status, code), res.status, fieldErrors);
 }
 
 /** The request body. The display name never leaves the device: the server has no use for it. */
@@ -108,7 +117,7 @@ export async function runSearch(
         out.steps += 1;
         onStep?.(e.step);
       } else if (e.type === "result") out.result = e.result;
-      else if (e.type === "error") out.failure = new SearchError(errorKindForStatus(e.status), e.status);
+      else if (e.type === "error") out.failure = new SearchError(errorKindForStatus(e.status, e.code), e.status);
     });
     if (out.failure) throw out.failure;
     if (out.result) return out.result;

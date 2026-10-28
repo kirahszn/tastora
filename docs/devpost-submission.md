@@ -29,12 +29,18 @@ A caregiver describes the person: favourite cuisines and dishes, taste memories 
 places), and what they must avoid (allergies, diet, texture, quiet, wheelchair access). There is
 no age field and no assumption about what older people eat.
 
-Tastora finds New York City restaurants and explains each one: why it was suggested, a Matched /
+Tastora finds restaurants near the person and explains each one: why it was suggested, a Matched /
 Needs confirmation / Conflict status for every need, dishes to ask about, dishes set aside and why,
 and questions to ask the restaurant. Allergies and texture are never shown as matched. An evidence
 panel compares Qloo's ranking with and without the person's taste signals. Feedback shapes the
 next search. A shortlist can be shared with family as plain text (share sheet, WhatsApp or copy)
 or printed as a "questions to ask" checklist for phoning the restaurant.
+
+It is best tested in New York City; coverage was checked in 6 other cities. Live checks rated London,
+Toronto, Los Angeles, Chicago and Sydney Good (16–20 restaurants per search, almost all inside the city
+or its metro) and Lagos Thin (6–13). The caregiver types a city and an optional area. Places in that
+city rank a little higher and are labelled ("In London", "In the Sydney area", "Nearby: Markham").
+When results are few, or the city's coverage is thin, the page says so.
 
 ## How we built it
 
@@ -44,10 +50,10 @@ or printed as a "questions to ask" checklist for phoning the restaurant.
   `find_taste_entities` and `search_restaurants`. Code enforces hard limits (10 tool calls, 6
   turns, 3 searches, 30 s). Every ID Claude passes must have come from an earlier Qloo result in
   the same run. Claude sees only cuisines, dishes, dislikes and taste memories; allergies, diet
-  and location stay on the server. If Claude is unavailable, a deterministic planner takes over.
+  and the city stay on the server. If Claude is unavailable, a deterministic planner takes over.
 - **Qloo** calls: `/v2/tags` (cuisine tags), `/search` (taste memories → entities), `/v2/insights`
   (places filtered by location and cuisine, ranked by taste signals).
-- **A deterministic constraint engine and ranker** (Zod-validated, 209 Vitest tests) decide
+- **A deterministic constraint engine and ranker** (Zod-validated, 281 Vitest tests) decide
   statuses, exclusions, ranking and every fact on a card. The rule: **the agent decides how to
   search; tested code decides what is safe.**
 
@@ -79,6 +85,9 @@ suggest and no way to connect "loves Frank Sinatra" to a specific Italian restau
   real places.
 - **Location is a bias.** A Queens search returned Manhattan and Nassau places too, so Tastora
   ranks the chosen borough higher and labels places outside NYC.
+- **Every city names places differently.** Going beyond NYC, Qloo's `geocode.city` was the city
+  in London, Toronto, LA, Chicago and Lagos, but in Sydney it was usually a council ("Council of the
+  City of Sydney"). Tastora matches the city or the metro, and labels nothing when neither is there.
 - **No allergen data.** Qloo has dish names but no ingredients. We built dish-name lists (suya →
   peanut, bibimbap → sesame, korma → milk) and a penalty for allergen-heavy venues, and we never
   call anything safe.
@@ -105,8 +114,8 @@ a feature that would have required guessing.
 ## What's next
 
 Join menu-level data through the Google Place ID Qloo returns for every venue, add an optional
-strict borough filter, move the rate limit and cache to shared storage, and expand beyond NYC once
-Qloo coverage is checked.
+strict borough filter, move the rate limit and cache to shared storage, and check coverage in more
+cities and cuisines (including dietary and accessibility tags, so far only measured in NYC).
 
 ## Built with
 

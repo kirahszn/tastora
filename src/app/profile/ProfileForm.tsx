@@ -5,11 +5,12 @@ import { Icon } from "@/components/Icon";
 import { ListInput } from "@/components/ListInput";
 import formStyles from "@/components/form.module.css";
 import { useHydrated } from "@/components/useHydrated";
-import { BOROUGHS } from "@/lib/domain/borough";
+import { QUICK_CITIES } from "@/lib/domain/location";
 import type { TextureNeed } from "@/lib/domain/profile";
 import {
+  AREA_MAX,
+  CITY_MAX,
   EXAMPLES,
-  NEIGHBOURHOOD_MAX,
   emptyDraft,
   profileToDraft,
   validateDraft,
@@ -54,8 +55,8 @@ const FIELD_LABELS: [DraftField, string][] = [
   ["dislikes", "Dislikes"],
   ["allergies", "Allergies"],
   ["dietaryRestrictions", "Dietary restrictions"],
-  ["borough", "Borough"],
-  ["neighbourhood", "Neighbourhood"],
+  ["city", "City"],
+  ["area", "Neighbourhood or area"],
 ];
 
 export function ProfileForm() {
@@ -132,7 +133,7 @@ function Form() {
     <div className={styles.page}>
       <h1>Tell us about them</h1>
       <p className={styles.intro}>
-        Only cuisines and a borough are needed. Everything else helps Tastora find places that feel familiar and
+        Only cuisines and a city are needed. Everything else helps Tastora find places that feel familiar and
         flag what to check.
       </p>
 
@@ -354,48 +355,70 @@ function Form() {
         <section className={styles.section} aria-labelledby="where-h">
           <h2 id="where-h">Where</h2>
           <div className={formStyles.field}>
-            <label htmlFor="f-borough" className={formStyles.label}>
-              Borough
+            <label htmlFor="f-city" className={formStyles.label}>
+              City
             </label>
-            <select
-              id="f-borough"
-              className={formStyles.select}
-              value={draft.borough}
-              aria-invalid={err("borough") ? true : undefined}
-              aria-describedby={err("borough") ? "f-borough-err" : undefined}
-              onChange={(e) => set("borough", e.target.value as ProfileDraft["borough"])}
-            >
-              <option value="">Choose a borough</option>
-              {BOROUGHS.map((b) => (
-                <option key={b} value={b}>
-                  {b === "Bronx" ? "The Bronx" : b}
-                </option>
-              ))}
-            </select>
-            {err("borough") && (
-              <p id="f-borough-err" className={formStyles.error}>
-                {err("borough")}
+            <p id="f-city-hint" className={formStyles.hint}>
+              Type a city or pick one below. Tastora is best tested in New York City.
+            </p>
+            <input
+              id="f-city"
+              className={formStyles.input}
+              value={draft.city}
+              maxLength={CITY_MAX}
+              placeholder="e.g. London"
+              autoComplete="address-level2"
+              aria-invalid={err("city") ? true : undefined}
+              aria-describedby={err("city") ? "f-city-hint f-city-err" : "f-city-hint"}
+              onChange={(e) => set("city", e.target.value)}
+            />
+            <div className={formStyles.suggestions} role="group" aria-label="Quick picks for city">
+              {QUICK_CITIES.map((c) => {
+                const on = draft.city.trim().toLowerCase() === c.toLowerCase();
+                return (
+                  <button
+                    key={c}
+                    type="button"
+                    className={formStyles.suggestion}
+                    aria-pressed={on}
+                    onClick={() => set("city", c)}
+                  >
+                    <span aria-hidden="true">{on ? "✓ " : ""}</span>
+                    {c}
+                  </button>
+                );
+              })}
+            </div>
+            {err("city") && (
+              <p id="f-city-err" className={formStyles.error}>
+                {err("city")}
               </p>
             )}
           </div>
           <div className={formStyles.field}>
-            <label htmlFor="f-neighbourhood" className={formStyles.label}>
-              Neighbourhood <span className={styles.optional}>(optional)</span>
+            <label htmlFor="f-area" className={formStyles.label}>
+              Neighbourhood or area <span className={styles.optional}>(optional)</span>
             </label>
             <input
-              id="f-neighbourhood"
+              id="f-area"
               className={formStyles.input}
-              value={draft.neighbourhood}
-              maxLength={NEIGHBOURHOOD_MAX}
-              placeholder="e.g. Bed-Stuy"
+              value={draft.area}
+              maxLength={AREA_MAX}
+              placeholder="e.g. Bed-Stuy, Brooklyn or Shoreditch"
               autoComplete="off"
-              aria-invalid={err("neighbourhood") ? true : undefined}
-              onChange={(e) => set("neighbourhood", e.target.value)}
+              aria-invalid={err("area") ? true : undefined}
+              aria-describedby={err("area") ? "f-area-err" : undefined}
+              onChange={(e) => set("area", e.target.value)}
             />
-            {err("neighbourhood") && <p className={formStyles.error}>{err("neighbourhood")}</p>}
+            {err("area") && (
+              <p id="f-area-err" className={formStyles.error}>
+                {err("area")}
+              </p>
+            )}
           </div>
           <p className={styles.sectionHint}>
-            Places in this borough rank a little higher. Nearby places can still appear, clearly labelled.
+            Places in this city (or, in New York, this borough) rank a little higher. Nearby places can still
+            appear, clearly labelled. Qloo&rsquo;s restaurant coverage varies by city.
           </p>
         </section>
 

@@ -1,6 +1,7 @@
 // The person a caregiver is finding a restaurant for. Only short labels and food/taste facts;
 // no full names, dates of birth or contact details are collected.
 import { z } from "zod";
+import { AREA_MAX, CITY_MAX, migrateLegacyLocation } from "./location";
 
 /** A trimmed, non-empty string of at most `max` characters. */
 const entry = (max: number) => z.string().trim().min(1, "must not be empty").max(max);
@@ -9,7 +10,7 @@ const list = (itemMax: number, min: number, max: number) => z.array(entry(itemMa
 
 export const TEXTURE_NEEDS = ["none", "soft", "easy_to_chew"] as const;
 
-export const SeniorProfileSchema = z.object({
+const ProfileObjectSchema = z.object({
   /** Optional short label such as "Mum"; not a full name. */
   displayName: entry(40).optional(),
   favouriteCuisines: list(60, 1, 5),
@@ -34,11 +35,23 @@ export const SeniorProfileSchema = z.object({
       wheelchairAccess: z.boolean().default(false),
     })
     .default({ quietPreferred: false, wheelchairAccess: false }),
-  /** Free-text NYC area, e.g. "Bed-Stuy, Brooklyn". */
-  location: entry(80),
+  /** Free-text city, e.g. "New York City", "London". */
+  city: entry(CITY_MAX),
+  /** Optional neighbourhood or area, e.g. "Bed-Stuy, Brooklyn", "Shoreditch". */
+  area: entry(AREA_MAX).optional(),
 });
 
-/** Caregiver input before defaults are applied. */
-export type SeniorProfileInput = z.input<typeof SeniorProfileSchema>;
+type ProfileObjectInput = z.input<typeof ProfileObjectSchema>;
+
+/** Caregiver input before defaults are applied. Pre-Phase 9c input with `location` is still accepted. */
+export type SeniorProfileInput =
+  | ProfileObjectInput
+  | (Omit<ProfileObjectInput, "city" | "area"> & { location: string; city?: never; area?: never });
+
+/** Profiles saved before Phase 9c (`location` only) are migrated on parse; see location.ts. */
+export const SeniorProfileSchema = z.preprocess(
+  (raw: SeniorProfileInput) => migrateLegacyLocation(raw),
+  ProfileObjectSchema,
+);
 export type SeniorProfile = z.output<typeof SeniorProfileSchema>;
 export type TextureNeed = (typeof TEXTURE_NEEDS)[number];

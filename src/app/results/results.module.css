@@ -163,6 +163,15 @@
   gap: 0.35rem;
 }
 
+/* Calm, not a warning: coverage is a fact about Qloo's data, not about the person's safety. */
+.coverageNote {
+  padding: 0.75rem 1.1rem;
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--line-strong);
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
 .searchNotes h2 {
   font-size: 1.05rem;
 }

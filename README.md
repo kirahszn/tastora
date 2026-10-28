@@ -2,8 +2,9 @@
 
 > Good food should still feel like home.
 
-Tastora helps caregivers in New York City find restaurants that an older person they care for will
-actually enjoy. You describe the person's own tastes: favourite cuisines and dishes, plus the music,
+Tastora helps caregivers find restaurants near an older person they care for that the person will
+actually enjoy. It is best tested in New York City, and Qloo's coverage was checked in six other
+cities (see [Where it works](#where-it-works)). You describe the person's own tastes: favourite cuisines and dishes, plus the music,
 films and places that feel familiar to them. You also list what they must avoid. A Claude agent
 plans searches against **Qloo's taste intelligence**, and Tastora's own tested code checks every
 result against the person's needs. Each suggestion says why it was picked and what to confirm with
@@ -39,10 +40,10 @@ must avoid"), and it is explicit about what it cannot verify.
 
 ## What Tastora does
 
-1. **Profile.** Enter favourite cuisines and a borough (the only required fields). You can also
-   add favourite dishes, dislikes, taste memories (music, films, places), allergies, dietary
-   restrictions, texture needs and comfort needs (quiet, wheelchair access). Two example profiles
-   are available.
+1. **Profile.** Enter favourite cuisines and a city (the only required fields), with an optional
+   neighbourhood or area. You can also add favourite dishes, dislikes, taste memories (music, films,
+   places), allergies, dietary restrictions, texture needs and comfort needs (quiet, wheelchair
+   access). Three example profiles are available (Queens, Brooklyn, London).
 2. **Search.** The search runs live: each real step (Claude's tool calls, Qloo lookups, ranking) is
    streamed to the screen as it happens.
 3. **Results.** You get up to 8 restaurants. Each card shows why it was suggested, a status for
@@ -93,7 +94,7 @@ in [`docs/agent.md`](docs/agent.md) and [`docs/qloo-findings.md`](docs/qloo-find
 |---|---|
 | Turn "Nigerian" or "Italian-American" into cuisine tags | `GET /v2/tags` (`filter.query`). Tastora keeps `urn:tag:cuisine:qloo:*` and `urn:tag:genre:place:restaurant:*` tags |
 | Turn taste memories into Qloo entities ("Frank Sinatra" → artist) | `GET /search` (`query`). Artists, films, TV shows, books and places |
-| Find and rank restaurants | `GET /v2/insights` with `filter.type=urn:entity:place`, `filter.location.query` (the borough), `filter.tags` (cuisine) and `signal.interests.entities` / `signal.interests.tags` (the taste signals) |
+| Find and rank restaurants | `GET /v2/insights` with `filter.type=urn:entity:place`, `filter.location.query` (the area and city), `filter.tags` (cuisine) and `signal.interests.entities` / `signal.interests.tags` (the taste signals) |
 
 **Cross-domain taste memories.** A favourite singer or film becomes a Qloo entity, and Qloo
 re-ranks restaurants by affinity with it. Tastora's Phase 1 tests found that the effect is real and
@@ -121,8 +122,30 @@ only re-ordered NYC's roughly 10 Nigerian places. Where Qloo finds no entity for
 example Teresa Teng), Tastora says so under "About this search" instead of implying the memory was
 used.
 
-Qloo data is also used for venue facts: address, borough (from geocode), hours, phone, website,
-Google Place ID, dish highlights, and venue tags for accessibility, noise and diet options.
+Qloo data is also used for venue facts: address, borough or city (from geocode), hours, phone,
+website, Google Place ID, dish highlights, and venue tags for accessibility, noise and diet options.
+
+### Where it works
+
+Tastora was built and tested in New York City. In Phase 9c, Qloo's restaurant coverage was checked in
+six more cities with 23 live calls: Italian, one local cuisine, and Italian with a Frank Sinatra
+signal ([details](docs/qloo-findings.md#coverage-beyond-nyc-phase-9c-2026-10-28)).
+
+| City | Verdict | Places kept per search (of 20) | In the city or its metro |
+|---|---|---|---|
+| New York City | Good (main test city) | 18–20 (Phase 1, before the venue filter) | most; a few NJ/Nassau places, labelled |
+| London | Good | 18–20 | 58/58 |
+| Toronto | Good | 19–20 | 56/59 |
+| Los Angeles | Good | 18–20 | 56/57 |
+| Chicago | Good | 16–20 | 55/56 |
+| Sydney | Good | 17–20 | 56/56 |
+| Lagos | Thin | 6–13 | 27/27 |
+
+The Sinatra signal reordered the Italian top 10 in every city. In Lagos it could only reshuffle the
+same handful of places, and 7 of 20 Nigerian results there were not restaurants (supermarkets, bars).
+Other cities may work, but they are untested. When a search finds fewer than 4 places, or the city is
+rated Thin, the results page says: "Fewer matches found around <city>. Qloo's restaurant coverage
+varies by city." If Qloo can't find the city at all, Tastora asks for the nearest larger city.
 
 ## How the agent works
 
@@ -139,7 +162,7 @@ flowchart TD
     F1 & F2 & F3 -- "results" --> C
     F3 --> V["Venue filter<br/>drops hotels, bars without a cuisine, food courts…"]
     V --> E["Constraint engine (Phase 2)<br/>Matched / Needs confirmation / Conflict"]
-    E --> R["Ranking<br/>Qloo taste rank + favourites + comfort + borough + feedback"]
+    E --> R["Ranking<br/>Qloo taste rank + favourites + comfort + borough/city + feedback"]
     R --> X["Explanation facts<br/>reasons, dishes to ask about, removed dishes, questions"]
     F3 -. "same search without signals" .-> B["Evidence panel"]
     X --> U["Results UI (streamed)"]
@@ -198,7 +221,7 @@ instead of hiding it.
 
 | Where | What |
 |---|---|
-| **Qloo** | Cuisine and taste-memory search text (e.g. "Italian-American", "Frank Sinatra"), the Qloo tag and entity IDs chosen, and the location text (e.g. "Queens"). |
+| **Qloo** | Cuisine and taste-memory search text (e.g. "Italian-American", "Frank Sinatra"), the Qloo tag and entity IDs chosen, and the location text (e.g. "Queens", "London"). |
 | **Anthropic (Claude)** | Only favourite cuisines, favourite dishes, dislikes and taste memories, plus the Qloo tool results (tag and entity names, top restaurant names). A test checks every request body. |
 | **Never sent to Qloo or Claude** | Allergies, dietary restrictions, texture, comfort needs and the display name. The display name ("Dad") is not sent to the server at all; it only appears in share text you choose to send. |
 | **On the device** | The profile and feedback in `localStorage`, and the last search and shortlist in `sessionStorage` (so reloading doesn't run a new search). Clearing the profile clears all of them. Share text and the print checklist are built in the browser. |
@@ -212,7 +235,7 @@ API keys are read server-side only and are never sent to the browser.
 - **Qloo Insights API**: `/v2/tags`, `/search`, `/v2/insights`
 - **Claude** via `@anthropic-ai/sdk` (tool use; default model `claude-sonnet-5-5`)
 - **Zod** for profile, feedback and storage validation
-- **Vitest** (227 tests), ESLint
+- **Vitest** (281 tests), ESLint
 - CSS modules, no UI library. WCAG contrast checked, 44 px tap targets, one warm light theme.
 - Hosted on **Vercel**
 
@@ -227,7 +250,7 @@ src/
     qloo/               Qloo client, search layer, cache, non-restaurant filter
     constraints/        allergy / diet / texture / comfort evaluation, keyword lists
     ranking/            scoring and feedback
-    domain/             profile schema, Qloo place → candidate mapping, boroughs, related cuisines
+    domain/             profile schema, Qloo place → candidate mapping, boroughs, city/area + coverage, related cuisines
     ui/                 client helpers: streaming, storage, status display, rank movement
 tests/                  Vitest suites (unit, route, agent with fake Claude/Qloo)
 fixtures/qloo/samples/  trimmed real Qloo responses used by tests
@@ -260,22 +283,28 @@ defaults to `claude-sonnet-5-5`. The app builds and the tests run with no keys a
 | `npm run smoke:recommend` | Live end-to-end run for two profiles (uses API credit) |
 | `npm run matrix` | Live 10-profile matrix (uses API credit, budget-capped) |
 | `npm run qloo:probe` | Phase 1 Qloo API spike (uses API credit) |
+| `npm run qloo:coverage` | Phase 9c coverage check for six cities (uses API credit, 24-call cap) |
 
-**Tests:** `npm test` runs 209 tests in 16 files. They cover the constraint engine, ranking, the
+**Tests:** `npm test` runs 281 tests in 19 files. They cover the constraint engine, ranking, the
 Qloo client and search layer (recorded responses), the agent (fake Claude and Qloo: limits,
-invented IDs, fallback, data minimisation), the API route (validation, streaming, rate limit) and
-UI helpers (banned words, storage, status display). One test reads a gitignored raw Qloo response
-and is skipped in a fresh clone (208 pass, 1 skipped).
+invented IDs, fallback, data minimisation), the API route (validation, streaming, rate limit), UI
+helpers (banned words, storage, status display) and locations beyond NYC (profile migration, the
+same-city rule on live samples, coverage note, phone format). One test reads a gitignored raw Qloo
+response and is skipped in a fresh clone (280 pass, 1 skipped).
 
 ## Known limitations
 
-- **Location is a bias, not a boundary.** Qloo's `filter.location.query` favours the borough but
-  can return places elsewhere. Tastora ranks the chosen borough higher (+6) and labels places
-  outside NYC, but doesn't filter them out.
+- **Location is a bias, not a boundary.** Qloo's `filter.location.query` favours the area but can
+  return places elsewhere. In New York, Tastora ranks the chosen borough higher (+6) and labels places
+  outside NYC. Elsewhere, places whose Qloo city or metro is the chosen city rank higher (+6) and are
+  labelled "In London" / "In the Sydney area"; others are labelled "Nearby: <city>". Nothing is
+  filtered out.
+- **Best tested in New York City.** Coverage was checked in six other cities, once each with two
+  cuisines (see [Where it works](#where-it-works)); Lagos is thin, and other cities are untested.
+  Dietary and accessibility tag coverage was only measured in NYC.
 - **No menu, ingredient or allergen data.** Dishes come from Qloo's highlights and can be partial
   or garbled. Allergy safety can never be confirmed; the caregiver has to ask the restaurant.
 - **Texture can't be verified.** Soft-sounding dishes are only marked "possibly soft — confirm".
-- **New York City only**, tuned and tested on NYC data.
 - **Taste-signal strength varies.** Some memories reorder results strongly, some only slightly,
   and some (e.g. Teresa Teng) have no Qloo match. Some venue cuisine tags are odd.
 - **Rate limit is in-memory.** 10 searches per minute per IP, per server instance. It protects API
@@ -289,7 +318,7 @@ and is skipped in a fresh clone (208 pass, 1 skipped).
   ingredient checks can use real menus where they exist.
 - An optional strict borough filter alongside the current ranking boost.
 - A shared rate limit and cache for multi-instance deployments.
-- Other cities, after checking Qloo coverage there.
+- Coverage checks for more cities and cuisines, and dietary/accessibility tag coverage outside NYC.
 
 ## Licence
 

@@ -1,0 +1,714 @@
+{
+  "city": "London",
+  "phase": "9c coverage",
+  "sinatraTop10OverlapWithItalian": 1,
+  "sinatraTop10SamePosition": 0,
+  "runs": [
+    {
+      "label": "Italian",
+      "requests": [
+        {
+          "path": "/v2/insights",
+          "params": {
+            "filter.type": "urn:entity:place",
+            "filter.location.query": "London",
+            "filter.tags": "urn:tag:genre:place:restaurant:italian",
+            "take": 20
+          },
+          "status": 200,
+          "durationMs": 1102
+        }
+      ],
+      "localityResolved": [
+        "London, London Borough of Lambeth, Inner London - East, Surrey, Greater London, England, United Kingdom"
+      ],
+      "rawPlaces": 20,
+      "kept": 18,
+      "dropped": [
+        {
+          "id": "89449F5A-591A-4B11-8D77-E08A23DB5988",
+          "name": "Eataly London",
+          "reason": "primary genre is food court (several vendors, no single kitchen)"
+        },
+        {
+          "id": "FE5AE6FB-3988-431E-B351-427E01FDD738",
+          "name": "The Hari",
+          "reason": "primary genre is hotel"
+        }
+      ],
+      "notes": [],
+      "inCity": 18,
+      "geocodeCity": {
+        "London": 18
+      },
+      "localityCity": {
+        "London": 18
+      },
+      "geocodeName": {
+        "Westminster": 5,
+        "Hackney": 2,
+        "Hans Town": 2,
+        "Seven Dials": 1,
+        "South Kensington": 1,
+        "Soho": 2,
+        "Islington": 2,
+        "London Borough of Tower Hamlets": 1,
+        "The Borough": 1,
+        "Chalk Farm": 1
+      },
+      "countryCode": {
+        "GB": 18
+      },
+      "fieldCoverage": {
+        "geocode": 18,
+        "geocodeCity": 18,
+        "geocodeName": 18,
+        "admin1": 18,
+        "admin2": 18,
+        "localityCity": 18,
+        "localityNeighborhood": 18,
+        "neighborhoodProp": 18,
+        "address": 18,
+        "phone": 14,
+        "website": 18,
+        "hours": 18,
+        "dishes": 18
+      },
+      "phoneSamples": [
+        "+442073994330",
+        "+442078715660",
+        "+442079153892",
+        "+447367011269"
+      ],
+      "top10": [
+        {
+          "id": "237EF4E0-F9F8-4A9D-B051-E7FE5DF9A8A0",
+          "name": "Novikov Restaurant & Bar"
+        },
+        {
+          "id": "3604A114-A5BF-4E55-8E80-1242E4396A24",
+          "name": "Alto by San Carlo | London"
+        },
+        {
+          "id": "4A4B7C63-9208-44F3-9776-7CD1E9A4B183",
+          "name": "May Fair Kitchen, Mayfair"
+        },
+        {
+          "id": "198E4B87-E816-46ED-A351-D82BEFF0467B",
+          "name": "Netil360 Rooftop Bar - Restaurant"
+        },
+        {
+          "id": "96441C51-472F-4C14-A265-F7611B3F765C",
+          "name": "Ave Mario"
+        },
+        {
+          "id": "2DE4F80F-4D07-43DD-B2F5-9D221E135D8C",
+          "name": "Sumosan Twiga"
+        },
+        {
+          "id": "0F082C48-306C-4A2C-B692-AD04D25A372D",
+          "name": "Harry's Knightsbridge"
+        },
+        {
+          "id": "BB685CE3-8A16-4B6F-BBCF-BEAF5F44605E",
+          "name": "Circolo Popolare"
+        },
+        {
+          "id": "5C108161-CAE0-442A-88D3-BC2FA4CAF65F",
+          "name": "Homeslice Neal's Yard"
+        },
+        {
+          "id": "2365C2BE-72FF-407D-9F82-D89A885918E1",
+          "name": "Da Mario Kensington"
+        }
+      ],
+      "samplePlaces": [
+        {
+          "entity_id": "237EF4E0-F9F8-4A9D-B051-E7FE5DF9A8A0",
+          "name": "Novikov Restaurant & Bar",
+          "primary_genre": "urn:tag:genre:place:restaurant",
+          "address": "50A Berkeley St London W1J 8HA United Kingdom",
+          "neighborhood": "Westminster",
+          "geocode": {
+            "city": "London",
+            "name": "Westminster",
+            "metro": "London",
+            "admin1_region": "England",
+            "admin2_region": "Greater London",
+            "country_code": "GB"
+          },
+          "locality": {
+            "city": "London",
+            "metro": "London",
+            "neighborhood": "Westminster"
+          },
+          "phone": "+442073994330",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 24
+        },
+        {
+          "entity_id": "3604A114-A5BF-4E55-8E80-1242E4396A24",
+          "name": "Alto by San Carlo | London",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "Selfridges The Rooftop, 400 Oxford St London W1A 1AB United Kingdom",
+          "neighborhood": "Westminster",
+          "geocode": {
+            "city": "London",
+            "name": "Westminster",
+            "metro": "London",
+            "admin1_region": "England",
+            "admin2_region": "Greater London",
+            "country_code": "GB"
+          },
+          "locality": {
+            "city": "London",
+            "metro": "London",
+            "neighborhood": "Westminster"
+          },
+          "phone": "+442078715660",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 8
+        },
+        {
+          "entity_id": "4A4B7C63-9208-44F3-9776-7CD1E9A4B183",
+          "name": "May Fair Kitchen, Mayfair",
+          "primary_genre": "urn:tag:genre:place:restaurant",
+          "address": "Stratton St London W1J 8LT United Kingdom",
+          "neighborhood": "Westminster",
+          "geocode": {
+            "city": "London",
+            "name": "Westminster",
+            "metro": "London",
+            "admin1_region": "England",
+            "admin2_region": "Greater London",
+            "country_code": "GB"
+          },
+          "locality": {
+            "city": "London",
+            "metro": "London",
+            "neighborhood": "Westminster"
+          },
+          "phone": "+442079153892",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 12
+        },
+        {
+          "entity_id": "198E4B87-E816-46ED-A351-D82BEFF0467B",
+          "name": "Netil360 Rooftop Bar - Restaurant",
+          "primary_genre": "urn:tag:genre:place:restaurant:bar",
+          "address": "1 Westgate St London E8 3RL United Kingdom",
+          "neighborhood": "Hackney",
+          "geocode": {
+            "city": "London",
+            "name": "Hackney",
+            "metro": "London",
+            "admin1_region": "England",
+            "admin2_region": "Greater London",
+            "country_code": "GB"
+          },
+          "locality": {
+            "city": "London",
+            "metro": "London",
+            "neighborhood": "Hackney"
+          },
+          "phone": null,
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 1
+        },
+        {
+          "entity_id": "96441C51-472F-4C14-A265-F7611B3F765C",
+          "name": "Ave Mario",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "15 Henrietta St London WC2E 8QG United Kingdom",
+          "neighborhood": "Westminster",
+          "geocode": {
+            "city": "London",
+            "name": "Westminster",
+            "metro": "London",
+            "admin1_region": "England",
+            "admin2_region": "Greater London",
+            "country_code": "GB"
+          },
+          "locality": {
+            "city": "London",
+            "metro": "London",
+            "neighborhood": "Westminster"
+          },
+          "phone": "+447367011269",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 24
+        }
+      ]
+    },
+    {
+      "label": "Indian",
+      "requests": [
+        {
+          "path": "/v2/insights",
+          "params": {
+            "filter.type": "urn:entity:place",
+            "filter.location.query": "London",
+            "filter.tags": "urn:tag:genre:place:restaurant:indian",
+            "take": 20
+          },
+          "status": 200,
+          "durationMs": 579
+        }
+      ],
+      "localityResolved": [
+        "London, London Borough of Lambeth, Inner London - East, Surrey, Greater London, England, United Kingdom"
+      ],
+      "rawPlaces": 20,
+      "kept": 20,
+      "dropped": [],
+      "notes": [],
+      "inCity": 20,
+      "geocodeCity": {
+        "London": 20
+      },
+      "localityCity": {
+        "London": 20
+      },
+      "geocodeName": {
+        "Barnsbury": 1,
+        "Soho": 2,
+        "London Borough of Tower Hamlets": 2,
+        "Westminster": 9,
+        "South Kensington": 1,
+        "Perivale": 1,
+        "Southall Green": 1,
+        "King's Cross": 1,
+        "Bloomsbury": 1,
+        "Saint Giles": 1
+      },
+      "countryCode": {
+        "GB": 20
+      },
+      "fieldCoverage": {
+        "geocode": 20,
+        "geocodeCity": 20,
+        "geocodeName": 20,
+        "admin1": 20,
+        "admin2": 20,
+        "localityCity": 20,
+        "localityNeighborhood": 20,
+        "neighborhoodProp": 20,
+        "address": 20,
+        "phone": 18,
+        "website": 20,
+        "hours": 20,
+        "dishes": 20
+      },
+      "phoneSamples": [
+        "+442074209321",
+        "+442074209322",
+        "+442072478210",
+        "+442074209320"
+      ],
+      "top10": [
+        {
+          "id": "0DF5149A-22B3-46FB-A69F-5C2C50E471ED",
+          "name": "Dishoom King's Cross"
+        },
+        {
+          "id": "7713F3C9-A282-49F1-9DF2-9F5D563EF1D6",
+          "name": "Dishoom Carnaby"
+        },
+        {
+          "id": "46094E6F-0641-49D8-8208-28B9E6D3BB5E",
+          "name": "Aladin Indian Restaurant - Brick Lane's Award-Winning Curry House"
+        },
+        {
+          "id": "A697217D-6BAD-4AFB-9822-6EBDA5BD391D",
+          "name": "Dishoom Covent Garden"
+        },
+        {
+          "id": "F1728AFA-F9DE-4D8C-BCF8-706DFE24417A",
+          "name": "Tayyabs"
+        },
+        {
+          "id": "68711FCF-5825-4CB0-8A7D-C2438A6148C4",
+          "name": "Gymkhana"
+        },
+        {
+          "id": "43EE207E-547F-47DE-9A11-CD10B41A8DA1",
+          "name": "Masala Zone Covent Garden"
+        },
+        {
+          "id": "BD113BBB-667A-467D-95B5-D899BFE48DD4",
+          "name": "Dishoom Kensington"
+        },
+        {
+          "id": "57FDCDC7-90F6-44C5-97E5-FD67E0F9ACC6",
+          "name": "Royal Nawaab Perivale"
+        },
+        {
+          "id": "E1D3A9D4-C778-44E6-B105-4DA4C6B1C684",
+          "name": "The Cinnamon Club"
+        }
+      ],
+      "samplePlaces": [
+        {
+          "entity_id": "0DF5149A-22B3-46FB-A69F-5C2C50E471ED",
+          "name": "Dishoom King's Cross",
+          "primary_genre": "urn:tag:genre:place:restaurant:indian",
+          "address": "5 Stable St London N1C 4AB United Kingdom",
+          "neighborhood": "Barnsbury",
+          "geocode": {
+            "city": "London",
+            "name": "Barnsbury",
+            "metro": "London",
+            "admin1_region": "England",
+            "admin2_region": "Greater London",
+            "country_code": "GB"
+          },
+          "locality": {
+            "city": "London",
+            "metro": "London",
+            "neighborhood": "Barnsbury"
+          },
+          "phone": "+442074209321",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 19
+        },
+        {
+          "entity_id": "7713F3C9-A282-49F1-9DF2-9F5D563EF1D6",
+          "name": "Dishoom Carnaby",
+          "primary_genre": "urn:tag:genre:place:restaurant:indian",
+          "address": "22 Kingly St Carnaby, London W1B 5QP United Kingdom",
+          "neighborhood": "Soho",
+          "geocode": {
+            "city": "London",
+            "name": "Soho",
+            "metro": "London",
+            "admin1_region": "England",
+            "admin2_region": "Greater London",
+            "country_code": "GB"
+          },
+          "locality": {
+            "city": "London",
+            "metro": "London",
+            "neighborhood": "Soho"
+          },
+          "phone": "+442074209322",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 22
+        },
+        {
+          "entity_id": "46094E6F-0641-49D8-8208-28B9E6D3BB5E",
+          "name": "Aladin Indian Restaurant - Brick Lane's Award-Winning Curry House",
+          "primary_genre": "urn:tag:genre:place:restaurant:indian",
+          "address": "132 Brick Ln London E1 6RU United Kingdom",
+          "neighborhood": "London Borough of Tower Hamlets",
+          "geocode": {
+            "city": "London",
+            "name": "London Borough of Tower Hamlets",
+            "metro": "London",
+            "admin1_region": "England",
+            "admin2_region": "Greater London",
+            "country_code": "GB"
+          },
+          "locality": {
+            "city": "London",
+            "metro": "London",
+            "neighborhood": "London Borough of Tower Hamlets"
+          },
+          "phone": "+442072478210",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 7
+        },
+        {
+          "entity_id": "A697217D-6BAD-4AFB-9822-6EBDA5BD391D",
+          "name": "Dishoom Covent Garden",
+          "primary_genre": "urn:tag:genre:place:restaurant:indian",
+          "address": "12 Upper St Martin's Ln London WC2H 9FB United Kingdom",
+          "neighborhood": "Westminster",
+          "geocode": {
+            "city": "London",
+            "name": "Westminster",
+            "metro": "London",
+            "admin1_region": "England",
+            "admin2_region": "Greater London",
+            "country_code": "GB"
+          },
+          "locality": {
+            "city": "London",
+            "metro": "London",
+            "neighborhood": "Westminster"
+          },
+          "phone": "+442074209320",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 23
+        },
+        {
+          "entity_id": "F1728AFA-F9DE-4D8C-BCF8-706DFE24417A",
+          "name": "Tayyabs",
+          "primary_genre": "urn:tag:genre:place:restaurant:punjabi",
+          "address": "83-89 Fieldgate St London E1 1JU United Kingdom",
+          "neighborhood": "London Borough of Tower Hamlets",
+          "geocode": {
+            "city": "London",
+            "name": "London Borough of Tower Hamlets",
+            "metro": "London",
+            "admin1_region": "England",
+            "admin2_region": "Greater London",
+            "country_code": "GB"
+          },
+          "locality": {
+            "city": "London",
+            "metro": "London",
+            "neighborhood": "London Borough of Tower Hamlets"
+          },
+          "phone": "+442072479543",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 23
+        }
+      ]
+    },
+    {
+      "label": "Italian + Frank Sinatra",
+      "requests": [
+        {
+          "path": "/v2/insights",
+          "params": {
+            "filter.type": "urn:entity:place",
+            "filter.location.query": "London",
+            "filter.tags": "urn:tag:genre:place:restaurant:italian",
+            "signal.interests.entities": [
+              "FC0F8D26-BA80-4D83-8BBF-FC011DC8D241"
+            ],
+            "take": 20
+          },
+          "status": 200,
+          "durationMs": 598
+        }
+      ],
+      "localityResolved": [
+        "London, London Borough of Lambeth, Inner London - East, Surrey, Greater London, England, United Kingdom"
+      ],
+      "rawPlaces": 20,
+      "kept": 20,
+      "dropped": [],
+      "notes": [],
+      "inCity": 20,
+      "geocodeCity": {
+        "London": 19,
+        "Inner London - West": 1
+      },
+      "localityCity": {
+        "London": 19,
+        "Inner London - West": 1
+      },
+      "geocodeName": {
+        "Lambeth": 1,
+        "Westminster": 9,
+        "London Borough of Tower Hamlets": 2,
+        "Soho": 2,
+        "Hackney": 1,
+        "Chalk Farm": 1,
+        "Seven Dials": 1,
+        "Broadgate": 1,
+        "Belgravia": 1,
+        "Hans Town": 1
+      },
+      "countryCode": {
+        "GB": 20
+      },
+      "fieldCoverage": {
+        "geocode": 20,
+        "geocodeCity": 20,
+        "geocodeName": 20,
+        "admin1": 20,
+        "admin2": 20,
+        "localityCity": 20,
+        "localityNeighborhood": 20,
+        "neighborhoodProp": 20,
+        "address": 20,
+        "phone": 19,
+        "website": 20,
+        "hours": 20,
+        "dishes": 20
+      },
+      "phoneSamples": [
+        "+442031465800",
+        "+442077699771",
+        "+442073626904",
+        "+442071321212"
+      ],
+      "top10": [
+        {
+          "id": "50505D9A-7440-40AC-93CF-75F190E098E7",
+          "name": "Florentine Restaurant & Bar"
+        },
+        {
+          "id": "0AEBF21F-A7C0-4AEF-969F-86270EABB9F2",
+          "name": "TOZI Restaurant & Bar, Victoria"
+        },
+        {
+          "id": "97396106-8AD5-4BBC-9E7C-216F37FEAD46",
+          "name": "Cicchetti by San Carlo - London Covent Garden"
+        },
+        {
+          "id": "89B5DD01-D1F7-400F-A232-2B8444790D47",
+          "name": "Bella Cosa Italian Restaurant Canary Wharf"
+        },
+        {
+          "id": "9F439E04-04B6-4BF9-AD9E-68BAAF9A35C4",
+          "name": "Bon Gusto"
+        },
+        {
+          "id": "EC690F08-5AE6-4B67-9E28-1144C4A2A06F",
+          "name": "Fumo by San Carlo - London"
+        },
+        {
+          "id": "05CEE44D-E44C-4787-B8A8-F07984610ABF",
+          "name": "Bocca di Lupo"
+        },
+        {
+          "id": "88B39BB0-0056-4A8A-BA1D-346EDF91E5E8",
+          "name": "Giannino"
+        },
+        {
+          "id": "198E4B87-E816-46ED-A351-D82BEFF0467B",
+          "name": "Netil360 Rooftop Bar - Restaurant"
+        },
+        {
+          "id": "C65DCF18-F906-4243-9FAB-8D47BE3ED761",
+          "name": "Mortimer House Kitchen"
+        }
+      ],
+      "samplePlaces": [
+        {
+          "entity_id": "50505D9A-7440-40AC-93CF-75F190E098E7",
+          "name": "Florentine Restaurant & Bar",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "6 Hercules Rd London SE1 7DU United Kingdom",
+          "neighborhood": "Lambeth",
+          "geocode": {
+            "city": "London",
+            "name": "Lambeth",
+            "metro": "London",
+            "admin1_region": "England",
+            "admin2_region": "Greater London",
+            "country_code": "GB"
+          },
+          "locality": {
+            "city": "London",
+            "metro": "London",
+            "neighborhood": "Lambeth"
+          },
+          "phone": "+442031465800",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 7
+        },
+        {
+          "entity_id": "0AEBF21F-A7C0-4AEF-969F-86270EABB9F2",
+          "name": "TOZI Restaurant & Bar, Victoria",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "8 Gillingham St Pimlico, London SW1V 1HJ United Kingdom",
+          "neighborhood": "Westminster",
+          "geocode": {
+            "city": "London",
+            "name": "Westminster",
+            "metro": "London",
+            "admin1_region": "England",
+            "admin2_region": "Greater London",
+            "country_code": "GB"
+          },
+          "locality": {
+            "city": "London",
+            "metro": "London",
+            "neighborhood": "Westminster"
+          },
+          "phone": "+442077699771",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 26
+        },
+        {
+          "entity_id": "97396106-8AD5-4BBC-9E7C-216F37FEAD46",
+          "name": "Cicchetti by San Carlo - London Covent Garden",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "30 Wellington St London WC2E 7BD United Kingdom",
+          "neighborhood": "Westminster",
+          "geocode": {
+            "city": "London",
+            "name": "Westminster",
+            "metro": "London",
+            "admin1_region": "England",
+            "admin2_region": "Greater London",
+            "country_code": "GB"
+          },
+          "locality": {
+            "city": "London",
+            "metro": "London",
+            "neighborhood": "Westminster"
+          },
+          "phone": "+442073626904",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 20
+        },
+        {
+          "entity_id": "89B5DD01-D1F7-400F-A232-2B8444790D47",
+          "name": "Bella Cosa Italian Restaurant Canary Wharf",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "Drewry House 213 Marsh Wall London E14 9FJ United Kingdom",
+          "neighborhood": "London Borough of Tower Hamlets",
+          "geocode": {
+            "city": "London",
+            "name": "London Borough of Tower Hamlets",
+            "metro": "London",
+            "admin1_region": "England",
+            "admin2_region": "Greater London",
+            "country_code": "GB"
+          },
+          "locality": {
+            "city": "London",
+            "metro": "London",
+            "neighborhood": "London Borough of Tower Hamlets"
+          },
+          "phone": "+442071321212",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 8
+        },
+        {
+          "entity_id": "9F439E04-04B6-4BF9-AD9E-68BAAF9A35C4",
+          "name": "Bon Gusto",
+          "primary_genre": "urn:tag:genre:place:restaurant:italian",
+          "address": "75-77 Buckingham Gate London SW1E 6PD United Kingdom",
+          "neighborhood": "Westminster",
+          "geocode": {
+            "city": "London",
+            "name": "Westminster",
+            "metro": "London",
+            "admin1_region": "England",
+            "admin2_region": "Greater London",
+            "country_code": "GB"
+          },
+          "locality": {
+            "city": "London",
+            "metro": "London",
+            "neighborhood": "Westminster"
+          },
+          "phone": "+442072227185",
+          "hasWebsite": true,
+          "hasHours": true,
+          "dishCount": 7
+        }
+      ]
+    }
+  ]
+}

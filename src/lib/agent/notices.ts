@@ -60,10 +60,13 @@ export const relatedCuisineNotice = (cuisine: string, family: string, location: 
 export const PLANNER_FALLBACK_NOTICE =
   "Claude wasn't available, so Tastora planned this search with its built-in rules. Results are checked the same way.";
 
-/** Search-layer notes worth telling the caregiver about (the NYC-wide location retry). */
+/** Search-layer notes worth telling the caregiver about (the city-wide location retry). */
 export function locationNotices(notes: readonly string[]): string[] {
-  return notes
-    .map((n) => /^No places found for "(.+)"; searched New York City instead$/.exec(n))
-    .filter((m): m is RegExpExecArray => !!m)
-    .map((m) => `No places were found for “${m[1]}”, so Tastora searched all of New York City.`);
+  return notes.flatMap((n) => {
+    const empty = /^No places found for "(.+)"; searched (.+) instead$/.exec(n);
+    if (empty) return [`No places were found for “${empty[1]}”, so Tastora searched all of ${empty[2]}.`];
+    const unknown = /^Qloo could not find "(.+)"; searched (.+) instead$/.exec(n);
+    if (unknown) return [`Qloo couldn't find “${unknown[1]}”, so Tastora searched all of ${unknown[2]}.`];
+    return [];
+  });
 }
