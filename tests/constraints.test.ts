@@ -239,6 +239,15 @@ describe("dietary restrictions", () => {
     expect(ev.excludedDishes.map((d) => d.name)).toEqual(["Grilled pork chop with rice"]);
   });
 
+  it("sets Japanese fish and roe names aside for a fish allergy and for a vegetarian, whole words only", () => {
+    const dishes = ["Hamachi crudo", "Saba shioyaki", "Toro nigiri", "Ikura don", "Tobiko roll", "Masago salad"];
+    const aside = (input: Parameters<typeof makeProfile>[0], names: string[]) =>
+      evaluateCandidate(makeProfile(input), makeCandidate({ dishHighlights: names })).excludedDishes.map((d) => d.name);
+    expect(aside({ allergies: ["fish"] }, dishes)).toEqual(dishes);
+    expect(aside({ dietaryRestrictions: ["vegetarian"] }, dishes)).toEqual(dishes);
+    expect(aside({ allergies: ["fish"] }, ["Torosian salad", "Tortellini", "Pastoral plate", "Sake flight"])).toEqual([]);
+  });
+
   describe("pork and meat word lists (Phase 10)", () => {
     const noPork = makeProfile({ dietaryRestrictions: ["no pork"] });
     const asideFor = (profile: ReturnType<typeof makeProfile>, dishes: string[]) =>

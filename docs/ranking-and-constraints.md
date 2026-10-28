@@ -40,6 +40,9 @@ Matching is whole-word and case-insensitive, tolerating a plural `s`/`es` and sp
   for shellfish *and* fish allergies but not for kosher conflicts; fish adds saltfish, codfish,
   bacalao, whitefish, eel…; milk adds malai, khoya, queso, feta, halloumi, labneh, kefir ("curd" is
   left out: bean curd is tofu).
+- Phase 10 added Japanese fish and roe names to the fish list (so also to vegetarian and vegan):
+  hamachi, saba, toro, ikura, tobiko, masago (unagi was already there). "Sake" is left out: it is
+  also the drink. Whole-word matching keeps "toro" out of "Torosian" or "Tortellini".
 - A dish naming the allergen is removed from suggestions: `mentions "peanut"`.
 - **Dish-name list**: dishes commonly made with an allergen, even though the name doesn't say so. They
   are removed with `commonly made with <allergen>; recipe not verified`:

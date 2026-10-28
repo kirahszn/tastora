@@ -68,6 +68,8 @@ const FISH_WORDS = [
   "halibut", "snapper", "catfish", "mackerel", "herring", "lox", "bass", "sashimi", "yellowtail",
   "saltfish", "codfish", "bacalao", "bacalhau", "whitefish", "kingfish", "swordfish", "branzino",
   "grouper", "gefilte", "eel", "unagi",
+  // Phase 10: Japanese fish and roe names ("sake" left out: it is also the drink).
+  "hamachi", "saba", "toro", "ikura", "tobiko", "masago",
 ];
 // Molluscs (squid, octopus, clams, conch, snails…) are grouped with crustaceans, as US menus
 // usually do. Conch / lambi from the Phase 5 Caribbean and Haitian profiles.
