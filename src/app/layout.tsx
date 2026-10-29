@@ -35,11 +35,6 @@ const SECTIONS = [
   { href: "/#rules", label: "Our rules" },
 ] as const;
 
-const PHOTOS = [
-  { by: "Anna Shvets", href: "https://www.pexels.com/photo/a-family-eating-dinner-together-11368637/" },
-  { by: "Juan TM", href: "https://www.pexels.com/photo/engaging-dinner-gathering-with-shared-plates-31705508/" },
-] as const;
-
 const NEW_TAB = <span className="sr-only"> (opens in a new tab)</span>;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -101,22 +96,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 GitHub{NEW_TAB}
               </a>
             </nav>
-          </div>
-          <div className={styles.footerSmall}>
-            <p>
-              MIT licence · Photos on Pexels by{" "}
-              {PHOTOS.map((p, i) => (
-                <span key={p.by}>
-                  {i > 0 && (i === PHOTOS.length - 1 ? " and " : ", ")}
-                  <a href={p.href} target="_blank" rel="noopener noreferrer">
-                    {p.by}
-                    {NEW_TAB}
-                  </a>
-                </span>
-              ))}{" "}
-              (Pexels License; the people pictured don&rsquo;t endorse Tastora).
-            </p>
-            <p>The Qloo name belongs to its owner and is used here only to credit the taste data.</p>
           </div>
         </footer>
       </body>

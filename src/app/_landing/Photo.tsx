@@ -1,6 +1,6 @@
 // Landing photos, all from Pexels under the Pexels License (free to use and modify; no endorsement
 // implied), downloaded into public/images/ and served through next/image so each device gets a
-// resized copy. Credited in the footer and in the README.
+// resized copy. Credited in the README.
 //  - family-dinner.jpg: photo 11368637 by Anna Shvets (downloaded 2026-10-28)
 //  - shared-plates.jpg: photo 31705508 by Juan TM (downloaded 2026-10-28, 2000px; Closing.tsx)
 import Image, { type StaticImageData } from "next/image";
