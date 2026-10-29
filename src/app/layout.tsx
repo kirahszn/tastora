@@ -37,7 +37,6 @@ const SECTIONS = [
 
 const PHOTOS = [
   { by: "Anna Shvets", href: "https://www.pexels.com/photo/a-family-eating-dinner-together-11368637/" },
-  { by: "Nothing Ahead", href: "https://www.pexels.com/photo/choice-of-food-during-family-dinner-20089303/" },
   { by: "Juan TM", href: "https://www.pexels.com/photo/engaging-dinner-gathering-with-shared-plates-31705508/" },
 ] as const;
 

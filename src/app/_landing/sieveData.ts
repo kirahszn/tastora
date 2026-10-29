@@ -12,8 +12,11 @@ import { rankCandidates } from "@/lib/ranking/rank";
 import { draftToInput, exampleById } from "@/lib/ui/profileDraft";
 import sample from "../../../fixtures/qloo/samples/E5h-west-african-signal-fela.json";
 
-/** Places shown, chosen to cover one dish set aside, a keyword match, and a venue where most dishes are. */
-export const SIEVE_PLACES = ["Buka", "Accra Express Restaurant", "Brooklyn Suya"] as const;
+/**
+ * Places shown, chosen to cover a venue where most dishes are set aside (shown first, with its
+ * warning), one dish set aside, and a keyword match.
+ */
+export const SIEVE_PLACES = ["Brooklyn Suya", "Buka", "Accra Express Restaurant"] as const;
 
 export interface SievePlace {
   name: string;

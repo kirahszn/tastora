@@ -19,7 +19,8 @@ function view(signal: number | null) {
   if (signal === null) {
     return {
       rows: baseline as RerankRow[],
-      sentence: `A plain search: Qloo’s top 10 ${snapshot.cuisine} restaurants in ${snapshot.city}, with no taste signal.`,
+      // The intro already describes the plain list; a sentence appears once a singer is picked.
+      sentence: "",
       left: 0,
     };
   }
@@ -56,9 +57,8 @@ export function Rerank() {
         <div className={styles.stack}>
           <SectionHead id="qloo-h" eyebrow="Watch Qloo re-rank" title="Same city. Same cuisine." muted="Different person.">
             <p>
-              Here are Qloo&rsquo;s top 10 {snapshot.cuisine} restaurants in {snapshot.city}. Pick someone&rsquo;s
-              favourite singer and the list changes. Tastora runs this comparison on every search and shows you the
-              result.
+              Pick a favourite singer and watch Qloo re-rank its top 10 {snapshot.cuisine} restaurants in{" "}
+              {snapshot.city}. Tastora does this on every search.
             </p>
           </SectionHead>
           <div className={styles.chips} role="group" aria-label="Taste memory">

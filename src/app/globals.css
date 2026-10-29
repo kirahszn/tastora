@@ -88,6 +88,12 @@ html {
   scroll-padding-top: 6rem; /* anchors land below the sticky nav */
 }
 
+@media (max-width: 760px) {
+  html {
+    scroll-padding-top: 4.5rem; /* the 56px phone bar */
+  }
+}
+
 body {
   min-height: 100vh;
   display: flex;

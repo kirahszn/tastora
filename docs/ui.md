@@ -135,8 +135,8 @@ nav to "How it works · Why Qloo · Our rules" and a "Find food ↗" pill (phone
   `aria-live` line announces it. Top 6 shown; counts compare the full top 10s.
 - **The safety check** (`Sieve.tsx`, data `sieveData.ts`): at build time the app's Phase 2 code
   (`normalizePlaces` → `rankCandidates` → `buildExplanationFacts`) runs on the committed sample
-  `E5h-west-african-signal-fela.json` with the "Nigerian food in Brooklyn" example profile. Buka,
-  Accra Express and Brooklyn Suya are shown: dishes as Qloo lists them, then sorted into "Dishes to
+  `E5h-west-african-signal-fela.json` with the "Nigerian food in Brooklyn" example profile. Brooklyn
+  Suya (selected first), Buka and Accra Express are shown: dishes as Qloo lists them, then sorted into "Dishes to
   ask about" and "Set aside" with the engine's reason. Server render, no JS and reduced motion show
   the sorted state; with motion it sorts once when scrolled into view and on each tap.
 - **Our rules** (`Rules.tsx`): seven statements, each with the test that backs it in a comment.
@@ -151,11 +151,21 @@ nav to "How it works · Why Qloo · Our rules" and a "Find food ↗" pill (phone
 - **Logo:** `ChefMark` (`src/components/ChefMark.tsx`), an original flat chef (puffed hat, round
   smiling face), decorative next to the "Tastora" wordmark. The favicon `src/app/icon.svg` and the
   share card use the same shapes.
-- **Photos:** `Photo.tsx` and `Closing.tsx` serve three Pexels photos (Pexels License) through
-  `next/image` with blur placeholders and `sizes`: 11368637 by Anna Shvets (`family-dinner.jpg`),
-  20089303 by Nothing Ahead (`family-table.jpg`, 1600px), 31705508 by Juan TM (`shared-plates.jpg`,
-  2000px), all downloaded 2026-10-28. Credited under each photo, in the footer and in the README,
-  worded so it doesn't imply the people use Tastora.
+- **Photos:** `Photo.tsx` and `Closing.tsx` serve two Pexels photos (Pexels License) through
+  `next/image` with blur placeholders and `sizes`: 11368637 by Anna Shvets (`family-dinner.jpg`)
+  and 31705508 by Juan TM (`shared-plates.jpg`, 2000px), both downloaded 2026-10-28. Credited
+  under each photo, in the footer and in the README, worded so it doesn't imply the people use
+  Tastora. (Phase 11 removed the photo beside "Our rules": two food photos in a row.)
+
+## Mobile polish (Phase 11)
+
+- Nav at ≤ 760px: a solid 56px bar across the top (no translucency, no floating gap), a smaller
+  "Find food" pill (44px target); anchors use `scroll-padding-top: 4.5rem`. Desktop keeps the
+  floating pill. No hide-on-scroll (optional in the brief; left out to keep the bar predictable).
+- Landing on phones: 64px between sections (56px ≤ 480px); the hero's muted second line is
+  large-body size (`--text-lead`, weight 500). Re-rank has a two-line intro and no sentence for
+  the plain search (the intro already says what the list is). The safety check opens on Brooklyn
+  Suya (most dishes set aside, with the warning); "Run it again" is now "Replay".
 ## App pages (Phase 10 part 2)
 
 - `/profile`, `/results`, `/results/print` and the search progress use the Phase 10 tokens: Manrope,

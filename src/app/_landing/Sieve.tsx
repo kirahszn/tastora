@@ -3,7 +3,7 @@
 // and "Set aside", with the engine's own reason. The data comes from sieveData.ts (the app's Phase 2
 // code run on a committed Qloo sample at build time). Server render, no JavaScript and reduced
 // motion all show the sorted result; with motion, the list starts unsorted and sorts itself when it
-// scrolls into view, and again on each place or "Run it again".
+// scrolls into view, and again on each place or "Replay".
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/Icon";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -150,7 +150,7 @@ export function Sieve({ places }: { places: SievePlace[] }) {
 
       <div className={styles.sieveFoot}>
         <button type="button" className="btn btn-quiet" onClick={() => run(index)}>
-          <Icon name="arrow" /> Run it again
+          <Icon name="arrow" /> Replay
         </button>
         <p className="mono">
           Checked by Tastora&rsquo;s own code on a stored Qloo search (New York City, October 2026) for a Nigerian food

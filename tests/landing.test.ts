@@ -57,7 +57,12 @@ describe("landing re-rank snapshot (Phase 10)", () => {
 });
 
 describe("landing safety check (sieve), computed by the Phase 2 engine", () => {
-  const [buka, accra, suya] = sieveSamples();
+  const [suya, buka, accra] = sieveSamples();
+
+  it("opens on Brooklyn Suya, the place with the most dishes set aside", () => {
+    expect(suya.name).toBe("Brooklyn Suya");
+    expect(suya.setAside.length).toBe(Math.max(suya.setAside.length, buka.setAside.length, accra.setAside.length));
+  });
 
   it("sets Buka's suya aside with the engine's reason and keeps jollof rice to ask about", () => {
     expect(buka.setAside).toEqual([{ name: "Suya", why: "commonly made with peanut; recipe not verified" }]);

@@ -8,9 +8,8 @@ export function SafetyCheck() {
     <section className={styles.section} aria-labelledby="sieve-h">
       <SectionHead id="sieve-h" eyebrow="The safety check" title="We set dishes aside." muted="We never call one safe.">
         <p>
-          Restaurants rarely publish ingredients, so Tastora checks every dish name Qloo lists against the person&rsquo;s
-          needs. Dishes that mention an allergen, or are commonly made with it, are set aside. Everything else is a
-          dish to ask about, and the allergy itself always needs confirming with the restaurant.
+          Tastora checks each dish Qloo lists and sets aside any commonly made with an allergen. The allergy itself
+          always needs confirming with the restaurant.
         </p>
       </SectionHead>
       <Sieve places={sieveSamples()} />

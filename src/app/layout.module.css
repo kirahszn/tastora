@@ -1,4 +1,4 @@
-/* Floating pill nav: sticky, warm and slightly translucent, on every page. */
+/* Floating pill nav: sticky, warm and slightly translucent, on every page (a solid bar on phones). */
 .header {
   position: sticky;
   top: 0;
@@ -189,16 +189,51 @@
   white-space: nowrap;
 }
 
+/* Phones and small tablets: a solid 56px bar across the top instead of the floating pill, so
+   nothing shows through it and it takes as little of the screen as it can. */
+@media (max-width: 760px) {
+  .header {
+    padding: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .pill {
+    min-height: 56px;
+    max-width: none;
+    padding: 6px var(--gutter);
+    border: 0;
+    border-radius: 0;
+    background: var(--bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+
+  /* `.nav` raises specificity over the global `.btn` (min-height 48px). */
+  .nav .navPill,
+  .menuButton {
+    min-height: 44px;
+  }
+
+  .nav .navPill {
+    padding: 0 0.95rem;
+    font-size: 0.875rem;
+  }
+
+  .menuButton {
+    min-width: 44px;
+  }
+}
+
 /* Phones: logo, "Find food" and the menu icon fit on one line down to 320px. */
 @media (max-width: 440px) {
   .pill {
-    padding-left: 10px;
     gap: var(--space-1);
   }
 
   .navPill {
     margin-left: 0;
-    padding: 0 0.95rem;
   }
 
   .menu {

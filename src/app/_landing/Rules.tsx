@@ -1,4 +1,3 @@
-import { Photo } from "./Photo";
 import { SectionHead } from "./Section";
 import styles from "./landing.module.css";
 
@@ -27,22 +26,19 @@ const RULES = [
 export function Rules() {
   return (
     <section id="rules" className={styles.section} aria-labelledby="rules-h">
-      <div className={styles.split}>
-        <div className={styles.stack}>
-          <SectionHead id="rules-h" eyebrow="Our rules" title="Rules Tastora keeps," muted="enforced in code." />
-          <ol className={styles.numbered}>
-            {RULES.map((text, i) => (
-              <li key={text} className={styles.numberedRow}>
-                <span className={styles.num} aria-hidden="true">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span>{text}</span>
-              </li>
-            ))}
-          </ol>
-          <p className="mono">Each rule has an automated test in the public repository.</p>
-        </div>
-        <Photo which="table" className={styles.rulesPhoto} />
+      <div className={styles.stack}>
+        <SectionHead id="rules-h" eyebrow="Our rules" title="Rules Tastora keeps," muted="enforced in code." />
+        <ol className={styles.numbered}>
+          {RULES.map((text, i) => (
+            <li key={text} className={styles.numberedRow}>
+              <span className={styles.num} aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span>{text}</span>
+            </li>
+          ))}
+        </ol>
+        <p className="mono">Each rule has an automated test in the public repository.</p>
       </div>
     </section>
   );

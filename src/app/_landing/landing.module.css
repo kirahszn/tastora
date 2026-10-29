@@ -283,11 +283,6 @@
   color: var(--accent);
 }
 
-.rulesPhoto {
-  position: sticky;
-  top: 6.5rem;
-}
-
 /* Chips (re-rank, sieve) */
 .chips {
   display: flex;
@@ -302,6 +297,11 @@
   font-size: var(--text-lead);
   font-weight: 700;
   line-height: 1.4;
+}
+
+/* The plain search needs no sentence: the intro already says what the list is. */
+.liveSentence:empty {
+  min-height: 0;
 }
 
 .rerankCard {
@@ -595,10 +595,6 @@
     gap: var(--space-6);
   }
 
-  .rulesPhoto {
-    position: static;
-  }
-
   .photoFrame {
     aspect-ratio: 3 / 2;
   }
@@ -606,12 +602,23 @@
 
 @media (max-width: 760px) {
   .landing {
-    gap: var(--space-9);
+    gap: var(--space-8);
     padding-top: var(--space-6);
   }
 
   .section {
     gap: var(--space-6);
+    scroll-margin-top: 4.5rem;
+  }
+
+  /* The second line of the hero reads as large body text on phones, not a second headline. */
+  .headline :global(.tone-muted) {
+    margin-top: var(--space-3);
+    font-size: var(--text-lead);
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0;
+    max-width: none;
   }
 
   .steps,
@@ -641,6 +648,10 @@
 }
 
 @media (max-width: 480px) {
+  .landing {
+    gap: 3.5rem;
+  }
+
   .headline {
     font-size: 2.125rem;
   }

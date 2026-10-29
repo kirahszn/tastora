@@ -41,7 +41,7 @@ const STEPS = [
   {
     drawing: DRAWINGS.search,
     title: "Tastora searches with Qloo",
-    text: "Claude plans the search. Qloo ranks restaurants near them by taste. Tested code checks every need.",
+    text: "An AI agent plans the search. Qloo ranks restaurants near them by taste. Tested code checks every need.",
   },
   {
     drawing: DRAWINGS.share,

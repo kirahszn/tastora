@@ -15,7 +15,7 @@ export function Problem() {
     <section className={styles.section} aria-labelledby="problem-h">
       <div className={styles.split}>
         <div className={styles.stack}>
-          <SectionHead id="problem-h" eyebrow="The problem" title="Eating out gets harder." muted="The usual tools don’t help." />
+          <SectionHead id="problem-h" eyebrow="The problem" title="Choosing for someone else is hard." muted="The usual tools don’t help." />
           <ol className={styles.numbered}>
             {ROWS.map((text, i) => (
               <li key={text} className={styles.numberedRow}>

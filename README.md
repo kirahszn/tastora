@@ -351,8 +351,7 @@ response and is skipped in a fresh clone (288 pass, 1 skipped).
 - Landing page photos, all used under the [Pexels License](https://www.pexels.com/license/) (free
   to use; attribution appreciated, not required). The people in them are not Tastora users and do
   not endorse it:
-  [Anna Shvets](https://www.pexels.com/photo/a-family-eating-dinner-together-11368637/) (family dinner),
-  [Nothing Ahead](https://www.pexels.com/photo/choice-of-food-during-family-dinner-20089303/) (hands sharing dishes),
+  [Anna Shvets](https://www.pexels.com/photo/a-family-eating-dinner-together-11368637/) (family dinner) and
   [Juan TM](https://www.pexels.com/photo/engaging-dinner-gathering-with-shared-plates-31705508/) (shared plates, closing band).
 - Body type: [Manrope](https://fonts.google.com/specimen/Manrope) (SIL Open Font License),
   self-hosted at build time by `next/font`.
