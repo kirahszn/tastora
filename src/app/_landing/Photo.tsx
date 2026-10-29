@@ -1,19 +1,19 @@
 // Landing photos, all from Pexels under the Pexels License (free to use and modify; no endorsement
 // implied), downloaded into public/images/ and served through next/image so each device gets a
-// resized copy. Credited under each photo, in the footer and in the README.
+// resized copy. Credited in the footer and in the README.
 //  - family-dinner.jpg: photo 11368637 by Anna Shvets (downloaded 2026-10-28)
 //  - shared-plates.jpg: photo 31705508 by Juan TM (downloaded 2026-10-28, 2000px; Closing.tsx)
 import Image, { type StaticImageData } from "next/image";
 import familyDinner from "../../../public/images/family-dinner.jpg";
 import styles from "./landing.module.css";
 
-const PHOTOS: Record<"dinner", { src: StaticImageData; alt: string; by: string; page: string; position: string }> = {
+// position: the desktop frame is portrait, so only ~60% of the width shows; 88% keeps all three faces
+// (the woman on the right included). Mobile/tablet frames are 3:2 like the photo, so it shows whole.
+const PHOTOS: Record<"dinner", { src: StaticImageData; alt: string; position: string }> = {
   dinner: {
     src: familyDinner,
     alt: "Three generations around a candlelit dinner table at home: two older women and a young girl smile and talk over plates, glasses and a sweet pie.",
-    by: "Anna Shvets",
-    page: "https://www.pexels.com/photo/a-family-eating-dinner-together-11368637/",
-    position: "45% 30%",
+    position: "88% 30%",
   },
 };
 
@@ -31,12 +31,6 @@ export function Photo({ which = "dinner", className = "" }: { which?: keyof type
           style={{ objectPosition: p.position }}
         />
       </div>
-      <figcaption className={`mono ${styles.credit}`}>
-        Photo:{" "}
-        <a href={p.page} target="_blank" rel="noopener noreferrer" className={styles.creditLink}>
-          {p.by} on Pexels<span className="sr-only"> (opens in a new tab)</span>
-        </a>
-      </figcaption>
     </figure>
   );
 }

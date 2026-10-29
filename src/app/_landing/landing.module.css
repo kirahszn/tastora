@@ -552,21 +552,6 @@
   object-fit: cover;
 }
 
-.credit {
-  margin-top: calc(-1 * var(--space-2));
-}
-
-.creditLink {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  color: var(--muted);
-}
-
-.creditLink:hover {
-  color: var(--accent);
-}
-
 /* Chips (re-rank, sieve) */
 .chips {
   display: flex;
