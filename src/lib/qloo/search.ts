@@ -14,15 +14,24 @@ const PLACE = "urn:entity:place";
 const GENRE_PREFIX = "urn:tag:genre:place:restaurant:";
 const CUISINE_PREFIX = "urn:tag:cuisine:qloo:";
 
-/** Entity kinds seen in live `/search` results and usable as taste signals. */
+/**
+ * Entity kinds usable as taste signals, and the Qloo type each must carry. A place memory is an
+ * area the person remembers ("Victoria Island, Lagos"), so it accepts only
+ * `urn:entity:destination` (seen live as a type of cities and areas, docs/qloo-findings.md),
+ * never `urn:entity:place` (hotels, restaurants and other businesses: Phase 11 matched
+ * "Victoria Island, Lagos" to the Radisson Blu Anchorage Hotel).
+ */
 export const ENTITY_KINDS = {
   artist: "urn:entity:artist",
   movie: "urn:entity:movie",
   tv_show: "urn:entity:tv_show",
   book: "urn:entity:book",
-  place: "urn:entity:place",
+  place: "urn:entity:destination",
 } as const;
 export type EntityKind = keyof typeof ENTITY_KINDS;
+
+/** Businesses: never accepted as a place memory, even if Qloo also gives them a destination type. */
+const BUSINESS_TYPES = ["urn:entity:place", "urn:entity:brand"];
 
 export interface TagCandidate {
   id: string;
@@ -157,7 +166,11 @@ export function createQlooSearch(deps: QlooSearchDeps = {}) {
     return out;
   }
 
-  /** Entities (artist, movie, …) matching a query, optionally limited to some kinds. */
+  /**
+   * Entities (artist, movie, …) matching a query, optionally limited to some kinds. Place memories
+   * only ever match areas (see ENTITY_KINDS); with no area match the memory is skipped and the
+   * results page says so.
+   */
   async function findEntities(query: string, kinds?: readonly EntityKind[]): Promise<EntityCandidate[]> {
     const body = await cachedGet("/search", { query, take: 10 });
     const wanted = (kinds?.length ? kinds : (Object.keys(ENTITY_KINDS) as EntityKind[])).map((k) => [
@@ -172,6 +185,7 @@ export function createQlooSearch(deps: QlooSearchDeps = {}) {
       const types = Array.isArray(e.types) ? e.types : [];
       const kind = wanted.find(([, urn]) => types.includes(urn))?.[0];
       if (!id || !name || !kind) continue;
+      if (kind === "place" && types.some((t) => BUSINESS_TYPES.includes(String(t)))) continue;
       const props = asObj(e.properties);
       const disambiguation = str(e.disambiguation);
       out.push({

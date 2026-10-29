@@ -6,7 +6,7 @@ import { StatusBadge } from "@/components/StatusBadge";
 import { SCORE_LABELS, placeLine, priceLabel, ratingLabel, signed } from "@/lib/ui/format";
 import { safeHttpUrl, telHref } from "@/lib/ui/links";
 import { topReason } from "@/lib/ui/share";
-import { requirementLabel, splitSource } from "@/lib/ui/status";
+import { compactNeeds, requirementLabel, splitSource } from "@/lib/ui/status";
 import type { Verdict } from "@/lib/ui/storage";
 import type { RecommendResult } from "@/lib/ui/types";
 import styles from "./results.module.css";
@@ -51,7 +51,7 @@ export function ResultCard({
   const tel = telHref(r.links.phone);
   const where = placeLine(r);
   const why = topReason(r);
-  const conflicts = r.constraintStatuses.filter((s) => s.status === "conflict");
+  const needs = compactNeeds(r.constraintStatuses);
   const dishes = r.dishesToAskAbout.slice(0, VISIBLE_DISHES);
   const moreDishes = r.dishesToAskAbout.length - dishes.length;
 
@@ -94,18 +94,13 @@ export function ResultCard({
         </p>
       )}
 
-      {(r.warnings.length > 0 || conflicts.length > 0) && (
+      {r.warnings.length > 0 && (
         <div className={styles.cardWarning} role="note" aria-label="Warnings">
           <Icon name="alert" />
           <ul>
             {r.warnings.map((w) => (
               <li key={w.text}>
                 <strong>{w.text}.</strong> Ask carefully before choosing this place.
-              </li>
-            ))}
-            {conflicts.map((c) => (
-              <li key={c.requirement}>
-                <strong>Conflict: {requirementLabel(c.requirement)}.</strong> Qloo&rsquo;s tags contradict this need.
               </li>
             ))}
           </ul>
@@ -116,12 +111,33 @@ export function ResultCard({
         {r.constraintStatuses.length > 0 && (
           <div>
             <h4>Their needs</h4>
-            <ul className={styles.badges}>
-              {r.constraintStatuses.map((s) => (
-                <li key={s.requirement}>
-                  <StatusBadge requirement={s} />
+            {/* Compact: one line per Matched or Conflict need, one line for everything to confirm.
+                Icon + text on every line, never colour alone; the full list is under "Show details". */}
+            <ul className={styles.needLines}>
+              {needs.matched.map((s) => (
+                <li key={s.requirement} className={styles.needOk}>
+                  <Icon name="check" size={16} />
+                  <span>
+                    <strong>Matched</strong> · {requirementLabel(s.requirement)} (venue tag)
+                  </span>
                 </li>
               ))}
+              {needs.conflicts.map((s) => (
+                <li key={s.requirement} className={styles.needBad}>
+                  <Icon name="cross" size={16} />
+                  <span>
+                    <strong>Conflict</strong> · {requirementLabel(s.requirement)}. Qloo&rsquo;s tags contradict this need.
+                  </span>
+                </li>
+              ))}
+              {needs.toConfirm && (
+                <li className={styles.needWarn}>
+                  <Icon name="question" size={16} />
+                  <span>
+                    <strong>To confirm:</strong> {needs.toConfirm}
+                  </span>
+                </li>
+              )}
             </ul>
           </div>
         )}
@@ -169,7 +185,7 @@ export function ResultCard({
           aria-pressed={shortlisted}
           onClick={onToggleShortlist}
         >
-          <Icon name={shortlisted ? "check" : "plus"} />
+          <Icon name={shortlisted ? "check" : "plus"} size={16} />
           {shortlisted ? "On your shortlist" : "Add to shortlist"}
           <span className="sr-only">: {r.name}</span>
         </button>

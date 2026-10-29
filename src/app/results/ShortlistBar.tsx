@@ -64,7 +64,7 @@ export function ShortlistBar({
     <section className={styles.shortlistBar} aria-labelledby="shortlist-h">
       <div className={styles.shortlistRow}>
         <h2 id="shortlist-h" className={styles.shortlistCount}>
-          {count === 0 ? "No places in your shortlist" : `${count} place${count === 1 ? "" : "s"} in your shortlist`}
+          {count === 0 ? "No places in your shortlist" : `${count} place${count === 1 ? "" : "s"} shortlisted`}
         </h2>
         <div className={styles.shortlistActions}>
           <button
@@ -82,11 +82,11 @@ export function ShortlistBar({
           </button>
           {count > 0 ? (
             <Link href="/results/print" className="btn btn-secondary">
-              <Icon name="print" /> Print checklist
+              <Icon name="print" /> Print<span className={styles.wideOnly}> checklist</span>
             </Link>
           ) : (
             <button type="button" className="btn btn-secondary" disabled>
-              <Icon name="print" /> Print checklist
+              <Icon name="print" /> Print<span className={styles.wideOnly}> checklist</span>
             </button>
           )}
         </div>

@@ -30,6 +30,38 @@ describe("findEntities", () => {
     const kinds = (await search.findEntities("Fela Kuti")).map((e) => e.kind);
     expect(kinds).toEqual(["artist"]);
   });
+
+  // Names and types as live GET /search returned them on 2026-10-29 (ids shortened).
+  const searchBody = (results: { name: string; types: string[] }[]) => ({
+    results: results.map((r, i) => ({ entity_id: `E${i}`, ...r })),
+  });
+  const searchWith = (body: unknown) => createQlooSearch({ get: async () => body, cache: new TtlCache() });
+
+  it("never matches a place memory to a hotel, restaurant or other business (Phase 11)", async () => {
+    const search = searchWith(
+      searchBody([
+        { name: "Victoria Island", types: ["urn:entity:locality"] },
+        { name: "Radisson Blu Anchorage Hotel, Lagos, V.I.", types: ["urn:entity:place"] },
+        { name: "Cactus Restaurant", types: ["urn:entity:place"] },
+        { name: "SPAR Market Victoria Island", types: ["urn:entity:place"] },
+      ]),
+    );
+    expect(await search.findEntities("Victoria Island, Lagos", ["place"])).toEqual([]);
+  });
+
+  it("matches a place memory only to a Qloo destination", async () => {
+    const search = searchWith(
+      searchBody([
+        { name: "Lagos", types: ["urn:entity:locality"] },
+        { name: "Lagos", types: ["urn:entity:destination"] },
+        { name: "Lagos", types: ["urn:entity:place"] },
+        { name: "Lagos Oriental Hotel", types: ["urn:entity:place"] },
+        { name: "Lagos", types: ["urn:entity:destination", "urn:entity:place"] },
+        { name: "Lagos", types: ["urn:entity:destination", "urn:entity:brand"] },
+      ]),
+    );
+    expect(await search.findEntities("Lagos", ["place"])).toEqual([{ id: "E1", name: "Lagos", kind: "place", detail: null }]);
+  });
 });
 
 describe("searchRestaurants", () => {

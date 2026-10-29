@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { evaluateCandidate, type RequirementResult } from "@/lib/constraints/evaluate";
+import { candidateDishes, dishKey, evaluateCandidate, type RequirementResult } from "@/lib/constraints/evaluate";
 import { allergenRule, containsKeyword, dietRule } from "@/lib/constraints/keywords";
 import { TAG_TYPES } from "@/lib/domain/place";
 import {
@@ -19,6 +19,33 @@ function requirement(results: RequirementResult[], label: string): RequirementRe
   if (!r) throw new Error(`no requirement ${label}: ${results.map((x) => x.requirement)}`);
   return r;
 }
+
+describe("candidateDishes de-duplication (Phase 11)", () => {
+  it("treats case, punctuation and and/with/& as the same dish, keeping the first spelling", () => {
+    const c = makeCandidate({
+      dishHighlights: ["Jollof rice with grilled chicken", "Rice & Beans", "Egusi soup"],
+      specialtyDishes: ["Jollof Rice And Grilled Chicken", "rice and beans", "Egusi Soup!", "Pounded yam"],
+    });
+    expect(candidateDishes(c)).toEqual([
+      { name: "Jollof rice with grilled chicken", source: "menu_highlight" },
+      { name: "Rice & Beans", source: "menu_highlight" },
+      { name: "Egusi soup", source: "menu_highlight" },
+      { name: "Pounded yam", source: "specialty_dish" },
+    ]);
+  });
+
+  it("keeps dishes that differ by more than joining words", () => {
+    expect(dishKey("Fish and chips")).not.toBe(dishKey("Fish"));
+    expect(dishKey("Chicken with rice")).not.toBe(dishKey("Chicken fried rice"));
+    expect(dishKey("Mac 'n' cheese")).toBe(dishKey("mac n cheese"));
+  });
+
+  it("de-duplicates before the allergen check, so a set-aside dish isn't listed twice", () => {
+    const c = makeCandidate({ dishHighlights: ["Peanut Soup"], specialtyDishes: ["peanut soup"] });
+    const evaluation = evaluateCandidate(makeProfile({ allergies: ["peanut"] }), c);
+    expect(evaluation.excludedDishes.map((d) => d.name)).toEqual(["Peanut Soup"]);
+  });
+});
 
 describe("containsKeyword", () => {
   it("matches whole words, case-insensitively, with plurals and hyphens", () => {

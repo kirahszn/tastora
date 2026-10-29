@@ -70,6 +70,19 @@
   overflow-wrap: anywhere;
 }
 
+.techDetails {
+  width: 100%;
+  color: var(--muted);
+}
+
+.techDetails > summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
 .stepActive {
   align-items: center;
   border-style: dashed;
@@ -133,9 +146,6 @@
   border: 2px solid var(--warn);
   background: var(--warn-bg);
   color: var(--ink);
-  position: sticky;
-  top: calc(60px + var(--space-3) + var(--space-2)); /* just below the floating nav */
-  z-index: 2;
 }
 
 .persistentNotice svg {
@@ -143,12 +153,22 @@
   color: var(--warn);
 }
 
-/* Land below the sticky notice when scrolled to (links, focus, "Show details"). */
+/* Land below the sticky nav when scrolled to (links, focus, "Show details"). The ingredients
+   notice is shown once at the top, not sticky (Phase 11: three sticky layers took ~40% of a phone). */
 .card,
 .evidence,
 .searchNotes,
 .notShown {
-  scroll-margin-top: 11rem; /* below the nav and the sticky notice */
+  scroll-margin-top: 6rem;
+}
+
+@media (max-width: 760px) {
+  .card,
+  .evidence,
+  .searchNotes,
+  .notShown {
+    scroll-margin-top: 4.5rem;
+  }
 }
 
 @media (max-width: 560px) {
@@ -260,17 +280,20 @@
   overflow: auto;
 }
 
+/* A quiet secondary toggle (Phase 11): pressed reads as a soft terracotta chip with a check,
+   like the feedback buttons, so it no longer outshines the card. */
 .shortlistToggle {
   justify-self: start;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  min-height: 48px;
-  padding: 0.35rem 1rem;
+  gap: 0.35rem;
+  min-height: 44px;
+  padding: 0.3rem 0.9rem;
   border-radius: 999px;
-  border: 2px solid var(--line-strong);
+  border: 1.5px solid var(--line-strong);
   background: var(--surface);
   color: var(--ink);
+  font-size: var(--text-small);
   font-weight: 600;
   cursor: pointer;
 }
@@ -280,15 +303,19 @@
 }
 
 .shortlistToggle[aria-pressed="true"] {
-  border-color: var(--accent-fill);
-  background: var(--accent-fill);
-  color: var(--on-accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--ink);
 }
 
-/* Phones: the bar stays at the bottom of the screen while the cards scroll. */
+.shortlistToggle[aria-pressed="true"] svg {
+  color: var(--accent);
+}
+
+/* Phones: one slim row fixed to the bottom of the screen while the cards scroll. */
 @media (max-width: 560px) {
   .results:has(.shortlistBar) {
-    padding-bottom: 8rem;
+    padding-bottom: 5.5rem; /* so the last card clears the bar */
   }
 
   .shortlistBar {
@@ -297,27 +324,45 @@
     right: 0;
     bottom: 0;
     z-index: 3;
-    border-radius: var(--radius) var(--radius) 0 0;
-    border-width: 2px 0 0;
-    box-shadow: 0 -4px 18px rgb(0 0 0 / 14%);
-    padding: 0.6rem 0.9rem calc(0.6rem + env(safe-area-inset-bottom));
+    gap: 0.4rem;
+    border-radius: 0;
+    border-width: 1px 0 0;
+    border-color: var(--line-strong);
+    box-shadow: 0 -4px 14px rgb(0 0 0 / 10%);
+    padding: 0.4rem var(--gutter) calc(0.4rem + env(safe-area-inset-bottom));
     max-height: 75vh;
     overflow: auto;
   }
 
+  .shortlistRow {
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+  }
+
   .shortlistCount {
-    font-size: 0.95rem;
+    font-size: var(--text-small);
+    line-height: 1.25;
   }
 
   .shortlistActions {
-    flex: 1 1 100%;
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+    gap: 0.4rem;
   }
 
   .shortlistActions :global(.btn) {
-    flex: 1 1 0;
     min-height: 44px;
-    padding: 0.4rem 0.6rem;
-    font-size: 0.95rem;
+    padding: 0.3rem 0.85rem;
+    font-size: var(--text-small);
+    white-space: nowrap;
+  }
+
+  .wideOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
     white-space: nowrap;
   }
 
@@ -458,6 +503,57 @@
   background: var(--surface-2);
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+/* Compact needs (Phase 11): one line each, icon + bold status text + the need. */
+.needLines {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.needLines li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-small);
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.needLines svg {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.needOk {
+  background: var(--ok-bg);
+}
+
+.needOk svg,
+.needOk strong {
+  color: var(--ok);
+}
+
+.needBad {
+  background: var(--bad-bg);
+}
+
+.needBad svg,
+.needBad strong {
+  color: var(--bad);
+}
+
+.needWarn {
+  background: var(--warn-bg);
+}
+
+.needWarn svg,
+.needWarn strong {
+  color: var(--warn);
 }
 
 .badges {
@@ -767,11 +863,6 @@
 
   .stats {
     grid-template-columns: 1fr;
-  }
-
-  .shortlistToggle {
-    width: 100%;
-    justify-content: center;
   }
 
   .links {

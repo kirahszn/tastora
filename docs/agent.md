@@ -32,7 +32,7 @@ Only endpoints and params confirmed in `docs/qloo-findings.md`:
 | Function | Call | Notes |
 |---|---|---|
 | `findTags(query)` | `GET /v2/tags` `filter.query`, `take=15` | Keeps `urn:tag:cuisine:qloo` and `urn:tag:genre:place` (`…:restaurant:*`) tags, in Qloo's order |
-| `findEntities(query, kinds)` | `GET /search` `query`, `take=10` | Kinds: artist, movie, tv_show, book, place (all seen live). `types` param not exercised live, so filtered client-side. `destination` was never seen, so it is not offered. `detail` = `short_description`, else `disambiguation` (≤ 100 chars) |
+| `findEntities(query, kinds)` | `GET /search` `query`, `take=10` | Kinds: artist, movie, tv_show, book (all seen live) and place. `types` param not exercised live, so filtered client-side. **Place memories (Phase 11) accept only `urn:entity:destination`**, and never an entity that also carries `urn:entity:place` or `urn:entity:brand` (hotels, restaurants, shops). `detail` = `short_description`, else `disambiguation` (≤ 100 chars) |
 | `searchRestaurants(…)` | `GET /v2/insights` `filter.type=urn:entity:place`, `filter.location.query`, `filter.tags`, `signal.interests.entities`, `signal.interests.tags`, `take=20` | One call per cuisine tag (≤ 2), in parallel |
 
 - **Fallbacks.** A genre tag returning 0 places is retried with the cuisine-family tag (Nigerian
@@ -74,6 +74,18 @@ Derived from the 213 unique places in the Phase 1 E3/E5 raw responses. Test samp
 Kept places are renumbered `qlooRank` 1..n, so a dropped hotel doesn't cost the venues below it
 taste points. Drop counts appear in the trace (e.g. "19 places, 1 non-restaurant dropped").
 
+**Place memories (Phase 11).** A live Lagos search matched the place memory "Victoria Island,
+Lagos" to the Radisson Blu Anchorage Hotel (`urn:entity:place`), and used the hotel as a taste
+signal. The rule is now in the search layer the tool calls, not only the prompt: a place memory
+matches only a Qloo destination. Live `GET /search` on 2026-10-29: "Victoria Island, Lagos" →
+"Victoria Island" (`urn:entity:locality`), then hotels, a beach, a supermarket and restaurants
+(all `urn:entity:place`), so it is skipped; "Lagos" → `urn:entity:locality`,
+`urn:entity:destination` and `urn:entity:place` results. Localities are not accepted: they were
+never tested as a signal. A destination id was tested once as `signal.interests.entities` on
+`/v2/insights` (Nigerian, Lagos, take 5) and returned places (HTTP 200). A skipped place memory
+gets the "About this search" note "Tastora couldn't match “…” to an area on Qloo, so it wasn't
+used." The trace says "No area found".
+
 ## Agent
 
 **Model.** `ANTHROPIC_MODEL`, default `claude-sonnet-5-5` (current Sonnet; model list checked
@@ -104,7 +116,7 @@ Upstream bodies are never forwarded.
 name stay on the server. A test checks every request body.
 
 **Fallback planner.** Each favourite cuisine (≤ 3) → first tag from `find_cuisine_tags`. Each
-taste memory (≤ 3; music → artist, films → movie, places → place) → first entity match. Then one
+taste memory (≤ 3; music → artist, films → movie, places → place, i.e. a destination) → first entity match. Then one
 search per cuisine tag, with all the entity signals; the first cuisine is the main search.
 
 **Trace.** `{ step, tool, inputSummary, resultSummary, ms }` in plain language, e.g.

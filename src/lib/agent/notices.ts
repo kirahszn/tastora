@@ -54,11 +54,28 @@ export function tasteMemoryNotice(unused: string[]): string | null {
     : `Tastora couldn't find clear matches for ${quoteList(unused)} on Qloo, so they didn't shape these results.`;
 }
 
+/** Place memories match only areas (Phase 11), so an unused one gets its own wording. */
+export function placeMemoryNotice(unused: string[]): string | null {
+  if (!unused.length) return null;
+  return unused.length === 1
+    ? `Tastora couldn't match ${quoteList(unused)} to an area on Qloo, so it wasn't used.`
+    : `Tastora couldn't match ${quoteList(unused)} to areas on Qloo, so they weren't used.`;
+}
+
+/** Notices for every taste memory no signal sent to Qloo corresponds to; place memories get the area wording. */
+export function tasteMemoryNotices(profile: SeniorProfile, signals: readonly TasteSignal[]): string[] {
+  const unused = unusedTasteMemories(profile, signals);
+  const places = unused.filter((e) => profile.tasteMemories.places.includes(e));
+  return [tasteMemoryNotice(unused.filter((e) => !places.includes(e))), placeMemoryNotice(places)].filter(
+    (n): n is string => !!n,
+  );
+}
+
 export const relatedCuisineNotice = (cuisine: string, family: string, location: string) =>
   `No ${cuisine} restaurants were found near ${location}, so Tastora is showing ${family} restaurants instead.`;
 
 export const PLANNER_FALLBACK_NOTICE =
-  "Claude wasn't available, so Tastora planned this search with its built-in rules. Results are checked the same way.";
+  "The AI planner (Claude) wasn't available, so Tastora planned this search with its built-in rules. Results are checked the same way.";
 
 /** Search-layer notes worth telling the caregiver about (the city-wide location retry). */
 export function locationNotices(notes: readonly string[]): string[] {

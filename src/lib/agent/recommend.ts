@@ -24,8 +24,7 @@ import {
   locationNotices,
   PLANNER_FALLBACK_NOTICE,
   relatedCuisineNotice,
-  tasteMemoryNotice,
-  unusedTasteMemories,
+  tasteMemoryNotices,
 } from "./notices";
 import { SearchSession, type SearchRecord, type TasteSignal, type TraceStep } from "./session";
 
@@ -312,8 +311,7 @@ export async function recommend(
   // Only searches that contributed places: an empty first search's retry note would just confuse.
   const contributing = searches.filter((s) => s.result.candidates.length);
   notices.push(...new Set(contributing.flatMap((s) => locationNotices(s.result.notes))));
-  const memoryNotice = tasteMemoryNotice(unusedTasteMemories(profile, searches.flatMap((s) => s.signals)));
-  if (memoryNotice) notices.push(memoryNotice);
+  notices.push(...tasteMemoryNotices(profile, searches.flatMap((s) => s.signals)));
 
   return {
     results,

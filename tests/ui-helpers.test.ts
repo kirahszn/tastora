@@ -3,13 +3,13 @@ import { join } from "node:path";
 import { describe, expect, it, vi } from "vitest";
 import { cityAreaLabel, coverageNotice, searchLocation } from "@/lib/domain/location";
 import { SeniorProfileSchema } from "@/lib/domain/profile";
-import { priceLabel, ratingLabel, signed, toolLabel } from "@/lib/ui/format";
+import { plainStep, priceLabel, ratingLabel, signed, toolLabel } from "@/lib/ui/format";
 import { safeHttpUrl, telHref } from "@/lib/ui/links";
 import { createNdjsonParser, NdjsonError, readNdjson } from "@/lib/ui/ndjson";
 import { EXAMPLES, emptyDraft, exampleById, profileToDraft, validateDraft } from "@/lib/ui/profileDraft";
 import { droppedOut, evidenceSentence, joinList, movementLabel, rankMovement } from "@/lib/ui/rankMovement";
 import { ERROR_COPY, requestBody, runSearch, SearchError } from "@/lib/ui/searchClient";
-import { displayStatus, requirementLabel, splitSource, STATUS_DISPLAY } from "@/lib/ui/status";
+import { compactNeeds, displayStatus, requirementLabel, splitSource, STATUS_DISPLAY } from "@/lib/ui/status";
 import {
   FEEDBACK_KEY,
   LAST_SEARCH_KEY,
@@ -24,7 +24,7 @@ import {
   toRankingFeedback,
   type KeyValueStore,
 } from "@/lib/ui/storage";
-import type { RecommendResponse } from "@/lib/ui/types";
+import type { RecommendResponse, RequirementStatus } from "@/lib/ui/types";
 
 function memoryStore(initial: Record<string, string> = {}): KeyValueStore & { data: Record<string, string> } {
   const data = { ...initial };
@@ -90,6 +90,39 @@ describe("status display", () => {
     expect(displayStatus({ kind: "comfort", status: "matched" }).label).toBe("Matched");
   });
 
+  it("compacts needs into Matched and Conflict lines and one 'To confirm' line (Phase 11)", () => {
+    const need = (kind: "allergy" | "diet" | "texture" | "comfort", requirement: string, status: RequirementStatus) => ({
+      kind,
+      requirement,
+      status,
+    });
+    const statuses = [
+      need("allergy", "allergy: Shellfish", "needs_confirmation"),
+      need("allergy", "allergy: Sesame", "needs_confirmation"),
+      need("allergy", "allergy: Soy", "needs_confirmation"),
+      need("diet", "diet: Halal", "matched"),
+      need("diet", "diet: Dairy-free", "needs_confirmation"),
+      need("texture", "texture: easy to chew", "needs_confirmation"),
+      need("comfort", "comfort: quiet place", "needs_confirmation"),
+      need("comfort", "comfort: wheelchair access", "conflict"),
+    ];
+    const c = compactNeeds(statuses);
+    expect(c.matched.map((s) => s.requirement)).toEqual(["diet: Halal"]);
+    expect(c.conflicts.map((s) => s.requirement)).toEqual(["comfort: wheelchair access"]);
+    expect(c.toConfirm).toBe("shellfish, sesame and soy allergies · dairy-free · easy to chew · quiet place");
+    expect(compactNeeds([need("allergy", "allergy: peanut", "needs_confirmation")]).toConfirm).toBe("peanut allergy");
+    expect(compactNeeds([]).toConfirm).toBeNull();
+  });
+
+  it("never puts an allergy or texture need in the Matched line, whatever the engine says", () => {
+    const c = compactNeeds([
+      { kind: "allergy", requirement: "allergy: peanut", status: "matched" as RequirementStatus },
+      { kind: "texture", requirement: "texture: soft food", status: "matched" as RequirementStatus },
+    ]);
+    expect(c.matched).toEqual([]);
+    expect(c.toConfirm).toBe("peanut allergy · soft food");
+  });
+
   it("formats requirement labels and splits sources", () => {
     expect(requirementLabel("allergy: peanut")).toBe("Allergy: peanut");
     expect(splitSource('qloo.dishHighlights: "Suya" commonly made with peanut')).toEqual({
@@ -114,6 +147,55 @@ describe("format and links", () => {
     expect([signed(6), signed(-15), signed(0)]).toEqual(["+6", "−15", "0"]);
     expect(toolLabel("search_restaurants")).toBe("Searched restaurants");
     expect(toolLabel("something_new")).toBe("something_new");
+  });
+
+  it("turns each trace step into plain words for the searching screen (Phase 11)", () => {
+    const plain = (tool: string, inputSummary: string, resultSummary: string) =>
+      plainStep({ tool, inputSummary, resultSummary });
+    expect(plain("claude", "turn 1", "Requested find_cuisine_tags, find_taste_entities")).toEqual({
+      title: "Planning the search",
+    });
+    expect(plain("claude", "turn 2", "Requested search_restaurants").title).toBe("The AI planner chose the next lookups");
+    expect(plain("find_cuisine_tags", "'Nigerian'", "Found 'Nigerian' (cuisine), 'Nigerian' (genre)")).toEqual({
+      title: "Looked up the Nigerian cuisine",
+    });
+    expect(plain("find_taste_entities", "'Davido' as artist", "Found 'Davido' (artist) and 2 other matches")).toEqual({
+      title: "Looked up a taste memory: Davido (artist)",
+    });
+    expect(plain("find_taste_entities", "'Victoria Island, Lagos' as place", "No area found")).toEqual({
+      title: "Looked up a taste memory: Victoria Island, Lagos",
+      detail: "No clear match on Qloo, so it won't be used",
+    });
+    expect(
+      plain(
+        "search_restaurants",
+        "Nigerian restaurants in Lagos with 2 taste signals (Davido, Burna Boy)",
+        "18 places, 1 non-restaurant dropped; location resolved to Lagos, Nigeria",
+      ),
+    ).toEqual({ title: "Searching Nigerian restaurants near Lagos with 2 taste signals", detail: "18 places found" });
+    expect(plain("rank", "18 unique places from 1 search(es)", "Checked against the person's needs: 16 shown, 2 excluded")).toEqual({
+      title: "Checking every place against their needs",
+      detail: "16 to show, 2 left out",
+    });
+    expect(plain("planner", "Claude", "Planned 1 search(es) in 3 turn(s); ended by end_turn").title).toBe(
+      "The AI planner planned 1 restaurant search",
+    );
+    expect(plain("search_restaurants", "", "Rejected: Unknown id(s): x").title).toMatch(/^Skipped a step/);
+    expect(plain("find_cuisine_tags", "", "Qloo request failed (500)").title).toMatch(/^A Qloo request didn't work/);
+    expect(plain("something_new", "x", "y")).toEqual({ title: "something_new" });
+  });
+
+  it("uses no tool names, ids or 'turn' jargon in plain steps", () => {
+    const samples: [string, string, string][] = [
+      ["claude", "turn 1", "Requested find_cuisine_tags, find_taste_entities"],
+      ["claude", "turn 3", "Finished (end_turn)"],
+      ["planner", "built-in plan", "Searching with Tastora's built-in plan instead (no Anthropic API key configured)"],
+      ["baseline", "Nigerian without taste signals", "8/10 of the personalised top 10 also in the baseline top 10"],
+    ];
+    for (const [tool, inputSummary, resultSummary] of samples) {
+      const p = plainStep({ tool, inputSummary, resultSummary });
+      expect(`${p.title} ${p.detail ?? ""}`).not.toMatch(/find_|search_restaurants|turn \d|end_turn|urn:/);
+    }
   });
 
   it("only allows http(s) links and clean tel: hrefs", () => {

@@ -127,7 +127,9 @@ total is their sum.
   every dish is suya, commonly made with peanut) is a poor suggestion even though nothing excludes
   it. −8 is about one favourite dish's worth; −15 is 30% of the taste maximum, enough to drop a
   mid-list venue several places without hiding it. "Listed dishes" are the de-duplicated
-  highlights + specialty dishes. The facts add a warning: "Many listed dishes here commonly contain
+  highlights + specialty dishes (Phase 11, `dishKey()`: case, punctuation and the joining words
+  "and" / "with" / "&" are ignored, so "Jollof rice with grilled chicken" and "Jollof Rice And
+  Grilled Chicken" are one dish; the first spelling is kept). The facts add a warning: "Many listed dishes here commonly contain
   <allergen>" (source: the profile allergy and the dish count).
 - **Borough (Phase 4, `src/lib/domain/borough.ts`).** Qloo's `filter.location.query` is only a
   proximity bias (a Queens search returned Manhattan, Brooklyn and Nassau places), so the borough is
@@ -176,7 +178,7 @@ total is their sum.
 | `removedDishes[] {name, source, reason, requirement, why}` | What was removed, and why |
 | `warnings[] {text, source}` | Venue-level cautions, e.g. the allergen-heavy warning above |
 | `constraintStatuses` | The `evaluateCandidate` results |
-| `needsConfirmation[]` | Questions to put to the restaurant, phrased as questions ("Which dishes are made without pork?"), with any note in brackets after them |
+| `needsConfirmation[]` | Questions to put to the restaurant, phrased as questions ("Which dishes are made without pork?"), with any note in brackets after them. Phase 11: every allergy goes in one question, with the note once ("Can dishes be made without shellfish, sesame or soy? (Qloo has no allergen data)"), and need names are lower-cased mid-sentence ("What dairy-free options do you have?"; a word in capitals such as "MSG" stays as typed). Cards, share text and the print checklist all use this list |
 | `links` | `website` / `phone` / `mapsUrl`, only when present |
 | `scoreBreakdown` | Components plus `total` |
 

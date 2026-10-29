@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   buildAllExplanationFacts,
   buildExplanationFacts,
+  midSentence,
   POSSIBLY_SOFT_NOTE,
   tasteReasonText,
 } from "@/lib/agent/explanationFacts";
@@ -230,6 +231,29 @@ describe("facts contain only source data", () => {
     const asks = buildExplanationFacts(profile, item).needsConfirmation;
     expect(asks).toContain("Which dishes are made without pork?");
     expect(asks).toContain("What halal options do you have?");
+  });
+
+  it("asks about every allergy in one question, with the allergen note once (Phase 11)", () => {
+    const profile = makeProfile({
+      allergies: ["Shellfish", "Sesame", "Soy"],
+      dietaryRestrictions: ["Dairy-free", "No pork"],
+      texture: "easy_to_chew",
+    });
+    const [item] = rankCandidates(profile, [makeCandidate()]).ranked;
+    const asks = buildExplanationFacts(profile, item).needsConfirmation;
+    expect(asks.slice(0, 4)).toEqual([
+      "Can dishes be made without shellfish, sesame or soy? (Qloo has no allergen data)",
+      "What dairy-free options do you have?",
+      "Which dishes are made without pork?",
+      "Which dishes are easy to chew?",
+    ]);
+    expect(asks.join(" ").match(/Qloo has no allergen data/g)).toHaveLength(1);
+  });
+
+  it("keeps a need typed in capitals as typed mid-sentence", () => {
+    expect(midSentence("MSG")).toBe("MSG");
+    expect(midSentence("Tree nuts")).toBe("tree nuts");
+    expect(midSentence("halal")).toBe("halal");
   });
 
   it("writes every question as a question, with no 'Ask…' prefix", () => {

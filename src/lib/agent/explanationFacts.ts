@@ -231,13 +231,28 @@ function buildWarnings(item: RankedCandidate): FactWarning[] {
   }));
 }
 
+/**
+ * A need's name as it reads mid-sentence: "Dairy-free" → "dairy-free", "Tree nuts" → "tree nuts".
+ * Only a capitalised word is lowered, so "MSG" stays as typed.
+ */
+export function midSentence(value: string): string {
+  return /^\p{Lu}\p{Ll}/u.test(value) ? value.charAt(0).toLowerCase() + value.slice(1) : value;
+}
+
+const requirementValue = (r: RequirementResult) => midSentence(r.requirement.slice(r.requirement.indexOf(":") + 2));
+
+/** "A", "A or B", "A, B or C". */
+const orList = (items: readonly string[]) =>
+  items.length <= 1 ? (items[0] ?? "") : `${items.slice(0, -1).join(", ")} or ${items.at(-1)}`;
+
 // Phrased as the question itself, so it reads the same on a card, in share text and on the
 // printed checklist ("Which dishes are made without pork?"). Notes for the caregiver follow it.
+// Allergies are asked in one question (see buildNeedsConfirmation).
 function confirmationQuestion(r: RequirementResult): string | null {
-  const value = r.requirement.slice(r.requirement.indexOf(":") + 2);
+  const value = requirementValue(r);
   switch (r.kind) {
     case "allergy":
-      return `Can dishes be made without ${value}? (Qloo has no allergen data)`;
+      return null;
     case "diet":
       return r.status === "matched"
         ? `Can you confirm the ${value} options? (venue-level tag)`
@@ -259,7 +274,11 @@ function confirmationQuestion(r: RequirementResult): string | null {
 
 function buildNeedsConfirmation(item: RankedCandidate): string[] {
   const { evaluation, candidate } = item;
-  const out = evaluation.requirements.map(confirmationQuestion).filter((q): q is string => !!q);
+  const allergies = evaluation.requirements.filter((r) => r.kind === "allergy").map(requirementValue);
+  const out = [
+    ...(allergies.length ? [`Can dishes be made without ${orList([...new Set(allergies)])}? (Qloo has no allergen data)`] : []),
+    ...evaluation.requirements.map(confirmationQuestion).filter((q): q is string => !!q),
+  ];
   if (!evaluation.allowedDishes.length && evaluation.excludedDishes.length) {
     out.push("What can you serve that fits their needs? (every dish Qloo lists was set aside)");
   }

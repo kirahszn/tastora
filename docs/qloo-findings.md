@@ -361,3 +361,17 @@ Implementation notes for later phases:
 - Pick tags by `type` (`genre:place`, `cuisine:qloo`, `specialty_dish:place`, `menu_highlight:qloo`).
 - Raise the timeout or add a retry for `signal.interests.tags` queries (seen up to 7.7 s).
 - Don't rely on `signal.demographics.age`.
+
+## Place memories: `/search` types for areas (Phase 11, live, 2026-10-29)
+
+Three direct calls (not app searches). `GET /search?query=Victoria Island, Lagos&take=10`:
+"Victoria Island" (`urn:entity:locality`), then Radisson Blu Anchorage Hotel, Four Points by
+Sheraton Lagos, Lagos Oriental Hotel, Eko Hotel And Suites, Federal Palace Hotel and Casino, Landmark
+Beach, SPAR Market Victoria Island, Cactus Restaurant, Terra Kulture (all `urn:entity:place`).
+`GET /search?query=Lagos&take=10`: several `urn:entity:locality` and `urn:entity:destination`
+results named "Lagos", plus `urn:entity:place` and `urn:entity:artist` ones. `GET /v2/insights`
+(`filter.type=urn:entity:place`, `filter.location.query=Lagos`,
+`filter.tags=urn:tag:cuisine:qloo:nigerian`, `take=5`) with the Lagos destination id as
+`signal.interests.entities`: HTTP 200, 5 places. So a destination works as a taste signal; a
+locality was not tried as one. Tastora now matches place memories only to destinations
+(`docs/agent.md`).

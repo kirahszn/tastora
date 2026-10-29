@@ -166,6 +166,22 @@ nav to "How it works · Why Qloo · Our rules" and a "Find food ↗" pill (phone
   large-body size (`--text-lead`, weight 500). Re-rank has a two-line intro and no sentence for
   the plain search (the intro already says what the list is). The safety check opens on Brooklyn
   Suya (most dishes set aside, with the warning); "Run it again" is now "Replay".
+- Searching screen: each real trace step in plain words (`plainStep()` in `src/lib/ui/format.ts`:
+  "Planning the search", "Looked up the Nigerian cuisine", "Looked up a taste memory: Davido
+  (artist)", "Searching Nigerian restaurants near Lagos with 2 taste signals", "Checking every place
+  against their needs"), the raw steps under a collapsed "Technical details". Progress copy says "AI
+  agent"/"AI planner".
+- Results: one sticky layer only (the nav). The "can't verify ingredients" notice is shown once at
+  the top, not sticky. On phones the shortlist bar is one slim row (~56px: count, Share, Print)
+  and the page leaves 5.5rem at the bottom so the last card clears it.
+- Card needs, compact (`compactNeeds()` in `src/lib/ui/status.ts`): one line per Matched need
+  ("✓ Matched · Diet: Halal (venue tag)") and per Conflict (red, with "Qloo's tags contradict this
+  need"; no longer repeated in the red warning box), and one line for everything to confirm ("?
+  To confirm: shellfish, sesame and soy allergies · dairy-free · easy to chew · quiet place").
+  Grouped by `displayStatus`, so allergies and texture can only land in "To confirm". Icon + text on
+  every line. "Show details" keeps the full per-need list with evidence.
+- "Add to shortlist" / "On your shortlist" is a small secondary toggle (44px, `aria-pressed`;
+  pressed = soft terracotta with a check), no longer a solid orange button.
 ## App pages (Phase 10 part 2)
 
 - `/profile`, `/results`, `/results/print` and the search progress use the Phase 10 tokens: Manrope,
@@ -173,8 +189,8 @@ nav to "How it works · Why Qloo · Our rules" and a "Find food ↗" pill (phone
   card's cuisine/price/rating line and "possibly soft" notes, and eyebrows above the page headings.
 - Result card order: rank + name → area → cuisines/price/rating → one-line why (peach panel, no
   serif) → warnings → needs → dishes → questions → shortlist and contact actions → details → feedback.
-- The sticky "can't verify ingredients" notice sits just below the floating nav
-  (`top: calc(60px + …)`), and cards scroll to below both (`scroll-margin-top: 11rem`).
+- The "can't verify ingredients" notice sits at the top of the results (sticky until Phase 11),
+  and cards scroll to below the nav (`scroll-margin-top: 6rem`, 4.5rem on phones).
 - **Evidence panel** reuses the landing re-rank list (`src/components/RerankList.tsx`, `useFlip`)
   with this search's own `evidence`: chips switch between "With <signals>" and "Without taste
   signals", rows glide, "New"/"↑n"/"↓n" come from `rankMovement`, and places that left the top 10

@@ -4,6 +4,7 @@ import {
   PLANNER_FALLBACK_NOTICE,
   sameName,
   tasteMemoryNotice,
+  tasteMemoryNotices,
   unusedTasteMemories,
 } from "@/lib/agent/notices";
 import { recommend } from "@/lib/agent/recommend";
@@ -40,6 +41,21 @@ describe("notices", () => {
       "Tastora couldn't find a clear match for “Teresa Teng” on Qloo, so it didn't shape these results.",
     );
     expect(tasteMemoryNotice([])).toBeNull();
+  });
+
+  it("says a place memory couldn't be matched to an area (Phase 11)", () => {
+    const withPlace = makeProfile({
+      tasteMemories: { music: ["Davido", "Teresa Teng"], places: ["Victoria Island, Lagos"] },
+    });
+    expect(tasteMemoryNotices(withPlace, [{ id: "1", name: "Davido", kind: "artist" }])).toEqual([
+      "Tastora couldn't find a clear match for “Teresa Teng” on Qloo, so it didn't shape these results.",
+      "Tastora couldn't match “Victoria Island, Lagos” to an area on Qloo, so it wasn't used.",
+    ]);
+    expect(tasteMemoryNotices(withPlace, [
+      { id: "1", name: "Davido", kind: "artist" },
+      { id: "2", name: "Teresa Teng", kind: "artist" },
+      { id: "3", name: "Victoria Island", kind: "place" },
+    ])).toEqual([]);
   });
 
   it("turns the city-wide retry note into plain words, ignoring other notes", () => {

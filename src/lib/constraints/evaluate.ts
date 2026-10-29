@@ -84,12 +84,24 @@ function tagSource(tag: Tag): string {
   return `qloo.tags.${tag.type?.split(":")[2] ?? "unknown"}`;
 }
 
-/** Highlights first, then specialty dishes, de-duplicated by name. */
+/**
+ * Key for spotting the same dish written two ways: case, punctuation and the joining words
+ * "and" / "with" / "&" are ignored ("Jollof rice with grilled chicken" = "Jollof Rice And Grilled Chicken").
+ */
+export function dishKey(name: string): string {
+  return normalizeTerm(name)
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .split(" ")
+    .filter((w) => w && w !== "and" && w !== "with")
+    .join(" ");
+}
+
+/** Highlights first, then specialty dishes, de-duplicated by name (the first spelling is kept). */
 export function candidateDishes(candidate: Candidate): Dish[] {
   const seen = new Set<string>();
   const out: Dish[] = [];
   const add = (name: string, source: DishSource) => {
-    const key = normalizeTerm(name);
+    const key = dishKey(name) || normalizeTerm(name);
     if (seen.has(key)) return;
     seen.add(key);
     out.push({ name, source });

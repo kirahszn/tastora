@@ -70,7 +70,7 @@ export const ToolInputs = {
 export type ToolName = keyof typeof ToolInputs;
 
 const quote = (s: string) => `'${s}'`;
-const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? "" : "s"}`;
+const plural = (n: number, word: string, many = `${word}s`) => `${n} ${n === 1 ? word : many}`;
 
 export class SearchSession {
   readonly trace: TraceStep[] = [];
@@ -166,8 +166,10 @@ export class SearchSession {
       "find_taste_entities",
       `${quote(input.query)} as ${input.kind}`,
       found.length
-        ? `Found ${quote(found[0].name)} (${found[0].kind})${found.length > 1 ? ` and ${plural(found.length - 1, "other match")}` : ""}`
-        : `No ${input.kind} found`,
+        ? `Found ${quote(found[0].name)} (${found[0].kind})${found.length > 1 ? ` and ${plural(found.length - 1, "other match", "other matches")}` : ""}`
+        : input.kind === "place"
+          ? "No area found"
+          : `No ${input.kind} found`,
       Math.round(performance.now() - started),
     );
     return { content: JSON.stringify({ entities: found }), isError: false };

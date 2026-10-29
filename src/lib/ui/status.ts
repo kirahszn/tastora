@@ -1,5 +1,6 @@
 // How constraint statuses are shown. Colour is never used alone: every status has an icon and a
 // text label too.
+import { midSentence } from "@/lib/agent/explanationFacts";
 import type { RequirementResult, RequirementStatus } from "./types";
 
 export type StatusTone = "ok" | "warn" | "bad";
@@ -31,6 +32,35 @@ export function displayStatus(r: Pick<RequirementResult, "kind" | "status">): St
 /** "allergy: peanut" → "Allergy: peanut". */
 export function requirementLabel(requirement: string): string {
   return requirement.charAt(0).toUpperCase() + requirement.slice(1);
+}
+
+type Need = Pick<RequirementResult, "kind" | "status" | "requirement">;
+
+/** "A", "A and B", "A, B and C". */
+const andList = (items: readonly string[]) =>
+  items.length <= 1 ? (items[0] ?? "") : `${items.slice(0, -1).join(", ")} and ${items.at(-1)}`;
+
+const needValue = (r: Need) => midSentence(r.requirement.slice(r.requirement.indexOf(":") + 2));
+
+/**
+ * The card's compact needs summary (Phase 11): one line per Matched and per Conflict need, and
+ * every need still to confirm in one line ("shellfish, sesame and soy allergies · dairy-free ·
+ * easy to chew · quiet place"). Grouped by displayStatus, so an allergy or texture need can only
+ * ever land in "To confirm". The full per-need list stays under "Show details".
+ */
+export function compactNeeds<T extends Need>(statuses: readonly T[]): { matched: T[]; conflicts: T[]; toConfirm: string | null } {
+  const tone = (r: Need) => displayStatus(r).tone;
+  const pending = statuses.filter((r) => tone(r) === "warn");
+  const allergies = pending.filter((r) => r.kind === "allergy").map(needValue);
+  const parts = [
+    ...(allergies.length ? [`${andList(allergies)} ${allergies.length === 1 ? "allergy" : "allergies"}`] : []),
+    ...pending.filter((r) => r.kind !== "allergy").map(needValue),
+  ];
+  return {
+    matched: statuses.filter((r) => tone(r) === "ok"),
+    conflicts: statuses.filter((r) => tone(r) === "bad"),
+    toConfirm: parts.length ? parts.join(" · ") : null,
+  };
 }
 
 /**
