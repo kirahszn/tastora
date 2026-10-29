@@ -2,11 +2,13 @@
 // One ranked place. Every statement about the restaurant comes from the facts object
 // (Qloo data, the profile or feedback); this component only lays it out.
 import { Icon } from "@/components/Icon";
+import { PlaceMedia } from "@/components/PlaceMedia";
+import { SafetyZones } from "@/components/SafetyZones";
 import { StatusBadge } from "@/components/StatusBadge";
 import { SCORE_LABELS, placeLine, priceLabel, ratingLabel, signed } from "@/lib/ui/format";
 import { safeHttpUrl, telHref } from "@/lib/ui/links";
 import { topReason } from "@/lib/ui/share";
-import { compactNeeds, requirementLabel, splitSource } from "@/lib/ui/status";
+import { splitSource } from "@/lib/ui/status";
 import type { Verdict } from "@/lib/ui/storage";
 import type { RecommendResult } from "@/lib/ui/types";
 import styles from "./results.module.css";
@@ -51,16 +53,23 @@ export function ResultCard({
   const tel = telHref(r.links.phone);
   const where = placeLine(r);
   const why = topReason(r);
-  const needs = compactNeeds(r.constraintStatuses);
+  const whyFromQloo = /qloo/i.test(r.reasons.find((x) => x.text === why)?.source ?? "");
   const dishes = r.dishesToAskAbout.slice(0, VISIBLE_DISHES);
   const moreDishes = r.dishesToAskAbout.length - dishes.length;
 
   return (
     <article className={styles.card} aria-labelledby={headingId}>
       <header className={styles.cardHeader}>
-        <span className={styles.rank} aria-hidden="true">
-          {r.rank}
-        </span>
+        <PlaceMedia
+          imageUrl={r.venue.imageUrl}
+          alt={`${r.name}, a photo from Qloo`}
+          cuisines={r.venue.cuisines}
+          className={styles.cardMedia}
+        >
+          <span className={styles.rank} aria-hidden="true">
+            {r.rank}
+          </span>
+        </PlaceMedia>
         <div className={styles.cardHeading}>
           <h3 id={headingId} className={styles.cardTitle}>
             <span className="sr-only">Suggestion {r.rank}: </span>
@@ -84,15 +93,19 @@ export function ResultCard({
               </span>
             )}
           </p>
+          {why && (
+            <p className={styles.why}>
+              <span className="sr-only">Why it was suggested: </span>
+              {whyFromQloo && (
+                <span className={styles.qloo}>
+                  Qloo<span className="sr-only">:</span>
+                </span>
+              )}
+              <span>{why}</span>
+            </p>
+          )}
         </div>
       </header>
-
-      {why && (
-        <p className={styles.why}>
-          <span className="sr-only">Why it was suggested: </span>
-          {why}
-        </p>
-      )}
 
       {r.warnings.length > 0 && (
         <div className={styles.cardWarning} role="note" aria-label="Warnings">
@@ -108,39 +121,13 @@ export function ResultCard({
       )}
 
       <div className={styles.cardBody}>
-        {r.constraintStatuses.length > 0 && (
-          <div>
-            <h4>Their needs</h4>
-            {/* Compact: one line per Matched or Conflict need, one line for everything to confirm.
-                Icon + text on every line, never colour alone; the full list is under "Show details". */}
-            <ul className={styles.needLines}>
-              {needs.matched.map((s) => (
-                <li key={s.requirement} className={styles.needOk}>
-                  <Icon name="check" size={16} />
-                  <span>
-                    <strong>Matched</strong> · {requirementLabel(s.requirement)} (venue tag)
-                  </span>
-                </li>
-              ))}
-              {needs.conflicts.map((s) => (
-                <li key={s.requirement} className={styles.needBad}>
-                  <Icon name="cross" size={16} />
-                  <span>
-                    <strong>Conflict</strong> · {requirementLabel(s.requirement)}. Qloo&rsquo;s tags contradict this need.
-                  </span>
-                </li>
-              ))}
-              {needs.toConfirm && (
-                <li className={styles.needWarn}>
-                  <Icon name="question" size={16} />
-                  <span>
-                    <strong>To confirm:</strong> {needs.toConfirm}
-                  </span>
-                </li>
-              )}
-            </ul>
-          </div>
-        )}
+        {/* Safety zones (Phase 12): Matched, To confirm, Conflict and the call script, each with its
+            own shape and icon; the full per-need list with evidence stays under "Show details". */}
+        <SafetyZones
+          statuses={r.constraintStatuses}
+          questions={r.needsConfirmation}
+          call={tel ? { href: tel, name: r.name } : null}
+        />
 
         <div>
           <h4>Dishes to ask about</h4>
@@ -166,16 +153,6 @@ export function ResultCard({
           )}
         </div>
 
-        {r.needsConfirmation.length > 0 && (
-          <div className={styles.ask}>
-            <h4>Ask the restaurant</h4>
-            <ul>
-              {r.needsConfirmation.map((q) => (
-                <li key={q}>{q}</li>
-              ))}
-            </ul>
-          </div>
-        )}
       </div>
 
       <div className={styles.actions}>
@@ -196,7 +173,8 @@ export function ResultCard({
                 <Icon name="external" /> Website{NEW_TAB}
               </a>
             )}
-            {tel && (
+            {/* With questions, Call sits on the call script instead. */}
+            {tel && r.needsConfirmation.length === 0 && (
               <a className="btn btn-secondary" href={tel}>
                 <Icon name="phone" /> Call<span className="sr-only"> {r.name}</span>
               </a>

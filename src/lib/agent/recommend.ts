@@ -61,7 +61,7 @@ export interface QlooEvidence {
 }
 
 export interface RecommendResult extends ExplanationFacts {
-  venue: Pick<Candidate, "address" | "neighborhood" | "priceLevel" | "rating" | "cuisines">;
+  venue: Pick<Candidate, "address" | "neighborhood" | "priceLevel" | "rating" | "cuisines" | "imageUrl">;
 }
 
 export interface RecommendResponse {
@@ -277,6 +277,7 @@ export async function recommend(
       priceLevel: item.candidate.priceLevel,
       rating: item.candidate.rating,
       cuisines: item.candidate.cuisines,
+      imageUrl: item.candidate.imageUrl,
     },
   }));
   const step = (tool: string, inputSummary: string, resultSummary: string, ms: number) => {

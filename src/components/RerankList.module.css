@@ -15,6 +15,10 @@
   background: var(--surface);
 }
 
+.withLeading {
+  grid-template-columns: 2.25rem 36px minmax(0, 1fr) auto;
+}
+
 .row:last-child {
   border-bottom: 1px solid var(--line);
 }

@@ -64,6 +64,7 @@ export function makeCandidate(overrides: Partial<Candidate> = {}): Candidate {
     dishHighlights: [],
     specialtyDishes: [],
     menuUrl: null,
+    imageUrl: null,
     googlePlaceId: null,
     mapsUrl: null,
     accessibilityTags: [],

@@ -391,10 +391,16 @@
   gap: var(--space-5);
 }
 
+/* Picture beside the heading (Phase 12); a banner above it on phones. */
 .cardHeader {
-  display: flex;
-  gap: 0.9rem;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.cardHeader .cardMedia {
+  aspect-ratio: 4 / 3;
 }
 
 .cardHeading {
@@ -405,14 +411,35 @@
 
 /* The one-line reason: the first thing to read after the name and area. */
 .why {
-  padding: 0.65rem 0.9rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: var(--space-2);
+  padding: 0.6rem 0.85rem;
   border-radius: var(--radius-sm);
   background: var(--accent-soft);
   font-weight: 600;
   line-height: 1.45;
 }
 
+.qloo {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  padding: 0.05rem 0.45rem;
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
 .rank {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
   display: inline-grid;
   place-items: center;
   width: 2.4rem;
@@ -505,57 +532,6 @@
   font-size: 0.9rem;
 }
 
-/* Compact needs (Phase 11): one line each, icon + bold status text + the need. */
-.needLines {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  gap: 0.35rem;
-}
-
-.needLines li {
-  display: flex;
-  gap: 0.5rem;
-  align-items: flex-start;
-  padding: 0.35rem 0.7rem;
-  border-radius: var(--radius-sm);
-  font-size: var(--text-small);
-  line-height: 1.4;
-  color: var(--ink);
-}
-
-.needLines svg {
-  flex-shrink: 0;
-  margin-top: 0.15rem;
-}
-
-.needOk {
-  background: var(--ok-bg);
-}
-
-.needOk svg,
-.needOk strong {
-  color: var(--ok);
-}
-
-.needBad {
-  background: var(--bad-bg);
-}
-
-.needBad svg,
-.needBad strong {
-  color: var(--bad);
-}
-
-.needWarn {
-  background: var(--warn-bg);
-}
-
-.needWarn svg,
-.needWarn strong {
-  color: var(--warn);
-}
-
 .badges {
   list-style: none;
   padding: 0;
@@ -596,26 +572,6 @@
   margin-top: 0.5rem;
   color: var(--muted);
   font-size: var(--text-small);
-}
-
-.ask {
-  padding: var(--space-4) var(--space-5);
-  border-radius: var(--radius-sm);
-  border-left: 3px solid var(--warn);
-  background: var(--warn-bg);
-}
-
-.ask li {
-  font-weight: 600;
-}
-
-.ask h4 {
-  color: var(--ink);
-}
-
-.ask ul {
-  display: grid;
-  gap: 0.3rem;
 }
 
 /* Shortlist and contact actions sit together at the foot of the card. */
@@ -859,6 +815,17 @@
 
   .card {
     gap: 1rem;
+  }
+
+  .cardHeader {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+
+  .cardHeader .cardMedia {
+    aspect-ratio: 16 / 9;
+    max-height: 200px;
+    width: 100%;
   }
 
   .stats {

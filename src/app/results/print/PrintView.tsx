@@ -6,7 +6,7 @@ import { useHydrated } from "@/components/useHydrated";
 import { placeLine } from "@/lib/ui/format";
 import { formatPhone, telHref } from "@/lib/ui/links";
 import { SHARE_DISCLAIMER, SITE_URL, shortlistedResults } from "@/lib/ui/share";
-import { requirementLabel } from "@/lib/ui/status";
+import { SafetyZones } from "@/components/SafetyZones";
 import { loadLastSearch, loadProfile, loadShortlist } from "@/lib/ui/storage";
 import type { RecommendResult } from "@/lib/ui/types";
 import styles from "./print.module.css";
@@ -62,7 +62,6 @@ export function PrintView() {
 
       {places.map((r, i) => {
         const where = placeLine(r);
-        const conflicts = r.constraintStatuses.filter((s) => s.status === "conflict");
         const phone = r.links.phone && telHref(r.links.phone) ? formatPhone(r.links.phone) : null;
         return (
           <article key={r.candidateId} className={styles.place} aria-labelledby={`p-${r.candidateId}`}>
@@ -73,20 +72,18 @@ export function PrintView() {
             {where && <p className={styles.where}>{where}</p>}
             <p className={styles.phone}>{phone ? `Phone: ${phone}` : "No phone number listed"}</p>
 
-            {(r.warnings.length > 0 || conflicts.length > 0) && (
+            {r.warnings.length > 0 && (
               <ul className={styles.warnings} aria-label="Warnings">
                 {r.warnings.map((w) => (
                   <li key={w.text}>
                     <strong>Warning:</strong> {w.text}. Ask carefully before choosing this place.
                   </li>
                 ))}
-                {conflicts.map((c) => (
-                  <li key={c.requirement}>
-                    <strong>Conflict: {requirementLabel(c.requirement)}.</strong> Qloo&rsquo;s tags contradict this need.
-                  </li>
-                ))}
               </ul>
             )}
+
+            {/* Matched / To confirm / Conflict, distinct by shape in black and white. */}
+            {r.constraintStatuses.length > 0 && <SafetyZones statuses={r.constraintStatuses} heading="h3" />}
 
             <h3>Dishes to ask about</h3>
             {r.dishesToAskAbout.length > 0 ? (

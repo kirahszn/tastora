@@ -67,6 +67,8 @@ const PropertiesSchema = z.object({
   short_description: opt(z.string()),
   specialty_dishes: opt(z.array(z.object({ id: z.string().nullish(), name: z.string() }))),
   external: opt(ExternalSchema),
+  // Qloo's own picture of the place (Phase 12); shown on the card only, never ranked on.
+  image: opt(z.object({ url: opt(z.string()) })),
   geocode: opt(
     z.object({
       city: opt(z.string()),
@@ -151,6 +153,8 @@ export interface Candidate {
   /** From specialty_dishes + specialty_dish tags. Names can be garbled. */
   specialtyDishes: string[];
   menuUrl: string | null;
+  /** `properties.image.url`: Qloo's image of the place, for display only. */
+  imageUrl: string | null;
   googlePlaceId: string | null;
   mapsUrl: string | null;
   accessibilityTags: string[];
@@ -274,6 +278,7 @@ export function normalizePlace(place: QlooPlace, qlooRank: number): Candidate {
       ...tags.filter((t) => t.type === TAG_TYPES.specialtyDish).map((t) => t.name),
     ]).filter((name) => !DISH_FRAGMENT.test(name)),
     menuUrl: nonEmpty(p.menu_url),
+    imageUrl: nonEmpty(p.image?.url),
     googlePlaceId,
     mapsUrl: googlePlaceId
       ? buildMapsUrl(googlePlaceId, [place.name.trim(), address].filter(Boolean).join(", "))

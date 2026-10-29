@@ -100,3 +100,19 @@ describe("buildMapsUrl", () => {
     expect(url.searchParams.get("query_place_id")).toBe("ChIJabc");
   });
 });
+
+describe("Qloo place image (Phase 12)", () => {
+  const place = (properties: unknown) => ({ entity_id: "p1", name: "Lenny's Clam Bar", subtype: "urn:entity:place", properties });
+
+  it("keeps properties.image.url for display", () => {
+    const url = "https://images.qloo.com/i/6B4B5F78-B40C-478B-BB40-990A8548887F-420x-auto.jpg";
+    expect(normalizePlaces([place({ image: { url } })])[0].imageUrl).toBe(url);
+  });
+
+  it("is null when Qloo has no image, and a malformed one doesn't drop the place", () => {
+    expect(normalizePlaces([place({})])[0].imageUrl).toBeNull();
+    expect(normalizePlaces([place({ image: "not an object" })]).map((c) => [c.name, c.imageUrl])).toEqual([
+      ["Lenny's Clam Bar", null],
+    ]);
+  });
+});

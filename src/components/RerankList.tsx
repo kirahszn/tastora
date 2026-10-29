@@ -27,19 +27,23 @@ export function RerankList({
   rows,
   listRef,
   label,
+  leading,
 }: {
   rows: readonly RerankRow[];
   listRef?: React.Ref<HTMLOListElement>;
   /** Accessible name of the list. */
   label: string;
+  /** Decorative mark before each name, e.g. a cuisine plate (landing demo). */
+  leading?: React.ReactNode;
 }) {
   return (
     <ol ref={listRef} className={styles.list} aria-label={label}>
       {rows.map((row, i) => (
-        <li key={row.id} data-flip={row.id} className={styles.row}>
+        <li key={row.id} data-flip={row.id} className={`${styles.row} ${leading ? styles.withLeading : ""}`}>
           <span className={styles.rank} aria-hidden="true">
             {String(i + 1).padStart(2, "0")}
           </span>
+          {leading}
           <span className={styles.place}>
             <span className={styles.name}>{row.name}</span>
             {row.area && <span className={styles.area}>{row.area}</span>}

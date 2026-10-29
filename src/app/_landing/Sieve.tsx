@@ -1,22 +1,25 @@
 "use client";
-// "The safety check": the dishes Qloo lists for a real restaurant settle into "Dishes to ask about"
-// and "Set aside", with the engine's own reason. The data comes from sieveData.ts (the app's Phase 2
-// code run on a committed Qloo sample at build time). Server render, no JavaScript and reduced
-// motion all show the sorted result; with motion, the list starts unsorted and sorts itself when it
-// scrolls into view, and again on each place or "Replay".
+// "The check" (step 3 of See it work): the dishes Qloo lists for a real restaurant settle into two
+// trays, "Ask about" and "Set aside", with the engine's own reason. The data comes from sieveData.ts
+// (the app's Phase 2 code run on a committed Qloo sample at build time). With motion, the dishes
+// start as Qloo lists them and sort themselves when the step opens, on each place and on "Replay";
+// reduced motion shows the sorted trays straight away.
 import { useEffect, useRef, useState } from "react";
+import { CuisineArt } from "@/components/CuisineArt";
 import { Icon } from "@/components/Icon";
-import { StatusBadge } from "@/components/StatusBadge";
-import { prefersReducedMotion, useFlip } from "@/components/useFlip";
+import { SafetyZones } from "@/components/SafetyZones";
+import { useFlip } from "@/components/useFlip";
+import { useReducedMotion } from "@/components/useReducedMotion";
 import type { SievePlace } from "./sieveData";
 import styles from "./landing.module.css";
 
 type Phase = "listed" | "sorted";
-const SORT_DELAY_MS = 500;
+const SORT_DELAY_MS = 700;
 
 export function Sieve({ places }: { places: SievePlace[] }) {
+  const reduced = useReducedMotion();
   const [index, setIndex] = useState(0);
-  const [phase, setPhase] = useState<Phase>("sorted");
+  const [phase, setPhase] = useState<Phase>(reduced ? "sorted" : "listed");
   const { ref, capture } = useFlip<HTMLDivElement>({ duration: 750, stagger: 45 });
   const timer = useRef<number | undefined>(undefined);
   const p = places[index];
@@ -31,31 +34,15 @@ export function Sieve({ places }: { places: SievePlace[] }) {
 
   const run = (next: number) => {
     setIndex(next);
-    if (prefersReducedMotion()) return setPhase("sorted");
+    if (reduced) return setPhase("sorted");
     setPhase("listed");
     sortSoon();
   };
 
-  // First time the section scrolls into view: show Qloo's list, then sort it.
+  // The step just opened: show Qloo's list, then sort it.
   useEffect(() => {
-    const el = ref.current;
-    if (!el || prefersReducedMotion() || !("IntersectionObserver" in window)) return;
-    // Already on screen (reload mid-page): leave the sorted result alone.
-    if (el.getBoundingClientRect().top < window.innerHeight) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        io.disconnect();
-        setPhase("listed");
-        sortSoon();
-      },
-      { threshold: 0.35 },
-    );
-    io.observe(el);
-    return () => {
-      io.disconnect();
-      window.clearTimeout(timer.current);
-    };
+    if (!reduced) sortSoon();
+    return () => window.clearTimeout(timer.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps -- run once on mount
   }, []);
 
@@ -63,9 +50,17 @@ export function Sieve({ places }: { places: SievePlace[] }) {
 
   return (
     <div className={styles.sieve}>
+      <div className={styles.sieveIntro}>
+        <p className={styles.demoLead}>
+          Another real search: Nigerian food in Brooklyn for someone with a peanut allergy who needs soft food.
+        </p>
+        <SafetyZones statuses={p.statuses} heading="p" compact />
+      </div>
+
       <div className={styles.chips} role="group" aria-label="Restaurant">
         {places.map((pl, i) => (
           <button key={pl.name} type="button" className="chip" aria-pressed={i === index} onClick={() => run(i)}>
+            <CuisineArt kind="westAfrican" size={26} />
             {pl.name}
           </button>
         ))}
@@ -73,20 +68,11 @@ export function Sieve({ places }: { places: SievePlace[] }) {
 
       <div className={`card ${styles.sieveCard}`} ref={ref}>
         <div className={styles.sieveTop}>
-          <div>
-            <p className={styles.sieveName}>{p.name}</p>
-            <p className="mono">
-              {p.area ? `${p.area} · ` : ""}
-              {p.listed.length} dishes listed by Qloo
-            </p>
-          </div>
-          <ul className={styles.sieveBadges} aria-label="Their needs">
-            {p.statuses.map((s) => (
-              <li key={s.requirement}>
-                <StatusBadge requirement={s} />
-              </li>
-            ))}
-          </ul>
+          <p className={styles.sieveName}>{p.name}</p>
+          <p className="mono">
+            {p.area ? `${p.area} · ` : ""}
+            {p.listed.length} dishes listed by Qloo
+          </p>
         </div>
 
         {p.warnings.map((w) => (
@@ -96,10 +82,10 @@ export function Sieve({ places }: { places: SievePlace[] }) {
         ))}
 
         {sorted ? (
-          <div className={styles.sieveCols}>
-            <div>
-              <h3 className={styles.sieveLabel}>
-                Dishes to ask about <span className="mono">{p.kept.length}</span>
+          <div className={styles.trays}>
+            <div className={`${styles.tray} ${styles.trayAsk}`}>
+              <h3 className={styles.trayLabel}>
+                <Icon name="question" size={16} /> Ask about <span className="mono">{p.kept.length}</span>
               </h3>
               {p.kept.length ? (
                 <ul className={styles.dishList}>
@@ -114,9 +100,9 @@ export function Sieve({ places }: { places: SievePlace[] }) {
                 <p className={styles.sieveEmpty}>None. Ask what they can make instead.</p>
               )}
             </div>
-            <div className={styles.asideCol}>
-              <h3 className={styles.sieveLabel}>
-                Set aside <span className="mono">{p.setAside.length}</span>
+            <div className={`${styles.tray} ${styles.trayAside}`}>
+              <h3 className={styles.trayLabel}>
+                <Icon name="ban" size={16} /> Set aside <span className="mono">{p.setAside.length}</span>
               </h3>
               <ul className={styles.dishList}>
                 {p.setAside.map((d) => (
@@ -129,8 +115,8 @@ export function Sieve({ places }: { places: SievePlace[] }) {
             </div>
           </div>
         ) : (
-          <div>
-            <h3 className={styles.sieveLabel}>Listed by Qloo</h3>
+          <div className={styles.tray}>
+            <h3 className={styles.trayLabel}>Listed by Qloo</h3>
             <ul className={styles.dishList}>
               {p.listed.map((name) => (
                 <li key={name} data-flip={name} className={styles.dish}>
@@ -153,8 +139,8 @@ export function Sieve({ places }: { places: SievePlace[] }) {
           <Icon name="arrow" /> Replay
         </button>
         <p className="mono">
-          Checked by Tastora&rsquo;s own code on a stored Qloo search (New York City, October 2026) for a Nigerian food
-          lover in Brooklyn with a peanut allergy who needs soft food.
+          Checked by Tastora&rsquo;s own code on a stored Qloo search (West African restaurants, New York City, October
+          2026). The allergy itself always needs confirming with the restaurant.
         </p>
       </div>
     </div>

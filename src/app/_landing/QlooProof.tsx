@@ -4,7 +4,7 @@ import { QLOO_PROOF } from "./proofStats";
 
 export function QlooProof() {
   return (
-    <section className={styles.section} aria-labelledby="proof-h">
+    <section id="qloo" className={styles.section} aria-labelledby="proof-h">
       <SectionHead id="proof-h" eyebrow="Why Qloo" title="Taste signals change the answer." muted="We measured it.">
         <p>Every search runs twice, with and without the person&rsquo;s taste signals. Three real examples:</p>
       </SectionHead>

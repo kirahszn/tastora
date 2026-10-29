@@ -221,3 +221,18 @@ nav to "How it works · Why Qloo · Our rules" and a "Find food ↗" pill (phone
   confirm = dashed amber box, ?, grouped items with allergies first (`needZones()`); Conflict = heavy
   solid red row, ⛔, reason; then "Ask the restaurant" as a numbered call script with the Call button
   attached. Print keeps the shapes in black and white.
+- **See it work** (`SeeItWork.tsx`, `SeeItWorkDemo.tsx`, `#see`): replaces the separate re-rank and
+  safety-check sections. Three tappable steps over one stage: Tastes (pick a singer for Italian in
+  New York City), Qloo's match (`rerankSnapshot.json`; rows with plate icons glide from the plain
+  ranking, New/↑/↓ badges, the evidence sentence) and The check (`Sieve.tsx` on the engine output in
+  `sieveData.ts`: needs as a To-confirm zone, dishes settle into a dashed "Ask about" tray and a solid
+  "Set aside" tray with the engine's reason). Reduced motion shows each step already settled. The
+  "Why Qloo" nav link now lands on the Qloo proof section (`#qloo`). Without JavaScript only step 1
+  shows (the step buttons need script).
+- **Result cards**: Qloo image or cuisine illustration with the rank on it → name, area,
+  cuisines/price/rating → one "why" line with a small "Qloo" badge (only when that reason's source is
+  Qloo data) → safety zones and the call script (Call attached when Qloo lists a phone; otherwise no
+  Call) → dishes → shortlist, Website, Maps → details → feedback. `venue.imageUrl` is passed through
+  from `properties.image.url` by `normalizePlace` and `recommend.ts` for display only; ranking and the
+  constraint engine don't read it. The print checklist shows the same zones in black and white
+  (thin solid / dashed / heavy solid) and hides pictures.

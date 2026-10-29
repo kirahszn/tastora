@@ -502,14 +502,6 @@
   background: var(--surface-2);
 }
 
-.sieveBadges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  list-style: none;
-  padding: 0;
-}
-
 /* Numbered editorial list with thin dividers (problem, rules) */
 .numbered {
   list-style: none;
@@ -609,6 +601,170 @@
   font-weight: 700;
 }
 
+/* See it work (Phase 12): three tappable steps over one stage. */
+.demo {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.demoSteps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  list-style: none;
+  padding: 0;
+}
+
+.demoStep {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: 64px;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.demoStep:hover {
+  background: var(--surface-2);
+}
+
+.demoStep[aria-current="step"] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.demoStepNum {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1.5px solid currentColor;
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.demoStep[aria-current="step"] .demoStepNum {
+  border-color: var(--accent-fill);
+  background: var(--accent-fill);
+  color: var(--on-accent);
+}
+
+.demoStepText {
+  display: grid;
+  line-height: 1.25;
+}
+
+.demoStepTitle {
+  font-weight: 700;
+}
+
+.demoStepSub {
+  font-size: 0.875rem;
+  opacity: 0.85;
+}
+
+.demoStage {
+  animation: screenIn 420ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.demoSplit {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: var(--space-7);
+  align-items: start;
+}
+
+.demoLead {
+  max-width: 44ch;
+  font-size: var(--text-lead);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.demoNext {
+  justify-self: start;
+}
+
+.tasteCard {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--band);
+}
+
+.tasteSignal {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  animation: chipIn 380ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.sieveIntro {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 44rem;
+}
+
+.trays {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-4);
+}
+
+.tray {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+/* Same shapes as the safety zones: dashed for "ask", solid for "set aside". */
+.trayAsk {
+  border: 2px dashed var(--warn);
+}
+
+.trayAside {
+  border: 2px solid var(--line-strong);
+  background: var(--surface-2);
+}
+
+.trayLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.78125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.trayAsk .trayLabel svg {
+  color: var(--warn);
+}
+
+.trayAside .trayLabel svg {
+  color: var(--bad);
+}
+
 /* Sieve */
 .sieve {
   display: grid;
@@ -644,28 +800,6 @@
   color: var(--warn);
   font-weight: 700;
   font-size: var(--text-small);
-}
-
-.sieveCols {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-  gap: var(--space-6);
-}
-
-.asideCol {
-  padding-left: var(--space-6);
-  border-left: 1px solid var(--line);
-}
-
-.sieveLabel {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-2);
-  margin-bottom: var(--space-3);
-  font-size: 0.78125rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
 }
 
 .dishList {
@@ -918,16 +1052,44 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .sieveCols {
+  .trays,
+  .demoSplit {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .demoSplit {
     gap: var(--space-5);
   }
 
-  .asideCol {
-    padding-left: 0;
-    padding-top: var(--space-5);
-    border-left: 0;
-    border-top: 1px solid var(--line);
+  /* Phones: number over title, no subtitle, so the three steps fit one row. */
+  .demoSteps {
+    gap: var(--space-2);
+  }
+
+  .demoStep {
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-1);
+    padding: var(--space-2);
+    text-align: center;
+  }
+
+  .demoStepNum {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.875rem;
+  }
+
+  .demoStepTitle {
+    font-size: 0.875rem;
+  }
+
+  .demoStepSub {
+    display: none;
+  }
+
+  .tasteCard {
+    padding: var(--space-4);
   }
 
   .closing {
