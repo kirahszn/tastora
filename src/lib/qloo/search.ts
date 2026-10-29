@@ -94,6 +94,8 @@ export interface RestaurantSearchResult {
   locationUsed: string;
   /** Locality Qloo resolved it to (`query.localities.filter[0].disambiguation`), if echoed. */
   localityResolved: string | null;
+  /** Centre of that locality (`query.localities.filter[0].location`), if echoed. */
+  localityCenter?: { lat: number; lon: number } | null;
   /** Plain-language notes about fallbacks. */
   notes: string[];
 }
@@ -119,6 +121,10 @@ export function clearQlooCache(): void {
 type Obj = Record<string, unknown>;
 const asObj = (v: unknown): Obj => (v && typeof v === "object" ? (v as Obj) : {});
 const str = (v: unknown): string | null => (typeof v === "string" && v.trim() ? v.trim() : null);
+const point = (v: unknown): { lat: number; lon: number } | null => {
+  const { lat, lon } = asObj(v);
+  return typeof lat === "number" && typeof lon === "number" ? { lat, lon } : null;
+};
 
 function clip(text: string | null, max = 100): string | null {
   if (!text) return null;
@@ -201,13 +207,16 @@ export function createQlooSearch(deps: QlooSearchDeps = {}) {
     return out;
   }
 
-  async function insightsPlaces(params: QlooParams): Promise<{ places: unknown[]; locality: string | null }> {
+  async function insightsPlaces(
+    params: QlooParams,
+  ): Promise<{ places: unknown[]; locality: string | null; center: { lat: number; lon: number } | null }> {
     const body = await cachedGet("/v2/insights", params);
     const localities = asObj(asObj(asObj(body).query).localities).filter;
     const first = Array.isArray(localities) ? asObj(localities[0]) : {};
     return {
       places: list(body, "entities").filter(isPlaceEntity),
       locality: str(first.disambiguation) ?? str(first.name),
+      center: point(first.location),
     };
   }
 
@@ -243,7 +252,7 @@ export function createQlooSearch(deps: QlooSearchDeps = {}) {
         res = await insightsPlaces(base(fallback, location));
         notes.push(`Genre tag ${tag} returned nothing; used ${fallback}`);
       }
-      return { used, places: res.places, locality: res.locality };
+      return { used, places: res.places, locality: res.locality, center: res.center };
     };
 
     const wide = p.fallbackLocation ?? NYC_LOCATION;
@@ -288,6 +297,7 @@ export function createQlooSearch(deps: QlooSearchDeps = {}) {
       tagsUsed: runs.map((r) => r.used),
       locationUsed,
       localityResolved: runs.find((r) => r.locality)?.locality ?? null,
+      localityCenter: runs.find((r) => r.locality)?.center ?? null,
       notes,
     };
   }

@@ -3,7 +3,15 @@
 // decides how to search; statuses, exclusions, ranking and facts always come from Phase 2.
 import "server-only";
 import Anthropic from "@anthropic-ai/sdk";
-import { cityWide, coverageNote, describeLocation, searchLocation } from "@/lib/domain/location";
+import {
+  buildSearchArea,
+  cityWide,
+  coverageNote,
+  describeLocation,
+  FAR_REASON,
+  searchLocation,
+  type ResolvedLocality,
+} from "@/lib/domain/location";
 import type { Candidate } from "@/lib/domain/place";
 import type { SeniorProfile } from "@/lib/domain/profile";
 import { getAnthropicEnv } from "@/lib/env";
@@ -23,6 +31,7 @@ import { runFallbackPlanner } from "./fallbackPlanner";
 import {
   locationNotices,
   PLANNER_FALLBACK_NOTICE,
+  outsideAreaNotice,
   relatedCuisineNotice,
   tasteMemoryNotices,
 } from "./notices";
@@ -73,6 +82,8 @@ export interface RecommendResponse {
   notices: string[];
   /** "Fewer matches found around <city>…" when few places came back or the city's coverage is Thin/Poor. */
   coverageNote: string | null;
+  /** Nothing to show because every place Qloo returned was far from the area asked for. */
+  outsideAreaNote: string | null;
   meta: {
     planner: "agent" | "fallback";
     model: string | null;
@@ -250,9 +261,9 @@ export async function recommend(
 
   const notices: string[] = [];
   if (planner === "fallback") notices.push(PLANNER_FALLBACK_NOTICE);
+  let related: { cuisine: string; family: string } | null = null;
   if (session.searches.length && session.searches.every((s) => !s.result.candidates.length)) {
-    const related = await searchRelatedCuisine(session, profile);
-    if (related) notices.push(relatedCuisineNotice(related.cuisine, related.family, describeLocation(profile)));
+    related = await searchRelatedCuisine(session, profile);
   }
   trace.push(...session.trace);
 
@@ -264,9 +275,28 @@ export async function recommend(
   const merged = mergeByBestRank(searches.map((s) => s.result.candidates));
   const origin = originBySearch(searches);
   const rankStarted = performance.now();
+  // Only localities that are the place asked for count: Qloo resolved "Benin city" to Mexico City.
+  const resolved: ResolvedLocality[] = searches.flatMap((s) =>
+    s.result.localityResolved
+      ? [{ disambiguation: s.result.localityResolved, center: s.result.localityCenter ?? null }]
+      : [],
+  );
+  const searchArea = buildSearchArea(resolved, profile);
   // "Los Angeles, Los Angeles County, …" → "Los Angeles": lets "LA" match Qloo's geocode city.
-  const cityNames = searches.flatMap((s) => s.result.localityResolved?.split(",")[0]?.trim() || []);
-  const { ranked, excluded } = rankCandidates(profile, merged, feedback, { cityNames });
+  const cityNames = searchArea.localities.flatMap((l) => l.disambiguation.split(",")[0]?.trim() || []);
+  const { ranked, excluded } = rankCandidates(profile, merged, feedback, { cityNames, searchArea });
+  const farIds = new Set(excluded.filter((e) => e.reasons.some((r) => r.startsWith(FAR_REASON))).map((e) => e.candidate.id));
+  const outsideAreaNote =
+    !ranked.length && farIds.size
+      ? outsideAreaNotice(
+          [...new Set(searches.flatMap((s) => (s.result.candidates.length ? s.cuisineTags.map((t) => t.name) : [])))],
+          describeLocation(profile),
+        )
+      : null;
+  // "…showing Caribbean restaurants instead" would be untrue if none of them are shown.
+  if (related && ranked.length) {
+    notices.push(relatedCuisineNotice(related.cuisine, related.family, describeLocation(profile)));
+  }
   const results: RecommendResult[] = ranked.map((item) => ({
     ...buildExplanationFacts(profile, item, {
       tasteSignals: (origin.get(item.candidate.id)?.signals ?? []).map((s) => s.name),
@@ -320,7 +350,9 @@ export async function recommend(
     trace: trace.map((s, i) => ({ ...s, step: i + 1 })),
     evidence,
     notices,
-    coverageNote: coverageNote(profile.city, merged.length),
+    // The empty state says it instead, so the two never show together.
+    coverageNote: outsideAreaNote ? null : coverageNote(profile.city, merged.length - farIds.size),
+    outsideAreaNote,
     meta: {
       planner,
       model: planner === "agent" ? model : null,

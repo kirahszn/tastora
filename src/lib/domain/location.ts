@@ -148,3 +148,104 @@ export function cityAreaLabel(area: CityArea): string {
       return `Nearby: ${area.place}`;
   }
 }
+
+// --- Far-away venues (hotfix, 2026-10-29) --------------------------------------------------------
+//
+// Qloo's `filter.location.query` is a bias, not a boundary, and can resolve to the wrong place:
+// "Benin city" resolved to the locality "Mexico City, Cuauhtémoc, Mexico City, Mexico" and every
+// Caribbean result was in Mexico City. Fields used: the locality Qloo echoes
+// (`query.localities.filter[0].disambiguation` and `.location`) and each venue's `location.lat/lon`
+// and `properties.geocode` (city, metro, admin1_region). Far venues are excluded, never ranked.
+
+/** Within this distance of the requested locality's centre a venue counts as nearby. */
+export const NEARBY_KM = 50;
+
+export interface ResolvedLocality {
+  /** "Lagos, Nigeria". */
+  disambiguation: string;
+  center: { lat: number; lon: number } | null;
+}
+
+const localityParts = (l: ResolvedLocality) => l.disambiguation.split(",").map(foldPlace).filter(Boolean);
+
+// Words too common to show two place names are the same ("Benin City" / "Mexico City").
+const GENERIC_WORDS = new Set(["city", "town", "north", "south", "east", "west", "port", "fort", "saint", "santa", "lake", "great", "upper", "lower"]);
+const words = (s: string) => s.split(" ").filter((w) => w.length >= 4 && !GENERIC_WORDS.has(w));
+const initials = (s: string) => s.split(" ").map((w) => w[0]).join("");
+
+/**
+ * Whether the locality Qloo resolved to is the place the person typed: a part of its
+ * disambiguation equals the city or area, is New York City for an NYC profile, has the typed
+ * short form as initials ("LA" → "Los Angeles"), or shares a 4-letter word start ("Philly" →
+ * "Philadelphia"). "Benin city" → "Mexico City, …" is not.
+ */
+export function localityMatchesRequest(locality: ResolvedLocality, { city, area }: ProfileLocation): boolean {
+  const parts = localityParts(locality);
+  if (isNewYorkCity(city) && parts.some(isNewYorkCity)) return true;
+  const typed = [cityKey(city), ...(area ? [cityKey(area)] : [])].filter(Boolean);
+  return typed.some(
+    (t) =>
+      parts.includes(t) ||
+      (t.length <= 4 && !t.includes(" ") && parts.some((p) => initials(p) === t)) ||
+      words(t).some((w) => parts.some((p) => words(p).some((pw) => pw.slice(0, 4) === w.slice(0, 4)))),
+  );
+}
+
+export interface SearchArea {
+  /** Resolved localities that name the place asked for. */
+  localities: ResolvedLocality[];
+  /** Qloo echoed a locality, but none of them is the place asked for. */
+  mismatched: boolean;
+}
+
+export function buildSearchArea(resolved: readonly ResolvedLocality[], profile: ProfileLocation): SearchArea {
+  const localities = resolved.filter((l) => localityMatchesRequest(l, profile));
+  return { localities, mismatched: resolved.length > 0 && localities.length === 0 };
+}
+
+/** Great-circle distance in km. */
+export function distanceKm(a: { lat: number; lon: number }, b: { lat: number; lon: number }): number {
+  const rad = (d: number) => (d * Math.PI) / 180;
+  const h =
+    Math.sin(rad(b.lat - a.lat) / 2) ** 2 +
+    Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(rad(b.lon - a.lon) / 2) ** 2;
+  return 2 * 6371 * Math.asin(Math.sqrt(h));
+}
+
+export interface FarVenue {
+  /** Where the venue is, for the reason text: its geocode city, metro or region. */
+  place: string | null;
+  source: string;
+}
+
+export const FAR_REASON = "qloo.location: Outside the area you chose";
+
+export const farVenueReason = (far: FarVenue) => `${FAR_REASON}${far.place ? ` (${far.place})` : ""}`;
+
+/**
+ * Whether a venue is far from the area asked for. `inArea` is the existing same-borough /
+ * same-city / same-metro result. Kept (null): in the area, within NEARBY_KM of a matching
+ * locality, or in a region that locality names (its `admin1_region` is a part of the
+ * disambiguation). Far: none of those, with coordinates on both sides; or, when Qloo resolved the
+ * search to another place altogether, any venue with a geocode that is not in the city asked for.
+ * Anything without the fields to tell stays as before (kept).
+ */
+export function detectFarVenue(
+  venue: { geocode: VenueGeocode | null; lat: number | null; lon: number | null },
+  area: SearchArea,
+  inArea: boolean,
+): FarVenue | null {
+  if (inArea) return null;
+  const g = venue.geocode;
+  const place = g?.city ?? g?.metro ?? g?.region ?? null;
+  if (area.mismatched) {
+    return place ? { place, source: `qloo.properties.geocode.city: ${place}` } : null;
+  }
+  const at = venue.lat != null && venue.lon != null ? { lat: venue.lat, lon: venue.lon } : null;
+  const region = g?.region ? foldPlace(g.region) : null;
+  if (region && area.localities.some((l) => localityParts(l).includes(region))) return null;
+  const distances = at ? area.localities.flatMap((l) => (l.center ? [distanceKm(at, l.center)] : [])) : [];
+  if (!distances.length) return null;
+  const km = Math.min(...distances);
+  return km <= NEARBY_KM ? null : { place, source: `qloo.location: ${Math.round(km)} km away` };
+}

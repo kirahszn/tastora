@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/Icon";
 import { useHydrated } from "@/components/useHydrated";
 import type { SeniorProfile } from "@/lib/domain/profile";
-import { toolLabel } from "@/lib/ui/format";
+import { suggestionCountText, toolLabel } from "@/lib/ui/format";
 import { ERROR_COPY, SearchError, requestBody, runSearch, type SearchErrorKind } from "@/lib/ui/searchClient";
 import { splitSource } from "@/lib/ui/status";
 import {
@@ -186,6 +186,7 @@ function Results({ profile }: { profile: SeniorProfile }) {
   // Absent on results cached before Phase 5 / Phase 9c.
   const notices = phase.response.notices ?? [];
   const coverageNote = phase.response.coverageNote ?? null;
+  const outsideAreaNote = phase.response.outsideAreaNote ?? null;
   const count = feedbackCount(feedback);
 
   // From the latest state, so quick taps in a row don't undo each other. The save is idempotent.
@@ -204,7 +205,7 @@ function Results({ profile }: { profile: SeniorProfile }) {
           {results.length > 0 ? `Places ${who === "them" ? "they" : who} might enjoy` : "No suggestions this time"}
         </h1>
         <p className={styles.muted}>
-          {results.length > 0 && `${results.length} suggestion${results.length === 1 ? "" : "s"} near ${meta.location}, best first. `}
+          {suggestionCountText(results.length, meta.location)}
           <Link href="/profile">Edit profile</Link>
         </p>
       </div>
@@ -248,10 +249,16 @@ function Results({ profile }: { profile: SeniorProfile }) {
 
       {results.length === 0 ? (
         <div className={styles.emptyCard}>
-          <p>
-            No restaurants fit this search. Try another favourite cuisine, a nearby area or larger city, or fewer
-            comfort needs.
-          </p>
+          {outsideAreaNote ? (
+            <p>
+              <strong>{outsideAreaNote}</strong> Try a nearby larger city, or a different favourite cuisine.
+            </p>
+          ) : (
+            <p>
+              No restaurants fit this search. Try another favourite cuisine, a nearby area or larger city, or fewer
+              comfort needs.
+            </p>
+          )}
           <div className={styles.row}>
             <Link href="/profile" className="btn btn-primary">
               Edit profile

@@ -89,7 +89,7 @@ describe("POST /api/recommend", () => {
     expect(body.meta.planner).toBe("fallback");
     expect(body.meta.fallbackReason).toBe("Claude API error 500");
     expect(body.evidence.personalisedTop10.length).toBeGreaterThan(0);
-    expect(Object.keys(body)).toEqual(["results", "excluded", "trace", "evidence", "notices", "coverageNote", "meta"]);
+    expect(Object.keys(body)).toEqual(["results", "excluded", "trace", "evidence", "notices", "coverageNote", "outsideAreaNote", "meta"]);
   });
 
   it("returns 502 with a friendly message when Qloo is down, leaking nothing", async () => {
@@ -141,7 +141,7 @@ describe("POST /api/recommend", () => {
       // The streamed steps are exactly the final trace, in order.
       expect(steps).toEqual(last.result.trace);
       expect(steps.map((s: { step: number }) => s.step)).toEqual(steps.map((_: unknown, i: number) => i + 1));
-      expect(Object.keys(last.result)).toEqual(["results", "excluded", "trace", "evidence", "notices", "coverageNote", "meta"]);
+      expect(Object.keys(last.result)).toEqual(["results", "excluded", "trace", "evidence", "notices", "coverageNote", "outsideAreaNote", "meta"]);
     });
 
     it("ends with an error event when Qloo is down, leaking nothing", async () => {

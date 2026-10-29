@@ -3,7 +3,14 @@
 import { evaluateCandidate, type CandidateEvaluation } from "@/lib/constraints/evaluate";
 import { containsKeyword } from "@/lib/constraints/keywords";
 import { detectProfileBorough, detectVenueArea, type Borough, type VenueArea } from "@/lib/domain/borough";
-import { detectCityArea, isNewYorkCity, type CityArea } from "@/lib/domain/location";
+import {
+  detectCityArea,
+  detectFarVenue,
+  farVenueReason,
+  isNewYorkCity,
+  type CityArea,
+  type SearchArea,
+} from "@/lib/domain/location";
 import type { Candidate } from "@/lib/domain/place";
 import type { SeniorProfile } from "@/lib/domain/profile";
 
@@ -186,8 +193,8 @@ function allergenPenalty(heavy: AllergenHeavy[]): number {
 }
 
 /**
- * Rank candidates for a profile. Hard-excluded and "not suitable" candidates never appear in
- * `ranked`. Order: total score desc, then qlooRank asc, then id asc (deterministic).
+ * Rank candidates for a profile. Hard-excluded, "not suitable" and far-away candidates
+ * (location.ts, `detectFarVenue`) never appear in `ranked`. Order: total score desc, then qlooRank asc, then id asc (deterministic).
  */
 export function rankCandidates(
   profile: SeniorProfile,
@@ -197,6 +204,8 @@ export function rankCandidates(
     limit?: number;
     /** Other names for the profile city, e.g. the locality Qloo resolved it to ("Los Angeles" for "LA"). */
     cityNames?: readonly string[];
+    /** The localities Qloo resolved the searches to; venues far from them are excluded. */
+    searchArea?: SearchArea;
   } = {},
 ): RankingResult {
   const limit = options.limit ?? DEFAULT_RESULT_LIMIT;
@@ -224,6 +233,13 @@ export function rankCandidates(
   const scored: Omit<RankedCandidate, "rank">[] = [];
 
   for (const candidate of candidates) {
+    const { area, points } = locate(candidate);
+    const inArea = area.kind === "borough" || area.kind === "same_city" || area.kind === "same_metro";
+    const far = options.searchArea ? detectFarVenue(candidate, options.searchArea, inArea) : null;
+    if (far) {
+      excluded.push({ candidate, reasons: [farVenueReason(far)] });
+      continue;
+    }
     const evaluation = evaluateCandidate(profile, candidate);
     const reasons = [...evaluation.exclusionReasons];
     if (notSuitable.has(candidate.id)) reasons.push("feedback.notSuitable: caregiver marked it not suitable");
@@ -234,7 +250,6 @@ export function rankCandidates(
 
     const matchedFavouriteDishes = matchFavouriteDishes(profile, evaluation);
     const likedCuisines = candidate.cuisines.filter((c) => likedCuisineSet.has(c.toLowerCase()));
-    const { area, points } = locate(candidate);
     const breakdown: ScoreBreakdown = {
       taste: tasteScore(candidate.qlooRank, maxRank),
       favouriteDishes: Math.min(

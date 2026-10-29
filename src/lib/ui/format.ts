@@ -22,6 +22,10 @@ export const SCORE_LABELS: Record<keyof Omit<RecommendResult["scoreBreakdown"], 
   borough: "Location",
 };
 
+/** "2 suggestions near Benin city, best first. ": counts only the places shown; null when none are. */
+export const suggestionCountText = (shown: number, location: string) =>
+  shown > 0 ? `${shown} suggestion${shown === 1 ? "" : "s"} near ${location}, best first. ` : null;
+
 export const signed = (n: number) => (n > 0 ? `+${n}` : n < 0 ? `−${Math.abs(n)}` : "0");
 
 /** Plain headings for trace steps; the step's own text says what actually happened. */

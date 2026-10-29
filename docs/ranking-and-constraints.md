@@ -158,6 +158,22 @@ total is their sum.
   Markham"; no geocode city → 0 and no label (nothing is guessed). +6 is the same weight as a borough
   match. Ranks, never filters. `area.kind` is `same_city` / `same_metro` / `nearby` / `unknown`, with
   `inRequestedCity`. Tested on the live samples in `tests/location.test.ts`.
+- **Far-away venues (hotfix 2026-10-29, `detectFarVenue` in `location.ts`). Filters.** Qloo's location
+  is a bias, not a boundary, and can resolve to the wrong place: live, "Benin city" resolved to
+  "Mexico City, Cuauhtémoc, Mexico City, Mexico" and all 7 Caribbean results were in Mexico City.
+  Fields: the echoed locality (`query.localities.filter[0].disambiguation` and `.location` lat/lon)
+  and each venue's `location.lat/lon` and `properties.geocode` (city, metro, admin1_region). A locality
+  counts only if it names the place typed (a disambiguation part equals the city or area, NYC for an
+  NYC profile, initials "LA" → "Los Angeles", or a shared 4-letter word start "Philly" →
+  "Philadelphia"); only those localities' names are used by the same-city rule above. A venue is
+  kept when it is in the borough/city/metro, within 50 km of a matching locality's centre, or its
+  `admin1_region` is a part of that locality's disambiguation (same region). Otherwise, with
+  coordinates on both sides, it is far. If Qloo echoed a locality but none names the place asked
+  for, every venue with a geocode outside the typed city is far. No locality echoed, or no
+  coordinates: kept, as before. Far venues are excluded before evaluation with the reason
+  `qloo.location: Outside the area you chose (Mexico City)`, never ranked or shortlisted, and don't
+  count toward the coverage note. Checked against every saved raw response (London, Toronto, LA,
+  Chicago, Sydney, Lagos, NYC): 0 venues excluded. Tests: `tests/far-venues.test.ts`.
 - **Taste decay (verified Phase 3).** Over a 20-result list the linear formula gives rank 1 = 50,
   rank 10 = 28, rank 20 = 3, with steps of 2–3 points between neighbours (no cliff). Kept as is;
   locked by a test.

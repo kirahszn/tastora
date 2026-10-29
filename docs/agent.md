@@ -140,10 +140,13 @@ Nigerian, where NYC has only about 10 places.
 - Body `{ profile, feedback? }`: `SeniorProfileSchema` and `RankingFeedbackSchema`
   (`src/lib/ranking/feedback.ts`; ids ≤ 100 chars, ≤ 50 per list). Invalid → **400**
   `{ error, fieldErrors: [{ path, message }] }`. Non-JSON body → 400.
-- **200** `{ results, excluded, trace, evidence, notices, coverageNote, meta }`. `results[]` are the
+- **200** `{ results, excluded, trace, evidence, notices, coverageNote, outsideAreaNote, meta }`. `results[]` are the
   Phase 2 explanation facts, plus `venue { address, neighborhood, priceLevel, rating, cuisines }`.
   `coverageNote` (Phase 9c) is "Fewer matches found around <city>. Qloo's restaurant coverage varies
-  by city." when fewer than 4 unique places came back or the city is rated Thin/Poor, else null.
+  by city." when fewer than 4 unique places in the area came back or the city is rated Thin/Poor, else
+  null. `outsideAreaNote` (hotfix 2026-10-29) is "Qloo doesn't have <cuisine> restaurants near
+  <location> yet." when nothing is shown because every place was far from the area asked for
+  (`docs/ranking-and-constraints.md`, "Far-away venues"); `coverageNote` is then null.
   `meta` has `planner`, `model`, `fallbackReason?`, `location` (the text sent to Qloo), `city`,
   `qlooCalls`, `qlooCacheHits`, `anthropicRequests` and `durationMs`.
 - **400** `{ error: "Qloo couldn't find that city or area. Please try the nearest larger city.",

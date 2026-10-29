@@ -74,6 +74,10 @@ export function tasteMemoryNotices(profile: SeniorProfile, signals: readonly Tas
 export const relatedCuisineNotice = (cuisine: string, family: string, location: string) =>
   `No ${cuisine} restaurants were found near ${location}, so Tastora is showing ${family} restaurants instead.`;
 
+/** Every place Qloo returned was far from the area asked for (location.ts, `detectFarVenue`). */
+export const outsideAreaNotice = (cuisines: readonly string[], location: string) =>
+  `Qloo doesn't have ${cuisines.length ? `${cuisines.join(" or ")} ` : ""}restaurants near ${location} yet.`;
+
 export const PLANNER_FALLBACK_NOTICE =
   "The AI planner (Claude) wasn't available, so Tastora planned this search with its built-in rules. Results are checked the same way.";
 
