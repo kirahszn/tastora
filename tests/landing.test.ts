@@ -5,6 +5,7 @@ import heroSnapshot from "@/app/_landing/heroSnapshot.json";
 import { QLOO_PROOF } from "@/app/_landing/proofStats";
 import rerank from "@/app/_landing/rerankSnapshot.json";
 import { sieveSamples } from "@/app/_landing/sieveData";
+import { qlooImageUrl } from "@/lib/ui/cuisineArt";
 import { evidenceSentence } from "@/lib/ui/rankMovement";
 import { displayStatus } from "@/lib/ui/status";
 
@@ -107,5 +108,21 @@ describe("landing hero card", () => {
       ["comfort: wheelchair access", "matched"],
     ]);
     expect(r.reasons.some((x) => x.text === "Venue tag: Wheelchair accessible entrance")).toBe(true);
+  });
+
+  it("copies the preview's match lists from the logged smoke run, in order (Phase 12)", () => {
+    const doc = readFileSync(join(process.cwd(), "docs/phase3-smoke.md"), "utf8");
+    const profileB = doc.slice(doc.indexOf("## Profile B"));
+    const section = profileB.slice(profileB.indexOf("### With vs without taste signals"));
+    const rows = [...section.matchAll(/^\| (\d+) \| (.+?) \| (.+?) \|$/gm)].slice(0, 10);
+    expect(rows.map((m) => m[2])).toEqual(heroSnapshot.match.personalised);
+    expect(rows.map((m) => m[3])).toEqual(heroSnapshot.match.baseline);
+    expect(heroSnapshot.match.personalised.slice(0, 4)).toContain(heroSnapshot.result.name);
+  });
+
+  it("uses Qloo's own image of the place, never a stock photo", () => {
+    expect(qlooImageUrl(heroSnapshot.image.url)).toBe(heroSnapshot.image.url);
+    expect(heroSnapshot.image.source).toContain("Lenny's Clam Bar");
+    expect(heroSnapshot.image.alt).toMatch(/^Lenny's Clam Bar/);
   });
 });

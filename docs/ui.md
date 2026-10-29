@@ -201,3 +201,23 @@ nav to "How it works · Why Qloo · Our rules" and a "Find food ↗" pill (phone
   (with results) and `/results/print` log no errors or warnings of ours.
 - Checked at 375, 768, 1024 and 1440px (same-origin iframe, real stored results): no horizontal
   scroll, no text under AA contrast, no tap target under 44px, on every page.
+## Show the product (Phase 12)
+
+- **Place images (Part 0).** Qloo's raw place responses carry `properties.image.url` (and
+  `images[]`, type `urn:image:place:unknown`) on 225 of 235 unique places in `fixtures/qloo/raw/`
+  (96%), all on `images.qloo.com`; the committed `samples/` are slimmed and drop them. A card shows
+  Qloo's image only when the response has one for that place (`qlooImageUrl()` accepts https on
+  `images.qloo.com` only), with alt text and an "Image: Qloo" credit. Otherwise, or if it fails to
+  load, `CuisineArt` draws an original flat plate (Italian, West African, Caribbean, Chinese, Indian,
+  Mexican, Japanese, Korean, Middle Eastern, or a plain plate) picked by `cuisineArtFor()` from the
+  venue's own cuisine tags; decorative (`aria-hidden`). No stock food photos on restaurant cards.
+- **Hero preview** (`HeroPreview.tsx`): a CSS-drawn phone cycling three states built in HTML from
+  stored data: "Their tastes" (the Sinatra example profile), "Qloo's match" (Qloo's top 4 without →
+  with the Frank Sinatra signal, from the live Phase 3 run in `docs/phase3-smoke.md`, Profile B;
+  `tests/landing.test.ts` checks the lists against that table), and "The check" (the Lenny's Clam Bar
+  result with Qloo's image of the place). Advances every 3.5s; pauses on hover, focus, off-screen,
+  with the Pause button, or once a step is tapped. Reduced motion shows "The check", still.
+- **Safety zones** (`SafetyZones.tsx`): Matched = thin solid green row, ✓, "venue tag" chip; To
+  confirm = dashed amber box, ?, grouped items with allergies first (`needZones()`); Conflict = heavy
+  solid red row, ⛔, reason; then "Ask the restaurant" as a numbered call script with the Call button
+  attached. Print keeps the shapes in black and white.

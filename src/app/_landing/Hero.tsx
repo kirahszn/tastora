@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Icon } from "@/components/Icon";
-import { HeroCard } from "./HeroCard";
+import { HeroPreview } from "./HeroPreview";
 import styles from "./landing.module.css";
 
 export function Hero() {
@@ -25,7 +25,7 @@ export function Hero() {
         </div>
         <p className="mono">Free · No sign-up</p>
       </div>
-      <HeroCard />
+      <HeroPreview />
     </section>
   );
 }

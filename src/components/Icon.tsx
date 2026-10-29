@@ -18,7 +18,10 @@ type Name =
   | "ask"
   | "arrow"
   | "star"
-  | "minus";
+  | "minus"
+  | "ban"
+  | "pause"
+  | "play";
 
 const PATHS: Record<Name, string> = {
   check: "M5 12.5l4.5 4.5L19 7.5",
@@ -40,6 +43,9 @@ const PATHS: Record<Name, string> = {
   ask: "M4.5 5.5h15v10h-8l-4.5 3.5v-3.5H4.5zM10.2 8.8a1.9 1.9 0 1 1 2.6 1.8c-.5.2-.8.6-.8 1.1M12 13.4v.01",
   arrow: "M5 12h14M13 6l6 6-6 6",
   star: "M12 3.8l2.5 5.2 5.7.8-4.1 4 1 5.7-5.1-2.7-5.1 2.7 1-5.7-4.1-4 5.7-.8z",
+  ban: "M5.6 5.6l12.8 12.8",
+  pause: "M9 6v12M15 6v12",
+  play: "M8 5.5v13l10-6.5z",
 };
 
 export function Icon({ name, size = 18 }: { name: Name; size?: number }) {
@@ -57,7 +63,7 @@ export function Icon({ name, size = 18 }: { name: Name; size?: number }) {
       strokeLinejoin="round"
       style={{ flexShrink: 0 }}
     >
-      {name === "info" && <circle cx="12" cy="12" r="9" />}
+      {(name === "info" || name === "ban") && <circle cx="12" cy="12" r="9" />}
       <path d={PATHS[name]} />
     </svg>
   );

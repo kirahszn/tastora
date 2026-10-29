@@ -1,6 +1,39 @@
 {
   "note": "One result from a live Tastora search for the Sinatra example profile (Italian-American, Queens, Frank Sinatra; no pork; wheelchair access) on 2026-10-27 (planner: agent, 4 Qloo calls). Copied field for field from the response facts, with the Phase 9b wording of the taste reason and questions (scripts used for the Phase 9b screenshots). Nothing added.",
   "capturedOn": "2026-10-27",
+  "image": {
+    "url": "https://images.qloo.com/i/6B4B5F78-B40C-478B-BB40-990A8548887F-420x-auto.jpg",
+    "alt": "Lenny's Clam Bar from the street at night, its red neon sign above striped awnings",
+    "source": "Qloo properties.image.url for entity 6B4B5F78-B40C-478B-BB40-990A8548887F (Lenny's Clam Bar), stored response fixtures/qloo/raw/E5i-italian-signal-sinatra.json, 2026-10-26"
+  },
+  "match": {
+    "note": "Qloo's top 10 for the same profile (Italian American, Queens) with and without the Frank Sinatra signal, from the live Phase 3 smoke run on 2026-10-26: docs/phase3-smoke.md, Profile B, 'With vs without taste signals'. Copied in order.",
+    "signal": "Frank Sinatra",
+    "baseline": [
+      "Quality Italian",
+      "Luigi's Restaurant And Bar",
+      "San Marzano",
+      "Lenny's Clam Bar",
+      "Martha’s Country Bakery",
+      "Bamonte's",
+      "Rosa's Pizza",
+      "Trattoria 35",
+      "Giorgio's of Gramercy",
+      "Patrizia's Of Manhattan"
+    ],
+    "personalised": [
+      "Chazz Palminteri Italian Restaurant",
+      "Nicola's",
+      "Lenny's Clam Bar",
+      "Bella Blu",
+      "Patrizia's Of Manhattan",
+      "Quality Italian",
+      "Gotham Pizza",
+      "Paul & Jimmy’s Ristorante",
+      "Rosa's Pizza",
+      "Allora"
+    ]
+  },
   "profile": {
     "cuisine": "Italian-American",
     "area": "Queens",

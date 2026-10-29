@@ -49,19 +49,30 @@ const needValue = (r: Need) => midSentence(r.requirement.slice(r.requirement.ind
  * ever land in "To confirm". The full per-need list stays under "Show details".
  */
 export function compactNeeds<T extends Need>(statuses: readonly T[]): { matched: T[]; conflicts: T[]; toConfirm: string | null } {
+  const { matched, conflicts, confirm } = needZones(statuses);
+  return { matched, conflicts, toConfirm: confirm.length ? confirm.join(" · ") : null };
+}
+
+/**
+ * The same grouping as a list (Phase 12 safety zones): Matched, Conflict, and the items to confirm
+ * with all allergies first in one item ("shellfish and soy allergies", "dairy-free", "easy to chew").
+ */
+export function needZones<T extends Need>(statuses: readonly T[]): { matched: T[]; conflicts: T[]; confirm: string[] } {
   const tone = (r: Need) => displayStatus(r).tone;
   const pending = statuses.filter((r) => tone(r) === "warn");
   const allergies = pending.filter((r) => r.kind === "allergy").map(needValue);
-  const parts = [
-    ...(allergies.length ? [`${andList(allergies)} ${allergies.length === 1 ? "allergy" : "allergies"}`] : []),
-    ...pending.filter((r) => r.kind !== "allergy").map(needValue),
-  ];
   return {
     matched: statuses.filter((r) => tone(r) === "ok"),
     conflicts: statuses.filter((r) => tone(r) === "bad"),
-    toConfirm: parts.length ? parts.join(" · ") : null,
+    confirm: [
+      ...(allergies.length ? [`${andList(allergies)} ${allergies.length === 1 ? "allergy" : "allergies"}`] : []),
+      ...pending.filter((r) => r.kind !== "allergy").map(needValue),
+    ],
   };
 }
+
+/** "comfort: wheelchair access" → "Wheelchair access". */
+export const needName = (r: Need) => requirementLabel(needValue(r));
 
 /**
  * Split a sourced string ("profile.allergies: \"peanut\"", "qloo.dishHighlights: …",

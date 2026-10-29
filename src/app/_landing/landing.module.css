@@ -126,96 +126,388 @@
   max-width: 26ch;
 }
 
+/* Hero preview (Phase 12): a CSS-drawn phone showing Tastora in three states. */
 .heroFigure {
   display: grid;
+  justify-items: center;
   gap: var(--space-3);
   width: 100%;
-  max-width: 470px;
+  max-width: 400px;
   justify-self: end;
 }
 
-.heroCard {
+.heroFigure figcaption {
+  max-width: 34ch;
+  text-align: center;
+}
+
+.phone {
+  width: 100%;
+  max-width: 330px;
+  padding: 10px;
+  border-radius: 46px;
+  background: var(--ink);
+  box-shadow:
+    0 2px 4px rgb(43 29 22 / 12%),
+    0 30px 60px -20px rgb(43 29 22 / 35%);
+}
+
+.screen {
   display: grid;
-  gap: var(--space-3);
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 590px;
+  overflow: hidden;
+  border-radius: 37px;
+  background: var(--bg);
 }
 
-.heroCardTop {
+.appBar {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: var(--space-1) var(--space-3);
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1.1rem 1.1rem 0.6rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
 }
 
-.heroFor {
-  font-size: 0.8125rem;
-  font-weight: 600;
+.appName {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.appStep {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   color: var(--muted);
 }
 
-.heroCardName {
-  font-size: 1.5rem;
-  letter-spacing: -0.025em;
+.screenState {
+  overflow: hidden;
+  animation: screenIn 420ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-.heroCardWhere {
-  margin-top: -0.5rem;
-  font-size: var(--text-small);
-  color: var(--muted);
+@keyframes screenIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
 }
 
-.heroCardWhy {
-  display: flex;
-  gap: 0.5rem;
-  align-items: flex-start;
-  padding: 0.7rem 0.85rem;
-  border-radius: var(--radius-sm);
-  background: var(--accent-soft);
-  font-weight: 600;
+.screenBody {
+  display: grid;
+  align-content: start;
+  gap: 0.7rem;
+  padding: 0.9rem 0.9rem 1.1rem;
+  font-size: 0.875rem;
   line-height: 1.4;
 }
 
-.heroCardWhy svg {
-  margin-top: 0.1rem;
+.screenTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: var(--tile-peach);
   color: var(--accent);
 }
 
-.heroBadges,
-.sieveBadges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  list-style: none;
-  padding: 0;
-}
-
-.heroBlock,
-.heroAsk {
-  display: grid;
-  gap: var(--space-1);
-  padding-top: var(--space-3);
-  border-top: 1px solid var(--line);
-}
-
-.heroLabel {
-  font-size: 0.78125rem;
+.screenLabel {
+  font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
-.heroDishes {
-  font-size: var(--text-small);
+.tasteGroup {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1px solid var(--line);
 }
 
-.heroMore {
+.tasteAvoid {
+  border: 1.5px solid var(--accent);
+}
+
+.tasteChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  list-style: none;
+  padding: 0;
+}
+
+.tasteChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: var(--tint-peach);
+  font-weight: 600;
+  animation: chipIn 380ms cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+.tasteAvoid .tasteChip {
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  color: var(--ink);
+}
+
+.tasteAvoid .tasteChip svg {
+  color: var(--accent);
+}
+
+@keyframes chipIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
+
+.screenWhere {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.screenButton {
+  min-height: 42px;
+  margin-top: 0.3rem;
+  font-size: 0.9375rem;
+}
+
+.matchHead {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 1.6rem;
+  font-weight: 700;
+}
+
+.qlooBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.05rem 0.45rem;
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  flex-shrink: 0;
+}
+
+.matchList {
+  display: grid;
+  gap: 0.4rem;
+  list-style: none;
+  padding: 0;
+}
+
+.matchRow {
+  display: grid;
+  grid-template-columns: 1.1rem 30px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 52px;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.matchPick {
+  border: 2px solid var(--accent);
+  box-shadow: var(--shadow-card);
+}
+
+.matchRank {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   color: var(--muted);
 }
 
-.heroAsk ul {
-  padding-left: 1.1rem;
-  font-size: var(--text-small);
+.matchName {
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.matchSentence {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+  font-weight: 700;
+  animation: chipIn 420ms 500ms cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+.matchSentence svg {
+  margin-top: 0.1rem;
+  color: var(--accent);
+}
+
+.screenBody .checkMedia {
+  aspect-ratio: 16 / 7;
+}
+
+.checkRank {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: var(--accent-fill);
+  color: var(--on-accent);
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.checkName {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.checkWhere {
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.checkWhy {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
   font-weight: 600;
+}
+
+.checkWhy .qlooBadge {
+  margin-top: 0.1rem;
+}
+
+/* Step labels under the phone: tappable; the current one fills as it plays. */
+.previewSteps {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 400px;
+}
+
+.stepButtons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.35rem;
+  flex: 1;
+  list-style: none;
+  padding: 0;
+}
+
+.stepButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.3rem 0.4rem;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.15;
+  cursor: pointer;
+}
+
+.stepButton:hover {
+  background: var(--surface-2);
+}
+
+.stepButton[aria-current="step"] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.stepNumber {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+.stepProgress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--accent-fill);
+  transform-origin: left;
+  animation: stepFill 3500ms linear;
+}
+
+@keyframes stepFill {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.pauseButton {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.pauseButton:hover {
+  background: var(--surface-2);
+}
+
+.sieveBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
 }
 
 /* Numbered editorial list with thin dividers (problem, rules) */
@@ -588,7 +880,7 @@
   }
 
   .heroFigure {
-    justify-self: start;
+    justify-self: center;
   }
 
   .split {
@@ -654,6 +946,17 @@
 
   .headline {
     font-size: 2.125rem;
+  }
+
+  .phone {
+    max-width: 310px;
+    padding: 8px;
+    border-radius: 40px;
+  }
+
+  .screen {
+    height: 550px;
+    border-radius: 33px;
   }
 
   /* Full-width buttons on phones, so the long label never leaves "for" alone. */

@@ -1,0 +1,225 @@
+/* Safety zones (Phase 12): shape + icon + text for each status, so they stay distinct in black and
+   white print and without colour. Matched: solid thin row. To confirm: dashed box. Conflict: solid
+   heavy row. Questions: a numbered call script. */
+.zones {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.list {
+  display: grid;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+}
+
+.zone {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.25rem 0.55rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-small);
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.zone > svg {
+  margin-top: 0.1rem;
+}
+
+.zone > span:first-of-type {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.ok {
+  border: 1.5px solid var(--ok);
+  background: var(--ok-bg);
+}
+
+.ok > svg,
+.ok strong {
+  color: var(--ok);
+}
+
+.source {
+  align-self: center;
+  padding: 0.05rem 0.5rem;
+  border: 1px solid var(--ok);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ok);
+  font-family: var(--font-mono);
+  font-size: 0.71875rem;
+  white-space: nowrap;
+}
+
+.warn {
+  border: 2px dashed var(--warn);
+  background: var(--surface);
+}
+
+.warn > svg,
+.warn strong {
+  color: var(--warn);
+}
+
+.confirm {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.confirmItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.confirmItem {
+  padding: 0.05rem 0.55rem;
+  border-radius: 999px;
+  background: var(--warn-bg);
+  font-weight: 600;
+}
+
+.bad {
+  border: 3px solid var(--bad);
+  background: var(--bad-bg);
+}
+
+.bad > svg,
+.bad strong {
+  color: var(--bad);
+}
+
+.reason {
+  color: var(--ink);
+}
+
+/* The call script: numbered questions with the Call button attached at the foot. */
+.script {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-radius: var(--radius);
+  border: 1px solid var(--line-strong);
+  background: var(--band);
+}
+
+.scriptTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.78125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.scriptTitle svg {
+  color: var(--accent);
+}
+
+.questions {
+  display: grid;
+  gap: 0.4rem;
+  padding: 0;
+  list-style: none;
+  counter-reset: q;
+}
+
+.questions li {
+  display: grid;
+  grid-template-columns: 1.6rem minmax(0, 1fr);
+  gap: 0.5rem;
+  align-items: start;
+  font-weight: 600;
+  line-height: 1.4;
+  counter-increment: q;
+}
+
+.questions li::before {
+  content: counter(q);
+  display: inline-grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.78125rem;
+  font-weight: 700;
+}
+
+.call {
+  justify-self: start;
+  margin-top: var(--space-1);
+}
+
+/* Phone-size preview (hero, demo). Text stays at 13px or more. */
+.compact {
+  gap: var(--space-2);
+}
+
+.compact .zone {
+  padding: 0.4rem 0.6rem;
+  font-size: 0.8125rem;
+}
+
+.compact .script {
+  padding: var(--space-3);
+}
+
+.compact .questions li {
+  font-size: 0.8125rem;
+}
+
+.compact .call {
+  min-height: 40px;
+  padding: 0.4rem 1rem;
+  font-size: 0.875rem;
+}
+
+/* Paper: black and white; the shapes still differ (thin solid, dashed, heavy solid). */
+@media print {
+  .zone,
+  .confirmItem,
+  .source,
+  .script {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .ok {
+    border: 1.5px solid #000;
+  }
+
+  .warn {
+    border: 2px dashed #000;
+  }
+
+  .bad {
+    border: 4px solid #000;
+  }
+
+  .zone > svg,
+  .zone strong,
+  .source,
+  .scriptTitle svg {
+    color: #000 !important;
+  }
+
+  .source {
+    border-color: #000;
+  }
+
+  .call {
+    display: none;
+  }
+}

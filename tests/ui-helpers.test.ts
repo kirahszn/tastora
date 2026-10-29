@@ -9,7 +9,8 @@ import { createNdjsonParser, NdjsonError, readNdjson } from "@/lib/ui/ndjson";
 import { EXAMPLES, emptyDraft, exampleById, profileToDraft, validateDraft } from "@/lib/ui/profileDraft";
 import { droppedOut, evidenceSentence, joinList, movementLabel, rankMovement } from "@/lib/ui/rankMovement";
 import { ERROR_COPY, requestBody, runSearch, SearchError } from "@/lib/ui/searchClient";
-import { compactNeeds, displayStatus, requirementLabel, splitSource, STATUS_DISPLAY } from "@/lib/ui/status";
+import { cuisineArtFor, qlooImageUrl } from "@/lib/ui/cuisineArt";
+import { compactNeeds, displayStatus, needName, needZones, requirementLabel, splitSource, STATUS_DISPLAY } from "@/lib/ui/status";
 import {
   FEEDBACK_KEY,
   LAST_SEARCH_KEY,
@@ -57,7 +58,7 @@ const profile = SeniorProfileSchema.parse({ favouriteCuisines: ["Nigerian"], loc
 /** Every landing file with visible copy (Phase 10); the copy scans below must cover each one. */
 const LANDING_COPY = [
   "Hero.tsx",
-  "HeroCard.tsx",
+  "HeroPreview.tsx",
   "Problem.tsx",
   "Rerank.tsx",
   "SafetyCheck.tsx",
@@ -121,6 +122,42 @@ describe("status display", () => {
     ]);
     expect(c.matched).toEqual([]);
     expect(c.toConfirm).toBe("peanut allergy · soft food");
+  });
+
+  it("lists safety zones with allergies grouped first and only ever in To confirm (Phase 12)", () => {
+    const z = needZones([
+      { kind: "comfort", requirement: "comfort: wheelchair access", status: "matched" as RequirementStatus },
+      { kind: "texture", requirement: "texture: soft food", status: "matched" as RequirementStatus },
+      { kind: "allergy", requirement: "allergy: peanut", status: "matched" as RequirementStatus },
+      { kind: "allergy", requirement: "allergy: Sesame", status: "needs_confirmation" as RequirementStatus },
+      { kind: "diet", requirement: "diet: no pork", status: "conflict" as RequirementStatus },
+    ]);
+    expect(z.matched.map(needName)).toEqual(["Wheelchair access"]);
+    expect(z.conflicts.map(needName)).toEqual(["No pork"]);
+    expect(z.confirm).toEqual(["peanut and sesame allergies", "soft food"]);
+  });
+
+  it("picks a cuisine illustration from the venue's own cuisine tags, first match wins", () => {
+    expect(cuisineArtFor(["Italian", "Barbecue", "Seafood"])).toBe("italian");
+    expect(cuisineArtFor(["Bar", "West african", "Nigerian"])).toBe("westAfrican");
+    expect(cuisineArtFor(["Jamaican"])).toBe("caribbean");
+    expect(cuisineArtFor(["Szechuan"])).toBe("chinese");
+    expect(cuisineArtFor(["South Asian"])).toBe("indian");
+    expect(cuisineArtFor(["Tex-Mex"])).toBe("mexican");
+    expect(cuisineArtFor(["Sushi"])).toBe("japanese");
+    expect(cuisineArtFor(["Korean"])).toBe("korean");
+    expect(cuisineArtFor(["Lebanese"])).toBe("middleEastern");
+    expect(cuisineArtFor(["Diner"])).toBe("plate");
+    expect(cuisineArtFor([])).toBe("plate");
+  });
+
+  it("only uses images from Qloo's own https host", () => {
+    const url = "https://images.qloo.com/i/6B4B5F78-B40C-478B-BB40-990A8548887F-420x-auto.jpg";
+    expect(qlooImageUrl(url)).toBe(url);
+    expect(qlooImageUrl("http://images.qloo.com/i/x.jpg")).toBeNull();
+    expect(qlooImageUrl("https://example.com/food.jpg")).toBeNull();
+    expect(qlooImageUrl("javascript:alert(1)")).toBeNull();
+    expect(qlooImageUrl(null)).toBeNull();
   });
 
   it("formats requirement labels and splits sources", () => {
