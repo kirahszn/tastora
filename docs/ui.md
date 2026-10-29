@@ -221,7 +221,7 @@ nav to "How it works · Why Qloo · Our rules" and a "Find food ↗" pill (phone
   confirm = dashed amber box, ?, grouped items with allergies first (`needZones()`); Conflict = heavy
   solid red row, ⛔, reason; then "Ask the restaurant" as a numbered call script with the Call button
   attached. Print keeps the shapes in black and white.
-- **See it work** (`SeeItWork.tsx`, `SeeItWorkDemo.tsx`, `#see`): replaces the separate re-rank and
+- **See it work** (`SeeItWork.tsx`, `SeeItWorkDemo.tsx`, `#how`): replaces the separate re-rank and
   safety-check sections. Three tappable steps over one stage: Tastes (pick a singer for Italian in
   New York City), Qloo's match (`rerankSnapshot.json`; rows with plate icons glide from the plain
   ranking, New/↑/↓ badges, the evidence sentence) and The check (`Sieve.tsx` on the engine output in
@@ -236,3 +236,12 @@ nav to "How it works · Why Qloo · Our rules" and a "Find food ↗" pill (phone
   from `properties.image.url` by `normalizePlace` and `recommend.ts` for display only; ranking and the
   constraint engine don't read it. The print checklist shows the same zones in black and white
   (thin solid / dashed / heavy solid) and hides pictures.
+- **Mobile pass (Phase 12.3)**: "How it works" is removed. It repeated the hero's three steps and
+  See it work, whose intro now carries its line ("An AI agent plans the search. Qloo ranks restaurants
+  near them by taste. Tested code checks every need"). The nav's "How it works" goes to See it work
+  (`#how`). Landing at 375px: 6,834 → 5,867px. Phones: hero preview screen 590px so the check state's
+  Call button fits at 375–430, smaller step labels, demo steps stack number over title, the "venue tag"
+  chip sits inline after the need, result-card banner capped at 170px. Checked at 375, 390 and 430
+  (landing, profile, results, same-origin frame): no horizontal scroll, one sticky top bar (plus the
+  results shortlist bar at the bottom, no overlap), every control ≥ 44px except inline text links, no
+  text under AA.

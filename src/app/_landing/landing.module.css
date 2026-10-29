@@ -863,53 +863,6 @@
   max-width: 62ch;
 }
 
-/* How it works */
-.steps {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-6);
-  list-style: none;
-  padding: 0;
-}
-
-.step {
-  display: grid;
-  align-content: start;
-  gap: var(--space-2);
-  padding-top: var(--space-5);
-  border-top: 1px solid var(--line-strong);
-}
-
-.drawing {
-  width: 120px;
-  height: 90px;
-  margin-bottom: var(--space-3);
-  fill: none;
-  stroke: var(--ink);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.drawAccent {
-  stroke: var(--accent);
-}
-
-.stepNum {
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  color: var(--accent);
-}
-
-.stepTitle {
-  font-size: 1.3125rem;
-}
-
-.stepText {
-  color: var(--muted);
-  max-width: 34ch;
-}
-
 /* Why Qloo: metric cards */
 .stats {
   display: grid;
@@ -1047,7 +1000,6 @@
     max-width: none;
   }
 
-  .steps,
   .stats {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -1117,8 +1069,18 @@
   }
 
   .screen {
-    height: 550px;
+    height: 590px;
     border-radius: 33px;
+  }
+
+  .screenBody .checkMedia {
+    aspect-ratio: 16 / 6;
+  }
+
+  .stepButton {
+    gap: 0.25rem;
+    padding-inline: 0.3rem;
+    font-size: 0.75rem;
   }
 
   /* Full-width buttons on phones, so the long label never leaves "for" alone. */

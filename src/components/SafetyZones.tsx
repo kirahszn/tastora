@@ -44,9 +44,9 @@ export function SafetyZones({
             <li key={s.requirement} className={`${styles.zone} ${styles.ok}`}>
               <Icon name="check" size={compact ? 15 : 18} />
               <span>
-                <strong>Matched</strong> · {needName(s)}
+                <strong>Matched</strong> · {needName(s)}{" "}
+                <span className={styles.source}>{s.kind === "diet" ? "venue tag, confirm" : "venue tag"}</span>
               </span>
-              <span className={styles.source}>{s.kind === "diet" ? "venue tag, confirm" : "venue tag"}</span>
             </li>
           ))}
           {confirm.length > 0 && (

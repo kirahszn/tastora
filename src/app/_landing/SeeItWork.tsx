@@ -5,9 +5,12 @@ import styles from "./landing.module.css";
 
 export function SeeItWork() {
   return (
-    <section id="see" className={styles.section} aria-labelledby="see-h">
+    <section id="how" className={styles.section} aria-labelledby="see-h">
       <SectionHead id="see-h" eyebrow="See it work" title="Their tastes in." muted="Questions to ask out.">
-        <p>Three steps on real Qloo data. We set dishes aside; we never call one safe.</p>
+        <p>
+          An AI agent plans the search. Qloo ranks restaurants near them by taste. Tested code checks every need: we set
+          dishes aside, and we never call one safe. Three steps, on real Qloo data:
+        </p>
       </SectionHead>
       <SeeItWorkDemo places={sieveSamples()} />
     </section>

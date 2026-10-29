@@ -1,7 +1,6 @@
 import { Closing } from "./_landing/Closing";
 import { FadeUp } from "./_landing/FadeUp";
 import { Hero } from "./_landing/Hero";
-import { HowItWorks } from "./_landing/HowItWorks";
 import { Problem } from "./_landing/Problem";
 import { QlooProof } from "./_landing/QlooProof";
 import { Rules } from "./_landing/Rules";
@@ -16,9 +15,6 @@ export default function Home() {
         <Problem />
       </FadeUp>
       <SeeItWork />
-      <FadeUp>
-        <HowItWorks />
-      </FadeUp>
       <FadeUp>
         <QlooProof />
       </FadeUp>

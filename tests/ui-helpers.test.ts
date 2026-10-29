@@ -63,7 +63,6 @@ const LANDING_COPY = [
   "SeeItWork.tsx",
   "SeeItWorkDemo.tsx",
   "Sieve.tsx",
-  "HowItWorks.tsx",
   "QlooProof.tsx",
   "proofStats.ts",
   "Rules.tsx",
@@ -606,7 +605,7 @@ describe("UI copy", () => {
     const hero = readFileSync(join(process.cwd(), "src/app/_landing/Hero.tsx"), "utf8");
     expect(hero).toContain(">For caregivers<");
     expect(hero).toContain("Find restaurants that fit their taste");
-    expect(readFileSync(join(process.cwd(), "src/app/_landing/HowItWorks.tsx"), "utf8")).toContain("Qloo ranks restaurants near them by taste");
+    expect(readFileSync(join(process.cwd(), "src/app/_landing/SeeItWork.tsx"), "utf8")).toContain("Qloo ranks restaurants near them by taste");
     expect(readFileSync(join(process.cwd(), "src/app/_landing/QlooProof.tsx"), "utf8")).toContain(
       "From Tastora&rsquo;s test searches in New York City, October 2026.",
     );
