@@ -1,9 +1,18 @@
 /* Floating pill nav: sticky, warm and slightly translucent, on every page (a solid bar on phones). */
+/* The strip above and around the pill is painted too, so page text never shows through it
+   (Phase 11). The landing page repeats its hero glow here so the top of the page has no seam. */
 .header {
   position: sticky;
   top: 0;
   z-index: 20;
-  padding: var(--space-3) var(--gutter) 0;
+  padding: var(--space-3) var(--gutter) var(--space-2);
+  background: var(--bg);
+}
+
+:global(body:has([data-layout="wide"])) .header {
+  background:
+    radial-gradient(60rem 30rem at 80% 0, rgb(217 119 79 / 8%), transparent 70%) no-repeat,
+    var(--bg);
 }
 
 .pill {

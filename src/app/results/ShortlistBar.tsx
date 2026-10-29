@@ -82,11 +82,17 @@ export function ShortlistBar({
           </button>
           {count > 0 ? (
             <Link href="/results/print" className="btn btn-secondary">
-              <Icon name="print" /> Print<span className={styles.wideOnly}> checklist</span>
+              <Icon name="print" />
+              <span>
+                Print<span className={styles.wideOnly}> checklist</span>
+              </span>
             </Link>
           ) : (
             <button type="button" className="btn btn-secondary" disabled>
-              <Icon name="print" /> Print<span className={styles.wideOnly}> checklist</span>
+              <Icon name="print" />
+              <span>
+                Print<span className={styles.wideOnly}> checklist</span>
+              </span>
             </button>
           )}
         </div>
