@@ -201,6 +201,23 @@ nav to "How it works · Why Qloo · Our rules" and a "Find food ↗" pill (phone
   (with results) and `/results/print` log no errors or warnings of ours.
 - Checked at 375, 768, 1024 and 1440px (same-origin iframe, real stored results): no horizontal
   scroll, no text under AA contrast, no tap target under 44px, on every page.
+## Layout system (Phase 12.4)
+
+- **One container**: `--container` (1180px + gutters, padded by `--gutter`) for the header pill,
+  every landing section, every app page and the footer. App pages (`/profile`, searching,
+  `/results`, `/results/print`) keep a `--content-max` 50rem reading column, **left-aligned** in that
+  container (before: centred, so its edge sat 190px right of the logo at 1440px). Headings are
+  left-aligned on every page and width.
+- **One rhythm**, set once per breakpoint in `globals.css` (phones ≤ 760, tablets 761–1023,
+  desktop ≥ 1024): `--page-top` 64/48/32px, `--section-gap` (landing) 128/96/64px, `--stack-gap`
+  (blocks on app pages, form sections, result cards, print places) 32px, 24px on phones,
+  `--card-pad` 32px, 16px ≤ 560px.
+- **Grids**: profile examples 1 column, 3 from 700px (no 2 + 1 orphan); Qloo proof stats 3 across on
+  desktop, one full-width row each (figure beside text) on tablets, stacked on phones; result-card
+  dishes are equal-width tiles (`auto-fill`, min 12.5rem); feedback buttons a 2 × 2 grid on phones.
+- Checked at 320, 375, 390, 430, 768, 1024, 1280, 1440 and 1920 on all five screens (headless
+  Chrome, stored response): no horizontal scroll, no target under 44px, no rendered text under AA.
+
 ## Show the product (Phase 12)
 
 - **Place images (Part 0).** Qloo's raw place responses carry `properties.image.url` (and

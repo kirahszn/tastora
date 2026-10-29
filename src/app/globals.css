@@ -67,6 +67,18 @@
   --page-max: 1180px;
   --gutter: clamp(1rem, 4vw, 2rem);
 
+  /* Layout system (one container, one rhythm). Every page, the header and the footer use the same
+     column: --container wide (the page width plus the gutters), centred, padded by --gutter. App
+     pages keep a --content-max reading column, left-aligned in it like the landing sections.
+     Breakpoints: phones ≤ 760px, tablets 761–1023px, desktop ≥ 1024px. */
+  --container: calc(var(--page-max) + 2 * var(--gutter));
+  --content-max: 50rem;
+  --page-top: var(--space-8); /* below the nav, every page */
+  --page-bottom: var(--space-8);
+  --section-gap: var(--space-10); /* between landing sections */
+  --stack-gap: var(--space-6); /* between blocks on an app page */
+  --card-pad: var(--space-6);
+
   --radius: 14px;
   --radius-sm: 10px;
   --radius-lg: 20px;
@@ -75,6 +87,28 @@
   --shadow-card: 0 1px 2px rgb(43 29 22 / 4%), 0 10px 30px rgb(43 29 22 / 6%);
 
   color-scheme: light;
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --page-top: var(--space-7);
+    --section-gap: var(--space-9);
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --page-top: var(--space-6);
+    --page-bottom: var(--space-7);
+    --section-gap: var(--space-8);
+    --stack-gap: var(--space-5);
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --card-pad: var(--space-4);
+  }
 }
 
 * {
@@ -169,13 +203,7 @@ p {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
-  padding: var(--space-5);
-}
-
-@media (min-width: 640px) {
-  .card {
-    padding: var(--space-6);
-  }
+  padding: var(--card-pad);
 }
 
 /* Pill chip, used for filters and toggles; aria-pressed shows the chosen one. */

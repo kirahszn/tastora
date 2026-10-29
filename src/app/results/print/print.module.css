@@ -6,7 +6,7 @@
 
 .sheet {
   display: grid;
-  gap: 1.5rem;
+  gap: var(--stack-gap);
 }
 
 .toolbar {
@@ -29,7 +29,7 @@
 .place {
   display: grid;
   gap: 0.4rem;
-  padding: var(--space-5);
+  padding: var(--card-pad);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);

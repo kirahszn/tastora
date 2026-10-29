@@ -1,6 +1,6 @@
 .page {
   display: grid;
-  gap: 2rem;
+  gap: var(--stack-gap);
 }
 
 .pageHead {
@@ -15,7 +15,7 @@
 }
 
 .intro {
-  margin-top: calc(-1 * var(--space-4));
+  margin-top: calc(var(--space-4) - var(--stack-gap)); /* 1rem under the heading at every width */
   max-width: var(--measure);
   font-size: var(--text-lead);
 }
@@ -23,20 +23,28 @@
 .examples {
   display: grid;
   gap: 0.75rem;
-  padding: 1.75rem;
+  padding: var(--card-pad);
   border-radius: var(--radius-lg);
   background: var(--band);
   scroll-margin-top: 6rem; /* below the floating nav */
 }
 
+/* Three examples: one column on phones, one row of three from 700px (never two plus an orphan). */
 .exampleGrid {
   display: grid;
   gap: 0.75rem;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 700px) {
+  .exampleGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .exampleCard {
   display: grid;
+  grid-template-rows: auto 1fr auto; /* "Use this example" lines up across the row */
   gap: 0.3rem;
   text-align: left;
   padding: 1rem 1.1rem;
@@ -76,14 +84,14 @@
 
 .form {
   display: grid;
-  gap: var(--space-5);
+  gap: var(--stack-gap);
 }
 
 /* The one card (same values as .card in globals.css). */
 .section {
   display: grid;
   gap: var(--space-5);
-  padding: var(--space-6);
+  padding: var(--card-pad);
   border-radius: var(--radius-lg);
   background: var(--surface);
   border: 1px solid var(--line);
@@ -243,25 +251,14 @@
   gap: 0.75rem;
 }
 
-@media (max-width: 480px) {
-  .page {
-    gap: 1.5rem;
-  }
-
-  .intro {
-    margin-top: -0.75rem;
-  }
-
-  .form {
-    gap: 1.25rem;
-  }
-
+@media (max-width: 560px) {
   .section,
   .examples {
-    padding: 1.1rem;
     border-radius: var(--radius);
   }
+}
 
+@media (max-width: 480px) {
   .cityPicks {
     display: grid;
     grid-template-columns: 1fr 1fr;

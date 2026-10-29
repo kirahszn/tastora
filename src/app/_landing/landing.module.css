@@ -12,13 +12,13 @@
    section keeps to the page column, and the closing band spans the whole width without 100vw. */
 .landing {
   display: grid;
-  gap: var(--space-10);
-  padding-top: var(--space-8);
+  gap: var(--section-gap);
+  padding-top: var(--page-top);
 }
 
 .landing > * {
   width: 100%;
-  max-width: calc(var(--page-max) + 2 * var(--gutter));
+  max-width: var(--container);
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
@@ -927,7 +927,7 @@
   justify-items: start;
   gap: var(--space-5);
   width: 100%;
-  max-width: calc(var(--page-max) + 2 * var(--gutter));
+  max-width: var(--container);
   margin: 0 auto;
   padding: var(--space-9) var(--gutter);
 }
@@ -979,12 +979,29 @@
   }
 }
 
-@media (max-width: 760px) {
-  .landing {
-    gap: var(--space-8);
-    padding-top: var(--space-6);
+/* Tablets: three metric cards in a row get too narrow, so one full-width row each, figure beside
+   the words (all three the same shape, no orphan). */
+@media (min-width: 561px) and (max-width: 1023px) {
+  .stats {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
   }
 
+  .stat {
+    grid-template-columns: 11rem minmax(0, 1fr);
+    column-gap: var(--space-5);
+  }
+
+  .stat > :first-child {
+    grid-row: span 2;
+  }
+
+  .stat > :not(:first-child) {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 760px) {
   .section {
     gap: var(--space-6);
     scroll-margin-top: 4.5rem;
@@ -998,10 +1015,6 @@
     line-height: 1.5;
     letter-spacing: 0;
     max-width: none;
-  }
-
-  .stats {
-    grid-template-columns: minmax(0, 1fr);
   }
 
   .trays,
@@ -1053,11 +1066,13 @@
   }
 }
 
-@media (max-width: 480px) {
-  .landing {
-    gap: 3.5rem;
+@media (max-width: 560px) {
+  .stats {
+    grid-template-columns: minmax(0, 1fr);
   }
+}
 
+@media (max-width: 480px) {
   .headline {
     font-size: 2.125rem;
   }

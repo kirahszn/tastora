@@ -125,7 +125,7 @@
 
 .results {
   display: grid;
-  gap: 1.75rem;
+  gap: var(--stack-gap);
 }
 
 .resultsHead {
@@ -377,7 +377,7 @@
   list-style: none;
   padding: 0;
   display: grid;
-  gap: var(--space-6);
+  gap: var(--stack-gap);
 }
 
 /* The one card (same values as .card in globals.css). */
@@ -386,7 +386,7 @@
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
-  padding: var(--space-6);
+  padding: var(--card-pad);
   display: grid;
   gap: var(--space-5);
 }
@@ -540,11 +540,12 @@
   gap: 0.45rem;
 }
 
+/* Equal-width dish tiles: one column on phones, two or three on wider cards, never a ragged wrap. */
 .dishes {
   list-style: none;
   padding: 0;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 12.5rem), 1fr));
   gap: 0.4rem;
 }
 
@@ -724,7 +725,7 @@
 .evidence {
   display: grid;
   gap: var(--space-4);
-  padding: var(--space-6);
+  padding: var(--card-pad);
   border-radius: var(--radius-lg);
   background: var(--band);
 }
@@ -809,8 +810,17 @@
 @media (max-width: 560px) {
   .card,
   .evidence {
-    padding: 1.1rem;
     border-radius: var(--radius);
+  }
+
+  /* Four feedback choices as an even 2 × 2 grid instead of a 2 + 2 ragged wrap. */
+  .feedbackButtons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .feedbackButton {
+    justify-content: center;
   }
 
   .card {

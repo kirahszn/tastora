@@ -268,12 +268,18 @@
   }
 }
 
+/* The one container (see --container in globals.css): app pages start at the same left edge as the
+   logo and the footer, in a --content-max reading column. */
 .main {
   flex: 1;
   width: 100%;
-  max-width: calc(50rem + 2 * var(--gutter));
+  max-width: var(--container);
   margin: 0 auto;
-  padding: var(--space-7) var(--gutter) var(--space-8);
+  padding: var(--page-top) var(--gutter) var(--page-bottom);
+}
+
+.main > :not([data-layout="wide"]) {
+  max-width: var(--content-max);
 }
 
 .main:has([data-layout="wide"]) {
@@ -295,7 +301,7 @@
 
 .footerInner,
 .footerSmall {
-  max-width: calc(var(--page-max) + 2 * var(--gutter));
+  max-width: var(--container);
   margin: 0 auto;
   padding-inline: var(--gutter);
 }
