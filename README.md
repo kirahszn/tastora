@@ -13,29 +13,35 @@ the restaurant. Tastora never presents an allergy as safe. Built for the Qloo Ag
 
 **Live demo: <https://tastora-three.vercel.app>**
 
-The landing page has two live demos built from real data: **Watch Qloo re-rank** (tap Frank
-Sinatra, Bob Marley or Fela Kuti and Qloo's real top 10 for the same Italian search in New York City
-re-orders; lists in [`src/app/_landing/rerankSnapshot.json`](src/app/_landing/rerankSnapshot.json),
-built by [`scripts/landing-rerank.ts`](scripts/landing-rerank.ts)) and **The safety check** (Tastora's
-own Phase 2 checks run at build time on a committed Qloo sample for a peanut allergy, setting dishes
-aside with the real reason; [`src/app/_landing/sieveData.ts`](src/app/_landing/sieveData.ts)).
-
 **Try it in 30 seconds:** open the site → **Try an example** → **Italian-American in Queens** (the
 Frank Sinatra profile) → **Find restaurants**. Results stream in within a few seconds. Scroll to
 **How Qloo shaped these results** to compare Qloo's ranking with and without the person's taste
 signals.
 
-![Landing page at 1440px: two-tone headline "Good food should still feel like home." beside a real result card for Lenny's Clam Bar](docs/screenshots/landing-1440.jpg)
+![Landing page: "Good food should still feel like home." beside a phone preview showing the Lenny's Clam Bar result, with steps "Their tastes", "Qloo's match" and "The check"](docs/screenshots/01-hero.png)
 
-| Watch Qloo re-rank | The safety check |
+### On the landing page
+
+Everything on the landing page is built from stored real data, not mock-ups.
+
+- **Hero preview** ([`HeroPreview.tsx`](src/app/_landing/HeroPreview.tsx)): a drawn phone cycles
+  through three states: the Sinatra example profile, Qloo's top 4 without and then with the Frank
+  Sinatra signal (from the live run in [`docs/phase3-smoke.md`](docs/phase3-smoke.md)), and the real
+  Lenny's Clam Bar result from a live search on 2026-10-27. It pauses on hover, focus, or tap, and
+  stays still with reduced motion.
+- **See it work** ([`SeeItWork.tsx`](src/app/_landing/SeeItWork.tsx)): three tappable steps. Pick a
+  singer (Frank Sinatra, Bob Marley, Fela Kuti, or none) and Qloo's real top 10 for the same Italian
+  search in New York City re-orders ([`rerankSnapshot.json`](src/app/_landing/rerankSnapshot.json),
+  built by [`scripts/landing-rerank.ts`](scripts/landing-rerank.ts)). Then the check: Tastora's own
+  engine, run at build time on a committed Qloo sample for a peanut allergy, sorts dishes into
+  "Ask about" and "Set aside" with its real reason
+  ([`sieveData.ts`](src/app/_landing/sieveData.ts)).
+- **Our rules**: seven rules, each backed by an automated test.
+
+| See it work | Our rules |
 |---|---|
-| ![Frank Sinatra chosen: Qloo's top 6 Italian restaurants in New York City, all marked New, with "Frank Sinatra brought in 10 new places and moved all 10."](docs/screenshots/landing-rerank.jpg) | ![Buka's dishes for a peanut allergy: 11 to ask about, Suya set aside as "commonly made with peanut; recipe not verified"](docs/screenshots/landing-safety-check.jpg) |
+| ![See it work, step 2: Frank Sinatra chosen; Qloo's top 6 Italian restaurants in New York City, all marked New, with "Frank Sinatra brought in 10 new places and moved all 10."](docs/screenshots/02-see-it-work.png) | ![Our rules: seven numbered rules, from "Allergies and texture needs are never marked safe" to "Tastora takes no payments"](docs/screenshots/06-rules.png) |
 
-| Phone (375px) | Tablet (768px) | Results (375px) |
-|---|---|---|
-| ![Landing page at 375px](docs/screenshots/landing-375.jpg) | ![Landing page at 768px](docs/screenshots/landing-768.jpg) | ![Results page at 375px with the shortlist bar](docs/screenshots/results-375.jpg) |
-
-Full page: [1440px](docs/screenshots/landing-1440-full.jpg) · [768px](docs/screenshots/landing-768-full.jpg) · [375px](docs/screenshots/landing-375-full.jpg).
 ## The problem
 
 Choosing a restaurant for someone else is hard when what matters is their taste, not yours. A
@@ -56,12 +62,18 @@ must avoid"), and it is explicit about what it cannot verify.
    access). Three example profiles are available (Queens, Brooklyn, London).
 2. **Search.** The search runs live: each real step (Claude's tool calls, Qloo lookups, ranking) is
    streamed to the screen as it happens.
-3. **Results.** You get up to 8 restaurants. Each card leads with one plain reason (for example
-   "One of Qloo's top 5 matches for people who love Frank Sinatra"), then a status for each of the
-   person's needs, dishes to ask about, questions to ask the restaurant ("Which dishes are made
-   without pork?"), and shortlist, website, phone and Maps buttons. "Show details" lists every
-   reason with its source, dishes set aside for the person's needs (with the reason), Qloo's exact
-   rank and the score breakdown.
+3. **Results.** You get up to 8 restaurants. Each card shows Qloo's own photo of the place when
+   Qloo has one (credited "Image: Qloo"); otherwise an original cuisine illustration picked from the
+   venue's cuisine tags. No stock food photos are used on cards. The card leads with one plain
+   reason (for example "One of Qloo's top 5 matches for people who love Frank Sinatra"), then the
+   person's needs in **safety zones**, dishes to ask about, and shortlist, website and Maps
+   buttons. "Show details" lists every reason with its source, dishes set aside for the person's
+   needs (with the reason), Qloo's exact rank and the score breakdown.
+   - **Matched**: a thin green row with ✓ and a "venue tag" chip.
+   - **To confirm**: a dashed amber box with ?, allergies listed first.
+   - **Conflict**: a heavy red row with ⛔ and the reason.
+   - **Ask the restaurant**: a numbered call script ("Which dishes are made without pork?") with a
+     Call button when Qloo lists a phone number.
 4. **Evidence.** The "How Qloo shaped these results" panel opens with one sentence computed from
    the comparison ("Frank Sinatra brought in 6 new places and moved all 10.") and shows Qloo's top
    10 with and without the person's taste signals.
@@ -83,24 +95,17 @@ texture. The top 3 places start on a shortlist; "Add to shortlist" on any card c
   (`https://wa.me/?text=…`). Scores and set-aside dishes are never included.
 - **Print checklist** (`/results/print`) is a "Before you go — questions to ask" sheet: address,
   phone in large type, dishes to ask about, warnings, and every question with a ☐ box and a line
-  for notes. "Print or save as PDF"; paper is always black on white, one place per block.
+  for notes. "Print or save as PDF"; paper is always black on white, one place per block. The
+  safety zones keep their shapes in print (thin solid, dashed, heavy solid) and pictures are hidden.
 
-| Shortlist and share text | Print checklist (print styles) |
+| Result card | Print checklist |
 |---|---|
-| ![Share panel with the shortlist text](docs/screenshots/share-panel.jpg) | ![Printed questions checklist](docs/screenshots/print-page.jpg) |
+| ![Result card for Lenny's Clam Bar: Qloo image, "One of Qloo's top 5 matches for people who love Frank Sinatra", Matched wheelchair access (venue tag), To confirm no pork, Ask the restaurant with a Call button, dishes to ask about, feedback buttons](docs/screenshots/03-result-card.png) | ![Before you go — questions to ask: Lenny's Clam Bar with address, phone in large type, the same safety zones, dishes to ask about, and questions with tick boxes and note lines](docs/screenshots/05-print-checklist.png) |
 
-| Profile: where | Profile: must avoid |
-|---|---|
-| ![Where section of the profile: City field with quick picks, optional neighbourhood](docs/screenshots/profile-where.jpg) | ![Must avoid section of the profile form](docs/screenshots/profile-must-avoid.jpg) |
+![How Qloo shaped these results: "Frank Sinatra brought in 6 new places and moved all 10." Same places 4 of 10, new 6, moved 10, with Qloo's top 10 with and without Frank Sinatra](docs/screenshots/04-qloo-evidence.png)
 
-| Result card | Mobile (375 px) |
-|---|---|
-| ![Result card for Lenny's Clam Bar](docs/screenshots/results-card.jpg) | ![Result card on a phone-width screen](docs/screenshots/mobile-card.jpg) |
-
-![How Qloo shaped these results: "Frank Sinatra brought in 6 new places and moved all 10."](docs/screenshots/evidence-panel.jpg)
-
-Screenshots were taken on 2026-10-28 from the stored Sinatra-example response of 2026-10-27 (no new
-search). All of them are in [`docs/screenshots/`](docs/screenshots/).
+The result card, evidence panel and print checklist come from the Sinatra example search. All
+screenshots are in [`docs/screenshots/`](docs/screenshots/).
 
 ## How Qloo powers it
 
@@ -140,7 +145,8 @@ example Teresa Teng), Tastora says so under "About this search" instead of imply
 used.
 
 Qloo data is also used for venue facts: address, borough or city (from geocode), hours, phone,
-website, Google Place ID, dish highlights, and venue tags for accessibility, noise and diet options.
+website, Google Place ID, dish highlights, venue tags for accessibility, noise and diet options, and
+the place's image (display only; ranking and the safety checks don't read it).
 
 ### Where it works
 
@@ -164,6 +170,17 @@ Other cities may work, but they are untested. When a search finds fewer than 4 p
 rated Thin, the results page says: "Fewer matches found around <city>. Qloo's restaurant coverage
 varies by city." If Qloo can't find the city at all, Tastora asks for the nearest larger city.
 
+**Far-away venues are excluded.** Qloo's location is a bias, not a boundary, and it can resolve to
+the wrong place: in one live search, "Benin city" resolved to Mexico City and all 7 Caribbean results
+were there. Tastora now checks each venue against the area asked for (Qloo's echoed locality, the
+venue's coordinates and geocode). A venue is kept when it is in the borough, city or metro, within
+50 km of the matching locality, or in the same region. Far venues are excluded with the reason
+"Outside the area you chose". If nothing is left, the page says so plainly ("Qloo doesn't have
+Caribbean restaurants near Benin city yet.") instead of showing places in another country. Checked
+against every saved raw response (NYC, London, Toronto, LA, Chicago, Sydney, Lagos): no venue there
+was excluded. Details in
+[`docs/ranking-and-constraints.md`](docs/ranking-and-constraints.md).
+
 ## How the agent works
 
 ```mermaid
@@ -177,7 +194,7 @@ flowchart TD
     T --> F2["find_taste_entities → Qloo /search"]
     T --> F3["search_restaurants → Qloo /v2/insights"]
     F1 & F2 & F3 -- "results" --> C
-    F3 --> V["Venue filter<br/>drops hotels, bars without a cuisine, food courts…"]
+    F3 --> V["Venue filter<br/>drops hotels, bars without a cuisine, food courts…<br/>and venues far from the chosen area"]
     V --> E["Constraint engine (Phase 2)<br/>Matched / Needs confirmation / Conflict"]
     E --> R["Ranking<br/>Qloo taste rank + favourites + comfort + borough/city + feedback"]
     R --> X["Explanation facts<br/>reasons, dishes to ask about, removed dishes, questions"]
@@ -225,8 +242,9 @@ instead of hiding it.
 - **Allergen-heavy penalty.** If at least half of a venue's listed dishes were removed for one
   allergen, it drops 8 points (15 if all of them were) and carries a warning. Example: Brooklyn
   Suya for a peanut allergy.
-- Only two things remove a venue entirely: Qloo marks it closed, or wheelchair access is required
-  and a tag explicitly contradicts it. Everything else is flagged, not hidden.
+- Only three things remove a venue entirely: Qloo marks it closed, wheelchair access is required
+  and a tag explicitly contradicts it, or the venue is far from the area asked for. Everything else
+  is flagged, not hidden.
 - **No ordering language.** Dishes are "dishes to ask about", never a menu.
   [`tests/ui-helpers.test.ts`](tests/ui-helpers.test.ts) scans all UI source for
   order/buy/checkout/purchase/cart. It also scans for "safe", "allergen-free" and "guaranteed",
@@ -252,16 +270,18 @@ API keys are read server-side only and are never sent to the browser.
 - **Qloo Insights API**: `/v2/tags`, `/search`, `/v2/insights`
 - **Claude** via `@anthropic-ai/sdk` (tool use; default model `claude-sonnet-5-5`)
 - **Zod** for profile, feedback and storage validation
-- **Vitest** (289 tests), ESLint
-- CSS modules, no UI library. WCAG contrast checked, 44 px tap targets, one warm light theme.
+- **Vitest** (341 tests), ESLint
+- CSS modules, no UI library. WCAG contrast checked, 44 px tap targets. One warm light theme only:
+  every page stays light whatever the OS setting.
 - Hosted on **Vercel**
 
 ## Project structure
 
 ```
 src/
-  app/                  pages (/, /profile, /results), API routes (/api/recommend, /api/health), OG image
-  components/           form inputs, status badge, icons
+  app/                  pages (/, /profile, /results, /results/print), API routes (/api/recommend, /api/health), OG image
+    _landing/           landing sections: hero preview, See it work, Qloo proof, rules (stored real data)
+  components/           form inputs, safety zones, place image / cuisine art, chef logo, icons
   lib/
     agent/              Claude planner, fallback planner, SearchSession, recommend(), notices, explanation facts
     qloo/               Qloo client, search layer, cache, non-restaurant filter
@@ -302,20 +322,23 @@ defaults to `claude-sonnet-5-5`. The app builds and the tests run with no keys a
 | `npm run qloo:probe` | Phase 1 Qloo API spike (uses API credit) |
 | `npm run qloo:coverage` | Phase 9c coverage check for six cities (uses API credit, 24-call cap) |
 
-**Tests:** `npm test` runs 289 tests in 19 files. They cover the constraint engine, ranking, the
+**Tests:** `npm test` runs 341 tests in 20 files. They cover the constraint engine, ranking, the
 Qloo client and search layer (recorded responses), the agent (fake Claude and Qloo: limits,
 invented IDs, fallback, data minimisation), the API route (validation, streaming, rate limit), UI
-helpers (banned words, storage, status display) and locations beyond NYC (profile migration, the
-same-city rule on live samples, coverage note, phone format). One test reads a gitignored raw Qloo
-response and is skipped in a fresh clone (288 pass, 1 skipped).
+helpers (banned words, storage, status display), locations beyond NYC (profile migration, the
+same-city rule on live samples, coverage note, phone format), far-away venue exclusion, and the
+landing page's stored data (each figure checked against the doc it quotes). One test reads a
+gitignored raw Qloo response and is skipped in a fresh clone (340 pass, 1 skipped).
 
 ## Known limitations
 
-- **Location is a bias, not a boundary.** Qloo's `filter.location.query` favours the area but can
-  return places elsewhere. In New York, Tastora ranks the chosen borough higher (+6) and labels places
-  outside NYC. Elsewhere, places whose Qloo city or metro is the chosen city rank higher (+6) and are
-  labelled "In London" / "In the Sydney area"; others are labelled "Nearby: <city>". Nothing is
-  filtered out.
+- **Location is a bias in Qloo, not a boundary.** Qloo's `filter.location.query` favours the area
+  but can return places elsewhere. Tastora excludes venues far from the area asked for (see
+  [Where it works](#where-it-works)). Within range, nothing more is filtered: in New York the chosen
+  borough ranks higher (+6) and places outside NYC are labelled; elsewhere, places whose Qloo city
+  or metro is the chosen city rank higher (+6) and are labelled "In London" / "In the Sydney area",
+  and others "Nearby: <city>". The far-away check needs Qloo to echo a locality and give venue
+  coordinates; without them, venues are kept.
 - **Best tested in New York City.** Coverage was checked in six other cities, once each with two
   cuisines (see [Where it works](#where-it-works)); Lagos is thin, and other cities are untested.
   Dietary and accessibility tag coverage was only measured in NYC.
@@ -355,4 +378,5 @@ response and is skipped in a fresh clone (288 pass, 1 skipped).
   [Juan TM](https://www.pexels.com/photo/engaging-dinner-gathering-with-shared-plates-31705508/) (shared plates, closing band).
 - Body type: [Manrope](https://fonts.google.com/specimen/Manrope) (SIL Open Font License),
   self-hosted at build time by `next/font`.
-- Logo, favicon and icons are original to this project.
+- The chef logo, favicon, icons and cuisine illustrations are original to this project. Restaurant
+  photos on result cards come from Qloo and are credited "Image: Qloo".
